@@ -105,14 +105,272 @@
             "description": "In this video, learn about what to expect your partner to experience throughout pregnancy.",
             "video_url": "https://youtu.be/zRPJ8k1pASk?si=zAoZA1X4b96HvxY_",
             "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC-1.png",
-            "infographic_description": "In this infographic, learn about pregnancy trimesters for fathers."
+            "infographic_description": "In this infographic, learn about pregnancy trimesters for fathers.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Trimesters-Fathers.png"
         },
         {
             "title": "Pregnancy Trimesters",
             "description": "Learn about the three pregnancy trimesters and what to expect in each trimester.",
             "video_url": "https://youtu.be/3JaFsNkwB2o?si=Puoof-6PzdFuWbpR",
             "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/PregnancyInTrimestersInfographic.png",
-            "infographic_description": "In this infographic, learn about pregnancy trimesters."
+            "infographic_description": "In this infographic, learn about pregnancy trimesters.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Pregnancy-Trimesters.png"
+        },
+        {
+            "title": "Signs of Pregnancy",
+            "description": "Learn some of the common symptoms of early pregnancy.",
+            "video_url": "https://youtu.be/iLvwb9QL9Dw?si=ym6xfSFTMPP5_PcH",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/SignsYouMightBePregnantInfographic.png",
+            "infographic_description": "In this infographic, learn about signs of pregnancy.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Signs.png"
+        },
+        {
+            "title": "Preparing for Labor",
+            "description": "Learn about how to prepare for giving birth as you come upon your due date.",
+            "video_url": "https://youtu.be/nedCPn7AfcU?si=uCHsCQEXRXGld2va",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/PrepareForLaborInfographic.png",
+            "infographic_description": "In this infographic, learn about preparing for labor.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Preparing.png"
+        },
+        {
+            "title": "Maternal Anexity",
+            "description": "Learn about recognizing and preventing maternal anxiety.",
+            "video_url": "https://youtu.be/dDtcDReUQFU?si=fTUF4w1Y51onr2ah",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/MaternalAnxietyInfographic.png",
+            "infographic_description": "In this infographic, learn about maternal anxiety.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Maternal-Anxiety.png"
+        },
+        {
+            "title": "Foods to Avoid",
+            "description": "Learn about food to avoid consuming during pregnancy.",
+            "video_url": "https://youtu.be/_YpicGALQMs?si=6JNPKW8QNGbkvISw",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Foods-to-avoid-during-pregnancy-infographic_NC.png",
+            "infographic_description": "In this infographic, learn about foods to avoid when pregnant.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Foods.png"
+        },
+        {
+            "title": "Father of a Premature Baby",
+            "description": "In this video, learn about what to expect as the father to a premature baby.",
+            "video_url": "https://youtu.be/pCnZDjP7xZY",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/What-to-Expect-as-a-Father-of-a-Premature-Baby-Infographic_NC.png",
+            "infographic_description": "In this infographic, learn about being a father of a premature baby.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Father.png"
+        },
+        {
+            "title": "Exercise After Birth",
+            "description": "In this video, learn about the benefits and types of postpartum exercise.",
+            "video_url": "https://youtu.be/BdUkPQijM3E",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/ExerciseAfterGivingBirthInfographic.png",
+            "infographic_description": "In this infographic, learn about exercise after birth.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Exercise.png"
+        },
+        {
+            "title": "C-Section vs. Vaginal Birth",
+            "description": "Learn about differences between cesarean births and vaginal births.",
+            "video_url": "https://youtu.be/Vicp3LT30sU",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/CesareanVsVaginalBirthInfographic.png",
+            "infographic_description": "In this infographic, learn about C-sections vs. vaginal births.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/C-Section.png"
+        },
+        {
+            "title": "Pregnancy Cravings",
+            "description": "Learn about cravings and how to proceed with pregnancy cravings.",
+            "video_url": "https://youtu.be/yVlH8UcGwtU",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Pregnancy-cravings-Infographic_NC.png",
+            "infographic_description": "In this infographic, learn about pregnancy cravings.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Cravings.png"
+        },
+        {
+            "title": "Breastmilk Pumping and Storing",
+            "description": "Learn about how to pump and store breastmilk for your baby.",
+            "video_url": "https://youtu.be/IQhW-NF8MN4",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/BreastmilkPumpingAndStoringInfographic.png",
+            "infographic_description": "In this infographic, learn about breastmilk pumping and storing.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Breastmilk.png"
+        },
+        {
+            "title": "Baby Led Weaning",
+            "description": "Learn about what baby led weaning is and how to begin baby led weaning.",
+            "video_url": "https://youtu.be/TS5BePflVG4",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/BabyLedWeaningInfographic.png",
+            "infographic_description": "In this infographic, learn about baby led weaning.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Baby-Weaning.png"
+        },
+        {
+            "title": "Allergies",
+            "description": "Learn about allergic reactions and your baby.",
+            "video_url": "https://youtu.be/1hr0PbGXHcE",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/AllergiesInfographic.png",
+            "infographic_description": "In this infographic, learn about food allergies in babies and young children.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Allergies.png"
+        },
+        {
+            "title": "Maternal Mortality",
+            "description": "Learn about causes and prevention of maternal mortality.",
+            "video_url": "https://youtu.be/aaICRQbyX2M",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/MaternalMortalityInfographic.png",
+            "infographic_description": "In this infographic, learn about maternal mortality.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Maternal-Mortality.png"
+        },
+        {
+            "title": "Postpartum Birth Control",
+            "description": "Learn about options for postpartum birth control.",
+            "video_url": "https://youtu.be/2yVzUmKVzE8",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/PostpartumBirthControlInfographic.png",
+            "infographic_description": "In this infographic, learn about postpartum birth control.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Postpartum.png"
+        },
+        {
+            "title": "Postpartum Depression ",
+            "description": "Learn about causes and prevention of postpartum depression.",
+            "video_url": "https://youtu.be/u5I0MiEitqA",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/PostpartumDepressionInfographic.png",
+            "infographic_description": "In this video, learn about postpartum depression.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/PPD.png"
+        },
+        {
+            "title": "Vitamins and Supplements",
+            "description": "Learn about vitamins and supplements to take during pregnancy.",
+            "video_url": "https://youtu.be/FhV4vwqExio",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/VitaminsAndSupplementsInfographic.png",
+            "infographic_description": "In this infographic, learn about vitamins and supplements.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Vitamins.png"
+        },
+        {
+            "title": "Breastfeeding vs. Formula Feeding",
+            "description": "Learn about the differences between breastfeeding and formula feeding.",
+            "video_url": "https://youtu.be/mLRpxUE4xrA",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/BreastfeedingVsFormulaFeedingInfographic.png",
+            "infographic_description": "In this infographic, learn about breastfeeding vs. formula feeding.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Breastfeeding.png"
+        },
+        {
+            "title": "Bodily Changes During Pregnancy",
+            "description": "Learn about body changes that occur during pregnancy.",
+            "video_url": "https://youtu.be/_zN0nXHpmvg",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/BodyChangesDuringPregnancyInfographic.png",
+            "infographic_description": "In this infographic, learn about bodily changes during pregnancy.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/body-changes.png"
+        },
+        {
+            "title": "Braxton Hicks Contractions",
+            "description": "Learn about Braxton Hicks contractions.",
+            "video_url": "https://youtu.be/esrpIRynRo8",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Understanding-Braxton-Hicks-Contractions-Infographic_NC.png",
+            "infographic_description": "In this infographic, learn about Braxton Hicks contractions.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/03/Braxton-Hicks-1.png"
+        },
+        {
+            "title": "Baby Teething",
+            "description": "Learn tips for when your baby begins teething.",
+            "video_url": "https://youtu.be/v7LtnficDTA",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/BabyTeethingInfographic_BB-1.png",
+            "infographic_description": "In this infographic, learn about baby teething.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/baby-teething-v.png"
+        },
+        {
+            "title": "Bathing Your Baby",
+            "description": "Learn about common concerns when bathing your baby.",
+            "video_url": "https://youtu.be/SXKKkaVp8yA",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/BathingYourBabyInfographic_BB-1.png",
+            "infographic_description": "In this infographic, learn about bathing your baby.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/bathing-v.png"
+        },
+        {
+            "title": "Can You Get Pregnant on Your Period",
+            "description": "Learn about how pregnancy relates to your period.",
+            "video_url": "https://youtu.be/qHNWeQvuKPk",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/CanYouGetPregnantOnYourPeriodInfographic_BB-1.png",
+            "infographic_description": "In this infographic, learn about getting pregnant on your period.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/can-you-get-pregnant-on-your-period-v.png"
+        },
+        {
+            "title": "Pregnancy Weight Fluctuations",
+            "description": "Learn about how much weight gain can be too much during pregnancy.",
+            "video_url": "https://youtu.be/xdZqGsdbTpw",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/How-much-weight-gain-is-too-much-infographic_NC-1.png",
+            "infographic_description": "In this infographic, learn about pregnancy weight fluctuations.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/pregnancy-weight-gain-v.png"
+        },
+        {
+            "title": "In Vitro Fertilization (IVF)",
+            "description": "Learn about In Vitro Fertilization as an option for pregnancy.",
+            "video_url": "https://youtu.be/H7w787feKnY",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/In-Vitro-Fertilization-IVF-infographic_NC.png",
+            "infographic_description": "In this infographic, learn about in vitro fertilization (IVF).",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/ivf-v.png"
+        },
+        {
+            "title": "Risk Factors for Infertility",
+            "description": "Learn about some risk factors for infertility.",
+            "video_url": "https://youtu.be/7648aV9f2eE",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/Infertility-infographic_NC.png",
+            "infographic_description": "In this infographic, learn about infertility.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/infertility-v.png"
+        },
+        {
+            "title": "Insulin Use During Pregnancy",
+            "description": "Learn about how to use insulin for diabetes during pregnancy.",
+            "video_url": "https://youtu.be/0wqBKDBH_KU",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/Insulin-use-in-pregnancy-infographic_NC-1-1.png",
+            "infographic_description": "In this infographic, learn about insulin use during pregnancy.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/insulin-v.png"
+        },
+        {
+            "title": "Stretch Marks During Pregnancy",
+            "description": "Learn about factors that effect stretch marks during pregnancy.",
+            "video_url": "https://youtu.be/7wGrL81Tn5o",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/Stretch-marks-infographic_NC.png",
+            "infographic_description": "In this infographic, learn about stretch marks during pregnancy.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/stretch-marks-v.png"
+        },
+        {
+            "title": "Vaginal Discharge",
+            "description": "Learn about different types of discharge and what they mean.",
+            "video_url": "https://youtu.be/IUsR545OmAk",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/TypesOfDischargeInfographic_BB-1.png",
+            "infographic_description": "In this infographic, learn about vaginal discharge.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/discharge-v.png"
+        },
+        {
+            "title": "What Your Cramps Could Mean",
+            "description": "Learn about what your cramps could mean other than your period.",
+            "video_url": "https://youtu.be/TPa2HtWIDu4",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/WhatYourCrampsCouldMeanInfographic_BB-2.png",
+            "infographic_description": "In this infographic, learn about what your cramps could mean.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/cramps-v.png"
+        },
+        {
+            "title": "Tips for Getting Pregnant Faster",
+            "description": "Learn different ways to get pregnant faster.",
+            "video_url": "https://youtu.be/YNPc_m1Q1BU",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/TipsForGettingPregnantFasterInfographic_BB.png",
+            "infographic_description": "In this infographic, learn tips for getting pregnant faster.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/tips-for-pregnancy-v.png"
+        },
+        {
+            "title": "Kegel Exercises",
+            "description": "Learn about the benefits of kegel exercises and tips to safely practice them.",
+            "video_url": "https://youtu.be/3Q4JWNu8PPo",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/KegelExercisesInfographic_BB_2-1.png",
+            "infographic_description": "In this infographic, learn about kegel exercises.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/Kegel-Exercises.png"
+        },
+        {
+            "title": "Baby Acne",
+            "description": "Learn about how to recognize and treat baby acne.",
+            "video_url": "https://youtu.be/Lct8hg6RS8E",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/05/Baby-Acne-infographic_NC-2-819x2048.png",
+            "infographic_description": "In this infographic, learn about baby acne.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/Ectopic-Pregnancy.png"
+        },
+        {
+            "title": "Breech Births",
+            "description": "Learn important signs and symptoms of breech births.",
+            "video_url": "https://youtu.be/rQ9i8MAs31k",
+            "infographic_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/BreechBirthInfographic_BB_2-819x2048.png",
+            "infographic_description": "In this infographic, learn about breech births.",
+            "thumbnail_url": "http://oliviaalb-1830307089.us-east-1.elb.amazonaws.com/wp-content/uploads/2023/04/Breech-Births.png"
         }
     ]
 }
