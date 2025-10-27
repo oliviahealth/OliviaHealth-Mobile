@@ -1,0 +1,52 @@
+{
+    "local_resources": [
+        {
+            "title": "Alcoholics Anonymous",
+            "description": "Local resources from the Brazos Valley-College Station area.",
+            "video_url": "https://youtu.be/49x9YhrSOsk?si=iIpYQO6Og5snriNM"
+        },
+        {
+            "title": "Family Promise",
+            "description": "Local resources from the Brazos Valley-College Station area.",
+            "video_url": "https://youtu.be/MMy2TXO4iMM?si=ptVrXwrsyIwmJzQD"
+        },
+        {
+            "title": "Jubilee Birth Center",
+            "description": "Local resources from the Brazos Valley-College Station area.",
+            "video_url": "https://youtu.be/Rf3kUN8BtjM?si=1HH-gb6LqD3tguqN"
+        },
+        {
+            "title": "Lincoln House of Hope",
+            "description": "Local resources from the Brazos Valley-College Station area.",
+            "video_url": "https://youtu.be/X1ZzIaug7vU?si=YuDsvE1tQPyNZDzc"
+        },
+        {
+            "title": "Texas Home Visiting",
+            "description": "Local resources from the Brazos Valley-College Station area.",
+            "video_url": "https://youtu.be/tgnEwTzWXd8?si=Edt2Rdv0OwsGqrhi"
+        }
+    ],
+    "Video Spotlights": [
+        {
+            "title": "Domestic Violence",
+            "subtitle": "with Dr. Nancy Downing",
+            "video_url": "https://youtu.be/bJa8qvGniXA?si=EnOPL1RRTNbBD37V",
+            "description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence.",
+            "transcript": "This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is domestic violence?**\n\nDomestic violence refers to abuse that occurs between people who are in or have been in an intimate partner or romantic relationship. It can involve **physical abuse**, **psychological or emotional abuse**, and can include **financial or sexual abuse**, or **stalking**.  \n\n---\n\n### **Is it more likely for domestic violence to occur during pregnancy?**\n\nSome statistics suggest that domestic violence, if it’s present in a relationship, may be **more likely to happen during pregnancy**, although in other relationships where abuse has been present, pregnancy may be a honeymoon time for people.  \n\nAlthough pregnancy can be a really exciting time for couples, it can also be a **very stressful time**, and that stress can make abuse more likely to occur.  \n\n---\n\n### **What type of impact does domestic violence have on a person’s mental health or on the pregnancy itself?**\n\nDomestic violence is a **healthcare issue**. It’s unfortunately associated with a lot of health outcomes. For example, women who are in relationships where domestic violence is present are at risk for more **mental health issues** such as **depression, anxiety, suicidal thoughts or self-harm, and substance use**.  \n\nDuring pregnancy, domestic violence can increase a woman’s risk for:\n- Not gaining enough weight during pregnancy  \n- Not being able to take as good care of herself and her growing baby  \n- **Preterm birth** and **low birth weight**  \n- **Other birth complications**  \n- **Higher risk of postpartum depression**  \n\n---\n\n**Thank you.**  \nWe appreciate you coming out here today and answering your questions. You’re welcome."
+        },
+        {
+            "title": "Domestic Violence Signs of Abuse",
+            "subtitle": "with Dr. Nancy Downing",
+            "video_url": "https://youtu.be/k9GqIjwL4x8?si=3D56-w0mAFWC7yOK",
+            "description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses signs of domestic violence. ",
+            "transcript": "This is Dr. Downing, a forensic faculty member here at Texas A&M School of Nursing. Today’s topic will be about domestic violence.  \n\n---\n\n### **What are typical signs of abuse or red flags in a relationship?**\n\nSome of the signs of abuse in a relationship or red flags include somebody in the relationship who is excessively controlling, so they always want to know where the other person is, who they’re with, and what they’re doing. Isolating the person is another red flag, so for example, saying things like I don’t like your friends or I don’t like your family, or you spend too much time with them. And so making sure that that person does not have access to outside relationships. Another example is excessive jealousy, sometimes accusing them of cheating or flirting with other people. Other signs of domestic violence or abuse are constantly undermining or putting somebody down, undermining their self esteem, telling them that they’re not good enough, that they are ugly, that nobody else will love them. All of these signs are signs of an abuser’s attempt to control the other person and ensure that that person does not leave the relationship. Thank you."
+        },
+        {
+            "title": "Domestic Violence Safety Planning",
+            "subtitle": "with Dr. Nancy Downing",
+            "video_url": "https://youtu.be/SkRUCClPjGY?si=ADskEloddsq5yRJx",
+            "description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence safety planning. ",
+            "transcript": "# This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is safety planning?**\n\nA **safety plan** is a plan for your safety at any stage of a relationship that may involve abuse. This could mean planning to be safe if you live alone, planning to be safe during an abusive episode, or planning to be safe when wanting to leave the relationship.  \n\nUnfortunately, statistics show that some of the **most dangerous times** in abusive relationships are when a person **voices an attempt or intent to leave**, or when someone is in the **active stage of leaving the relationship**, or **shortly after they have left**.  \n\n---\n\n### **What does a safety plan include?**\n\nA safety plan includes **knowing where you can go to be safe**, having a **trusted friend or family member**, and a **safe place to live**.  \n\nIt can also include **making a safe bag**, which is a bag full of important things that you might need, kept in a place that allows for a quick getaway—such as **under your bed** or **in your car**.  \n\nItems to include in a safe bag:\n- ID, credit cards, and bank cards  \n- Birth certificates and Social Security cards  \n- Keys and other essential documents  \n\nA safety plan also involves having **resources and emergency numbers** available, and creating a **plan in case violence escalates**, including **calling 911** if your safety is threatened in any way."
+        }
+    ]
+}
