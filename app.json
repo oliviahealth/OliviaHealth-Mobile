@@ -35,8 +35,8 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/olivia-splash.png",
-          "imageWidth": 200,
           "resizeMode": "cover",
+          "enableFullScreenImage_legacy": "true",
           "backgroundColor": "#ffffff",
           "dark": {
             "backgroundColor": "#000000"
