@@ -1,0 +1,1 @@
+export const TINT_COLOR = "#B642D3";
