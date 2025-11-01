@@ -37,7 +37,7 @@
           "image": "./assets/images/olivia-splash.png",
           "resizeMode": "cover",
           "enableFullScreenImage_legacy": "true",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#000000",
           "dark": {
             "backgroundColor": "#000000"
           }

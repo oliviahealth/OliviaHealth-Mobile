@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.setOptions({
-  duration: 2000,
+  duration: 3000,
   fade: false
 })
 
