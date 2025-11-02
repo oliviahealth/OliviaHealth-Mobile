@@ -1,4 +1,4 @@
-import { Text, TextInput, View, Image, TouchableOpacity } from "react-native";
+import { Text, TextInput, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -6,8 +6,15 @@ const oliviahealth_branding = require('../../assets/images/oliviahealth_branding
 
 export default function Index() {
   return (
-    <SafeAreaView style={{ flex: 1, paddingTop: 20, paddingHorizontal: 30 }}>
-      <View style={{ flex: 1, gap: 20 }}>
+    <ScrollView
+      contentContainerStyle={{
+        paddingTop: 20,
+        paddingHorizontal: 30,
+        gap: 18,
+      }}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={{ flex: 1, gap: 18 }}>
         <Image
           source={oliviahealth_branding}
           style={{ width: 200, resizeMode: 'contain' }}
@@ -84,7 +91,53 @@ export default function Index() {
             <Ionicons name="play-circle-outline" size={32} color="#B642D3" />
           </TouchableOpacity>
         </View>
+
+        <View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Local Resources</Text>
+            <Text style={{ color: '#B642D3' }}>See all</Text>
+          </View>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/04/family-promise-768x431.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Family Promise
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                Local resources from the Brazos Valley-College Station area.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/04/jubilee-768x432.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Jubilee Birth Center
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                Local resources from the Brazos Valley-College Station area.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/04/lincoln-1-768x432.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Lincoln House of Hope
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                Local resources from the Brazos Valley-College Station area.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+        </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
