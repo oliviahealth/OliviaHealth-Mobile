@@ -4,7 +4,13 @@ import { TINT_COLOR } from '../../theme';
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: TINT_COLOR }}>
+    <Tabs screenOptions={{
+      tabBarActiveTintColor: TINT_COLOR,
+      headerShown: false,
+      sceneStyle: {
+        backgroundColor: "#ffff",
+      }
+    }}>
       <Tabs.Screen
         name="index"
         options={{
