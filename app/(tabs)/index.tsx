@@ -183,6 +183,52 @@ export default function Index() {
             <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
           </TouchableOpacity>
         </View>
+
+        <View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Infographics</Text>
+            <Text style={{ color: '#B642D3' }}>See all</Text>
+          </View>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/03/Foods-to-Avoid.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Foods to Avoid
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                In this infographic, learn about food to avoid consuming during pregnancy.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Baby Teething
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                In this infographic, learn tips for when your baby begins teething.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/05/Babyproofing-Infographic.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Babyproofing
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                In this infographic, learn how to safely babyproof your house.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
