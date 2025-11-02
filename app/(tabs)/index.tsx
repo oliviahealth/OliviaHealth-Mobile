@@ -137,6 +137,52 @@ export default function Index() {
             <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
           </TouchableOpacity>
         </View>
+
+        <View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Quick Tips</Text>
+            <Text style={{ color: '#B642D3' }}>See all</Text>
+          </View>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Fathers.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Pregnancy Trimesters for Fathers
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                In this video, learn about what to expect your partner to experience throughout pregnancy.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/03/Vitamins.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Vitamins and Supplements
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                Learn about vitamins and supplements to take during pregnancy.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee' }} activeOpacity={0.9}>
+            <Image source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/03/Allergies.png" }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+            <View style={{ flex: 1, gap: 4 }}>
+              <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                Allergies
+              </Text>
+              <Text style={{ fontSize: 12, color: '#888' }}>
+                Learn about allergic reactions and your baby.
+              </Text>
+            </View>
+            <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
