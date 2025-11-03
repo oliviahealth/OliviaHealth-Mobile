@@ -24,6 +24,7 @@ export interface IQuickTips {
     id: string,
     title: string,
     video_url: string,
+    description: string,
     infographic_url: string,
     infographic_description: string,
     thumbnail_url: string,
@@ -40,7 +41,7 @@ export interface IInfographics {
 }
 
 export interface IResources {
-    local_resouces: ILocalResources[],
+    local_resources: ILocalResources[],
     video_spotlights: IVideoSpotlights[],
     quick_tips: IQuickTips[],
     infographics: IInfographics[]

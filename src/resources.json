@@ -309,8 +309,7 @@
       "video_url": "https://youtu.be/v7LtnficDTA",
       "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB-1.png",
       "infographic_description": "In this infographic, learn about baby teething.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething-v.png",
-      "spotlight": true
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething-v.png"
     },
     {
       "id": "dc6622f5-dec9-4a2b-91f2-bcbdd3c995db",
@@ -577,7 +576,8 @@
       "title": "Baby Teething",
       "description": "In this infographic, learn tips for when your baby begins teething.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething.png",
-      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB.pdf"
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB.pdf",
+      "spotlight": true
     },
     {
       "id": "e02f7d87-3156-4a89-ae6c-509e61859e03",
