@@ -12,21 +12,24 @@
       "title": "Family Promise",
       "description": "Local resources from the Brazos Valley-College Station area.",
       "video_url": "https://youtu.be/MMy2TXO4iMM?si=ptVrXwrsyIwmJzQD",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/family-promise-768x431.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/family-promise-768x431.png",
+      "spotlight": true
     },
     {
       "id": "deb56fee-a448-420f-a2ce-e44652761f28",
       "title": "Jubilee Birth Center",
       "description": "Local resources from the Brazos Valley-College Station area.",
       "video_url": "https://youtu.be/Rf3kUN8BtjM?si=1HH-gb6LqD3tguqN",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/jubilee-768x432.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/jubilee-768x432.png",
+      "spotlight": true
     },
     {
       "id": "e23defef-4b52-4d33-b28b-7dd8a2e2551c",
       "title": "Lincoln House of Hope",
       "description": "Local resources from the Brazos Valley-College Station area.",
       "video_url": "https://youtu.be/X1ZzIaug7vU?si=YuDsvE1tQPyNZDzc",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/lincoln-1-768x432.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/lincoln-1-768x432.png",
+      "spotlight": true
     },
     {
       "id": "6774a4fe-2d65-444f-9db6-b12a46e724cd",
@@ -43,7 +46,8 @@
       "video_url": "https://youtu.be/bJa8qvGniXA?si=EnOPL1RRTNbBD37V",
       "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence.",
       "transcript": "This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is domestic violence?**\n\nDomestic violence refers to abuse that occurs between people who are in or have been in an intimate partner or romantic relationship. It can involve **physical abuse**, **psychological or emotional abuse**, and can include **financial or sexual abuse**, or **stalking**.  \n\n---\n\n### **Is it more likely for domestic violence to occur during pregnancy?**\n\nSome statistics suggest that domestic violence, if it’s present in a relationship, may be **more likely to happen during pregnancy**, although in other relationships where abuse has been present, pregnancy may be a honeymoon time for people.  \n\nAlthough pregnancy can be a really exciting time for couples, it can also be a **very stressful time**, and that stress can make abuse more likely to occur.  \n\n---\n\n### **What type of impact does domestic violence have on a person’s mental health or on the pregnancy itself?**\n\nDomestic violence is a **healthcare issue**. It’s unfortunately associated with a lot of health outcomes. For example, women who are in relationships where domestic violence is present are at risk for more **mental health issues** such as **depression, anxiety, suicidal thoughts or self-harm, and substance use**.  \n\nDuring pregnancy, domestic violence can increase a woman’s risk for:\n- Not gaining enough weight during pregnancy  \n- Not being able to take as good care of herself and her growing baby  \n- **Preterm birth** and **low birth weight**  \n- **Other birth complications**  \n- **Higher risk of postpartum depression**  \n\n---\n\n**Thank you.**  \nWe appreciate you coming out here today and answering your questions. You’re welcome.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png",
+      "spotlight": true
     },
     {
       "id": "9a38154f-bfbe-499a-a484-ed9a43aeface",
@@ -71,7 +75,8 @@
       "video_url": "https://youtu.be/VaFo0CyuiBg?si=4SwD7zIz0wP9xdQJ",
       "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses signs and symptoms of Maternal Anxiety and Depression.",
       "transcript": "# My name is **Tara Maxa**, and I am an **RN**, but I’m also an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **What are some signs and symptoms of maternal anxiety and depression at distinct stages of pregnancy?**\n\nWhen we’re talking about signs and symptoms of **anxiety** and **depression**, it can be very individualized. Somebody may experience one symptom while their friend right next to them may not experience that symptom at all.  \n\nWhen we talk about **anxiety**—whether **prenatally** or **after delivery** (the **postpartum period**)—that anxiety can appear as **extreme worry**. It’s normal to worry when you have a new baby and want to make sure you’re doing everything right. However, **maternal anxiety** often involves **intrusive thoughts** that replay in your mind repeatedly. This kind of worry won’t go away, and it can:\n- Prevent you from sleeping  \n- Prevent you from eating  \n- Prevent you from doing daily activities because you’re so consumed by those thoughts  \n\n**Depression**, on the other hand, can look like **extreme sadness or guilt**, or a desire to **sleep all the time** or **withdraw** from things you normally enjoy—like going to the park or reading a book.  \n\nYou may **not feel like yourself**, and the symptoms can vary from person to person. This is a general overview of what both maternal anxiety and depression can look like.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png",
+      "spotlight": true
     },
     {
       "id": "799461aa-b572-415e-b96a-0688dc06c660",
@@ -100,7 +105,8 @@
       "video_url": "https://youtu.be/WnyINYqpe4E?si=v7uiFdDzG-zOnuw8",
       "video_description": "In this video, the Brown Family discusses their personal experiences with the NICU.",
       "transcript": "# Stacy Brown:** Hi, I’m Stacy Brown, mother of five—the last of whom were unexpected **triplets**, born at **28 weeks, 5 days**. Altogether we have **four girls and one boy**.\n\n**Eric Brown:** Howdy, I’m Eric Brown, the proud father of the five, including the one boy I like to call my **Lone Ranger**.\n\n---\n\n### **How long did your baby stay in the NICU?**\n\nWith multiples come many possibilities. We were told they might come home at different times. In our case, **one daughter came home at day 55**, and the **other two at day 73**.\n\n---\n\n### **What were the procedures for visiting in the NICU?**\n\n- **Controlled access:** Call a phone at the door; the **charge nurse** verifies and buzzes you in.\n- **Handwashing:** Scrub at the big sinks for **3 minutes** **every** time you enter—even if you just stepped out.\n- **Approved visitor list:** Up to **10 people** per family/baby; tightened during **flu/RSV season**.\n- **PPE:** **Yellow gowns** (and often **shoe covers**). Typically **one baby per person per day** to reduce cross-contamination.\n\nReason: safety and infection control for all NICU babies.\n\n---\n\n### **How did you deal with the emotional aspect and bond with the babies?**\n\n- Our **nurses and doctors were amazing**, treating **Dad and Mom equally** and checking on our **mental health** as well as the babies’ progress.\n- We had **24-hour access**; Dad often visited at **3 a.m.** for **kangaroo care** (skin-to-skin) for hours.\n- **Child life specialists** taught our older kids (and us) about wires, tubes, and how to hold the babies safely. That education reduced fear and helped bonding.\n\n---\n\n### **How did you manage two children at home and three in the hospital? How difficult was it?**\n\nIt was a **juggling act**:\n- Dad worked full-time, drove **~7,000 miles** in two months between College Station and Houston.\n- **School counselor and teachers** supported the older two.\n- **Family, church, and friends** coordinated meals, gift cards, house/yard care, and logistics.\n- A **retired couple** in Houston hosted us; they became *surrogate grandparents*, driving to the hospital and helping daily.\n- When the girls transferred back to College Station, the community **welcomed and prayed** outside the hospital.\n\n**NICU brain** (mental overload) is real—community support was essential.\n\n---\n\n### **What kept you going? Did you ever feel like losing hope?**\n\n- Gratitude for being able to be **present daily**, recognizing others had **harder trials** or less support.\n- Confidence that the situation was **temporary** and our babies were progressing.\n- **Theme: “fight like a preemie.”** Staff **celebrated every milestone** (e.g., feeds increasing from 8 mm to 10 mm, keeping a tube in, first **real clothes**). Small wins showed **steady progress**.\n\n---\n\n### **What aspects of the NICU surprised you?**\n\n- The **bedside manner** and whole-family care—consistent concern for **parents’ well-being**.\n- **Holiday goodie bags** and thoughtful touches from nurses.\n- The **roller-coaster nature**: great days followed by setbacks (apnea, bradys, caffeine, occasional resuscitation). Plans for discharge could change overnight.\n- How **seriously** the team takes safety: a planned discharge was **postponed 3 days** after an apnea/brady episode to ensure stability—disappointing in the moment, but **the right call** for safety.\n",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/NICU-4.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/NICU-4.png",
+      "spotlight": true
     },
     {
       "id": "ce0e155a-e2e9-4243-b1f6-c931403e282b",
@@ -120,7 +126,8 @@
       "video_url": "https://youtu.be/zRPJ8k1pASk?si=zAoZA1X4b96HvxY_",
       "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC-1.png",
       "infographic_description": "In this infographic, learn about pregnancy trimesters for fathers.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Fathers.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Fathers.png",
+      "spotlight": true
     },
     {
       "id": "07f4debb-d666-4d5a-8f72-6f267ec8de37",
@@ -165,7 +172,8 @@
       "video_url": "https://youtu.be/_YpicGALQMs?si=6JNPKW8QNGbkvISw",
       "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods-to-avoid-during-pregnancy-infographic_NC.png",
       "infographic_description": "In this infographic, learn about foods to avoid when pregnant.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods.png",
+      "spotlight": true
     },
     {
       "id": "2f219fff-a288-4886-a23c-60d2046a0d37",
@@ -264,7 +272,8 @@
       "video_url": "https://youtu.be/FhV4vwqExio",
       "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/VitaminsAndSupplementsInfographic.png",
       "infographic_description": "In this infographic, learn about vitamins and supplements.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Vitamins.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Vitamins.png",
+      "spotlight": true
     },
     {
       "id": "e60baa0b-2443-4334-a57b-69cff5800cb3",
@@ -300,7 +309,8 @@
       "video_url": "https://youtu.be/v7LtnficDTA",
       "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB-1.png",
       "infographic_description": "In this infographic, learn about baby teething.",
-      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething-v.png"
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething-v.png",
+      "spotlight": true
     },
     {
       "id": "dc6622f5-dec9-4a2b-91f2-bcbdd3c995db",
@@ -510,7 +520,8 @@
       "title": "Allergies",
       "description": "In this infographic, learn about allergic reactions and your baby.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Allergies-1.png",
-      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/AllergiesInfographic-2.pdf"
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/AllergiesInfographic-2.pdf",
+      "spotlight": true
     },
     {
       "id": "e674aa36-c27e-4f0e-896a-8739d6c0247c",
@@ -678,7 +689,8 @@
       "title": "Babyproofing",
       "description": "In this infographic, learn how to safely babyproof your house.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Babyproofing-Infographic.png",
-      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/How-to-baby-proof-your-house-infographic_NC.pdf"
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/How-to-baby-proof-your-house-infographic_NC.pdf",
+      "spotlight": true
     },
     {
       "id": "b36b8290-fa1a-40d8-87a4-62e4343159ea",
