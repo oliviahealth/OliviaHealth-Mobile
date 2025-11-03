@@ -1,6 +1,5 @@
-import { Text, TextInput, View, Image, TouchableOpacity, ScrollView } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 const oliviahealth_branding = require('../../assets/images/oliviahealth_branding.png')
 
