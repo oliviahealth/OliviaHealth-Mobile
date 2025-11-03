@@ -1,624 +1,711 @@
 {
-    "local_resources": [
-        {
-            "title": "Alcoholics Anonymous",
-            "description": "Local resources from the Brazos Valley-College Station area.",
-            "video_url": "https://youtu.be/49x9YhrSOsk?si=iIpYQO6Og5snriNM",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/AA-768x432.png"
-        },
-        {
-            "title": "Family Promise",
-            "description": "Local resources from the Brazos Valley-College Station area.",
-            "video_url": "https://youtu.be/MMy2TXO4iMM?si=ptVrXwrsyIwmJzQD",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/family-promise-768x431.png"
-        },
-        {
-            "title": "Jubilee Birth Center",
-            "description": "Local resources from the Brazos Valley-College Station area.",
-            "video_url": "https://youtu.be/Rf3kUN8BtjM?si=1HH-gb6LqD3tguqN",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/jubilee-768x432.png"
-        },
-        {
-            "title": "Lincoln House of Hope",
-            "description": "Local resources from the Brazos Valley-College Station area.",
-            "video_url": "https://youtu.be/X1ZzIaug7vU?si=YuDsvE1tQPyNZDzc",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/lincoln-1-768x432.png"
-        },
-        {
-            "title": "Texas Home Visiting",
-            "description": "Local resources from the Brazos Valley-College Station area.",
-            "video_url": "https://youtu.be/tgnEwTzWXd8?si=Edt2Rdv0OwsGqrhi"
-        }
-    ],
-    "video spotlights": [
-        {
-            "title": "Domestic Violence",
-            "subtitle": "with Dr. Nancy Downing",
-            "video_url": "https://youtu.be/bJa8qvGniXA?si=EnOPL1RRTNbBD37V",
-            "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence.",
-            "transcript": "This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is domestic violence?**\n\nDomestic violence refers to abuse that occurs between people who are in or have been in an intimate partner or romantic relationship. It can involve **physical abuse**, **psychological or emotional abuse**, and can include **financial or sexual abuse**, or **stalking**.  \n\n---\n\n### **Is it more likely for domestic violence to occur during pregnancy?**\n\nSome statistics suggest that domestic violence, if it’s present in a relationship, may be **more likely to happen during pregnancy**, although in other relationships where abuse has been present, pregnancy may be a honeymoon time for people.  \n\nAlthough pregnancy can be a really exciting time for couples, it can also be a **very stressful time**, and that stress can make abuse more likely to occur.  \n\n---\n\n### **What type of impact does domestic violence have on a person’s mental health or on the pregnancy itself?**\n\nDomestic violence is a **healthcare issue**. It’s unfortunately associated with a lot of health outcomes. For example, women who are in relationships where domestic violence is present are at risk for more **mental health issues** such as **depression, anxiety, suicidal thoughts or self-harm, and substance use**.  \n\nDuring pregnancy, domestic violence can increase a woman’s risk for:\n- Not gaining enough weight during pregnancy  \n- Not being able to take as good care of herself and her growing baby  \n- **Preterm birth** and **low birth weight**  \n- **Other birth complications**  \n- **Higher risk of postpartum depression**  \n\n---\n\n**Thank you.**  \nWe appreciate you coming out here today and answering your questions. You’re welcome.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
-        },
-        {
-            "title": "Domestic Violence Signs of Abuse",
-            "subtitle": "with Dr. Nancy Downing",
-            "video_url": "https://youtu.be/k9GqIjwL4x8?si=3D56-w0mAFWC7yOK",
-            "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses signs of domestic violence.",
-            "transcript": "This is Dr. Downing, a forensic faculty member here at Texas A&M School of Nursing. Today’s topic will be about domestic violence.  \n\n---\n\n### **What are typical signs of abuse or red flags in a relationship?**\n\nSome of the signs of abuse in a relationship or red flags include somebody in the relationship who is excessively controlling, so they always want to know where the other person is, who they’re with, and what they’re doing. Isolating the person is another red flag, so for example, saying things like I don’t like your friends or I don’t like your family, or you spend too much time with them. And so making sure that that person does not have access to outside relationships. Another example is excessive jealousy, sometimes accusing them of cheating or flirting with other people. Other signs of domestic violence or abuse are constantly undermining or putting somebody down, undermining their self esteem, telling them that they’re not good enough, that they are ugly, that nobody else will love them. All of these signs are signs of an abuser’s attempt to control the other person and ensure that that person does not leave the relationship. Thank you.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
-        },
-        {
-            "title": "Domestic Violence Safety Planning",
-            "subtitle": "with Dr. Nancy Downing",
-            "video_url": "https://youtu.be/SkRUCClPjGY?si=ADskEloddsq5yRJx",
-            "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence safety planning.",
-            "transcript": "# This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is safety planning?**\n\nA **safety plan** is a plan for your safety at any stage of a relationship that may involve abuse. This could mean planning to be safe if you live alone, planning to be safe during an abusive episode, or planning to be safe when wanting to leave the relationship.  \n\nUnfortunately, statistics show that some of the **most dangerous times** in abusive relationships are when a person **voices an attempt or intent to leave**, or when someone is in the **active stage of leaving the relationship**, or **shortly after they have left**.  \n\n---\n\n### **What does a safety plan include?**\n\nA safety plan includes **knowing where you can go to be safe**, having a **trusted friend or family member**, and a **safe place to live**.  \n\nIt can also include **making a safe bag**, which is a bag full of important things that you might need, kept in a place that allows for a quick getaway—such as **under your bed** or **in your car**.  \n\nItems to include in a safe bag:\n- ID, credit cards, and bank cards  \n- Birth certificates and Social Security cards  \n- Keys and other essential documents  \n\nA safety plan also involves having **resources and emergency numbers** available, and creating a **plan in case violence escalates**, including **calling 911** if your safety is threatened in any way.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
-        },
-        {
-            "title": "Maternal Anexity and Depression",
-            "subtitle": "with Tara Maxa",
-            "description": "What are some signs and symptoms of Maternal Anxiety and Depression at distinct stages of pregnancy?",
-            "video_url": "https://youtu.be/VaFo0CyuiBg?si=4SwD7zIz0wP9xdQJ",
-            "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses signs and symptoms of Maternal Anxiety and Depression.",
-            "transcript": "# My name is **Tara Maxa**, and I am an **RN**, but I’m also an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **What are some signs and symptoms of maternal anxiety and depression at distinct stages of pregnancy?**\n\nWhen we’re talking about signs and symptoms of **anxiety** and **depression**, it can be very individualized. Somebody may experience one symptom while their friend right next to them may not experience that symptom at all.  \n\nWhen we talk about **anxiety**—whether **prenatally** or **after delivery** (the **postpartum period**)—that anxiety can appear as **extreme worry**. It’s normal to worry when you have a new baby and want to make sure you’re doing everything right. However, **maternal anxiety** often involves **intrusive thoughts** that replay in your mind repeatedly. This kind of worry won’t go away, and it can:\n- Prevent you from sleeping  \n- Prevent you from eating  \n- Prevent you from doing daily activities because you’re so consumed by those thoughts  \n\n**Depression**, on the other hand, can look like **extreme sadness or guilt**, or a desire to **sleep all the time** or **withdraw** from things you normally enjoy—like going to the park or reading a book.  \n\nYou may **not feel like yourself**, and the symptoms can vary from person to person. This is a general overview of what both maternal anxiety and depression can look like.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
-        },
-        {
-            "title": "Overcoming Post-partum Depression Acceptance is Key",
-            "subtitle": "with Tara Maxa",
-            "description": "How did you deal with feelings like fear and apprehension during and after each pregnancy?",
-            "video_url": "https://youtu.be/U4bRarkdu64?si=w2kxuAjhbYXBAvRW",
-            "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses overcoming Post-partum Depression.",
-            "transcript": "# My name is **Tara Maxa**, and I am an **RN**, but I’m also an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **How did you deal with feelings like fear and apprehension during and after each pregnancy?**\n\nThat’s a hard thing to do because as a new mom, you just want to take on everything yourself and take care of the baby—that’s the job we were told we were going to do. It was very hard for me to admit to myself that something was wrong. But I also had to understand that it wasn’t anything I was doing wrong or anything I caused. It was just how my **hormones were regulating themselves after the delivery** of the baby and how my brain was adjusting—and that was okay.  \n\nReally, **asking my support people for help** and allowing them to help me get through those times was what made the difference. I think it helped me grow through those challenging periods. It also allowed me to **support my friends and family better**, because I now recognize how difficult it can be for others to ask for help. Sometimes it’s enough to say, *“I’m going to bring you dinner tonight,”* or *“I’ll help with your dishes,”* or *“I’ll watch your baby while you take a nap.”* Those small acts can mean so much.  \n\nThis experience gave me the opportunity to see things from a **different perspective**. Now that my children are older, I no longer experience postpartum depression or anxiety, but I do mention to others that **a history of anxiety, depression, or mental illness** in the family can increase the risk of postpartum depression and anxiety.  \n\nKnowing this about yourself—and knowing that these feelings are **common and treatable**—is a huge advantage. There is help out there, and you’re **not alone** if you experience these emotions. Don’t shut people out. **Let those who want to help, help you.**  \n\nRemember, you want to take care of your baby and give them the best care possible, but you also have to **take care of yourself**. Making sure that you’re healthy ensures that your baby receives the best care too.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
-        },
-        {
-            "title": "Personal Experience with Post-partum Depression",
-            "subtitle": "with Tara Maxa",
-            "description": "How was the transition from the first pregnancy to the second, the third, and the fourth?",
-            "video_url": "https://youtu.be/ifLh4mBfj_c?si=nvN4DIH-bjMsry3w",
-            "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses her personal experience with Post-partum Depression.",
-            "transcript": "# My name is **Tara Maxa**, and I am an **RN** and an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **How was the transition from the first pregnancy to the second, the third, and the fourth?**\n\nThank you for asking because I do feel like this topic is not talked about enough. Personally, I have **four children**, and when we had our **first little girl**, I was very **worried and anxious**. I couldn’t sleep because I was worried about her, but I didn’t recognize it as **depression**. I thought it was just part of being a new mom.  \n\nWhen we had our **second baby**, less than two years later, I noticed those symptoms came back—this time, they were **more pronounced**. I didn’t want to sleep, and I was constantly **worried about the baby**. Around **5:00 or 6:00 PM**, I would feel this **sense of dread or grief** that I couldn’t explain, but I knew it was coming. It kept happening for months until it gradually went away. I stayed busy with my babies, but I still didn’t recognize it as a problem.  \n\n---\n\nBetween my second and third pregnancies, I attended **nursing school**, where we discussed **depression and anxiety**. That’s when I realized I had been showing symptoms before but couldn’t identify them. During my **third pregnancy**, those feelings returned—stronger than before. After delivery, I told my provider I was feeling **sad, anxious, and withdrawn**. I didn’t want to eat, shower, or take care of myself. All I wanted to do was **take care of the baby** and not let anyone else help. My provider diagnosed me with **postpartum depression and anxiety** and prescribed an **antidepressant**.  \n\n---\n\nAfter starting medication, it took about **four to five months** to feel noticeably better. I wasn’t as worried about the baby and began to feel more like myself again. When we decided to have our **fourth baby**, I was anxious knowing those feelings might return. That anticipation itself caused anxiety. I spoke with my provider again, and she started me on medication in my **third trimester (around 36 weeks)** so it could take effect before delivery.  \n\nEven so, the symptoms came back **very strongly** after birth. I was hospitalized and am **thankful** the medication had already been in my system; otherwise, it might have been much worse. It took about **a year** to start feeling like myself again.  \n\n---\n\nAs far as the **transition** across pregnancies, I would say my **maternal anxiety and depression symptoms became more intense** each time—but I was able to **recognize and address them** better by my third and fourth. With my first two, I didn’t talk about it. I felt **ashamed** because I wasn’t feeling the happiness and excitement people said I should. I felt **guilty and embarrassed**, wondering what was wrong with me.  \n\nBy the time of my third and fourth pregnancies, I was **more self-aware** and made sure to involve my **family and support system**. During my first two, it was hard to let people in, but I learned that was exactly what I needed. My **husband was a great support**, and I learned to be open with my **health provider** when I needed help.  \n\nIt’s OK to ask for help, and it’s OK to **give yourself grace**. That’s something that can be incredibly hard for new moms to accept.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
-        },
-        {
-            "title": "Family Spotlight with the NICU",
-            "subtitle": "with the Brown Family",
-            "video_url": "https://youtu.be/WnyINYqpe4E?si=v7uiFdDzG-zOnuw8",
-            "video_description": "In this video, the Brown Family discusses their personal experiences with the NICU.",
-            "transcript": "# Stacy Brown:** Hi, I’m Stacy Brown, mother of five—the last of whom were unexpected **triplets**, born at **28 weeks, 5 days**. Altogether we have **four girls and one boy**.\n\n**Eric Brown:** Howdy, I’m Eric Brown, the proud father of the five, including the one boy I like to call my **Lone Ranger**.\n\n---\n\n### **How long did your baby stay in the NICU?**\n\nWith multiples come many possibilities. We were told they might come home at different times. In our case, **one daughter came home at day 55**, and the **other two at day 73**.\n\n---\n\n### **What were the procedures for visiting in the NICU?**\n\n- **Controlled access:** Call a phone at the door; the **charge nurse** verifies and buzzes you in.\n- **Handwashing:** Scrub at the big sinks for **3 minutes** **every** time you enter—even if you just stepped out.\n- **Approved visitor list:** Up to **10 people** per family/baby; tightened during **flu/RSV season**.\n- **PPE:** **Yellow gowns** (and often **shoe covers**). Typically **one baby per person per day** to reduce cross-contamination.\n\nReason: safety and infection control for all NICU babies.\n\n---\n\n### **How did you deal with the emotional aspect and bond with the babies?**\n\n- Our **nurses and doctors were amazing**, treating **Dad and Mom equally** and checking on our **mental health** as well as the babies’ progress.\n- We had **24-hour access**; Dad often visited at **3 a.m.** for **kangaroo care** (skin-to-skin) for hours.\n- **Child life specialists** taught our older kids (and us) about wires, tubes, and how to hold the babies safely. That education reduced fear and helped bonding.\n\n---\n\n### **How did you manage two children at home and three in the hospital? How difficult was it?**\n\nIt was a **juggling act**:\n- Dad worked full-time, drove **~7,000 miles** in two months between College Station and Houston.\n- **School counselor and teachers** supported the older two.\n- **Family, church, and friends** coordinated meals, gift cards, house/yard care, and logistics.\n- A **retired couple** in Houston hosted us; they became *surrogate grandparents*, driving to the hospital and helping daily.\n- When the girls transferred back to College Station, the community **welcomed and prayed** outside the hospital.\n\n**NICU brain** (mental overload) is real—community support was essential.\n\n---\n\n### **What kept you going? Did you ever feel like losing hope?**\n\n- Gratitude for being able to be **present daily**, recognizing others had **harder trials** or less support.\n- Confidence that the situation was **temporary** and our babies were progressing.\n- **Theme: “fight like a preemie.”** Staff **celebrated every milestone** (e.g., feeds increasing from 8 mm to 10 mm, keeping a tube in, first **real clothes**). Small wins showed **steady progress**.\n\n---\n\n### **What aspects of the NICU surprised you?**\n\n- The **bedside manner** and whole-family care—consistent concern for **parents’ well-being**.\n- **Holiday goodie bags** and thoughtful touches from nurses.\n- The **roller-coaster nature**: great days followed by setbacks (apnea, bradys, caffeine, occasional resuscitation). Plans for discharge could change overnight.\n- How **seriously** the team takes safety: a planned discharge was **postponed 3 days** after an apnea/brady episode to ensure stability—disappointing in the moment, but **the right call** for safety.\n",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/NICU-4.png"
-        },
-        {
-            "title": "Military Mom",
-            "subtitle": "with Essence Wylie",
-            "video_url": "https://youtu.be/mDwKMMMRHvs?si=jZU6PhX42J7sjukG",
-            "video_description": "In this video, Essence Wylie, TXARNG, discusses being a military mom.",
-            "transcript": "# Hello, everyone. Today I’m in conversation with **Essence Wylie**, and we’re going to talk about the topic **minority health equity**. We’re so glad to have you here.  \n\n**Essence:** Thank you. It’s so good to be here.  \n\n---\n\n### **What is your experience of being a military mom?**\n\nIt’s kind of like **drinking from a fire hose** — there’s so much information for a first-time mom. I’d say I’m **exhausted**, but it’s also the most **fun** I’ve ever had. My little one will be **12 weeks** on Wednesday, and it’s been a huge adjustment. I’ve been blessed with a great **community of family and friends** and a **supportive husband**, so we’re making it.  \n\n---\n\n### **What was it like to be pregnant during the military?**\n\nI’ve been in the **National Guard for eight years**, and being a mom in the military is definitely a **challenge** — especially during pregnancy. There were things I still wanted and was able to do, but also things I couldn’t. For example, being out in the **motor pool working on a diesel truck at 8½ months pregnant** wasn’t ideal. Luckily, my unit modified my workload according to **Army standards**, so I could still train in a way that worked for my body.  \n\nOne big challenge is **childcare during training**. Reliable childcare is hard to find for many military families, and it’s especially tough for **military moms**. Dads are expected to go away for training, but moms are expected to be there, so **breastfeeding** and other needs create unique challenges.  \n\n---\n\n### **Any health concerns during your pregnancy?**\n\nYes, I was diagnosed with **gestational diabetes** at **10 weeks pregnant**, which is much earlier than usual. I had some **risk factors** that led to early testing, and I’m grateful they caught it early because I could manage it better.  \n\nI didn’t know that **race and ethnicity** are predictive **risk factors** for gestational diabetes. That realization opened my eyes to the **differences in healthcare** and how diseases and complications can present differently among ethnic groups.  \n\n---\n\n### **What resources helped you during pregnancy?**\n\nTwo main things: **research** and **community**.  \n- I rely heavily on **scientific research and expert studies** about infant care and parenting best practices.  \n- I also have a **large support network** of amazing moms and dads. I ask questions, share experiences, and really lean into the saying, *“It takes a village.”*  \n\n---\n\n### **What is your advice to new moms?**\n\n- **Trust your instincts** — you know your baby best.  \n- **Ask questions**; there are no dumb ones.  \n- **Reach out for help** if you need it — mentally, physically, or emotionally.  \n- **Soak it all in.** It goes by fast, and even as a first-time mom, I’m learning to embrace every moment.  \n\n---\n\n### **Have you experienced mom guilt?**\n\nAbsolutely. **Mom guilt** can be triggered by anything — from feeding to sleep schedules to the thought of going back to work and leaving your baby at daycare.  \n\nI worry daily: *Am I feeding him enough? Is he sleeping enough?* I’m learning to **give myself grace**. None of us are perfect moms — that’s not the goal. I remind myself that as my baby is learning to be a person in the world, **I’m learning to be his mom**.  \n\n---\n\n### **What are your opinions about health equity?**\n\nBeing a **Black woman** and **pregnant** was scary. I had read the statistics showing higher **maternal complication and mortality rates** for Black mothers, and it terrified me. I was scared to be pregnant and to give birth — scared of being **another statistic**.  \n\nWhat helped me was **being informed**. Knowing the risks made me more proactive, not more afraid. My **husband** was an amazing **advocate**, and my **OB care team** was phenomenal. My doctor walked me through managing my gestational diabetes, provided reassurance, and became a trusted source of calm.  \n\nBy the end of it, I told myself, *“If she’s not worried, I’m not worried.”*",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Essence.png"
-        }
-    ],
-    "quick_tips": [
-        {
-            "title": "Pregnancy Trimesters for Fathers",
-            "description": "In this video, learn about what to expect your partner to experience throughout pregnancy.",
-            "video_url": "https://youtu.be/zRPJ8k1pASk?si=zAoZA1X4b96HvxY_",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC-1.png",
-            "infographic_description": "In this infographic, learn about pregnancy trimesters for fathers.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Fathers.png"
-        },
-        {
-            "title": "Pregnancy Trimesters",
-            "description": "Learn about the three pregnancy trimesters and what to expect in each trimester.",
-            "video_url": "https://youtu.be/3JaFsNkwB2o?si=Puoof-6PzdFuWbpR",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PregnancyInTrimestersInfographic.png",
-            "infographic_description": "In this infographic, learn about pregnancy trimesters.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-Trimesters.png"
-        },
-        {
-            "title": "Signs of Pregnancy",
-            "description": "Learn some of the common symptoms of early pregnancy.",
-            "video_url": "https://youtu.be/iLvwb9QL9Dw?si=ym6xfSFTMPP5_PcH",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/SignsYouMightBePregnantInfographic.png",
-            "infographic_description": "In this infographic, learn about signs of pregnancy.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Signs.png"
-        },
-        {
-            "title": "Preparing for Labor",
-            "description": "Learn about how to prepare for giving birth as you come upon your due date.",
-            "video_url": "https://youtu.be/nedCPn7AfcU?si=uCHsCQEXRXGld2va",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PrepareForLaborInfographic.png",
-            "infographic_description": "In this infographic, learn about preparing for labor.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Preparing.png"
-        },
-        {
-            "title": "Maternal Anexity",
-            "description": "Learn about recognizing and preventing maternal anxiety.",
-            "video_url": "https://youtu.be/dDtcDReUQFU?si=fTUF4w1Y51onr2ah",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/MaternalAnxietyInfographic.png",
-            "infographic_description": "In this infographic, learn about maternal anxiety.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Maternal-Anxiety.png"
-        },
-        {
-            "title": "Foods to Avoid",
-            "description": "Learn about food to avoid consuming during pregnancy.",
-            "video_url": "https://youtu.be/_YpicGALQMs?si=6JNPKW8QNGbkvISw",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods-to-avoid-during-pregnancy-infographic_NC.png",
-            "infographic_description": "In this infographic, learn about foods to avoid when pregnant.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods.png"
-        },
-        {
-            "title": "Father of a Premature Baby",
-            "description": "In this video, learn about what to expect as the father to a premature baby.",
-            "video_url": "https://youtu.be/pCnZDjP7xZY",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/What-to-Expect-as-a-Father-of-a-Premature-Baby-Infographic_NC.png",
-            "infographic_description": "In this infographic, learn about being a father of a premature baby.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Father.png"
-        },
-        {
-            "title": "Exercise After Birth",
-            "description": "In this video, learn about the benefits and types of postpartum exercise.",
-            "video_url": "https://youtu.be/BdUkPQijM3E",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/ExerciseAfterGivingBirthInfographic.png",
-            "infographic_description": "In this infographic, learn about exercise after birth.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Exercise.png"
-        },
-        {
-            "title": "C-Section vs. Vaginal Birth",
-            "description": "Learn about differences between cesarean births and vaginal births.",
-            "video_url": "https://youtu.be/Vicp3LT30sU",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/CesareanVsVaginalBirthInfographic.png",
-            "infographic_description": "In this infographic, learn about C-sections vs. vaginal births.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/C-Section.png"
-        },
-        {
-            "title": "Pregnancy Cravings",
-            "description": "Learn about cravings and how to proceed with pregnancy cravings.",
-            "video_url": "https://youtu.be/yVlH8UcGwtU",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-cravings-Infographic_NC.png",
-            "infographic_description": "In this infographic, learn about pregnancy cravings.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Cravings.png"
-        },
-        {
-            "title": "Breastmilk Pumping and Storing",
-            "description": "Learn about how to pump and store breastmilk for your baby.",
-            "video_url": "https://youtu.be/IQhW-NF8MN4",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BreastmilkPumpingAndStoringInfographic.png",
-            "infographic_description": "In this infographic, learn about breastmilk pumping and storing.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Breastmilk.png"
-        },
-        {
-            "title": "Baby Led Weaning",
-            "description": "Learn about what baby led weaning is and how to begin baby led weaning.",
-            "video_url": "https://youtu.be/TS5BePflVG4",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BabyLedWeaningInfographic.png",
-            "infographic_description": "In this infographic, learn about baby led weaning.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Baby-Weaning.png"
-        },
-        {
-            "title": "Allergies",
-            "description": "Learn about allergic reactions and your baby.",
-            "video_url": "https://youtu.be/1hr0PbGXHcE",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/AllergiesInfographic.png",
-            "infographic_description": "In this infographic, learn about food allergies in babies and young children.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Allergies.png"
-        },
-        {
-            "title": "Maternal Mortality",
-            "description": "Learn about causes and prevention of maternal mortality.",
-            "video_url": "https://youtu.be/aaICRQbyX2M",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/MaternalMortalityInfographic.png",
-            "infographic_description": "In this infographic, learn about maternal mortality.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Maternal-Mortality.png"
-        },
-        {
-            "title": "Postpartum Birth Control",
-            "description": "Learn about options for postpartum birth control.",
-            "video_url": "https://youtu.be/2yVzUmKVzE8",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PostpartumBirthControlInfographic.png",
-            "infographic_description": "In this infographic, learn about postpartum birth control.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Postpartum.png"
-        },
-        {
-            "title": "Postpartum Depression ",
-            "description": "Learn about causes and prevention of postpartum depression.",
-            "video_url": "https://youtu.be/u5I0MiEitqA",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PostpartumDepressionInfographic.png",
-            "infographic_description": "In this video, learn about postpartum depression.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PPD.png"
-        },
-        {
-            "title": "Vitamins and Supplements",
-            "description": "Learn about vitamins and supplements to take during pregnancy.",
-            "video_url": "https://youtu.be/FhV4vwqExio",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/VitaminsAndSupplementsInfographic.png",
-            "infographic_description": "In this infographic, learn about vitamins and supplements.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Vitamins.png"
-        },
-        {
-            "title": "Breastfeeding vs. Formula Feeding",
-            "description": "Learn about the differences between breastfeeding and formula feeding.",
-            "video_url": "https://youtu.be/mLRpxUE4xrA",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BreastfeedingVsFormulaFeedingInfographic.png",
-            "infographic_description": "In this infographic, learn about breastfeeding vs. formula feeding.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Breastfeeding.png"
-        },
-        {
-            "title": "Bodily Changes During Pregnancy",
-            "description": "Learn about body changes that occur during pregnancy.",
-            "video_url": "https://youtu.be/_zN0nXHpmvg",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BodyChangesDuringPregnancyInfographic.png",
-            "infographic_description": "In this infographic, learn about bodily changes during pregnancy.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/body-changes.png"
-        },
-        {
-            "title": "Braxton Hicks Contractions",
-            "description": "Learn about Braxton Hicks contractions.",
-            "video_url": "https://youtu.be/esrpIRynRo8",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Understanding-Braxton-Hicks-Contractions-Infographic_NC.png",
-            "infographic_description": "In this infographic, learn about Braxton Hicks contractions.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Braxton-Hicks-1.png"
-        },
-        {
-            "title": "Baby Teething",
-            "description": "Learn tips for when your baby begins teething.",
-            "video_url": "https://youtu.be/v7LtnficDTA",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB-1.png",
-            "infographic_description": "In this infographic, learn about baby teething.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething-v.png"
-        },
-        {
-            "title": "Bathing Your Baby",
-            "description": "Learn about common concerns when bathing your baby.",
-            "video_url": "https://youtu.be/SXKKkaVp8yA",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BathingYourBabyInfographic_BB-1.png",
-            "infographic_description": "In this infographic, learn about bathing your baby.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/bathing-v.png"
-        },
-        {
-            "title": "Can You Get Pregnant on Your Period",
-            "description": "Learn about how pregnancy relates to your period.",
-            "video_url": "https://youtu.be/qHNWeQvuKPk",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/CanYouGetPregnantOnYourPeriodInfographic_BB-1.png",
-            "infographic_description": "In this infographic, learn about getting pregnant on your period.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/can-you-get-pregnant-on-your-period-v.png"
-        },
-        {
-            "title": "Pregnancy Weight Fluctuations",
-            "description": "Learn about how much weight gain can be too much during pregnancy.",
-            "video_url": "https://youtu.be/xdZqGsdbTpw",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/How-much-weight-gain-is-too-much-infographic_NC-1.png",
-            "infographic_description": "In this infographic, learn about pregnancy weight fluctuations.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/pregnancy-weight-gain-v.png"
-        },
-        {
-            "title": "In Vitro Fertilization (IVF)",
-            "description": "Learn about In Vitro Fertilization as an option for pregnancy.",
-            "video_url": "https://youtu.be/H7w787feKnY",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/In-Vitro-Fertilization-IVF-infographic_NC.png",
-            "infographic_description": "In this infographic, learn about in vitro fertilization (IVF).",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/ivf-v.png"
-        },
-        {
-            "title": "Risk Factors for Infertility",
-            "description": "Learn about some risk factors for infertility.",
-            "video_url": "https://youtu.be/7648aV9f2eE",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Infertility-infographic_NC.png",
-            "infographic_description": "In this infographic, learn about infertility.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/infertility-v.png"
-        },
-        {
-            "title": "Insulin Use During Pregnancy",
-            "description": "Learn about how to use insulin for diabetes during pregnancy.",
-            "video_url": "https://youtu.be/0wqBKDBH_KU",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Insulin-use-in-pregnancy-infographic_NC-1-1.png",
-            "infographic_description": "In this infographic, learn about insulin use during pregnancy.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/insulin-v.png"
-        },
-        {
-            "title": "Stretch Marks During Pregnancy",
-            "description": "Learn about factors that effect stretch marks during pregnancy.",
-            "video_url": "https://youtu.be/7wGrL81Tn5o",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Stretch-marks-infographic_NC.png",
-            "infographic_description": "In this infographic, learn about stretch marks during pregnancy.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/stretch-marks-v.png"
-        },
-        {
-            "title": "Vaginal Discharge",
-            "description": "Learn about different types of discharge and what they mean.",
-            "video_url": "https://youtu.be/IUsR545OmAk",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/TypesOfDischargeInfographic_BB-1.png",
-            "infographic_description": "In this infographic, learn about vaginal discharge.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/discharge-v.png"
-        },
-        {
-            "title": "What Your Cramps Could Mean",
-            "description": "Learn about what your cramps could mean other than your period.",
-            "video_url": "https://youtu.be/TPa2HtWIDu4",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/WhatYourCrampsCouldMeanInfographic_BB-2.png",
-            "infographic_description": "In this infographic, learn about what your cramps could mean.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/cramps-v.png"
-        },
-        {
-            "title": "Tips for Getting Pregnant Faster",
-            "description": "Learn different ways to get pregnant faster.",
-            "video_url": "https://youtu.be/YNPc_m1Q1BU",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/TipsForGettingPregnantFasterInfographic_BB.png",
-            "infographic_description": "In this infographic, learn tips for getting pregnant faster.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/tips-for-pregnancy-v.png"
-        },
-        {
-            "title": "Kegel Exercises",
-            "description": "Learn about the benefits of kegel exercises and tips to safely practice them.",
-            "video_url": "https://youtu.be/3Q4JWNu8PPo",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/KegelExercisesInfographic_BB_2-1.png",
-            "infographic_description": "In this infographic, learn about kegel exercises.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Kegel-Exercises.png"
-        },
-        {
-            "title": "Baby Acne",
-            "description": "Learn about how to recognize and treat baby acne.",
-            "video_url": "https://youtu.be/Lct8hg6RS8E",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Baby-Acne-infographic_NC-2-819x2048.png",
-            "infographic_description": "In this infographic, learn about baby acne.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Ectopic-Pregnancy.png"
-        },
-        {
-            "title": "Breech Births",
-            "description": "Learn important signs and symptoms of breech births.",
-            "video_url": "https://youtu.be/rQ9i8MAs31k",
-            "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BreechBirthInfographic_BB_2-819x2048.png",
-            "infographic_description": "In this infographic, learn about breech births.",
-            "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Breech-Births.png"
-        }
-    ],
-    "infographics": [
+  "local_resources": [
     {
+      "id": "cdca0846-7c3d-46df-964b-90f7ef86c4c7",
+      "title": "Alcoholics Anonymous",
+      "description": "Local resources from the Brazos Valley-College Station area.",
+      "video_url": "https://youtu.be/49x9YhrSOsk?si=iIpYQO6Og5snriNM",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/AA-768x432.png"
+    },
+    {
+      "id": "b038c806-5e88-49c8-b5c2-44b2ad760ac8",
+      "title": "Family Promise",
+      "description": "Local resources from the Brazos Valley-College Station area.",
+      "video_url": "https://youtu.be/MMy2TXO4iMM?si=ptVrXwrsyIwmJzQD",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/family-promise-768x431.png"
+    },
+    {
+      "id": "deb56fee-a448-420f-a2ce-e44652761f28",
+      "title": "Jubilee Birth Center",
+      "description": "Local resources from the Brazos Valley-College Station area.",
+      "video_url": "https://youtu.be/Rf3kUN8BtjM?si=1HH-gb6LqD3tguqN",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/jubilee-768x432.png"
+    },
+    {
+      "id": "e23defef-4b52-4d33-b28b-7dd8a2e2551c",
+      "title": "Lincoln House of Hope",
+      "description": "Local resources from the Brazos Valley-College Station area.",
+      "video_url": "https://youtu.be/X1ZzIaug7vU?si=YuDsvE1tQPyNZDzc",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/lincoln-1-768x432.png"
+    },
+    {
+      "id": "6774a4fe-2d65-444f-9db6-b12a46e724cd",
+      "title": "Texas Home Visiting",
+      "description": "Local resources from the Brazos Valley-College Station area.",
+      "video_url": "https://youtu.be/tgnEwTzWXd8?si=Edt2Rdv0OwsGqrhi"
+    }
+  ],
+  "video spotlights": [
+    {
+      "id": "c5d4304c-1791-4700-a582-e6b53cc88be4",
+      "title": "Domestic Violence",
+      "subtitle": "with Dr. Nancy Downing",
+      "video_url": "https://youtu.be/bJa8qvGniXA?si=EnOPL1RRTNbBD37V",
+      "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence.",
+      "transcript": "This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is domestic violence?**\n\nDomestic violence refers to abuse that occurs between people who are in or have been in an intimate partner or romantic relationship. It can involve **physical abuse**, **psychological or emotional abuse**, and can include **financial or sexual abuse**, or **stalking**.  \n\n---\n\n### **Is it more likely for domestic violence to occur during pregnancy?**\n\nSome statistics suggest that domestic violence, if it’s present in a relationship, may be **more likely to happen during pregnancy**, although in other relationships where abuse has been present, pregnancy may be a honeymoon time for people.  \n\nAlthough pregnancy can be a really exciting time for couples, it can also be a **very stressful time**, and that stress can make abuse more likely to occur.  \n\n---\n\n### **What type of impact does domestic violence have on a person’s mental health or on the pregnancy itself?**\n\nDomestic violence is a **healthcare issue**. It’s unfortunately associated with a lot of health outcomes. For example, women who are in relationships where domestic violence is present are at risk for more **mental health issues** such as **depression, anxiety, suicidal thoughts or self-harm, and substance use**.  \n\nDuring pregnancy, domestic violence can increase a woman’s risk for:\n- Not gaining enough weight during pregnancy  \n- Not being able to take as good care of herself and her growing baby  \n- **Preterm birth** and **low birth weight**  \n- **Other birth complications**  \n- **Higher risk of postpartum depression**  \n\n---\n\n**Thank you.**  \nWe appreciate you coming out here today and answering your questions. You’re welcome.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
+    },
+    {
+      "id": "9a38154f-bfbe-499a-a484-ed9a43aeface",
+      "title": "Domestic Violence Signs of Abuse",
+      "subtitle": "with Dr. Nancy Downing",
+      "video_url": "https://youtu.be/k9GqIjwL4x8?si=3D56-w0mAFWC7yOK",
+      "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses signs of domestic violence.",
+      "transcript": "This is Dr. Downing, a forensic faculty member here at Texas A&M School of Nursing. Today’s topic will be about domestic violence.  \n\n---\n\n### **What are typical signs of abuse or red flags in a relationship?**\n\nSome of the signs of abuse in a relationship or red flags include somebody in the relationship who is excessively controlling, so they always want to know where the other person is, who they’re with, and what they’re doing. Isolating the person is another red flag, so for example, saying things like I don’t like your friends or I don’t like your family, or you spend too much time with them. And so making sure that that person does not have access to outside relationships. Another example is excessive jealousy, sometimes accusing them of cheating or flirting with other people. Other signs of domestic violence or abuse are constantly undermining or putting somebody down, undermining their self esteem, telling them that they’re not good enough, that they are ugly, that nobody else will love them. All of these signs are signs of an abuser’s attempt to control the other person and ensure that that person does not leave the relationship. Thank you.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
+    },
+    {
+      "id": "31907ff5-b530-4558-b457-3be453bffb74",
+      "title": "Domestic Violence Safety Planning",
+      "subtitle": "with Dr. Nancy Downing",
+      "video_url": "https://youtu.be/SkRUCClPjGY?si=ADskEloddsq5yRJx",
+      "video_description": "In this video, Dr. Nancy Downing, PHD, RN, SANE-A, SANE-P, FAAN, discusses domestic violence safety planning.",
+      "transcript": "# This is **Dr. Downing**, a forensic faculty member here at **Texas A&M School of Nursing**. Today’s topic will be about **domestic violence**.  \n\n---\n\n### **What is safety planning?**\n\nA **safety plan** is a plan for your safety at any stage of a relationship that may involve abuse. This could mean planning to be safe if you live alone, planning to be safe during an abusive episode, or planning to be safe when wanting to leave the relationship.  \n\nUnfortunately, statistics show that some of the **most dangerous times** in abusive relationships are when a person **voices an attempt or intent to leave**, or when someone is in the **active stage of leaving the relationship**, or **shortly after they have left**.  \n\n---\n\n### **What does a safety plan include?**\n\nA safety plan includes **knowing where you can go to be safe**, having a **trusted friend or family member**, and a **safe place to live**.  \n\nIt can also include **making a safe bag**, which is a bag full of important things that you might need, kept in a place that allows for a quick getaway—such as **under your bed** or **in your car**.  \n\nItems to include in a safe bag:\n- ID, credit cards, and bank cards  \n- Birth certificates and Social Security cards  \n- Keys and other essential documents  \n\nA safety plan also involves having **resources and emergency numbers** available, and creating a **plan in case violence escalates**, including **calling 911** if your safety is threatened in any way.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Downing.png"
+    },
+    {
+      "id": "3e249a3f-70d0-447b-9b20-7a3c68d81c12",
+      "title": "Maternal Anexity and Depression",
+      "subtitle": "with Tara Maxa",
+      "description": "What are some signs and symptoms of Maternal Anxiety and Depression at distinct stages of pregnancy?",
+      "video_url": "https://youtu.be/VaFo0CyuiBg?si=4SwD7zIz0wP9xdQJ",
+      "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses signs and symptoms of Maternal Anxiety and Depression.",
+      "transcript": "# My name is **Tara Maxa**, and I am an **RN**, but I’m also an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **What are some signs and symptoms of maternal anxiety and depression at distinct stages of pregnancy?**\n\nWhen we’re talking about signs and symptoms of **anxiety** and **depression**, it can be very individualized. Somebody may experience one symptom while their friend right next to them may not experience that symptom at all.  \n\nWhen we talk about **anxiety**—whether **prenatally** or **after delivery** (the **postpartum period**)—that anxiety can appear as **extreme worry**. It’s normal to worry when you have a new baby and want to make sure you’re doing everything right. However, **maternal anxiety** often involves **intrusive thoughts** that replay in your mind repeatedly. This kind of worry won’t go away, and it can:\n- Prevent you from sleeping  \n- Prevent you from eating  \n- Prevent you from doing daily activities because you’re so consumed by those thoughts  \n\n**Depression**, on the other hand, can look like **extreme sadness or guilt**, or a desire to **sleep all the time** or **withdraw** from things you normally enjoy—like going to the park or reading a book.  \n\nYou may **not feel like yourself**, and the symptoms can vary from person to person. This is a general overview of what both maternal anxiety and depression can look like.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
+    },
+    {
+      "id": "799461aa-b572-415e-b96a-0688dc06c660",
+      "title": "Overcoming Post-partum Depression Acceptance is Key",
+      "subtitle": "with Tara Maxa",
+      "description": "How did you deal with feelings like fear and apprehension during and after each pregnancy?",
+      "video_url": "https://youtu.be/U4bRarkdu64?si=w2kxuAjhbYXBAvRW",
+      "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses overcoming Post-partum Depression.",
+      "transcript": "# My name is **Tara Maxa**, and I am an **RN**, but I’m also an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **How did you deal with feelings like fear and apprehension during and after each pregnancy?**\n\nThat’s a hard thing to do because as a new mom, you just want to take on everything yourself and take care of the baby—that’s the job we were told we were going to do. It was very hard for me to admit to myself that something was wrong. But I also had to understand that it wasn’t anything I was doing wrong or anything I caused. It was just how my **hormones were regulating themselves after the delivery** of the baby and how my brain was adjusting—and that was okay.  \n\nReally, **asking my support people for help** and allowing them to help me get through those times was what made the difference. I think it helped me grow through those challenging periods. It also allowed me to **support my friends and family better**, because I now recognize how difficult it can be for others to ask for help. Sometimes it’s enough to say, *“I’m going to bring you dinner tonight,”* or *“I’ll help with your dishes,”* or *“I’ll watch your baby while you take a nap.”* Those small acts can mean so much.  \n\nThis experience gave me the opportunity to see things from a **different perspective**. Now that my children are older, I no longer experience postpartum depression or anxiety, but I do mention to others that **a history of anxiety, depression, or mental illness** in the family can increase the risk of postpartum depression and anxiety.  \n\nKnowing this about yourself—and knowing that these feelings are **common and treatable**—is a huge advantage. There is help out there, and you’re **not alone** if you experience these emotions. Don’t shut people out. **Let those who want to help, help you.**  \n\nRemember, you want to take care of your baby and give them the best care possible, but you also have to **take care of yourself**. Making sure that you’re healthy ensures that your baby receives the best care too.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
+    },
+    {
+      "id": "c8be8083-72ae-4ad2-85a5-ff416812fc0e",
+      "title": "Personal Experience with Post-partum Depression",
+      "subtitle": "with Tara Maxa",
+      "description": "How was the transition from the first pregnancy to the second, the third, and the fourth?",
+      "video_url": "https://youtu.be/ifLh4mBfj_c?si=nvN4DIH-bjMsry3w",
+      "video_description": "In this video, Dr. Tara Maxa, MSN, RN, RNC-OB, C-EFM, CNE, RNC-IAP, CHSE, discusses her personal experience with Post-partum Depression.",
+      "transcript": "# My name is **Tara Maxa**, and I am an **RN** and an **MSN**. I teach nursing students at the **School of Nursing for Texas A&M**, but I’m also by trade a **labor and delivery nurse**, and I have practiced for about **12 1/2 years** now.  \n\n---\n\n### **How was the transition from the first pregnancy to the second, the third, and the fourth?**\n\nThank you for asking because I do feel like this topic is not talked about enough. Personally, I have **four children**, and when we had our **first little girl**, I was very **worried and anxious**. I couldn’t sleep because I was worried about her, but I didn’t recognize it as **depression**. I thought it was just part of being a new mom.  \n\nWhen we had our **second baby**, less than two years later, I noticed those symptoms came back—this time, they were **more pronounced**. I didn’t want to sleep, and I was constantly **worried about the baby**. Around **5:00 or 6:00 PM**, I would feel this **sense of dread or grief** that I couldn’t explain, but I knew it was coming. It kept happening for months until it gradually went away. I stayed busy with my babies, but I still didn’t recognize it as a problem.  \n\n---\n\nBetween my second and third pregnancies, I attended **nursing school**, where we discussed **depression and anxiety**. That’s when I realized I had been showing symptoms before but couldn’t identify them. During my **third pregnancy**, those feelings returned—stronger than before. After delivery, I told my provider I was feeling **sad, anxious, and withdrawn**. I didn’t want to eat, shower, or take care of myself. All I wanted to do was **take care of the baby** and not let anyone else help. My provider diagnosed me with **postpartum depression and anxiety** and prescribed an **antidepressant**.  \n\n---\n\nAfter starting medication, it took about **four to five months** to feel noticeably better. I wasn’t as worried about the baby and began to feel more like myself again. When we decided to have our **fourth baby**, I was anxious knowing those feelings might return. That anticipation itself caused anxiety. I spoke with my provider again, and she started me on medication in my **third trimester (around 36 weeks)** so it could take effect before delivery.  \n\nEven so, the symptoms came back **very strongly** after birth. I was hospitalized and am **thankful** the medication had already been in my system; otherwise, it might have been much worse. It took about **a year** to start feeling like myself again.  \n\n---\n\nAs far as the **transition** across pregnancies, I would say my **maternal anxiety and depression symptoms became more intense** each time—but I was able to **recognize and address them** better by my third and fourth. With my first two, I didn’t talk about it. I felt **ashamed** because I wasn’t feeling the happiness and excitement people said I should. I felt **guilty and embarrassed**, wondering what was wrong with me.  \n\nBy the time of my third and fourth pregnancies, I was **more self-aware** and made sure to involve my **family and support system**. During my first two, it was hard to let people in, but I learned that was exactly what I needed. My **husband was a great support**, and I learned to be open with my **health provider** when I needed help.  \n\nIt’s OK to ask for help, and it’s OK to **give yourself grace**. That’s something that can be incredibly hard for new moms to accept.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Tara-Maxa-2.png"
+    },
+    {
+      "id": "b01c2500-bc24-4c94-b592-525423bcd8c3",
+      "title": "Family Spotlight with the NICU",
+      "subtitle": "with the Brown Family",
+      "video_url": "https://youtu.be/WnyINYqpe4E?si=v7uiFdDzG-zOnuw8",
+      "video_description": "In this video, the Brown Family discusses their personal experiences with the NICU.",
+      "transcript": "# Stacy Brown:** Hi, I’m Stacy Brown, mother of five—the last of whom were unexpected **triplets**, born at **28 weeks, 5 days**. Altogether we have **four girls and one boy**.\n\n**Eric Brown:** Howdy, I’m Eric Brown, the proud father of the five, including the one boy I like to call my **Lone Ranger**.\n\n---\n\n### **How long did your baby stay in the NICU?**\n\nWith multiples come many possibilities. We were told they might come home at different times. In our case, **one daughter came home at day 55**, and the **other two at day 73**.\n\n---\n\n### **What were the procedures for visiting in the NICU?**\n\n- **Controlled access:** Call a phone at the door; the **charge nurse** verifies and buzzes you in.\n- **Handwashing:** Scrub at the big sinks for **3 minutes** **every** time you enter—even if you just stepped out.\n- **Approved visitor list:** Up to **10 people** per family/baby; tightened during **flu/RSV season**.\n- **PPE:** **Yellow gowns** (and often **shoe covers**). Typically **one baby per person per day** to reduce cross-contamination.\n\nReason: safety and infection control for all NICU babies.\n\n---\n\n### **How did you deal with the emotional aspect and bond with the babies?**\n\n- Our **nurses and doctors were amazing**, treating **Dad and Mom equally** and checking on our **mental health** as well as the babies’ progress.\n- We had **24-hour access**; Dad often visited at **3 a.m.** for **kangaroo care** (skin-to-skin) for hours.\n- **Child life specialists** taught our older kids (and us) about wires, tubes, and how to hold the babies safely. That education reduced fear and helped bonding.\n\n---\n\n### **How did you manage two children at home and three in the hospital? How difficult was it?**\n\nIt was a **juggling act**:\n- Dad worked full-time, drove **~7,000 miles** in two months between College Station and Houston.\n- **School counselor and teachers** supported the older two.\n- **Family, church, and friends** coordinated meals, gift cards, house/yard care, and logistics.\n- A **retired couple** in Houston hosted us; they became *surrogate grandparents*, driving to the hospital and helping daily.\n- When the girls transferred back to College Station, the community **welcomed and prayed** outside the hospital.\n\n**NICU brain** (mental overload) is real—community support was essential.\n\n---\n\n### **What kept you going? Did you ever feel like losing hope?**\n\n- Gratitude for being able to be **present daily**, recognizing others had **harder trials** or less support.\n- Confidence that the situation was **temporary** and our babies were progressing.\n- **Theme: “fight like a preemie.”** Staff **celebrated every milestone** (e.g., feeds increasing from 8 mm to 10 mm, keeping a tube in, first **real clothes**). Small wins showed **steady progress**.\n\n---\n\n### **What aspects of the NICU surprised you?**\n\n- The **bedside manner** and whole-family care—consistent concern for **parents’ well-being**.\n- **Holiday goodie bags** and thoughtful touches from nurses.\n- The **roller-coaster nature**: great days followed by setbacks (apnea, bradys, caffeine, occasional resuscitation). Plans for discharge could change overnight.\n- How **seriously** the team takes safety: a planned discharge was **postponed 3 days** after an apnea/brady episode to ensure stability—disappointing in the moment, but **the right call** for safety.\n",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/NICU-4.png"
+    },
+    {
+      "id": "ce0e155a-e2e9-4243-b1f6-c931403e282b",
+      "title": "Military Mom",
+      "subtitle": "with Essence Wylie",
+      "video_url": "https://youtu.be/mDwKMMMRHvs?si=jZU6PhX42J7sjukG",
+      "video_description": "In this video, Essence Wylie, TXARNG, discusses being a military mom.",
+      "transcript": "# Hello, everyone. Today I’m in conversation with **Essence Wylie**, and we’re going to talk about the topic **minority health equity**. We’re so glad to have you here.  \n\n**Essence:** Thank you. It’s so good to be here.  \n\n---\n\n### **What is your experience of being a military mom?**\n\nIt’s kind of like **drinking from a fire hose** — there’s so much information for a first-time mom. I’d say I’m **exhausted**, but it’s also the most **fun** I’ve ever had. My little one will be **12 weeks** on Wednesday, and it’s been a huge adjustment. I’ve been blessed with a great **community of family and friends** and a **supportive husband**, so we’re making it.  \n\n---\n\n### **What was it like to be pregnant during the military?**\n\nI’ve been in the **National Guard for eight years**, and being a mom in the military is definitely a **challenge** — especially during pregnancy. There were things I still wanted and was able to do, but also things I couldn’t. For example, being out in the **motor pool working on a diesel truck at 8½ months pregnant** wasn’t ideal. Luckily, my unit modified my workload according to **Army standards**, so I could still train in a way that worked for my body.  \n\nOne big challenge is **childcare during training**. Reliable childcare is hard to find for many military families, and it’s especially tough for **military moms**. Dads are expected to go away for training, but moms are expected to be there, so **breastfeeding** and other needs create unique challenges.  \n\n---\n\n### **Any health concerns during your pregnancy?**\n\nYes, I was diagnosed with **gestational diabetes** at **10 weeks pregnant**, which is much earlier than usual. I had some **risk factors** that led to early testing, and I’m grateful they caught it early because I could manage it better.  \n\nI didn’t know that **race and ethnicity** are predictive **risk factors** for gestational diabetes. That realization opened my eyes to the **differences in healthcare** and how diseases and complications can present differently among ethnic groups.  \n\n---\n\n### **What resources helped you during pregnancy?**\n\nTwo main things: **research** and **community**.  \n- I rely heavily on **scientific research and expert studies** about infant care and parenting best practices.  \n- I also have a **large support network** of amazing moms and dads. I ask questions, share experiences, and really lean into the saying, *“It takes a village.”*  \n\n---\n\n### **What is your advice to new moms?**\n\n- **Trust your instincts** — you know your baby best.  \n- **Ask questions**; there are no dumb ones.  \n- **Reach out for help** if you need it — mentally, physically, or emotionally.  \n- **Soak it all in.** It goes by fast, and even as a first-time mom, I’m learning to embrace every moment.  \n\n---\n\n### **Have you experienced mom guilt?**\n\nAbsolutely. **Mom guilt** can be triggered by anything — from feeding to sleep schedules to the thought of going back to work and leaving your baby at daycare.  \n\nI worry daily: *Am I feeding him enough? Is he sleeping enough?* I’m learning to **give myself grace**. None of us are perfect moms — that’s not the goal. I remind myself that as my baby is learning to be a person in the world, **I’m learning to be his mom**.  \n\n---\n\n### **What are your opinions about health equity?**\n\nBeing a **Black woman** and **pregnant** was scary. I had read the statistics showing higher **maternal complication and mortality rates** for Black mothers, and it terrified me. I was scared to be pregnant and to give birth — scared of being **another statistic**.  \n\nWhat helped me was **being informed**. Knowing the risks made me more proactive, not more afraid. My **husband** was an amazing **advocate**, and my **OB care team** was phenomenal. My doctor walked me through managing my gestational diabetes, provided reassurance, and became a trusted source of calm.  \n\nBy the end of it, I told myself, *“If she’s not worried, I’m not worried.”*",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Essence.png"
+    }
+  ],
+  "quick_tips": [
+    {
+      "id": "25a52fbf-789b-4afd-aad7-10a9e29207ae",
+      "title": "Pregnancy Trimesters for Fathers",
+      "description": "In this video, learn about what to expect your partner to experience throughout pregnancy.",
+      "video_url": "https://youtu.be/zRPJ8k1pASk?si=zAoZA1X4b96HvxY_",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC-1.png",
+      "infographic_description": "In this infographic, learn about pregnancy trimesters for fathers.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Fathers.png"
+    },
+    {
+      "id": "07f4debb-d666-4d5a-8f72-6f267ec8de37",
+      "title": "Pregnancy Trimesters",
+      "description": "Learn about the three pregnancy trimesters and what to expect in each trimester.",
+      "video_url": "https://youtu.be/3JaFsNkwB2o?si=Puoof-6PzdFuWbpR",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PregnancyInTrimestersInfographic.png",
+      "infographic_description": "In this infographic, learn about pregnancy trimesters.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-Trimesters.png"
+    },
+    {
+      "id": "073ea92a-0dfe-459d-aa2a-180491447b39",
+      "title": "Signs of Pregnancy",
+      "description": "Learn some of the common symptoms of early pregnancy.",
+      "video_url": "https://youtu.be/iLvwb9QL9Dw?si=ym6xfSFTMPP5_PcH",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/SignsYouMightBePregnantInfographic.png",
+      "infographic_description": "In this infographic, learn about signs of pregnancy.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Signs.png"
+    },
+    {
+      "id": "31d64f93-19f9-4578-9916-0650a2c51358",
+      "title": "Preparing for Labor",
+      "description": "Learn about how to prepare for giving birth as you come upon your due date.",
+      "video_url": "https://youtu.be/nedCPn7AfcU?si=uCHsCQEXRXGld2va",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PrepareForLaborInfographic.png",
+      "infographic_description": "In this infographic, learn about preparing for labor.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Preparing.png"
+    },
+    {
+      "id": "5142f711-67db-48ce-9226-4ca0aa6ea815",
+      "title": "Maternal Anexity",
+      "description": "Learn about recognizing and preventing maternal anxiety.",
+      "video_url": "https://youtu.be/dDtcDReUQFU?si=fTUF4w1Y51onr2ah",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/MaternalAnxietyInfographic.png",
+      "infographic_description": "In this infographic, learn about maternal anxiety.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Maternal-Anxiety.png"
+    },
+    {
+      "id": "f40224bf-d6e6-400f-8aee-c302a43e1187",
+      "title": "Foods to Avoid",
+      "description": "Learn about food to avoid consuming during pregnancy.",
+      "video_url": "https://youtu.be/_YpicGALQMs?si=6JNPKW8QNGbkvISw",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods-to-avoid-during-pregnancy-infographic_NC.png",
+      "infographic_description": "In this infographic, learn about foods to avoid when pregnant.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods.png"
+    },
+    {
+      "id": "2f219fff-a288-4886-a23c-60d2046a0d37",
+      "title": "Father of a Premature Baby",
+      "description": "In this video, learn about what to expect as the father to a premature baby.",
+      "video_url": "https://youtu.be/pCnZDjP7xZY",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/What-to-Expect-as-a-Father-of-a-Premature-Baby-Infographic_NC.png",
+      "infographic_description": "In this infographic, learn about being a father of a premature baby.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Father.png"
+    },
+    {
+      "id": "54134304-fd84-4ffa-9114-85f819112efa",
+      "title": "Exercise After Birth",
+      "description": "In this video, learn about the benefits and types of postpartum exercise.",
+      "video_url": "https://youtu.be/BdUkPQijM3E",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/ExerciseAfterGivingBirthInfographic.png",
+      "infographic_description": "In this infographic, learn about exercise after birth.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Exercise.png"
+    },
+    {
+      "id": "3ea88251-346d-4a2d-aadb-5522cc464602",
+      "title": "C-Section vs. Vaginal Birth",
+      "description": "Learn about differences between cesarean births and vaginal births.",
+      "video_url": "https://youtu.be/Vicp3LT30sU",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/CesareanVsVaginalBirthInfographic.png",
+      "infographic_description": "In this infographic, learn about C-sections vs. vaginal births.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/C-Section.png"
+    },
+    {
+      "id": "ada5c697-259c-401d-ac2f-c1042a451059",
+      "title": "Pregnancy Cravings",
+      "description": "Learn about cravings and how to proceed with pregnancy cravings.",
+      "video_url": "https://youtu.be/yVlH8UcGwtU",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-cravings-Infographic_NC.png",
+      "infographic_description": "In this infographic, learn about pregnancy cravings.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Cravings.png"
+    },
+    {
+      "id": "4f0a8df8-c5f4-4c63-bf15-0b90f76a4492",
+      "title": "Breastmilk Pumping and Storing",
+      "description": "Learn about how to pump and store breastmilk for your baby.",
+      "video_url": "https://youtu.be/IQhW-NF8MN4",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BreastmilkPumpingAndStoringInfographic.png",
+      "infographic_description": "In this infographic, learn about breastmilk pumping and storing.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Breastmilk.png"
+    },
+    {
+      "id": "97729750-583d-46c0-af68-eb59b5cd88fb",
+      "title": "Baby Led Weaning",
+      "description": "Learn about what baby led weaning is and how to begin baby led weaning.",
+      "video_url": "https://youtu.be/TS5BePflVG4",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BabyLedWeaningInfographic.png",
+      "infographic_description": "In this infographic, learn about baby led weaning.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Baby-Weaning.png"
+    },
+    {
+      "id": "741c22e5-d572-4829-93d8-a4c99f173b27",
+      "title": "Allergies",
+      "description": "Learn about allergic reactions and your baby.",
+      "video_url": "https://youtu.be/1hr0PbGXHcE",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/AllergiesInfographic.png",
+      "infographic_description": "In this infographic, learn about food allergies in babies and young children.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Allergies.png"
+    },
+    {
+      "id": "dd127831-d85c-4403-a9c7-aee54946a99b",
+      "title": "Maternal Mortality",
+      "description": "Learn about causes and prevention of maternal mortality.",
+      "video_url": "https://youtu.be/aaICRQbyX2M",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/MaternalMortalityInfographic.png",
+      "infographic_description": "In this infographic, learn about maternal mortality.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Maternal-Mortality.png"
+    },
+    {
+      "id": "4622250f-0bae-4df6-aebb-e073832733b7",
+      "title": "Postpartum Birth Control",
+      "description": "Learn about options for postpartum birth control.",
+      "video_url": "https://youtu.be/2yVzUmKVzE8",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PostpartumBirthControlInfographic.png",
+      "infographic_description": "In this infographic, learn about postpartum birth control.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Postpartum.png"
+    },
+    {
+      "id": "e66fba7e-0d6b-49d7-8384-19f0c0d973ae",
+      "title": "Postpartum Depression ",
+      "description": "Learn about causes and prevention of postpartum depression.",
+      "video_url": "https://youtu.be/u5I0MiEitqA",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PostpartumDepressionInfographic.png",
+      "infographic_description": "In this video, learn about postpartum depression.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PPD.png"
+    },
+    {
+      "id": "33e4796f-20ba-4e2e-b1a9-9c4f76edc05c",
+      "title": "Vitamins and Supplements",
+      "description": "Learn about vitamins and supplements to take during pregnancy.",
+      "video_url": "https://youtu.be/FhV4vwqExio",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/VitaminsAndSupplementsInfographic.png",
+      "infographic_description": "In this infographic, learn about vitamins and supplements.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Vitamins.png"
+    },
+    {
+      "id": "e60baa0b-2443-4334-a57b-69cff5800cb3",
+      "title": "Breastfeeding vs. Formula Feeding",
+      "description": "Learn about the differences between breastfeeding and formula feeding.",
+      "video_url": "https://youtu.be/mLRpxUE4xrA",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BreastfeedingVsFormulaFeedingInfographic.png",
+      "infographic_description": "In this infographic, learn about breastfeeding vs. formula feeding.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Breastfeeding.png"
+    },
+    {
+      "id": "1bda6460-6f40-4dca-9056-1fbb9c82dd7b",
+      "title": "Bodily Changes During Pregnancy",
+      "description": "Learn about body changes that occur during pregnancy.",
+      "video_url": "https://youtu.be/_zN0nXHpmvg",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BodyChangesDuringPregnancyInfographic.png",
+      "infographic_description": "In this infographic, learn about bodily changes during pregnancy.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/body-changes.png"
+    },
+    {
+      "id": "660ad41b-d8f6-4b7f-be72-499b79616999",
+      "title": "Braxton Hicks Contractions",
+      "description": "Learn about Braxton Hicks contractions.",
+      "video_url": "https://youtu.be/esrpIRynRo8",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Understanding-Braxton-Hicks-Contractions-Infographic_NC.png",
+      "infographic_description": "In this infographic, learn about Braxton Hicks contractions.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Braxton-Hicks-1.png"
+    },
+    {
+      "id": "17dbe0ce-9f3a-4d43-9cf7-9cd2ab4e6df0",
+      "title": "Baby Teething",
+      "description": "Learn tips for when your baby begins teething.",
+      "video_url": "https://youtu.be/v7LtnficDTA",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB-1.png",
+      "infographic_description": "In this infographic, learn about baby teething.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething-v.png"
+    },
+    {
+      "id": "dc6622f5-dec9-4a2b-91f2-bcbdd3c995db",
+      "title": "Bathing Your Baby",
+      "description": "Learn about common concerns when bathing your baby.",
+      "video_url": "https://youtu.be/SXKKkaVp8yA",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BathingYourBabyInfographic_BB-1.png",
+      "infographic_description": "In this infographic, learn about bathing your baby.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/bathing-v.png"
+    },
+    {
+      "id": "c81eaa1f-2cfe-4b45-9c13-dc9b49170d59",
+      "title": "Can You Get Pregnant on Your Period",
+      "description": "Learn about how pregnancy relates to your period.",
+      "video_url": "https://youtu.be/qHNWeQvuKPk",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/CanYouGetPregnantOnYourPeriodInfographic_BB-1.png",
+      "infographic_description": "In this infographic, learn about getting pregnant on your period.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/can-you-get-pregnant-on-your-period-v.png"
+    },
+    {
+      "id": "edce75e7-fd01-45c1-9e51-ea47eef9fff0",
+      "title": "Pregnancy Weight Fluctuations",
+      "description": "Learn about how much weight gain can be too much during pregnancy.",
+      "video_url": "https://youtu.be/xdZqGsdbTpw",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/How-much-weight-gain-is-too-much-infographic_NC-1.png",
+      "infographic_description": "In this infographic, learn about pregnancy weight fluctuations.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/pregnancy-weight-gain-v.png"
+    },
+    {
+      "id": "18660dea-44ca-4209-8229-70945b79df25",
+      "title": "In Vitro Fertilization (IVF)",
+      "description": "Learn about In Vitro Fertilization as an option for pregnancy.",
+      "video_url": "https://youtu.be/H7w787feKnY",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/In-Vitro-Fertilization-IVF-infographic_NC.png",
+      "infographic_description": "In this infographic, learn about in vitro fertilization (IVF).",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/ivf-v.png"
+    },
+    {
+      "id": "4012c1f6-8d54-4a10-a6f3-38debcef948a",
+      "title": "Risk Factors for Infertility",
+      "description": "Learn about some risk factors for infertility.",
+      "video_url": "https://youtu.be/7648aV9f2eE",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Infertility-infographic_NC.png",
+      "infographic_description": "In this infographic, learn about infertility.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/infertility-v.png"
+    },
+    {
+      "id": "3428ccc4-5a5f-4862-9e45-44258fee46f6",
+      "title": "Insulin Use During Pregnancy",
+      "description": "Learn about how to use insulin for diabetes during pregnancy.",
+      "video_url": "https://youtu.be/0wqBKDBH_KU",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Insulin-use-in-pregnancy-infographic_NC-1-1.png",
+      "infographic_description": "In this infographic, learn about insulin use during pregnancy.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/insulin-v.png"
+    },
+    {
+      "id": "f7f89b49-c1fa-4f84-a32f-ea4436212a12",
+      "title": "Stretch Marks During Pregnancy",
+      "description": "Learn about factors that effect stretch marks during pregnancy.",
+      "video_url": "https://youtu.be/7wGrL81Tn5o",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Stretch-marks-infographic_NC.png",
+      "infographic_description": "In this infographic, learn about stretch marks during pregnancy.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/stretch-marks-v.png"
+    },
+    {
+      "id": "03952430-caa1-4fef-9dd4-0b48c99e9e3b",
+      "title": "Vaginal Discharge",
+      "description": "Learn about different types of discharge and what they mean.",
+      "video_url": "https://youtu.be/IUsR545OmAk",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/TypesOfDischargeInfographic_BB-1.png",
+      "infographic_description": "In this infographic, learn about vaginal discharge.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/discharge-v.png"
+    },
+    {
+      "id": "00ca5072-032b-4b1b-8117-789679c88bef",
+      "title": "What Your Cramps Could Mean",
+      "description": "Learn about what your cramps could mean other than your period.",
+      "video_url": "https://youtu.be/TPa2HtWIDu4",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/WhatYourCrampsCouldMeanInfographic_BB-2.png",
+      "infographic_description": "In this infographic, learn about what your cramps could mean.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/cramps-v.png"
+    },
+    {
+      "id": "4c78a0a8-9540-443e-bed4-ddd589a8b282",
+      "title": "Tips for Getting Pregnant Faster",
+      "description": "Learn different ways to get pregnant faster.",
+      "video_url": "https://youtu.be/YNPc_m1Q1BU",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/TipsForGettingPregnantFasterInfographic_BB.png",
+      "infographic_description": "In this infographic, learn tips for getting pregnant faster.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/tips-for-pregnancy-v.png"
+    },
+    {
+      "id": "c698c5e0-db40-45bb-9391-625c949d7703",
+      "title": "Kegel Exercises",
+      "description": "Learn about the benefits of kegel exercises and tips to safely practice them.",
+      "video_url": "https://youtu.be/3Q4JWNu8PPo",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/KegelExercisesInfographic_BB_2-1.png",
+      "infographic_description": "In this infographic, learn about kegel exercises.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Kegel-Exercises.png"
+    },
+    {
+      "id": "824be43d-cd6c-4207-99cc-47d307552dcd",
+      "title": "Baby Acne",
+      "description": "Learn about how to recognize and treat baby acne.",
+      "video_url": "https://youtu.be/Lct8hg6RS8E",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Baby-Acne-infographic_NC-2-819x2048.png",
+      "infographic_description": "In this infographic, learn about baby acne.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Ectopic-Pregnancy.png"
+    },
+    {
+      "id": "6009ab90-c56d-4eaf-ac33-dc67f42c2914",
+      "title": "Breech Births",
+      "description": "Learn important signs and symptoms of breech births.",
+      "video_url": "https://youtu.be/rQ9i8MAs31k",
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BreechBirthInfographic_BB_2-819x2048.png",
+      "infographic_description": "In this infographic, learn about breech births.",
+      "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Breech-Births.png"
+    }
+  ],
+  "infographics": [
+    {
+      "id": "d5a72e8f-d301-4c67-9074-4b301983aad6",
       "title": "Pregnancy Trimesters for Fathers",
       "description": "In this infographic, learn about what to expect your partner to experience throughout pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-for-Fathers.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC-1.pdf"
     },
     {
+      "id": "5d534def-c406-4a8a-8879-a1900a09cd22",
       "title": "Pregnancy Trimesters",
       "description": "In this infographic, learn about the three pregnancy trimesters and what to expect in each trimester.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-in-Trimesters.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PregnancyInTrimestersInfographic-1.pdf"
     },
     {
+      "id": "fe931c7e-47b3-4d1c-ad76-345a621b5e77",
       "title": "Signs of Pregnancy",
       "description": "In this infographic, learn some of the common symptoms of early pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Signs-of-Pregnancy.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/SignsYouMightBePregnantInfographic-1.pdf"
     },
     {
+      "id": "563bf08f-6907-423e-a502-b90085e0e663",
       "title": "Preparing for Labor",
       "description": "In this infographic, learn about how to prepare for giving birth as you come upon your due date.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Preparing-for-Labor.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PrepareForLaborInfographic-1.pdf"
     },
     {
+      "id": "7b13a57d-3601-4e62-b216-c83ef65b542d",
       "title": "Maternal Anxiety",
       "description": "In this infographic, learn about recognizing and preventing maternal anxiety.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Maternal-Anxiety-1.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/MaternalAnxietyInfographic-1.pdf"
     },
     {
+      "id": "b1a6dd20-af8e-4824-b432-24e3e10c62f6",
       "title": "Foods to Avoid",
       "description": "In this infographic, learn about food to avoid consuming during pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods-to-Avoid.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Foods-to-avoid-during-pregnancy-infographic_NC-2.pdf"
     },
     {
+      "id": "92d352c4-e3fb-450b-bd7a-c0ceb667848d",
       "title": "Father of a Premature Baby",
       "description": "In this infographic, learn about what to expect as the father to a premature baby.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Father-of-a-Premature-Baby.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/What-to-Expect-as-a-Father-of-a-Premature-Baby-Infographic_NC-1.pdf"
     },
     {
+      "id": "f31bd1ae-faa9-437d-b651-7335a6bca29d",
       "title": "Exercise After Birth",
       "description": "In this infographic, learn about the benefits and types of postpartum exercise.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Exercise-1.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/ExerciseAfterGivingBirthInfographic-1.pdf"
     },
     {
+      "id": "011e6dcb-454a-4394-8276-0bb09e2f9706",
       "title": "C-Section vs. Vaginal Birth",
       "description": "In this infographic, learn about differences between cesarean births and vaginal births.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/C-section-2.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/CesareanVsVaginalBirthInfographic-1.pdf"
     },
     {
+      "id": "85633e86-9ef5-46c6-8f2b-3ee16efb4e67",
       "title": "Pregnancy Cravings",
       "description": "In this infographic, learn about cravings and how to proceed with pregnancy cravings.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-Cravings.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Pregnancy-cravings-Infographic_NC-2.pdf"
     },
     {
+      "id": "1de66787-78da-4464-bece-b8e116a90c4f",
       "title": "Breastmilk Pumping and Storing",
       "description": "In this infographic, learn about how to pump and store breastmilk for your baby.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Breastmilk-Pumping-and-Storing.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BreastmilkPumpingAndStoringInfographic-1.pdf"
     },
     {
+      "id": "8ce50ceb-466a-4385-8b5b-dc9e77852b04",
       "title": "Baby Led Weaning",
       "description": "In this infographic, learn about what baby led weaning is and how to begin baby led weaning.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Baby-Led-Weaning.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BabyLedWeaningInfographic-1.pdf"
     },
     {
+      "id": "35de3335-46ce-430d-b50c-f1c747388d5c",
       "title": "Allergies",
       "description": "In this infographic, learn about allergic reactions and your baby.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Allergies-1.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/AllergiesInfographic-2.pdf"
     },
     {
+      "id": "e674aa36-c27e-4f0e-896a-8739d6c0247c",
       "title": "Maternal Mortality",
       "description": "In this infographic, learn about causes and prevention of maternal mortality.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Maternal-Mortality-1.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/MaternalMortalityInfographic-1.pdf"
     },
     {
+      "id": "fde3208c-a128-472e-a912-0a3907dbf8e6",
       "title": "Postpartum Birth Control",
       "description": "In this infographic, learn about options for postpartum birth control.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Postpartum-Birth-Control.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PostpartumBirthControlInfographic-1.pdf"
     },
     {
+      "id": "821de99b-846d-44ae-9520-6d41f95f92fc",
       "title": "Postpartum Depression",
       "description": "In this infographic, learn about causes and prevention of postpartum depression.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Postpartum-Depression.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/PostpartumDepressionInfographic-1.pdf"
     },
     {
+      "id": "88dc4800-97bf-49bd-a0ed-5994a319e406",
       "title": "Vitamins and Supplements",
       "description": "In this infographic, learn about vitamins and supplements to take during pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Vitamins-and-Supplements.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/VitaminsAndSupplementsInfographic-1.pdf"
     },
     {
+      "id": "e2b6c165-919d-47de-94b4-b3deb6dab260",
       "title": "Breastfeeding vs. Formula Feeding",
       "description": "In this infographic, learn about the differences between breastfeeding and formula feeding.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Breastfeeding-vs.-Formula.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BreastfeedingVsFormulaFeedingInfographic-1.pdf"
     },
     {
+      "id": "6dec5e4e-aa52-45f7-a1a3-211ea53539c0",
       "title": "How the Body Changes During Pregnancy",
       "description": "In this infographic, learn about body changes that occur during pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Body-Changes-During-Pregnancy.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/BodyChangesDuringPregnancyInfographic-1.pdf"
     },
     {
+      "id": "de533f72-23cd-43d4-8979-e1ed8d2e2a01",
       "title": "Braxton Hicks Contractions",
       "description": "In this infographic, learn about Braxton Hicks contractions.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Braxton-Hicks.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/03/Understanding-Braxton-Hicks-Contractions-Infographic_NC-1.pdf"
     },
     {
+      "id": "b59afcd0-cad8-4a83-890c-6e802d832470",
       "title": "Baby Teething",
       "description": "In this infographic, learn tips for when your baby begins teething.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/baby-teething.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BabyTeethingInfographic_BB.pdf"
     },
     {
+      "id": "e02f7d87-3156-4a89-ae6c-509e61859e03",
       "title": "Bathing Your Baby",
       "description": "In this infographic, learn about common concerns when bathing your baby.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/bathing-your-baby.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BathingYourBabyInfographic_BB.pdf"
     },
     {
+      "id": "6ea36c0c-7a17-44e8-9329-7889052308f9",
       "title": "Can You Get Pregnant on Your Period?",
       "description": "In this infographic, learn about how pregnancy relates to your period.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/can-you-get-pregnant-on-your-period.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/CanYouGetPregnantOnYourPeriodInfographic_BB.pdf"
     },
     {
+      "id": "b830a769-914a-4353-873a-ac84afb0744b",
       "title": "Pregnancy Weight Fluctuations",
       "description": "In this infographic, learn about how much weight gain can be too much during pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/how-much-weight-is-too-much.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/How-much-weight-gain-is-too-much-infographic_NC.pdf"
     },
     {
+      "id": "4b017f31-ecfd-41ea-ba9d-abcee58e3c2b",
       "title": "In Vitro Fertilization (IVF)",
       "description": "In this infographic, learn about in vitro fertilization (IVF) as an option for pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/ivf.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/In-Vitro-Fertilization-IVF-infographic_NC.pdf"
     },
     {
+      "id": "98b7eed8-56dd-44b5-a1d3-5eef9d03741c",
       "title": "Risk Factors for Infertility",
       "description": "In this infographic, learn about some risk factors for infertility.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/infertility-risk-factors.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Infertility-infographic_NC.pdf"
     },
     {
+      "id": "958f37e6-0bd6-4334-bf04-e9df054405b8",
       "title": "Insulin Use in Pregnancy",
       "description": "In this infographic, learn about how to use insulin for diabetes during pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/insulin-use-in-pregnancy.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Insulin-use-in-pregnancy-infographic_NC-1.pdf"
     },
     {
+      "id": "daf7ae13-73ea-4c84-94fa-940f98a5efdb",
       "title": "Stretch Marks",
       "description": "In this infographic, learn about factors that affect stretch marks during pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/understanding-stretch-marks.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/Stretch-marks-infographic_NC.pdf"
     },
     {
+      "id": "3f370d95-1da9-412b-85c7-8ec2dcc29422",
       "title": "Vaginal Discharge",
       "description": "In this infographic, learn about different types of discharge and what they mean.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/vaginal-discharge.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/TypesOfDischargeInfographic_BB.pdf"
     },
     {
+      "id": "172d69b6-8212-4a35-8424-8a4299ec1f55",
       "title": "What Your Cramps Could Mean",
       "description": "In this infographic, learn about what your cramps could mean other than your period.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/what-cramps-could-mean.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/WhatYourCrampsCouldMeanInfographic_BB.pdf"
     },
     {
+      "id": "2a44cba8-7ea5-4031-af43-f6ab634e251d",
       "title": "Tips for Getting Pregnant Faster",
       "description": "In this infographic, learn different ways to get pregnant faster.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/tips-for-pregnancy.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/TipsForGettingPregnantFasterInfographic_BB.pdf"
     },
     {
+      "id": "e2115147-110b-44a8-98ee-3767154ee814",
       "title": "Shaken Baby Syndrome",
       "description": "In this infographic, learn about signs and symptoms of shaken baby syndrome.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/shaken-baby-syndrome.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/ShakenBabySyndromeInfographic_BB.pdf"
     },
     {
+      "id": "fb558fbb-7edf-4372-a179-87409303bfeb",
       "title": "What is Ovulation",
       "description": "In this infographic, learn about the process and timing of ovulation.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/what-is-ovulation.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/WhatIsOvulationInfographic_BB.pdf"
     },
     {
+      "id": "d5fdcc80-8339-4c84-94f4-b9fe9341acd8",
       "title": "Potty Training",
       "description": "In this infographic, learn different strategies for potty training your toddler.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/potty-train.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/PottyTrainingInfographic_BB-1.pdf"
     },
     {
+      "id": "4127a3e1-41f7-4443-849b-98b6a4caeb4b",
       "title": "Kegel Exercises",
       "description": "In this infographic, learn about the benefits of kegel exercises and tips to safely practice them.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/kegel.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/KegelExercisesInfographic_BB-1.pdf"
     },
     {
+      "id": "dba0ed0a-de70-4ff6-815e-723057b6f41d",
       "title": "Ectopic Pregnancy",
       "description": "In this infographic, learn about signs and symptoms of ectopic pregnancy.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/ectopic.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/EctopicPregnancyInfographic_BB-1.pdf"
     },
     {
+      "id": "67271063-8a9d-4cdb-9243-71f2a4e6b8e9",
       "title": "Babyproofing",
       "description": "In this infographic, learn how to safely babyproof your house.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Babyproofing-Infographic.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/How-to-baby-proof-your-house-infographic_NC.pdf"
     },
     {
+      "id": "b36b8290-fa1a-40d8-87a4-62e4343159ea",
       "title": "Baby Fevers",
       "description": "In this infographic, learn tips for taking care of your baby when they have a fever.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Baby-Fevers-Infographic.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/what-to-do-if-my-baby-has-a-fever-infographic_NC.pdf"
     },
     {
+      "id": "e42d4b90-247f-461f-9a11-5d93ff403a1e",
       "title": "Baby Acne",
       "description": "In this infographic, learn about how to recognize and treat baby acne.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Baby-Acne-Infographic.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/05/Baby-Acne-infographic_NC.pdf"
     },
     {
       "title": "Breech Births",
       "description": "In this infographic, learn important signs and symptoms of breech births.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/breech.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/BreechBirthInfographic_BB-1.pdf"
     },
     {
+      "id": "1f7c895f-182d-401c-8ad6-447ca4690ebd",
       "title": "Calculating Due Date",
       "description": "In this infographic, learn tips for calculating your due date.",
       "thumbnail_url": "https://oliviahealth.org/wp-content/uploads/2023/04/due-date.png",
-      "infographic_url": ""
+      "infographic_url": "https://oliviahealth.org/wp-content/uploads/2023/04/CalculatingDueDateInfographic_BB-1.pdf"
     }
   ]
 }
