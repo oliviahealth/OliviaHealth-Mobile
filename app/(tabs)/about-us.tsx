@@ -17,7 +17,7 @@ const SECTIONS = [
 
 export default function Index() {
   return (
-    <ScrollView contentContainerStyle={{ paddingHorizontal: 30, paddingTop: 20, gap: 30,  backgroundColor: 'white' }}>
+    <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 20, gap: 30,  backgroundColor: 'white' }}>
       <Image 
         source={{ uri: 'http://oliviahealth.org/wp-content/uploads/2023/06/About-Circle-1024x1024.gif' }} 
         style={{ width: 200, height: 200, alignSelf: 'center' }} 
