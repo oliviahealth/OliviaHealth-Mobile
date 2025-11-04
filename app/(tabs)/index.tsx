@@ -1,5 +1,5 @@
-import { Text, TextInput, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import useResourcesStore from "@/src/store/useResourcesStore";
 

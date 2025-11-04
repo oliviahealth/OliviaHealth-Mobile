@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useState } from "react";
 import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import useResourcesStore, { IResources } from "@/src/store/useResourcesStore";
@@ -55,6 +56,7 @@ export default function RootLayout() {
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']} onLayout={onLayoutRootView}>
+      <StatusBar barStyle="dark-content" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
