@@ -23,17 +23,25 @@ export default function Index() {
         style={{ width: 200, height: 200, marginBottom: 20, alignSelf: 'center' }} 
       />
 
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 25 }}>About OliviaHealth</Text>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 25 }}>
+        About OliviaHealth
+      </Text>
+
       {SECTIONS.map((section, index) => (
         <View key={index}>
           <Text style={{ fontSize: 18, marginBottom: 10, fontWeight: 'bold' }}>
             {section.title}
           </Text>
-          <Text style={{ fontSize: 14, marginBottom: 25, color: 'rgba(34, 31, 31, 0.6)' }}>
+          <Text style={{ fontSize: 14, marginBottom: 25, color: 'rgba(34, 31, 31, 0.6)', lineHeight: 25 }}>
             {section.content}
           </Text>
         </View>
       ))}
+
+      <Image 
+        source={{ uri: 'https://oliviahealth.org/wp-content/uploads/2023/02/sponsors.png' }} 
+        style={{ width: '100%', height: 100, resizeMode: 'contain', marginBottom: 30, alignSelf: 'center' }} 
+      />
     </ScrollView>
   );
 }
