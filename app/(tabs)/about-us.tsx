@@ -17,22 +17,22 @@ const SECTIONS = [
 
 export default function Index() {
   return (
-    <ScrollView contentContainerStyle={{ paddingHorizontal: 20,backgroundColor: 'white' }}>
+    <ScrollView contentContainerStyle={{ paddingHorizontal: 30, paddingTop: 20, gap: 30,  backgroundColor: 'white' }}>
       <Image 
         source={{ uri: 'http://oliviahealth.org/wp-content/uploads/2023/06/About-Circle-1024x1024.gif' }} 
-        style={{ width: 200, height: 200, marginBottom: 20, alignSelf: 'center' }} 
+        style={{ width: 200, height: 200, alignSelf: 'center' }} 
       />
 
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 25 }}>
+      <Text style={{ fontSize: 24, fontWeight: 500 }}>
         About OliviaHealth
       </Text>
 
       {SECTIONS.map((section, index) => (
-        <View key={index}>
-          <Text style={{ fontSize: 18, marginBottom: 10, fontWeight: 'bold' }}>
+        <View key={index} style={{ gap: 8 }}>
+          <Text style={{ fontSize: 18, fontWeight: 500 }}>
             {section.title}
           </Text>
-          <Text style={{ fontSize: 14, marginBottom: 25, color: 'rgba(34, 31, 31, 0.6)', lineHeight: 25 }}>
+          <Text style={{ fontSize: 14, color: '#888', lineHeight: 25 }}>
             {section.content}
           </Text>
         </View>
