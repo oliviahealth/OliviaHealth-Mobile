@@ -22,21 +22,21 @@ export default function TabLayout() {
         name="saved"
         options={{
           title: 'Saved',
-          tabBarIcon: ({ color }) => <Ionicons size={28} name="bookmark-outline" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="bookmark" color={color} />,
         }}
       />
       <Tabs.Screen
         name="about-us"
         options={{
           title: 'About Us',
-          tabBarIcon: ({ color }) => <Ionicons size={28} name="information-circle-outline" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="information-circle" color={color} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <Ionicons size={28} name="person-outline" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="person" color={color} />,
         }}
       />
     </Tabs>
