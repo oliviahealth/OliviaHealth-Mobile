@@ -1,17 +1,24 @@
+import SearchBar from "@/components/SearchBar";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Image, ScrollView, Text, TouchableOpacity, View , Pressable} from "react-native";
 
 import useResourcesStore from "@/src/store/useResourcesStore";
 
-const oliviahealth_branding = require('../../assets/images/oliviahealth_branding.png')
+const oliviahealth_branding = require('../../../assets/images/oliviahealth_branding.png')
 
 export default function Index() {
+  const router = useRouter();
   const resources = useResourcesStore(state => state.resources);
 
   const video_spotlights_featured = resources?.video_spotlights.filter(elm => elm.spotlight);
   const local_resources_featured = resources?.local_resources.filter(elm => elm.spotlight);
   const quick_tips_featured = resources?.quick_tips.filter(elm => elm.spotlight);
   const infographics_features = resources?.infographics.filter(elm => elm.spotlight);
+
+  const goToQuickTips = () => {
+    router.push('/(tabs)/(home)/quick-tips');
+  }
 
   return (
     <ScrollView
@@ -28,17 +35,10 @@ export default function Index() {
           style={{ width: 200, resizeMode: 'contain' }}
         />
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fafafa', borderRadius: 15, paddingHorizontal: 15, height: 45 }}>
-          <Ionicons name="search" size={20} color="#aaa" style={{ marginRight: 10 }} />
-          <TextInput
-            placeholder="Looking for something specific?"
-            placeholderTextColor="#aaa"
-            style={{ flex: 1, fontSize: 16, color: '#555' }}
-          />
-        </View>
+        <SearchBar placeholder="Looking for something specific?" />
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <TouchableOpacity style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
+          <TouchableOpacity onPress={goToQuickTips} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
             <Ionicons name='bulb-outline' size={40} color="#B642D3" />
             <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Quick Tips</Text>
           </TouchableOpacity>
@@ -79,7 +79,9 @@ export default function Index() {
         <View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Local Resources</Text>
-            <Text style={{ color: '#B642D3' }}>See all</Text>
+            <Pressable onPress={goToQuickTips} hitSlop={8}>
+              <Text style={{ color: '#B642D3' }}>See all</Text>
+            </Pressable>
           </View>
 
           {

@@ -1,6 +1,6 @@
-import { useEffect, useCallback, useState } from "react";
 import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
+import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
