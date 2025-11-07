@@ -1,4 +1,4 @@
-import VideoCard from "@/components/QuickTipCard";
+import QuickTipCard from "@/components/QuickTipCard";
 import SearchBar from "@/components/SearchBar";
 import useResourcesStore from "@/src/store/useResourcesStore";
 import { ScrollView, View } from "react-native";
@@ -12,7 +12,7 @@ export default function QuickTips() {
       <View style={{ flex: 1, gap: 18 }}>
         <SearchBar placeholder="Search by author or title" />
         {quick_tips?.map((tip, index) => (
-          <VideoCard key={index} quickTip={tip} />
+          <QuickTipCard key={index} quickTip={tip} />
         ))}
       </View>
     </ScrollView>
