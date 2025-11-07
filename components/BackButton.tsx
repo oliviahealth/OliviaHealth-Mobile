@@ -11,7 +11,6 @@ const BackButton = () => {
         name="chevron-back"
         size={24}
         color="#000"
-        style={{ marginLeft: 0 }}
       />
     </TouchableOpacity>
   );
