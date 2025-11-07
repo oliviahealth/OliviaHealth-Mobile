@@ -55,7 +55,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']} onLayout={onLayoutRootView}>
+    <SafeAreaView style={{ flex: 1 }} edges={['top']} onLayout={onLayoutRootView}>
       <StatusBar barStyle="dark-content" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
