@@ -1,6 +1,7 @@
+import SearchBar from "@/components/SearchBar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import useResourcesStore from "@/src/store/useResourcesStore";
 
@@ -34,14 +35,7 @@ export default function Index() {
           style={{ width: 200, resizeMode: 'contain' }}
         />
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fafafa', borderRadius: 15, paddingHorizontal: 15, height: 45 }}>
-          <Ionicons name="search" size={20} color="#aaa" style={{ marginRight: 10 }} />
-          <TextInput
-            placeholder="Looking for something specific?"
-            placeholderTextColor="#aaa"
-            style={{ flex: 1, fontSize: 16, color: '#555' }}
-          />
-        </View>
+        <SearchBar placeholder="Looking for something specific?" />
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <TouchableOpacity onPress={goToQuickTips} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
