@@ -1,7 +1,7 @@
 import SearchBar from "@/components/SearchBar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View , Pressable} from "react-native";
 
 import useResourcesStore from "@/src/store/useResourcesStore";
 
@@ -79,7 +79,9 @@ export default function Index() {
         <View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Local Resources</Text>
-            <Text style={{ color: '#B642D3' }}>See all</Text>
+            <Pressable onPress={goToQuickTips} hitSlop={8}>
+              <Text style={{ color: '#B642D3' }}>See all</Text>
+            </Pressable>
           </View>
 
           {
