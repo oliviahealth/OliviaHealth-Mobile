@@ -18,6 +18,10 @@ export default function HomeLayout() {
         name="quick-tips" 
         options={{ title: 'Quick Tips', headerLeft: () => <BackButton /> }}
       />
+      <Stack.Screen 
+        name="infographics" 
+        options={{ title: 'Infographics', headerLeft: () => <BackButton /> }}
+      />
     </Stack>
   );
 }
