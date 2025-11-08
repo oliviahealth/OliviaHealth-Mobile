@@ -3,7 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import useResourcesStore from "@/src/store/useResourcesStore";
 import { ScrollView, View } from "react-native";
 
-export default function QuickTips() {
+export default function VideoSpotlights() {
   const resources = useResourcesStore(state => state.resources);
   const video_spotlights = resources?.video_spotlights;
 
