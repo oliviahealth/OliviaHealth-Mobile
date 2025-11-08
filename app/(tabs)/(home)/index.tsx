@@ -55,12 +55,12 @@ export default function Index() {
             <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Quick Tips</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
+          <TouchableOpacity onPress={goToLocalResources} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
             <Ionicons name='location-outline' size={40} color="#B642D3" />
             <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Resources</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
+          <TouchableOpacity onPress={goToInfographics} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
             <Ionicons name='stats-chart-outline' size={40} color="#B642D3" />
             <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Infographics</Text>
           </TouchableOpacity>
