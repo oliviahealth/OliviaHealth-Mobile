@@ -7,6 +7,10 @@ export default function HomeLayout() {
     <Stack screenOptions={{ contentStyle: { backgroundColor: 'white' } }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen 
+        name="video-spotlights" 
+        options={{ title: 'Video Spotlights', headerLeft: () => <BackButton /> }}
+      />
+      <Stack.Screen 
         name="quick-tips" 
         options={{ title: 'Quick Tips', headerLeft: () => <BackButton /> }}
       />
