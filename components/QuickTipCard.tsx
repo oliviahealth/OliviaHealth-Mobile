@@ -24,7 +24,7 @@ const QuickTipCard: React.FC<QuickTipCardProps> = ({ quickTip }) => {
           </Text>
         </View>
 
-        <Ionicons name="play-circle-outline" size={32} color="#B642D3" />
+        <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
       </View>
     </TouchableOpacity>
   );
