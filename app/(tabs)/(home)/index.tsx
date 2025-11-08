@@ -24,6 +24,10 @@ export default function Index() {
     router.push('/(tabs)/(home)/video-spotlights');
   }
 
+  const goToLocalResources = () => {
+    router.push("/(tabs)/(home)/local-resources");
+  }
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -85,7 +89,9 @@ export default function Index() {
         <View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Local Resources</Text>
-            <Text style={{ color: '#B642D3' }}>See all</Text>
+            <Pressable onPress={goToLocalResources} hitSlop={8}>
+              <Text style={{ color: '#B642D3' }}>See all</Text>
+            </Pressable>
           </View>
 
           {

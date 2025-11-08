@@ -11,6 +11,10 @@ export default function HomeLayout() {
         options={{ title: 'Video Spotlights', headerLeft: () => <BackButton /> }}
       />
       <Stack.Screen 
+        name="local-resources" 
+        options={{ title: 'Local Resources', headerLeft: () => <BackButton /> }}
+      />
+      <Stack.Screen 
         name="quick-tips" 
         options={{ title: 'Quick Tips', headerLeft: () => <BackButton /> }}
       />
