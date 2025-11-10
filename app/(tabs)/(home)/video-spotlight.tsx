@@ -29,7 +29,7 @@ export default function VideoSpotlight() {
                 <YoutubePlayer
                     height={250}
                     play
-                    videoId="X1ZzIaug7vU"
+                    videoId={videoSpotlightParsed.video_id}
                     onReady={() => setReady(true)}
                     webViewStyle={{ zIndex: 2, elevation: 2 }}
                     webViewProps={{
