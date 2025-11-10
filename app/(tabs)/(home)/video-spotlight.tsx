@@ -1,7 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Markdown from "react-native-markdown-display";
 import { useState } from "react";
-import { Text, Image, ActivityIndicator, ScrollView, View } from "react-native";
+import { Text, Image, ActivityIndicator, ScrollView, View, TouchableOpacity } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 const content = `
@@ -35,6 +35,7 @@ We appreciate you coming out here today and answering your questions. You’re w
 
 export default function VideoSpotlight() {
     const [ready, setReady] = useState(false);
+    const [transcriptShown, setTranscriptShown] = useState(false);
 
     return (
         <ScrollView contentContainerStyle={{ padding: 20, paddingHorizontal: 20, gap: 24, }} showsVerticalScrollIndicator={false}>
@@ -95,14 +96,37 @@ export default function VideoSpotlight() {
                 </Text>
             </View>
 
-            <View style={{ flexDirection: 'column', gap: 3 }}>
-                <Text style={{ fontSize: 24, fontWeight: "500", color: "#000" }}>Transcript</Text>
+            <View style={{ flexDirection: 'column', gap: 10 }}>
+                <View>
+                    <Text style={{ fontSize: 24, fontWeight: "500", color: "#000" }}>Transcript</Text>
+                    <Text style={{ fontSize: 12, color: '#888' }}>Follow along with the video transcript</Text>
+                </View>
 
-                <Markdown style={{
-                    body: { fontSize: 12, lineHeight: 20 },
-                }}>
-                    { content }
-                </Markdown>
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: "#fff",
+                        borderRadius: 20,
+                        borderWidth: 1,
+                        borderColor: "#ddd",
+                        paddingVertical: 12,
+                        paddingHorizontal: 24,
+                        marginTop: 8,
+                        alignItems: "center",
+                    }}
+                    onPress={() => setTranscriptShown(!transcriptShown)}
+                >
+                    <Text style={{ fontSize: 16, fontWeight: "600" }}>
+                        {transcriptShown ? 'Hide Transcript' : 'Show Transcript'}
+                    </Text>
+                </TouchableOpacity>
+
+                {transcriptShown && (
+                    <Markdown style={{
+                        body: { fontSize: 12, lineHeight: 20, color: "#888" },
+                    }}>
+                        {content}
+                    </Markdown>
+                )}
             </View>
         </ScrollView>
     );
