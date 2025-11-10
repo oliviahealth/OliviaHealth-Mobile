@@ -1,5 +1,5 @@
-import VideoSpotlightCard from "@/components/VideoSpotlightCard";
 import SearchBar from "@/components/SearchBar";
+import VideoSpotlightCard from "@/components/VideoSpotlightCard";
 import useResourcesStore from "@/src/store/useResourcesStore";
 import { ScrollView, View } from "react-native";
 
