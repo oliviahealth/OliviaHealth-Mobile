@@ -1,18 +1,25 @@
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router";
 import { IVideoSpotlights } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface VideoSpotlightCardProps {
   videoSpotlight: IVideoSpotlights;
 }
 
-const QuickTipCard: React.FC<VideoSpotlightCardProps> = ({ videoSpotlight }) => {
+const VideoSpotlightCard: React.FC<VideoSpotlightCardProps> = ({ videoSpotlight }) => {
+  const router = useRouter();
+
+  const goToVideoSpotlight = () => {
+    router.push({ pathname: "/(tabs)/(home)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
+  }
+
   return (
     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, borderWidth: 1, borderColor: '#E9E9E9', gap: 2 }} activeOpacity={0.9}>
       <Image source={{ uri: videoSpotlight.thumbnail_url }}
         style={{
           width: '100%',
-          aspectRatio: 16 / 9, 
+          aspectRatio: 16 / 9,
           borderRadius: 12,
           marginBottom: 8,
           resizeMode: 'contain',
@@ -31,10 +38,12 @@ const QuickTipCard: React.FC<VideoSpotlightCardProps> = ({ videoSpotlight }) => 
           </Text>
         </View>
 
-        <Ionicons name="play-circle-outline" size={32} color="#B642D3" />
+        <Pressable onPress={goToVideoSpotlight} hitSlop={8}>
+          <Ionicons name="play-circle-outline" size={32} color="#B642D3" />
+        </Pressable>
       </View>
     </TouchableOpacity>
   );
 };
 
-export default QuickTipCard;
+export default VideoSpotlightCard;

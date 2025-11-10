@@ -25,7 +25,7 @@ export default function HomeLayout() {
 
       <Stack.Screen 
         name="video-spotlight" 
-        options={{ headerLeft: () => <BackButton /> }}
+        options={{ headerLeft: () => <BackButton />, title: "Video Spotlight" }}
       />
     </Stack>
   );
