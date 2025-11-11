@@ -5,6 +5,7 @@ export interface ILocalResources {
     title: string,
     description: string,
     video_url: string,
+    video_id: string,
     thumbnail_url: string,
     spotlight?: boolean
 }
@@ -14,6 +15,7 @@ export interface IVideoSpotlights {
     title: string,
     subtitle: string,
     video_url: string,
+    video_id: string,
     video_description: string,
     transcript: string,
     thumbnail_url: string,
@@ -24,6 +26,7 @@ export interface IQuickTips {
     id: string,
     title: string,
     video_url: string,
+    video_id: string,
     description: string,
     infographic_url: string,
     infographic_description: string,

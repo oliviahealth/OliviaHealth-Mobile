@@ -22,6 +22,11 @@ export default function HomeLayout() {
         name="infographics" 
         options={{ title: 'Infographics', headerLeft: () => <BackButton /> }}
       />
+
+      <Stack.Screen 
+        name="video-spotlight" 
+        options={{ headerLeft: () => <BackButton />, title: "Video Spotlight" }}
+      />
     </Stack>
   );
 }
