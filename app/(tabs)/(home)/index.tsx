@@ -36,6 +36,10 @@ export default function Index() {
     router.push({ pathname: "/(tabs)/(home)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
   }
 
+  const goToLocalResource = () => {
+    router.push("/(tabs)/(home)/local-resource")
+  }
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -116,7 +120,9 @@ export default function Index() {
                     {elm.description}
                   </Text>
                 </View>
-                <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                <Pressable onPress={goToLocalResource} hitSlop={8}>
+                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                </Pressable>
               </TouchableOpacity>
             ))
 

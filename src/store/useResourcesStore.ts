@@ -6,6 +6,7 @@ export interface ILocalResources {
     description: string,
     video_url: string,
     video_id: string,
+    transcript: string,
     thumbnail_url: string,
     spotlight?: boolean
 }
