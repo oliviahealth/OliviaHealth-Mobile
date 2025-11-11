@@ -3,9 +3,11 @@ import { create } from 'zustand';
 export interface ILocalResources {
     id: string,
     title: string,
-    description: string,
+    subtitle: string,
     video_url: string,
     video_id: string,
+    video_description: string,
+    transcript: string,
     thumbnail_url: string,
     spotlight?: boolean
 }

@@ -3,7 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-import useResourcesStore, { IVideoSpotlights } from "@/src/store/useResourcesStore";
+import useResourcesStore, { ILocalResources, IVideoSpotlights } from "@/src/store/useResourcesStore";
 
 const oliviahealth_branding = require('../../../assets/images/oliviahealth_branding.png')
 
@@ -34,6 +34,10 @@ export default function Index() {
 
   const goToVideoSpotlight = (videoSpotlight: IVideoSpotlights) => {
     router.push({ pathname: "/(tabs)/(home)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
+  }
+
+  const goToLocalResource = (localResource: ILocalResources) => {
+    router.push({ pathname: "/(tabs)/(home)/local-resource", params: { localResource: JSON.stringify(localResource) } });
   }
 
   return (
@@ -113,10 +117,12 @@ export default function Index() {
                     {elm.title}
                   </Text>
                   <Text style={{ fontSize: 12, color: '#888' }}>
-                    {elm.description}
+                    {elm.subtitle}
                   </Text>
                 </View>
-                <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                <Pressable onPress={() => goToLocalResource(elm)} hitSlop={8}>
+                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                </Pressable>
               </TouchableOpacity>
             ))
 
