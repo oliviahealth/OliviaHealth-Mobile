@@ -1,4 +1,7 @@
+import InfographicCard from "@/components/InfographicCard";
 import SearchBar from "@/components/SearchBar";
+import VideoSpotlightCard from "@/components/VideoSpotlightCard";
+import useResourcesStore from "@/src/store/useResourcesStore";
 import { TINT_COLOR } from "@/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useState } from "react";
@@ -6,19 +9,16 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
   const [videoTabSelected, setVideoTabSelected] = useState(true);
+  const resources = useResourcesStore(state => state.resources);
   return (
     <ScrollView
-      contentContainerStyle={{
-        paddingTop: 20,
-        paddingHorizontal: 20,
-        gap: 18,
-      }}
+      contentContainerStyle={{ paddingVertical: 20, paddingHorizontal: 20, gap: 18 }}
       showsVerticalScrollIndicator={false}
     >
       <View style={{ flex: 1, gap: 18 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-          <Ionicons name="bookmark" size={30} color={TINT_COLOR} />
-          <Text style={{ fontWeight: '500', fontSize: 24 }}>Saved</Text>
+          <Ionicons name="bookmark" size={24} color={TINT_COLOR} />
+          <Text style={{ fontWeight: '500', fontSize: 22 }}>Saved</Text>
         </View>
 
         <SearchBar placeholder="Search in saved" />
@@ -33,6 +33,13 @@ export default function Index() {
           </TouchableOpacity>
         </View>
 
+        {videoTabSelected && resources?.video_spotlights.map((videoSpotlight, index) => (
+          <VideoSpotlightCard key={index} videoSpotlight={videoSpotlight} />
+        ))}
+
+        {!videoTabSelected && resources?.infographics.map((infographic, index) => (
+          <InfographicCard key={index} infographic={infographic} />
+        ))}
       </View>
     </ScrollView>
   );
