@@ -60,11 +60,15 @@ export interface ISavedResources {
 export interface IResourcesState {
     resources: IResources | null
     setResources: (resources: IResources) => void
+    savedResources: ISavedResources | null
+    setSavedResources: (savedResources: ISavedResources) => void
 }
 
 const useResourcesStore = create<IResourcesState>()((set) => ({
     resources: null,
-    setResources: (resources) => set(() => ({ resources }))
+    setResources: (resources) => set(() => ({ resources })),
+    savedResources: null,
+    setSavedResources: (savedResources) => set(() => ({ savedResources }))
 }));
 
 export default useResourcesStore;

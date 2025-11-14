@@ -1,10 +1,10 @@
-import { Text, Image, ActivityIndicator, ScrollView, View, TouchableOpacity } from "react-native";
-import { useLayoutEffect, useState } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { IVideoSpotlights } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLayoutEffect, useState } from "react";
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import YoutubePlayer from "react-native-youtube-iframe";
-import { IVideoSpotlights } from "@/src/store/useResourcesStore";
 
 export default function VideoSpotlight() {
     const [ready, setReady] = useState(false);

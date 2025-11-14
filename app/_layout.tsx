@@ -1,10 +1,11 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import useResourcesStore, { IResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IResources, ISavedResources } from "@/src/store/useResourcesStore";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,6 +17,7 @@ export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
 
   const setResources = useResourcesStore(state => state.setResources);
+  const setSavedResources = useResourcesStore(state => state.setSavedResources);
 
   useEffect(() => {
     async function prepare() {
@@ -28,6 +30,12 @@ export default function RootLayout() {
         const resources: IResources = await res.json();
 
         setResources(resources);
+
+        // Load saved resources from AsyncStorage
+        const savedResourcesJson: ISavedResources | null = JSON.parse(await AsyncStorage.getItem('savedResources') || 'null');
+        if (savedResourcesJson) {
+          setSavedResources(savedResourcesJson);
+        }
       } catch (e) {
         console.error("Failed to fetch resources", e);
       } finally {
@@ -43,7 +51,7 @@ export default function RootLayout() {
     }
 
     prepare();
-  }, [setResources]);
+  }, [setResources, setSavedResources]);
 
   const onLayoutRootView = useCallback(async () => {
     if (isReady) await SplashScreen.hideAsync();
@@ -55,7 +63,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['top']} onLayout={onLayoutRootView}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']} onLayout={onLayoutRootView}>
       <StatusBar barStyle="dark-content" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
