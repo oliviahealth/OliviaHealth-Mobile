@@ -1,7 +1,8 @@
-import { IVideoSpotlights } from "@/src/store/useResourcesStore";
+import useResourcesStore, { ISavedResources, IVideoSpotlights } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import YoutubePlayer from "react-native-youtube-iframe";
@@ -9,17 +10,50 @@ import YoutubePlayer from "react-native-youtube-iframe";
 export default function VideoSpotlight() {
     const [ready, setReady] = useState(false);
     const [transcriptShown, setTranscriptShown] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     const { videoSpotlight } = useLocalSearchParams();
     const videoSpotlightParsed: IVideoSpotlights = JSON.parse(videoSpotlight as string);
 
+    const savedResources = useResourcesStore(state => state.savedResources);
+    const setSavedResources = useResourcesStore(state => state.setSavedResources);
+
     const navigation = useNavigation();
+
+    const addToSavedVideos = () => {
+        let currSavedVideos = savedResources?.videos || [];
+        currSavedVideos.push(videoSpotlightParsed);
+        const newSavedResources: ISavedResources = {
+            videos: currSavedVideos,
+            infographics: savedResources?.infographics || []
+        };
+        setSavedResources(newSavedResources);
+        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
+        setIsSaved(true);
+    }
+
+    const removeFromSavedVideos = () => {
+        let currSavedVideos = savedResources?.videos || [];
+        currSavedVideos = currSavedVideos.filter(video => video.id !== videoSpotlightParsed.id);
+        const newSavedResources: ISavedResources = {
+            videos: currSavedVideos,
+            infographics: savedResources?.infographics || []
+        };
+        setSavedResources(newSavedResources);
+        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
+        setIsSaved(false);
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
             title: videoSpotlightParsed.title || "Video Spotlight",
         });
-    }, [videoSpotlightParsed.title]);
+    }, [videoSpotlightParsed.title, navigation]);
+
+    useEffect(() => {
+        const isVideoSaved = savedResources?.videos.some(video => video.id === videoSpotlightParsed.id);
+        setIsSaved(isVideoSaved || false);
+    }, [savedResources, videoSpotlightParsed.id]);
 
     return (
         <ScrollView contentContainerStyle={{ padding: 20, paddingHorizontal: 20, gap: 24, }} showsVerticalScrollIndicator={false}>
@@ -91,7 +125,12 @@ export default function VideoSpotlight() {
 
                 </View>
 
-                <Ionicons name="bookmark-outline" size={28} color="#B642D3" style={{ marginHorizontal: 5 }} />
+                <Ionicons 
+                    name={isSaved ? "bookmark" : "bookmark-outline"} 
+                    size={28} color="#B642D3" 
+                    style={{ marginHorizontal: 5 }} 
+                    onPress={isSaved ? removeFromSavedVideos : addToSavedVideos}
+                />
             </View>
 
             <View style={{ flexDirection: 'column', gap: 3 }}>
