@@ -32,6 +32,11 @@ export default function HomeLayout() {
         name="local-resource" 
         options={{ headerLeft: () => <BackButton />, title: "Local Resource" }}
       />
+
+      <Stack.Screen 
+        name="quick-tip" 
+        options={{ headerLeft: () => <BackButton />, title: "Quick Tip" }}
+      />
     </Stack>
   );
 }

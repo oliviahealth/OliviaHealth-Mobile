@@ -40,6 +40,10 @@ export default function Index() {
     router.push({ pathname: "/(tabs)/(home)/local-resource", params: { localResource: JSON.stringify(localResource) } });
   }
 
+  const goToQuickTip = () => {
+    router.push("/(tabs)/(home)/quick-tip");
+  }
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -150,7 +154,9 @@ export default function Index() {
                     {elm.description}
                   </Text>
                 </View>
-                <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                <Pressable onPress={goToQuickTip} hitSlop={8}>
+                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                </Pressable>
               </TouchableOpacity>
             ))
           }
