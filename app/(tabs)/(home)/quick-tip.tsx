@@ -1,18 +1,23 @@
-import { IQuickTips } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IQuickTips } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function QuickTip() {
     const [ready, setReady] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     const [infographicShown, setInfographicShown] = useState(false);
     const [infographicLoading, setInfographicLoading] = useState(false);
 
     const { quickTip } = useLocalSearchParams();
     const quickTipParsed: IQuickTips = JSON.parse(quickTip as string);
+
+    const savedResources = useResourcesStore(state => state.savedResources);
+    const addToSavedResources = useResourcesStore(state => state.addToSavedResources);
+    const removeFromSavedResources = useResourcesStore(state => state.removeFromSavedResources);
 
     const navigation = useNavigation();
 
@@ -31,6 +36,11 @@ export default function QuickTip() {
             return next;
         });
     };
+
+    useEffect(() => {
+        const isQuickTipSaved = savedResources?.quick_tips.includes(quickTipParsed.id);
+        setIsSaved(isQuickTipSaved || false);
+    }, [savedResources, quickTipParsed.id]);
 
     return (
         <ScrollView contentContainerStyle={{ padding: 20, paddingHorizontal: 20, gap: 24, }} showsVerticalScrollIndicator={false}>
@@ -96,7 +106,12 @@ export default function QuickTip() {
 
                 </View>
 
-                <Ionicons name="bookmark-outline" size={28} color="#B642D3" style={{ marginHorizontal: 5 }} />
+                <Ionicons
+                    name={isSaved ? "bookmark" : "bookmark-outline"}
+                    size={28} color="#B642D3"
+                    style={{ marginHorizontal: 5 }}
+                    onPress={isSaved ? () => removeFromSavedResources('quick_tips', quickTipParsed.id) : () => addToSavedResources('quick_tips', quickTipParsed.id)}
+                />
             </View>
 
             <View style={{ flexDirection: 'column', gap: 3 }}>

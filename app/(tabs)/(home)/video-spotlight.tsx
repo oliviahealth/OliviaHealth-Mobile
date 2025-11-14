@@ -1,6 +1,5 @@
-import useResourcesStore, { IResources, IVideoSpotlights } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IVideoSpotlights } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
