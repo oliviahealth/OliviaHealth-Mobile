@@ -52,6 +52,11 @@ export interface IResources {
     infographics: IInfographics[]
 }
 
+export interface ISavedResources {
+    videos: (IVideoSpotlights | ILocalResources)[],
+    infographics: IInfographics[]
+}
+
 export interface IResourcesState {
     resources: IResources | null
     setResources: (resources: IResources) => void
