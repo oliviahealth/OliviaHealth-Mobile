@@ -11,7 +11,7 @@ const QuickTipCard: React.FC<QuickTipCardProps> = ({ quickTip }) => {
   const router = useRouter();
 
   const goToQuickTip = () => {
-    router.push({ pathname: "/(tabs)/(home)/quick-tip", params: { localResource: JSON.stringify(quickTip) } });
+    router.push({ pathname: "/(tabs)/(home)/quick-tip", params: { quickTip: JSON.stringify(quickTip) } });
   }
 
   return (

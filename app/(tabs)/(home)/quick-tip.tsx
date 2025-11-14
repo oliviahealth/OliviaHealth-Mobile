@@ -1,5 +1,7 @@
+import { IQuickTips } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useState } from "react";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import React, { useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
@@ -8,6 +10,17 @@ export default function QuickTip() {
 
     const [infographicShown, setInfographicShown] = useState(false);
     const [infographicLoading, setInfographicLoading] = useState(false);
+
+    const { quickTip } = useLocalSearchParams();
+    const quickTipParsed: IQuickTips = JSON.parse(quickTip as string);
+
+    const navigation = useNavigation();
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: quickTipParsed.title || "Quick Tip",
+        });
+    }, [quickTipParsed.title]);
 
     const toggleInfographic = () => {
         setInfographicShown((v) => {
@@ -25,7 +38,7 @@ export default function QuickTip() {
                 <YoutubePlayer
                     height={250}
                     play
-                    videoId={"zRPJ8k1pASk"}
+                    videoId={quickTipParsed.video_id}
                     onReady={() => setReady(true)}
                     webViewStyle={{ zIndex: 2, elevation: 2 }}
                     webViewProps={{
@@ -64,10 +77,8 @@ export default function QuickTip() {
                 <View style={{ flexDirection: "row", gap: 5, alignItems: "center", flex: 1 }}>
 
                     <Image
-                        source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Fathers.png" }}
+                        source={{ uri: quickTipParsed.thumbnail_url }}
                         style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }}
-                        onLoadStart={() => setInfographicLoading(true)}
-                        onLoadEnd={() => setInfographicLoading(false)}
                     />
 
                     <View style={{ flexShrink: 1 }}>
@@ -79,7 +90,7 @@ export default function QuickTip() {
                                 flexWrap: "wrap"
                             }}
                         >
-                            {"Pregnancy Trimesters for Fathers"}
+                            {quickTipParsed.title}
                         </Text>
                     </View>
 
@@ -92,7 +103,7 @@ export default function QuickTip() {
                 <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Description</Text>
 
                 <Text style={{ fontSize: 14, color: '#888' }}>
-                    {"In this video, learn about what to expect your partner to experience throughout pregnancy."}
+                    {quickTipParsed.description}
                 </Text>
             </View>
 
@@ -114,12 +125,12 @@ export default function QuickTip() {
                         }}
                     >
 
-                        { infographicLoading && <ActivityIndicator /> }
+                        {infographicLoading && <ActivityIndicator />}
 
                         <Image
                             source={{
                                 uri:
-                                    "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC.png",
+                                    quickTipParsed.infographic_url,
                             }}
                             style={{
                                 width: "100%",
