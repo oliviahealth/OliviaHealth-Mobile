@@ -1,25 +1,59 @@
-import { ILocalResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, { ILocalResources, ISavedResources } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import { useLayoutEffect, useState } from "react";
-import { Text, Image, ScrollView, View, ActivityIndicator, TouchableOpacity } from "react-native";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function LocalResource() {
     const [ready, setReady] = useState(false);
     const [transcriptShown, setTranscriptShown] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     const { localResource } = useLocalSearchParams();
     const localResourceParsed: ILocalResources = JSON.parse(localResource as string);
 
     const navigation = useNavigation();
 
+    const savedResources = useResourcesStore(state => state.savedResources);
+    const setSavedResources = useResourcesStore(state => state.setSavedResources);
+
+    const addToSavedVideos = () => {
+        let currSavedVideos = savedResources?.videos || [];
+        currSavedVideos.push(localResourceParsed);
+        const newSavedResources: ISavedResources = {
+            videos: currSavedVideos,
+            infographics: savedResources?.infographics || []
+        };
+        setSavedResources(newSavedResources);
+        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
+        setIsSaved(true);
+    }
+
+    const removeFromSavedVideos = () => {
+        let currSavedVideos = savedResources?.videos || [];
+        currSavedVideos = currSavedVideos.filter(video => video.id !== localResourceParsed.id);
+        const newSavedResources: ISavedResources = {
+            videos: currSavedVideos,
+            infographics: savedResources?.infographics || []
+        };
+        setSavedResources(newSavedResources);
+        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
+        setIsSaved(false);
+    }
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: localResourceParsed.title || "Local Resource",
         });
-    }, [localResourceParsed.title]);
+    }, [localResourceParsed.title, navigation]);
+
+    useEffect(() => {
+        const isLocalResourceSaved = savedResources?.videos.some(video => video.id === localResourceParsed.id);
+        setIsSaved(isLocalResourceSaved || false);
+    }, [savedResources, localResourceParsed.id]);
 
     return (
         <ScrollView contentContainerStyle={{ padding: 20, paddingHorizontal: 20, gap: 24, }} showsVerticalScrollIndicator={false}>
@@ -90,7 +124,12 @@ export default function LocalResource() {
 
                 </View>
 
-                <Ionicons name="bookmark-outline" size={28} color="#B642D3" style={{ marginHorizontal: 5 }} />
+                <Ionicons 
+                    name={isSaved ? "bookmark" : "bookmark-outline"} 
+                    size={28} color="#B642D3" 
+                    style={{ marginHorizontal: 5 }} 
+                    onPress={isSaved ? removeFromSavedVideos : addToSavedVideos} 
+                />
             </View>
 
             {localResourceParsed.video_description && (
