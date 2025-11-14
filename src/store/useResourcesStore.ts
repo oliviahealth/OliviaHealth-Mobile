@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface ILocalResources {
     id: string,
@@ -52,18 +53,80 @@ export interface IResources {
     infographics: IInfographics[]
 }
 
+export interface ISavedResourceIds {
+    local_resources: string[],
+    video_spotlights: string[],
+    quick_tips: string[],
+    infographics: string[]
+}
+
 export interface IResourcesState {
     resources: IResources | null
     setResources: (resources: IResources) => void
-    savedResources: IResources | null
-    setSavedResources: (savedResources: IResources) => void
+    savedResources: ISavedResourceIds
+    addToSavedResources: (key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics", resourceId: string) => void
+    removeFromSavedResources: (key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics", resourceId: string) => void
+    setSavedResources: (savedResources: ISavedResourceIds) => void
 }
 
-const useResourcesStore = create<IResourcesState>()((set) => ({
+const SAVED_RESOURCES_KEY = 'savedResources';
+
+const useResourcesStore = create<IResourcesState>()((set, get) => ({
     resources: null,
     setResources: (resources) => set(() => ({ resources })),
-    savedResources: null,
-    setSavedResources: (savedResources) => set(() => ({ savedResources }))
+    savedResources: { local_resources: [], video_spotlights: [], quick_tips: [], infographics: [] },
+    addToSavedResources: async (key, resourceId) => {
+        set((state) => {
+            const currentList = state.savedResources[key];
+            // Prevent duplicates
+            if (currentList.includes(resourceId)) {
+                return state;
+            }
+            const newSavedResources = {
+                ...state.savedResources,
+                [key]: [...currentList, resourceId],
+            };
+
+            // Save to AsyncStorage
+            AsyncStorage.setItem(SAVED_RESOURCES_KEY, JSON.stringify(newSavedResources))
+                .catch(error => console.error('Error saving to AsyncStorage:', error));
+
+            return {
+                savedResources: newSavedResources,
+            };
+        });
+    },
+    removeFromSavedResources: async (key, resourceId) => {
+        set((state) => {
+            const currentList = state.savedResources[key];
+            const newSavedResources = {
+                ...state.savedResources,
+                [key]: currentList.filter((id) => id !== resourceId),
+            };
+
+            // Save to AsyncStorage
+            AsyncStorage.setItem(SAVED_RESOURCES_KEY, JSON.stringify(newSavedResources))
+                .catch(error => console.error('Error saving to AsyncStorage:', error));
+
+            return {
+                savedResources: newSavedResources,
+            };
+        });
+    },
+    setSavedResources: (savedResources) => set({ savedResources })
 }));
+
+// Helper function to load saved resources from AsyncStorage
+export const loadSavedResources = async () => {
+    try {
+        const savedData = await AsyncStorage.getItem(SAVED_RESOURCES_KEY);
+        if (savedData) {
+            const parsedData: ISavedResourceIds = JSON.parse(savedData);
+            useResourcesStore.getState().setSavedResources(parsedData);
+        }
+    } catch (error) {
+        console.error('Error loading from AsyncStorage:', error);
+    }
+};
 
 export default useResourcesStore;

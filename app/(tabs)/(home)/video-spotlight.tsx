@@ -16,36 +16,10 @@ export default function VideoSpotlight() {
     const videoSpotlightParsed: IVideoSpotlights = JSON.parse(videoSpotlight as string);
 
     const savedResources = useResourcesStore(state => state.savedResources);
-    const setSavedResources = useResourcesStore(state => state.setSavedResources);
+    const addToSavedResources = useResourcesStore(state => state.addToSavedResources);
+    const removeFromSavedResources = useResourcesStore(state => state.removeFromSavedResources);
 
     const navigation = useNavigation();
-
-    const addToSavedVideos = () => {
-        const currSavedVideos = [...(savedResources?.video_spotlights || []), videoSpotlightParsed];
-        const newSavedResources: IResources = {
-            video_spotlights: currSavedVideos,
-            infographics: savedResources?.infographics || [],
-            quick_tips: savedResources?.quick_tips || [],
-            local_resources: savedResources?.local_resources || []
-        };
-        setSavedResources(newSavedResources);
-        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
-        setIsSaved(true);
-    }
-
-    const removeFromSavedVideos = () => {
-        let currSavedVideos = savedResources?.video_spotlights || [];
-        currSavedVideos = currSavedVideos.filter(video => video.id !== videoSpotlightParsed.id);
-        const newSavedResources: IResources = {
-            video_spotlights: currSavedVideos,
-            infographics: savedResources?.infographics || [],
-            quick_tips: savedResources?.quick_tips || [],
-            local_resources: savedResources?.local_resources || []
-        };
-        setSavedResources(newSavedResources);
-        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
-        setIsSaved(false);
-    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -54,7 +28,7 @@ export default function VideoSpotlight() {
     }, [videoSpotlightParsed.title, navigation]);
 
     useEffect(() => {
-        const isVideoSaved = savedResources?.video_spotlights.some(video => video.id === videoSpotlightParsed.id);
+        const isVideoSaved = savedResources?.video_spotlights.includes(videoSpotlightParsed.id);
         setIsSaved(isVideoSaved || false);
     }, [savedResources, videoSpotlightParsed.id]);
 
@@ -128,11 +102,11 @@ export default function VideoSpotlight() {
 
                 </View>
 
-                <Ionicons 
-                    name={isSaved ? "bookmark" : "bookmark-outline"} 
-                    size={28} color="#B642D3" 
-                    style={{ marginHorizontal: 5 }} 
-                    onPress={isSaved ? removeFromSavedVideos : addToSavedVideos}
+                <Ionicons
+                    name={isSaved ? "bookmark" : "bookmark-outline"}
+                    size={28} color="#B642D3"
+                    style={{ marginHorizontal: 5 }}
+                    onPress={isSaved ? () => removeFromSavedResources('video_spotlights', videoSpotlightParsed.id) : () => addToSavedResources('video_spotlights', videoSpotlightParsed.id)}
                 />
             </View>
 

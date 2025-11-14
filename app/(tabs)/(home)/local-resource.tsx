@@ -1,6 +1,5 @@
-import useResourcesStore, { ILocalResources, IResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, { ILocalResources } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -18,34 +17,9 @@ export default function LocalResource() {
     const navigation = useNavigation();
 
     const savedResources = useResourcesStore(state => state.savedResources);
-    const setSavedResources = useResourcesStore(state => state.setSavedResources);
+    const addToSavedResources = useResourcesStore(state => state.addToSavedResources);
+    const removeFromSavedResources = useResourcesStore(state => state.removeFromSavedResources);
 
-    const addToSavedLocal = () => {
-        const currSavedLocal = [...(savedResources?.local_resources || []), localResourceParsed];
-        const newSavedResources: IResources = {
-            local_resources: currSavedLocal,
-            video_spotlights: savedResources?.video_spotlights || [],
-            quick_tips: savedResources?.quick_tips || [],
-            infographics: savedResources?.infographics || []
-        };
-        setSavedResources(newSavedResources);
-        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
-        setIsSaved(true);
-    }
-
-    const removeFromSavedLocal = () => {
-        let currSavedLocal = savedResources?.local_resources || [];
-        currSavedLocal = currSavedLocal.filter(local => local.id !== localResourceParsed.id);
-        const newSavedResources: IResources = {
-            local_resources: currSavedLocal,
-            video_spotlights: savedResources?.video_spotlights || [],
-            quick_tips: savedResources?.quick_tips || [],
-            infographics: savedResources?.infographics || []
-        };
-        setSavedResources(newSavedResources);
-        AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
-        setIsSaved(false);
-    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -54,7 +28,7 @@ export default function LocalResource() {
     }, [localResourceParsed.title, navigation]);
 
     useEffect(() => {
-        const isLocalResourceSaved = savedResources?.local_resources.some(local => local.id === localResourceParsed.id);
+        const isLocalResourceSaved = savedResources?.local_resources.includes(localResourceParsed.id);
         setIsSaved(isLocalResourceSaved || false);
     }, [savedResources, localResourceParsed.id]);
 
@@ -127,11 +101,11 @@ export default function LocalResource() {
 
                 </View>
 
-                <Ionicons 
-                    name={isSaved ? "bookmark" : "bookmark-outline"} 
-                    size={28} color="#B642D3" 
-                    style={{ marginHorizontal: 5 }} 
-                    onPress={isSaved ? removeFromSavedLocal : addToSavedLocal} 
+                <Ionicons
+                    name={isSaved ? "bookmark" : "bookmark-outline"}
+                    size={28} color="#B642D3"
+                    style={{ marginHorizontal: 5 }}
+                    onPress={isSaved ? () => removeFromSavedResources('local_resources', localResourceParsed.id) : () => addToSavedResources('local_resources', localResourceParsed.id)}
                 />
             </View>
 
