@@ -1,12 +1,19 @@
 import { IQuickTips } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 
 interface QuickTipCardProps {
   quickTip: IQuickTips;
 }
 
 const QuickTipCard: React.FC<QuickTipCardProps> = ({ quickTip }) => {
+  const router = useRouter();
+
+  const goToQuickTip = () => {
+    router.push({ pathname: "/(tabs)/(home)/quick-tip", params: { quickTip: JSON.stringify(quickTip) } });
+  }
+
   return (
     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, borderWidth: 1, borderColor: '#E9E9E9', gap: 2 }} activeOpacity={0.9}>
       <Image source={{ uri: quickTip.thumbnail_url }} style={{ width: '100%', height: 120, borderRadius: 12, marginBottom: 8 }} />
@@ -24,7 +31,9 @@ const QuickTipCard: React.FC<QuickTipCardProps> = ({ quickTip }) => {
           </Text>
         </View>
 
-        <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+        <Pressable onPress={goToQuickTip} hitSlop={8}>
+          <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+        </Pressable>
       </View>
     </TouchableOpacity>
   );
