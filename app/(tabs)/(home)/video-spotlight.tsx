@@ -21,8 +21,7 @@ export default function VideoSpotlight() {
     const navigation = useNavigation();
 
     const addToSavedVideos = () => {
-        let currSavedVideos = savedResources?.videos || [];
-        currSavedVideos.push(videoSpotlightParsed);
+        const currSavedVideos = [...(savedResources?.videos || []), videoSpotlightParsed];
         const newSavedResources: ISavedResources = {
             videos: currSavedVideos,
             infographics: savedResources?.infographics || []

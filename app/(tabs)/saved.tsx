@@ -9,7 +9,8 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
   const [videoTabSelected, setVideoTabSelected] = useState(true);
-  const resources = useResourcesStore(state => state.resources);
+  const savedResources = useResourcesStore(state => state.savedResources);
+
   return (
     <ScrollView
       contentContainerStyle={{ paddingVertical: 20, paddingHorizontal: 20, gap: 18 }}
@@ -33,11 +34,11 @@ export default function Index() {
           </TouchableOpacity>
         </View>
 
-        {videoTabSelected && resources?.video_spotlights.map((videoSpotlight, index) => (
+        {videoTabSelected && savedResources?.videos.map((videoSpotlight, index) => (
           <VideoSpotlightCard key={index} videoSpotlight={videoSpotlight} />
         ))}
 
-        {!videoTabSelected && resources?.infographics.map((infographic, index) => (
+        {!videoTabSelected && savedResources?.infographics.map((infographic, index) => (
           <InfographicCard key={index} infographic={infographic} />
         ))}
       </View>

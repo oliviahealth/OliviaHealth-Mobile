@@ -21,8 +21,7 @@ export default function LocalResource() {
     const setSavedResources = useResourcesStore(state => state.setSavedResources);
 
     const addToSavedVideos = () => {
-        let currSavedVideos = savedResources?.videos || [];
-        currSavedVideos.push(localResourceParsed);
+        const currSavedVideos = [...(savedResources?.videos || []), localResourceParsed];
         const newSavedResources: ISavedResources = {
             videos: currSavedVideos,
             infographics: savedResources?.infographics || []
