@@ -52,16 +52,11 @@ export interface IResources {
     infographics: IInfographics[]
 }
 
-export interface ISavedResources {
-    videos: (IVideoSpotlights | ILocalResources)[],
-    infographics: IInfographics[]
-}
-
 export interface IResourcesState {
     resources: IResources | null
     setResources: (resources: IResources) => void
-    savedResources: ISavedResources | null
-    setSavedResources: (savedResources: ISavedResources) => void
+    savedResources: IResources | null
+    setSavedResources: (savedResources: IResources) => void
 }
 
 const useResourcesStore = create<IResourcesState>()((set) => ({

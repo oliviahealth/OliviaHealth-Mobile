@@ -1,4 +1,4 @@
-import useResourcesStore, { ILocalResources, ISavedResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, { ILocalResources, IResources } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -20,10 +20,12 @@ export default function LocalResource() {
     const savedResources = useResourcesStore(state => state.savedResources);
     const setSavedResources = useResourcesStore(state => state.setSavedResources);
 
-    const addToSavedVideos = () => {
-        const currSavedVideos = [...(savedResources?.videos || []), localResourceParsed];
-        const newSavedResources: ISavedResources = {
-            videos: currSavedVideos,
+    const addToSavedLocal = () => {
+        const currSavedLocal = [...(savedResources?.local_resources || []), localResourceParsed];
+        const newSavedResources: IResources = {
+            local_resources: currSavedLocal,
+            video_spotlights: savedResources?.video_spotlights || [],
+            quick_tips: savedResources?.quick_tips || [],
             infographics: savedResources?.infographics || []
         };
         setSavedResources(newSavedResources);
@@ -31,11 +33,13 @@ export default function LocalResource() {
         setIsSaved(true);
     }
 
-    const removeFromSavedVideos = () => {
-        let currSavedVideos = savedResources?.videos || [];
-        currSavedVideos = currSavedVideos.filter(video => video.id !== localResourceParsed.id);
-        const newSavedResources: ISavedResources = {
-            videos: currSavedVideos,
+    const removeFromSavedLocal = () => {
+        let currSavedLocal = savedResources?.local_resources || [];
+        currSavedLocal = currSavedLocal.filter(local => local.id !== localResourceParsed.id);
+        const newSavedResources: IResources = {
+            local_resources: currSavedLocal,
+            video_spotlights: savedResources?.video_spotlights || [],
+            quick_tips: savedResources?.quick_tips || [],
             infographics: savedResources?.infographics || []
         };
         setSavedResources(newSavedResources);
@@ -50,7 +54,7 @@ export default function LocalResource() {
     }, [localResourceParsed.title, navigation]);
 
     useEffect(() => {
-        const isLocalResourceSaved = savedResources?.videos.some(video => video.id === localResourceParsed.id);
+        const isLocalResourceSaved = savedResources?.local_resources.some(local => local.id === localResourceParsed.id);
         setIsSaved(isLocalResourceSaved || false);
     }, [savedResources, localResourceParsed.id]);
 
@@ -127,7 +131,7 @@ export default function LocalResource() {
                     name={isSaved ? "bookmark" : "bookmark-outline"} 
                     size={28} color="#B642D3" 
                     style={{ marginHorizontal: 5 }} 
-                    onPress={isSaved ? removeFromSavedVideos : addToSavedVideos} 
+                    onPress={isSaved ? removeFromSavedLocal : addToSavedLocal} 
                 />
             </View>
 

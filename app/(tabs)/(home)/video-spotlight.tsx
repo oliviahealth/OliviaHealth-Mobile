@@ -1,4 +1,4 @@
-import useResourcesStore, { ISavedResources, IVideoSpotlights } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IResources, IVideoSpotlights } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -21,10 +21,12 @@ export default function VideoSpotlight() {
     const navigation = useNavigation();
 
     const addToSavedVideos = () => {
-        const currSavedVideos = [...(savedResources?.videos || []), videoSpotlightParsed];
-        const newSavedResources: ISavedResources = {
-            videos: currSavedVideos,
-            infographics: savedResources?.infographics || []
+        const currSavedVideos = [...(savedResources?.video_spotlights || []), videoSpotlightParsed];
+        const newSavedResources: IResources = {
+            video_spotlights: currSavedVideos,
+            infographics: savedResources?.infographics || [],
+            quick_tips: savedResources?.quick_tips || [],
+            local_resources: savedResources?.local_resources || []
         };
         setSavedResources(newSavedResources);
         AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
@@ -32,11 +34,13 @@ export default function VideoSpotlight() {
     }
 
     const removeFromSavedVideos = () => {
-        let currSavedVideos = savedResources?.videos || [];
+        let currSavedVideos = savedResources?.video_spotlights || [];
         currSavedVideos = currSavedVideos.filter(video => video.id !== videoSpotlightParsed.id);
-        const newSavedResources: ISavedResources = {
-            videos: currSavedVideos,
-            infographics: savedResources?.infographics || []
+        const newSavedResources: IResources = {
+            video_spotlights: currSavedVideos,
+            infographics: savedResources?.infographics || [],
+            quick_tips: savedResources?.quick_tips || [],
+            local_resources: savedResources?.local_resources || []
         };
         setSavedResources(newSavedResources);
         AsyncStorage.setItem("savedResources", JSON.stringify(newSavedResources));
@@ -50,7 +54,7 @@ export default function VideoSpotlight() {
     }, [videoSpotlightParsed.title, navigation]);
 
     useEffect(() => {
-        const isVideoSaved = savedResources?.videos.some(video => video.id === videoSpotlightParsed.id);
+        const isVideoSaved = savedResources?.video_spotlights.some(video => video.id === videoSpotlightParsed.id);
         setIsSaved(isVideoSaved || false);
     }, [savedResources, videoSpotlightParsed.id]);
 

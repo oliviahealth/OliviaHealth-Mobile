@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import useResourcesStore, { IResources, ISavedResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IResources } from "@/src/store/useResourcesStore";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,9 +32,14 @@ export default function RootLayout() {
         setResources(resources);
 
         // Load saved resources from AsyncStorage
-        const savedResourcesJson: ISavedResources | null = JSON.parse(await AsyncStorage.getItem('savedResources') || 'null');
+        const savedResourcesJson = JSON.parse(await AsyncStorage.getItem('savedResources') || 'null');
         if (savedResourcesJson) {
-          setSavedResources(savedResourcesJson);
+          setSavedResources({
+            local_resources: savedResourcesJson.local_resources || [],
+            video_spotlights: savedResourcesJson.video_spotlights || [],
+            quick_tips: savedResourcesJson.quick_tips || [],
+            infographics: savedResourcesJson.infographics || []
+          });
         }
       } catch (e) {
         console.error("Failed to fetch resources", e);
