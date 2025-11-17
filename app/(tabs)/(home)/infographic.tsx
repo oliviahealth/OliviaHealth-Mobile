@@ -1,5 +1,5 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { ScrollView, View, Image, Text, ActivityIndicator } from "react-native";
 import useResourcesStore, { IInfographics } from "@/src/store/useResourcesStore";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -13,11 +13,21 @@ export default function Infographic() {
 
     const navigation = useNavigation();
 
+    const savedResources = useResourcesStore(state => state.savedResources);
+    const addToSavedResources = useResourcesStore(state => state.addToSavedResources);
+    const removeFromSavedResources = useResourcesStore(state => state.removeFromSavedResources);
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: infographicParsed.title || "Infographic",
         });
     }, [infographicParsed.title]);
+
+    useEffect(() => {
+        const isInfographicSaved = savedResources?.infographics.includes(infographicParsed.id);
+        setIsSaved(isInfographicSaved || false);
+
+    }, [savedResources, infographicParsed.id]);
 
     return (
         <ScrollView contentContainerStyle={{ padding: 20, paddingHorizontal: 20, gap: 18, }} showsVerticalScrollIndicator={false}>
@@ -45,7 +55,7 @@ export default function Infographic() {
                     name={isSaved ? "bookmark" : "bookmark-outline"}
                     size={28} color="#B642D3"
                     style={{ marginHorizontal: 5 }}
-                // onPress={isSaved ? () => removeFromSavedResources('quick_tips', quickTipParsed.id) : () => addToSavedResources('quick_tips', quickTipParsed.id)}
+                    onPress={isSaved ? () => removeFromSavedResources('infographics', infographicParsed.id) : () => addToSavedResources('infographics', infographicParsed.id)}
                 />
             </View>
 
