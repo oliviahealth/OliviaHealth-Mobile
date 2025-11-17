@@ -3,7 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-import useResourcesStore, { ILocalResources, IQuickTips, IVideoSpotlights } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IInfographics, ILocalResources, IQuickTips, IVideoSpotlights } from "@/src/store/useResourcesStore";
 
 const oliviahealth_branding = require('../../../assets/images/oliviahealth_branding.png')
 
@@ -42,6 +42,10 @@ export default function Index() {
 
   const goToQuickTip = (quickTip: IQuickTips) => {
     router.push({ pathname: "/(tabs)/(home)/quick-tip", params: { quickTip: JSON.stringify(quickTip) } });
+  }
+
+  const goToInfographic = (infographic: IInfographics) => {
+    router.push("/(tabs)/(home)/infographic");
   }
 
   return (
@@ -182,7 +186,9 @@ export default function Index() {
                     {elm.description}
                   </Text>
                 </View>
-                <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                <Pressable onPress={() => goToInfographic(elm)} hitSlop={8}>
+                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                </Pressable>
               </TouchableOpacity>
             ))
           }
