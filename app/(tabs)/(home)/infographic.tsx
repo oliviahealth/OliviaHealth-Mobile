@@ -1,11 +1,23 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { ScrollView, View, Image, Text, ActivityIndicator } from "react-native";
-import useResourcesStore, { IQuickTips } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IInfographics } from "@/src/store/useResourcesStore";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 
 export default function Infographic() {
     const [isSaved, setIsSaved] = useState(false);
     const [infographicLoading, setInfographicLoading] = useState(false);
+
+    const { infographic } = useLocalSearchParams();
+    const infographicParsed: IInfographics = JSON.parse(infographic as string);
+
+    const navigation = useNavigation();
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: infographicParsed.title || "Infographic",
+        });
+    }, [infographicParsed.title]);
 
     return (
         <ScrollView contentContainerStyle={{ padding: 20, paddingHorizontal: 20, gap: 18, }} showsVerticalScrollIndicator={false}>
@@ -25,7 +37,7 @@ export default function Infographic() {
                             flexWrap: "wrap"
                         }}
                     >
-                        {"Pregnancy Trimesters for Fathers"}
+                        {infographicParsed.title}
                     </Text>
                 </View>
 
@@ -54,7 +66,7 @@ export default function Infographic() {
                 <Image
                     source={{
                         uri:
-                            "https://oliviahealth.org/wp-content/uploads/2023/03/Trimesters-Explained-for-Fathers-Infographic_NC.png",
+                            infographicParsed.infographic_url,
                     }}
                     style={{
                         width: "100%",

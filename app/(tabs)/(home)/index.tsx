@@ -45,7 +45,7 @@ export default function Index() {
   }
 
   const goToInfographic = (infographic: IInfographics) => {
-    router.push("/(tabs)/(home)/infographic");
+    router.push({ pathname: "/(tabs)/(home)/infographic", params: { infographic: JSON.stringify(infographic) } });
   }
 
   return (
