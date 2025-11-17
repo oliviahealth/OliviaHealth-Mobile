@@ -104,9 +104,9 @@ export default function Index() {
       showsVerticalScrollIndicator={false}
     >
       <View style={{ flex: 1, gap: 18 }}>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingTop: 12 }}>
           <Ionicons name="bookmark" size={24} color={TINT_COLOR} />
-          <Text style={{ fontWeight: "500", fontSize: 22 }}>Saved</Text>
+          <Text style={{ fontWeight: "500", fontSize: 32 }}>Saved</Text>
         </View>
 
         <SearchBar placeholder="Search in saved" />
