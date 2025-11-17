@@ -3,10 +3,12 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import Markdown from "react-native-markdown-display";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function QuickTip() {
     const [ready, setReady] = useState(false);
+    const [transcriptShown, setTranscriptShown] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
     const [infographicShown, setInfographicShown] = useState(false);
@@ -124,6 +126,39 @@ export default function QuickTip() {
 
             <View style={{ flexDirection: 'column', gap: 3 }}>
                 <View>
+                    <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Transcript</Text>
+                    <Text style={{ fontSize: 12, color: '#888' }}>Follow along with the video transcript</Text>
+                </View>
+
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: "#fff",
+                        borderRadius: 20,
+                        borderWidth: 1,
+                        borderColor: "#ddd",
+                        paddingVertical: 12,
+                        paddingHorizontal: 24,
+                        marginTop: 8,
+                        alignItems: "center",
+                    }}
+                    onPress={() => setTranscriptShown(!transcriptShown)}
+                >
+                    <Text style={{ fontSize: 16, fontWeight: "600" }}>
+                        {transcriptShown ? 'Hide Transcript' : 'Show Transcript'}
+                    </Text>
+                </TouchableOpacity>
+
+                {transcriptShown && (
+                    <Markdown style={{
+                        body: { fontSize: 12, lineHeight: 20, color: "#888" },
+                    }}>
+                        {quickTipParsed.transcript}
+                    </Markdown>
+                )}
+            </View>
+
+            <View style={{ flexDirection: 'column', gap: 3 }}>
+                <View>
                     <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Infographic</Text>
                 </View>
 
@@ -173,7 +208,7 @@ export default function QuickTip() {
                         borderColor: "#ddd",
                         paddingVertical: 12,
                         paddingHorizontal: 24,
-                        marginTop: 12,
+                        marginTop: 10,
                         alignItems: "center",
                     }}
                 >

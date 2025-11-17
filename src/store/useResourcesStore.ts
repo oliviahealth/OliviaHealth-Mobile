@@ -33,6 +33,7 @@ export interface IQuickTips {
     description: string,
     infographic_url: string,
     infographic_description: string,
+    transcript: string,
     thumbnail_url: string,
     spotlight?: boolean
 }
