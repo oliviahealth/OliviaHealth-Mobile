@@ -48,6 +48,10 @@ export default function Index() {
     router.push({ pathname: "/(tabs)/(home)/infographic", params: { infographic: JSON.stringify(infographic) } });
   }
 
+  const goToAbout = () => {
+    router.push("/(tabs)/(home)/about-us")
+  }
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -58,10 +62,16 @@ export default function Index() {
       showsVerticalScrollIndicator={false}
     >
       <View style={{ flex: 1, gap: 18 }}>
-        <Image
-          source={oliviahealth_branding}
-          style={{ width: 200, resizeMode: 'contain' }}
-        />
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Image
+            source={oliviahealth_branding}
+            style={{ width: 200, resizeMode: 'contain' }}
+          />
+
+          <Pressable onPress={goToAbout}>
+            <Ionicons name="information-circle-outline" size={24} color="#B642D3" />
+          </Pressable>
+        </View>
 
         <SearchBar placeholder="Looking for something specific?" />
 
