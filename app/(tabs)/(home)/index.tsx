@@ -1,6 +1,7 @@
 import SearchBar from "@/components/SearchBar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import React, { useState } from "react";
 import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import useResourcesStore, { IInfographics, ILocalResources, IQuickTips, IVideoSpotlights } from "@/src/store/useResourcesStore";
@@ -10,11 +11,13 @@ const oliviahealth_branding = require('../../../assets/images/oliviahealth_brand
 export default function Index() {
   const router = useRouter();
   const resources = useResourcesStore(state => state.resources);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const video_spotlights_featured = resources?.video_spotlights.filter(elm => elm.spotlight);
-  const local_resources_featured = resources?.local_resources.filter(elm => elm.spotlight);
-  const quick_tips_featured = resources?.quick_tips.filter(elm => elm.spotlight);
-  const infographics_features = resources?.infographics.filter(elm => elm.spotlight);
+  // Returns the entire list if there's a search query, otherwise only the spotlighted items
+  const video_spotlights_featured = resources?.video_spotlights.filter(elm => searchQuery !== "" || elm.spotlight);
+  const local_resources_featured = resources?.local_resources.filter(elm => searchQuery !== "" || elm.spotlight);
+  const quick_tips_featured = resources?.quick_tips.filter(elm => searchQuery !== "" || elm.spotlight);
+  const infographics_features = resources?.infographics.filter(elm => searchQuery !== "" || elm.spotlight);
 
   const goToQuickTips = () => {
     router.push('/(tabs)/(home)/quick-tips');
@@ -73,7 +76,7 @@ export default function Index() {
           </Pressable>
         </View>
 
-        <SearchBar placeholder="Looking for something specific?" />
+        <SearchBar placeholder="Looking for something specific?" value={searchQuery} onChangeText={setSearchQuery} />
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <TouchableOpacity onPress={goToQuickTips} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
@@ -100,7 +103,7 @@ export default function Index() {
             </Pressable>
           </View>
 
-          {video_spotlights_featured?.map((elm) => (
+          {video_spotlights_featured?.filter((video_spotlight) => video_spotlight.title.toLowerCase().includes(searchQuery.toLowerCase())).map((elm) => (
             <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
               <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
               <View style={{ flex: 1, gap: 4 }}>
@@ -127,7 +130,7 @@ export default function Index() {
           </View>
 
           {
-            local_resources_featured?.map((elm) => (
+            local_resources_featured?.filter((local_resource) => local_resource.title.toLowerCase().includes(searchQuery.toLowerCase())).map((elm) => (
               <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
                 <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
                 <View style={{ flex: 1, gap: 4 }}>
@@ -157,7 +160,7 @@ export default function Index() {
           </View>
 
           {
-            quick_tips_featured?.map((elm) => (
+            quick_tips_featured?.filter((quick_tip) => quick_tip.title.toLowerCase().includes(searchQuery.toLowerCase())).map((elm) => (
               <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
                 <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
                 <View style={{ flex: 1, gap: 4 }}>
@@ -185,7 +188,7 @@ export default function Index() {
           </View>
 
           {
-            infographics_features?.map((elm) => (
+            infographics_features?.filter((infographic) => infographic.title.toLowerCase().includes(searchQuery.toLowerCase())).map((elm) => (
               <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
                 <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
                 <View style={{ flex: 1, gap: 4 }}>
