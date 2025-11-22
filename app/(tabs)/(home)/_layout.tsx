@@ -42,6 +42,11 @@ export default function HomeLayout() {
         name="infographic"
         options={{ headerLeft: () => <BackButton />, title: "Infographic" }}
       />
+
+      <Stack.Screen
+        name="about-us"
+        options={{ headerLeft: () => <BackButton />, title: "About Olivia Health" }}
+      />
     </Stack>
   );
 }

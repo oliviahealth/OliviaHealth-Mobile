@@ -23,10 +23,6 @@ export default function Index() {
         style={{ width: 200, height: 200, alignSelf: 'center' }} 
       />
 
-      <Text style={{ fontSize: 24, fontWeight: 500 }}>
-        About OliviaHealth
-      </Text>
-
       {SECTIONS.map((section, index) => (
         <View key={index} style={{ gap: 8 }}>
           <Text style={{ fontSize: 18, fontWeight: 500 }}>

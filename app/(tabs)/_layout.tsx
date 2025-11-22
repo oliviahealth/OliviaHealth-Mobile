@@ -25,13 +25,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Ionicons size={28} name="bookmark" color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="about-us"
-        options={{
-          title: 'About Us',
-          tabBarIcon: ({ color }) => <Ionicons size={28} name="information-circle" color={color} />,
-        }}
-      />
     </Tabs>
   );
 }
