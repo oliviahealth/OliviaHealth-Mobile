@@ -60,6 +60,7 @@ function EmptyState({
 
 export default function Index() {
   const [savedTab, setSavedTab] = useState<SavedTab>(SavedTab.Videos);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const savedResources = useResourcesStore((state) => state.savedResources);
   const resources = useResourcesStore((state) => state.resources);
 
@@ -109,7 +110,11 @@ export default function Index() {
           <Text style={{ fontWeight: "500", fontSize: 32 }}>Saved</Text>
         </View>
 
-        <SearchBar placeholder="Search in saved" />
+        <SearchBar 
+          placeholder="Search in saved" 
+          value={searchQuery} 
+          onChangeText={setSearchQuery} 
+        />
 
         {/* Tabs */}
         <View style={{ flexDirection: "row" }}>
@@ -221,7 +226,7 @@ export default function Index() {
         {/* Content + empty states */}
         {savedTab === SavedTab.Videos &&
           (savedVideoSpotlights.length > 0 ? (
-            savedVideoSpotlights.map((videoSpotlight) => (
+            savedVideoSpotlights.filter((videoSpotlight) => videoSpotlight.title.toLowerCase().includes(searchQuery.toLowerCase())).map((videoSpotlight) => (
               <VideoSpotlightCard
                 key={videoSpotlight.id}
                 videoSpotlight={videoSpotlight}
@@ -236,7 +241,7 @@ export default function Index() {
 
         {savedTab === SavedTab.LocalResources &&
           (savedLocalResources.length > 0 ? (
-            savedLocalResources.map((localResource) => (
+            savedLocalResources.filter((localResource) => localResource.title.toLowerCase().includes(searchQuery.toLowerCase())).map((localResource) => (
               <LocalResourceCard
                 key={localResource.id}
                 localResource={localResource}
@@ -251,7 +256,7 @@ export default function Index() {
 
         {savedTab === SavedTab.QuickTips &&
           (savedQuickTips.length > 0 ? (
-            savedQuickTips.map((quickTip) => (
+            savedQuickTips.filter((quickTip) => quickTip.title.toLowerCase().includes(searchQuery.toLowerCase())).map((quickTip) => (
               <QuickTipCard key={quickTip.id} quickTip={quickTip} />
             ))
           ) : (
@@ -263,7 +268,7 @@ export default function Index() {
 
         {savedTab === SavedTab.Infographics &&
           (savedInfographics.length > 0 ? (
-            savedInfographics.map((infographic) => (
+            savedInfographics.filter((infographic) => infographic.title.toLowerCase().includes(searchQuery.toLowerCase())).map((infographic) => (
               <InfographicCard
                 key={infographic.id}
                 infographic={infographic}
