@@ -14,7 +14,7 @@ export default function Index() {
   const video_spotlights_featured = resources?.video_spotlights.filter(elm => elm.spotlight);
   const local_resources_featured = resources?.local_resources.filter(elm => elm.spotlight);
   const quick_tips_featured = resources?.quick_tips.filter(elm => elm.spotlight);
-  const infographics_features = resources?.infographics.filter(elm => elm.spotlight);
+  const infographics_featured = resources?.infographics.filter(elm => elm.spotlight);
 
   const goToQuickTips = () => {
     router.push('/(tabs)/(home)/quick-tips');
@@ -92,42 +92,16 @@ export default function Index() {
           </TouchableOpacity>
         </View>
 
-        <View style={{ marginVertical: 16 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Video Spotlights</Text>
-            <Pressable onPress={goToVideoSpotlights} hitSlop={8}>
-              <Text style={{ color: '#B642D3' }}>See all</Text>
-            </Pressable>
-          </View>
-
-          {video_spotlights_featured?.map((elm) => (
-            <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
-              <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
-              <View style={{ flex: 1, gap: 4 }}>
-                <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
-                  {elm.title}
-                </Text>
-                <Text style={{ fontSize: 12, color: '#888' }}>
-                  {elm.subtitle}
-                </Text>
-              </View>
-              <Pressable onPress={() => goToVideoSpotlight(elm)} hitSlop={8}>
-                <Ionicons name="play-circle-outline" size={32} color="#B642D3" />
+        {video_spotlights_featured && (
+          <View style={{ marginTop: 16 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Video Spotlights</Text>
+              <Pressable onPress={goToVideoSpotlights} hitSlop={8}>
+                <Text style={{ color: '#B642D3' }}>See all</Text>
               </Pressable>
-            </TouchableOpacity>
-          ))}
-        </View>
+            </View>
 
-        <View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Local Resources</Text>
-            <Pressable onPress={goToLocalResources} hitSlop={8}>
-              <Text style={{ color: '#B642D3' }}>See all</Text>
-            </Pressable>
-          </View>
-
-          {
-            local_resources_featured?.map((elm) => (
+            {video_spotlights_featured.map((elm) => (
               <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
                 <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
                 <View style={{ flex: 1, gap: 4 }}>
@@ -138,71 +112,104 @@ export default function Index() {
                     {elm.subtitle}
                   </Text>
                 </View>
-                <Pressable onPress={() => goToLocalResource(elm)} hitSlop={8}>
-                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                <Pressable onPress={() => goToVideoSpotlight(elm)} hitSlop={8}>
+                  <Ionicons name="play-circle-outline" size={32} color="#B642D3" />
                 </Pressable>
               </TouchableOpacity>
-            ))
-
-          }
-
-        </View>
-
-        <View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Quick Tips</Text>
-            <Pressable onPress={goToQuickTips} hitSlop={8}>
-              <Text style={{ color: '#B642D3' }}>See all</Text>
-            </Pressable>
+            ))}
           </View>
+        )}
 
-          {
-            quick_tips_featured?.map((elm) => (
-              <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
-                <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
-                <View style={{ flex: 1, gap: 4 }}>
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
-                    {elm.title}
-                  </Text>
-                  <Text style={{ fontSize: 12, color: '#888' }}>
-                    {elm.description}
-                  </Text>
-                </View>
-                <Pressable onPress={() => goToQuickTip(elm)} hitSlop={8}>
-                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
-                </Pressable>
-              </TouchableOpacity>
-            ))
-          }
-        </View>
+        {local_resources_featured && (
+          <View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Local Resources</Text>
+              <Pressable onPress={goToLocalResources} hitSlop={8}>
+                <Text style={{ color: '#B642D3' }}>See all</Text>
+              </Pressable>
+            </View>
 
-        <View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Infographics</Text>
-            <Pressable onPress={goToInfographics} hitSlop={8}>
-              <Text style={{ color: '#B642D3' }}>See all</Text>
-            </Pressable>
+            {
+              local_resources_featured.map((elm) => (
+                <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
+                  <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+                  <View style={{ flex: 1, gap: 4 }}>
+                    <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                      {elm.title}
+                    </Text>
+                    <Text style={{ fontSize: 12, color: '#888' }}>
+                      {elm.subtitle}
+                    </Text>
+                  </View>
+                  <Pressable onPress={() => goToLocalResource(elm)} hitSlop={8}>
+                    <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                  </Pressable>
+                </TouchableOpacity>
+              ))
+            }
+
           </View>
+        )}
 
-          {
-            infographics_features?.map((elm) => (
-              <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
-                <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
-                <View style={{ flex: 1, gap: 4 }}>
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
-                    {elm.title}
-                  </Text>
-                  <Text style={{ fontSize: 12, color: '#888' }}>
-                    {elm.description}
-                  </Text>
-                </View>
-                <Pressable onPress={() => goToInfographic(elm)} hitSlop={8}>
-                  <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
-                </Pressable>
-              </TouchableOpacity>
-            ))
-          }
-        </View>
+        {quick_tips_featured && (
+          <View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Quick Tips</Text>
+              <Pressable onPress={goToQuickTips} hitSlop={8}>
+                <Text style={{ color: '#B642D3' }}>See all</Text>
+              </Pressable>
+            </View>
+
+            {
+              quick_tips_featured.map((elm) => (
+                <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
+                  <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+                  <View style={{ flex: 1, gap: 4 }}>
+                    <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                      {elm.title}
+                    </Text>
+                    <Text style={{ fontSize: 12, color: '#888' }}>
+                      {elm.description}
+                    </Text>
+                  </View>
+                  <Pressable onPress={() => goToQuickTip(elm)} hitSlop={8}>
+                    <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                  </Pressable>
+                </TouchableOpacity>
+              ))
+            }
+          </View>
+        )}
+
+        {infographics_featured && (
+          <View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>Infographics</Text>
+              <Pressable onPress={goToInfographics} hitSlop={8}>
+                <Text style={{ color: '#B642D3' }}>See all</Text>
+              </Pressable>
+            </View>
+
+            {
+              infographics_featured.map((elm) => (
+                <TouchableOpacity key={elm.id} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#eee', gap: 2 }} activeOpacity={0.9}>
+                  <Image source={{ uri: elm.thumbnail_url }} style={{ width: 50, height: 50, borderRadius: 25, marginRight: 12 }} />
+                  <View style={{ flex: 1, gap: 4 }}>
+                    <Text style={{ fontSize: 15, fontWeight: '600', color: '#333' }} numberOfLines={2}>
+                      {elm.title}
+                    </Text>
+                    <Text style={{ fontSize: 12, color: '#888' }}>
+                      {elm.description}
+                    </Text>
+                  </View>
+                  <Pressable onPress={() => goToInfographic(elm)} hitSlop={8}>
+                    <Ionicons name="arrow-forward-circle-outline" size={32} color="#B642D3" />
+                  </Pressable>
+                </TouchableOpacity>
+              ))
+            }
+          </View>
+        )}
       </View>
     </ScrollView>
   );
