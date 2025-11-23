@@ -79,22 +79,24 @@ export default function Index() {
 
           <SearchBar placeholder="Looking for something specific?" value={searchQuery} onChangeText={setSearchQuery} />
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TouchableOpacity onPress={goToQuickTips} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
-              <Ionicons name='bulb-outline' size={40} color="#B642D3" />
-              <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Quick Tips</Text>
-            </TouchableOpacity>
+          {!searchQuery && (
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <TouchableOpacity onPress={goToQuickTips} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
+                <Ionicons name='bulb-outline' size={40} color="#B642D3" />
+                <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Quick Tips</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={goToLocalResources} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
-              <Ionicons name='location-outline' size={40} color="#B642D3" />
-              <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Resources</Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={goToLocalResources} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
+                <Ionicons name='location-outline' size={40} color="#B642D3" />
+                <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Resources</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity onPress={goToInfographics} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
-              <Ionicons name='stats-chart-outline' size={40} color="#B642D3" />
-              <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Infographics</Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity onPress={goToInfographics} style={{ width: '31%', height: 120, borderRadius: 24, backgroundColor: '#FBF6FF', alignItems: 'center', justifyContent: 'center' }} activeOpacity={0.9}>
+                <Ionicons name='stats-chart-outline' size={40} color="#B642D3" />
+                <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "600", color: "#B642D3" }}>Infographics</Text>
+              </TouchableOpacity>
+            </View>
+          )}
 
           <View style={{ marginVertical: 16 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
