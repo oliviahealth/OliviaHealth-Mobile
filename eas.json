@@ -4,6 +4,19 @@
       "ios": {
         "simulator": true
       }
+    },
+    "production": {
+      "ios": {
+        "simulator": false,
+        "image": "latest"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6755741450"
+      }
     }
   }
 }
