@@ -5,16 +5,44 @@ import { StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useResourcesStore, { IResources, loadSavedResources } from "@/src/store/useResourcesStore";
 
+import WelcomeScreen from "./Welcome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 SplashScreen.preventAutoHideAsync();
 
 const resources_url = "https://oliviahealth.org/wp-content/uploads/resources.json";
 const MIN_SPLASH_TIME = 1000;
 
 export default function RootLayout() {
+  const [isFirstLaunch, setIsFirstLaunch] = useState<null | boolean>(null);
+
   const [isReady, setIsReady] = useState(false);
+  const resources = useResourcesStore(state => state.resources);
   const setResources = useResourcesStore(state => state.setResources);
 
   useEffect(() => {
+    const checkFirstLaunch = async () => {
+      try {
+        const value = await AsyncStorage.getItem('firstLaunch');
+        if (value === null) {
+          setIsFirstLaunch(true);
+        } else {
+          setIsFirstLaunch(false);
+        }
+      } catch (error) {
+        console.error('Error checking first launch:', error);
+      }
+    };
+    checkFirstLaunch();
+  }, []);
+
+
+  useEffect(() => {
+    if(resources) {
+      setIsReady(true);
+      SplashScreen.hideAsync();
+    };
+
     async function prepare() {
       const startTime = Date.now();
       try {
@@ -49,6 +77,10 @@ export default function RootLayout() {
   if (!isReady) {
     // keep showing splash screen
     return null;
+  }
+
+  if (isFirstLaunch) {
+    return <WelcomeScreen />
   }
 
   return (
