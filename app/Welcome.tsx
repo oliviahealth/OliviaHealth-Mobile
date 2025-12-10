@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { useRouter } from "expo-router";
+import { AsyncStorageKeys } from "@/src/store/useResourcesStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
 import {
     ImageBackground,
-    View,
+    ScrollView,
+    StyleSheet,
     Text,
     TouchableOpacity,
-    StyleSheet,
-    ScrollView,
+    View,
 } from "react-native";
 
 export default function WelcomeScreen() {
@@ -19,7 +20,7 @@ export default function WelcomeScreen() {
 
     useEffect(() => {
         const setFirstLaunch = async () => {
-            await AsyncStorage.setItem('firstLaunch', 'false');
+            await AsyncStorage.setItem(AsyncStorageKeys.FIRST_LAUNCH, 'false');
         }
 
         setFirstLaunch();

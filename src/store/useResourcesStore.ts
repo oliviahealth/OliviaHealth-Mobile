@@ -1,5 +1,5 @@
-import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { create } from 'zustand';
 
 export interface ILocalResources {
     id: string,
@@ -70,7 +70,10 @@ export interface IResourcesState {
     setSavedResources: (savedResources: ISavedResourceIds) => void
 }
 
-const SAVED_RESOURCES_KEY = 'savedResources';
+export enum AsyncStorageKeys {
+    SAVED_RESOURCES = 'savedResources',
+    FIRST_LAUNCH = 'firstLaunch'
+}
 
 const useResourcesStore = create<IResourcesState>()((set, get) => ({
     resources: null,
@@ -89,7 +92,7 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
             };
 
             // Save to AsyncStorage
-            AsyncStorage.setItem(SAVED_RESOURCES_KEY, JSON.stringify(newSavedResources))
+            AsyncStorage.setItem(AsyncStorageKeys.SAVED_RESOURCES, JSON.stringify(newSavedResources))
                 .catch(error => console.error('Error saving to AsyncStorage:', error));
 
             return {
@@ -106,7 +109,7 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
             };
 
             // Save to AsyncStorage
-            AsyncStorage.setItem(SAVED_RESOURCES_KEY, JSON.stringify(newSavedResources))
+            AsyncStorage.setItem(AsyncStorageKeys.SAVED_RESOURCES, JSON.stringify(newSavedResources))
                 .catch(error => console.error('Error saving to AsyncStorage:', error));
 
             return {
@@ -120,7 +123,7 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
 // Helper function to load saved resources from AsyncStorage
 export const loadSavedResources = async () => {
     try {
-        const savedData = await AsyncStorage.getItem(SAVED_RESOURCES_KEY);
+        const savedData = await AsyncStorage.getItem(AsyncStorageKeys.SAVED_RESOURCES);
         if (savedData) {
             const parsedData: ISavedResourceIds = JSON.parse(savedData);
             useResourcesStore.getState().setSavedResources(parsedData);

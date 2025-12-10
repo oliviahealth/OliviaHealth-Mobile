@@ -1,12 +1,12 @@
+import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
 import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useResourcesStore, { IResources, loadSavedResources } from "@/src/store/useResourcesStore";
 
-import WelcomeScreen from "./Welcome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import WelcomeScreen from "./Welcome";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -23,7 +23,7 @@ export default function RootLayout() {
   useEffect(() => {
     const checkFirstLaunch = async () => {
       try {
-        const value = await AsyncStorage.getItem('firstLaunch');
+        const value = await AsyncStorage.getItem(AsyncStorageKeys.FIRST_LAUNCH);
         if (value === null) {
           setIsFirstLaunch(true);
         } else {
@@ -68,7 +68,7 @@ export default function RootLayout() {
       }
     }
     prepare();
-  }, [setResources]);
+  }, [setResources, resources]);
 
   const onLayoutRootView = useCallback(async () => {
     if (isReady) await SplashScreen.hideAsync();
