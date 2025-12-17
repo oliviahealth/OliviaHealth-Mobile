@@ -13,7 +13,8 @@
       "bundleIdentifier": "com.oliviahealth.OliviaHealth",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "buildNumber": "1.0.1"
     },
     "android": {
       "adaptiveIcon": {
