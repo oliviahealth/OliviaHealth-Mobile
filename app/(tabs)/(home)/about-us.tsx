@@ -19,7 +19,7 @@ const SECTIONS = [
 
 export default function Index() {
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: "white", paddingBottom: 30, gap: 30 }}>
+    <ScrollView contentContainerStyle={{ backgroundColor: "white", paddingBottom: 10, gap: 30 }}>
 
       {/* FULL WIDTH IMAGE */}
       <Image
@@ -41,17 +41,6 @@ export default function Index() {
             </Text>
           </View>
         ))}
-
-        <Image
-          source={{ uri: "https://oliviahealth.org/wp-content/uploads/2023/02/sponsors.png" }}
-          style={{
-            width: "100%",
-            height: 100,
-            resizeMode: "contain",
-            alignSelf: "center",
-            marginTop: 10
-          }}
-        />
       </View>
     </ScrollView>
   );
