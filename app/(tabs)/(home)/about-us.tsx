@@ -1,46 +1,88 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import React from "react";
+import { Image, ScrollView, View } from "react-native";
+import Markdown from "react-native-markdown-display";
 
 const about_page_graphic = require("../../../assets/images/about_page_graphic.png");
 
-const SECTIONS = [
-  {
-    title: "Who We Are",
-    content: "The OLIVIA project is a uniquely expansive and powerful interdisciplinary research and development effort led by the Texas A&M School of Nursing in partnership with Philips.\n\nFunded by a TAMU Health seedling grant, OLIVIA integrates academia, industry, community, and government partners including: Texas A&M University, Amazon, Philips, Texas Health and Human Services Commission, Texas A&M Center for Applied Technology, Project REACH, Driscoll Health System, and HealthPoint."
-  },
-  {
-    title: "What We Do",
-    content: "The OLIVIA project operates under the ‘Program of Excellence for Mothers, Children & Families’ (PEMCF) at the Texas A&M School for Nursing. The interdisciplinary team – including students, faculty and staff from Nursing, Public Health, Engineering, and Visualization – are working together to leverage innovative learning and access to resources based on advanced mobile technology."
-  },
-  {
-    title: "Our Mission",
-    content: "As OLIVIA grows, its “ecosystem” of information and resource access will expand to improve the care and outcomes for Mothers, Children and Families across the United States."
-  }
-];
+const ABOUT_MD = `
+## About OLIVIA HealthCare
+
+### Who We Are
+OLIVIA HealthCare is a **non-profit, interdisciplinary platform** created by Texas A&M University faculty, staff, students, and partners.
+
+Our team of subject matter experts is **nurse-led**, yet collaborative with the entire spectrum of healthcare professionals — from babies to moms and dads to every expert you expect on the best healthcare team.
+
+### Our Mission
+OLIVIA’s mission is to improve **health, developmental, and socioeconomic outcomes** for mothers, children, and families.
+
+We are committed to ensuring everyone has access to trusted information and resources, empowering families with an educated voice to support the growth and development of their family.
+
+### Our Vision
+To be the **most trusted source** of maternal and child health information and resources — expanding access, reducing gaps, and empowering families from pregnancy through preschool.
+
+### What We Do
+OLIVIA operates under the **Program of Excellence for Mothers, Children & Families (PEMCF)** at the Texas A&M College of Nursing.
+
+Our interdisciplinary team includes faculty, staff, and students from Nursing, Public Health, Engineering, and Visualization, working together to leverage innovative learning and advanced mobile technology to improve access to care and resources.
+`;
 
 export default function Index() {
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: "white", paddingBottom: 10, gap: 30 }}>
-
-      {/* FULL WIDTH IMAGE */}
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        backgroundColor: "white",
+        paddingBottom: 24,
+      }}
+    >
+      {/* Hero Image */}
       <Image
         source={about_page_graphic}
         style={{
           width: "100%",
-          height: 200,
-          resizeMode: "cover"
+          height: 220,
+          resizeMode: "cover",
         }}
       />
 
-      {/* CONTENT WITH PADDING */}
-      <View style={{ paddingHorizontal: 20, gap: 30 }}>
-        {SECTIONS.map((section, index) => (
-          <View key={index} style={{ gap: 8 }}>
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>{section.title}</Text>
-            <Text style={{ fontSize: 14, color: "#888", lineHeight: 25 }}>
-              {section.content}
-            </Text>
-          </View>
-        ))}
+      {/* Content */}
+      <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+        <Markdown
+          style={{
+            body: {
+              fontSize: 16,
+              lineHeight: 26,
+              color: "#4B5563",
+            },
+            heading2: {
+              fontSize: 26,
+              fontWeight: "800",
+              color: "#111827",
+              textAlign: "center",
+              marginBottom: 16,
+              letterSpacing: -0.2,
+            },
+            heading3: {
+              fontSize: 18,
+              fontWeight: "700",
+              color: "#111827",
+              marginTop: 18,
+              marginBottom: 6,
+            },
+            paragraph: {
+              marginBottom: 10,
+            },
+            strong: {
+              fontWeight: "900",
+              color: "#111827",
+            },
+            text: {
+              color: "#4B5563",
+            },
+          }}
+        >
+          {ABOUT_MD}
+        </Markdown>
       </View>
     </ScrollView>
   );
