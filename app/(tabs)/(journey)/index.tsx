@@ -1,8 +1,79 @@
 import { TINT_COLOR } from "@/theme";
-import { ScrollView, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { ScrollView, Text, View, useWindowDimensions } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import Svg, { Path } from "react-native-svg";
 
 export default function JourneyScreen() {
+  const { width } = useWindowDimensions();
+
+  interface Point {
+    x: number;
+    y: number;
+    color: string;
+    border: string;
+    icon: keyof typeof Ionicons.glyphMap;
+  }
+
+  // Used to easily adjust the entire path's position
+  const HORIZONTAL_CHANGE = -30;
+  const VERTICAL_CHANGE = 0;
+
+  const points: Point[] = [
+    {
+      x: width * 0.28 + HORIZONTAL_CHANGE,
+      y: 0 + VERTICAL_CHANGE,
+      color: "#f3e6ff",
+      border: "#a259ff",
+      icon: "medkit",
+    }, // Pill
+    {
+      x: width * 0.6 + HORIZONTAL_CHANGE,
+      y: 90 + VERTICAL_CHANGE,
+      color: "#ffe6f0",
+      border: "#ff6f91",
+      icon: "nutrition",
+    }, // Fruit
+    {
+      x: width * 0.8 + HORIZONTAL_CHANGE,
+      y: 260 + VERTICAL_CHANGE,
+      color: "#e6f7ff",
+      border: "#43b0f1",
+      icon: "git-branch",
+    }, // Family Tree
+    {
+      x: width * 0.4 + HORIZONTAL_CHANGE,
+      y: 460 + VERTICAL_CHANGE,
+      color: "#fffbe6",
+      border: "#ffd700",
+      icon: "flask",
+    }, // Vaccine
+    {
+      x: width * 0.8 + HORIZONTAL_CHANGE,
+      y: 610 + VERTICAL_CHANGE,
+      color: "#e6fff7",
+      border: "#00b894",
+      icon: "arrow-down",
+    }, // Down arrow
+  ];
+
+  const controlPoints = [
+    { x: width * 0.45 + HORIZONTAL_CHANGE, y: 30 + VERTICAL_CHANGE }, // Connects 1st and 2nd
+    { x: width * 1 + HORIZONTAL_CHANGE, y: 120 + VERTICAL_CHANGE }, // Connects 2nd and 3rd
+    { x: width * 0.1 + HORIZONTAL_CHANGE, y: 260 + VERTICAL_CHANGE }, // Connects 3rd and 4th
+    { x: width * 0.8 + HORIZONTAL_CHANGE, y: 480 + VERTICAL_CHANGE }, // Connects 4th and 5th
+  ];
+
+  function getPathString(pts: Point[], ctrls: { x: number; y: number }[]) {
+    let path = `M ${pts[0].x} ${pts[0].y}`;
+    for (let i = 0; i < ctrls.length; i++) {
+      path += ` Q ${ctrls[i].x} ${ctrls[i].y}, ${pts[i + 1].x} ${pts[i + 1].y}`;
+    }
+    return path;
+  }
+
+  const pathString = getPathString(points, controlPoints);
+
   return (
     <ScrollView
       contentContainerStyle={{ paddingTop: 20, paddingHorizontal: 20, gap: 18 }}
@@ -35,6 +106,53 @@ export default function JourneyScreen() {
           )}
         </AnimatedCircularProgress>
       </View>
+
+      {/* Journey Path */}
+      <Svg
+        height={points[points.length - 1].y + 100}
+        width={width}
+        style={{ marginTop: 40 }}
+      >
+        <Path
+          d={pathString}
+          stroke="#a259ff"
+          strokeWidth={12}
+          fill="none"
+          opacity={0.09}
+          strokeLinecap="round"
+        />
+
+        {/* Circles for points with icons */}
+        {points.map((pt, idx) => (
+          <View
+            key={idx}
+            style={{
+              position: "absolute",
+              left: pt.x - 55,
+              top: pt.y - 55,
+              width: 110,
+              height: 110,
+              borderRadius: 55,
+              backgroundColor: pt.color,
+              borderWidth: 6,
+              borderColor: pt.border,
+              justifyContent: "center",
+              alignItems: "center",
+              shadowColor: pt.border,
+              shadowOpacity: 0.15,
+              shadowRadius: 16,
+              elevation: 8,
+            }}
+          >
+            <Ionicons name={pt.icon} size={48} color={pt.border} />
+          </View>
+        ))}
+
+        {/* For debugging: Control Points */}
+        {/* {controlPoints.map((ctrl, idx) => (
+          <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
+        ))} */}
+      </Svg>
     </ScrollView>
   );
 }
