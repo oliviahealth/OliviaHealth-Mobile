@@ -1,7 +1,7 @@
 import InfographicCard from "@/components/InfographicCard";
 import LocalResourceCard from "@/components/LocalResourceCard";
 import QuickTipCard from "@/components/QuickTipCard";
-import SearchBar from "@/components/SearchBar";
+import SearchComponent from "@/components/SearchComponent";
 import VideoSpotlightCard from "@/components/VideoSpotlightCard";
 import useResourcesStore, {
   IInfographics,
@@ -112,7 +112,7 @@ export default function Index() {
             <Text style={{ fontWeight: "500", fontSize: 32 }}>Saved</Text>
           </View>
 
-          <SearchBar 
+          <SearchComponent 
             placeholder="Search in saved" 
             value={searchQuery} 
             onChangeText={setSearchQuery} 
