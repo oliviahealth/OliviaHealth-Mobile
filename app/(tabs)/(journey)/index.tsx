@@ -1,3 +1,4 @@
+import { MapJourneyButton } from "@/components/MapJourneyButton";
 import { TINT_COLOR } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, Text, View, useWindowDimensions } from "react-native";
@@ -98,61 +99,60 @@ export default function JourneyScreen() {
           tintColor={TINT_COLOR}
           backgroundColor="#fff"
           lineCap="round"
+          rotation={0}
         >
           {(fill: number) => (
             <Text
-              style={{ fontSize: 20, fontWeight: "500" }}
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
             >{`${Math.round(fill)}%`}</Text>
           )}
         </AnimatedCircularProgress>
       </View>
 
-      {/* Journey Path */}
-      <Svg
-        height={points[points.length - 1].y + 100}
-        width={width}
-        style={{ marginTop: 40 }}
+      {/* Journey Path and Buttons */}
+      <View
+        style={{
+          position: "relative",
+          width: width,
+          height: points[points.length - 1].y + 100,
+          marginTop: 40,
+        }}
       >
-        <Path
-          d={pathString}
-          stroke="#a259ff"
-          strokeWidth={12}
-          fill="none"
-          opacity={0.09}
-          strokeLinecap="round"
-        />
+        <Svg
+          height={points[points.length - 1].y + 100}
+          width={width}
+          style={{ position: "absolute", left: 0, top: 0 }}
+        >
+          <Path
+            d={pathString}
+            stroke="#a259ff"
+            strokeWidth={12}
+            fill="none"
+            opacity={0.09}
+            strokeLinecap="round"
+          />
 
-        {/* Circles for points with icons */}
+          {/* For debugging: Control Points */}
+          {/* {controlPoints.map((ctrl, idx) => (
+            <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
+          ))} */}
+        </Svg>
         {points.map((pt, idx) => (
-          <View
+          <MapJourneyButton
             key={idx}
-            style={{
-              position: "absolute",
-              left: pt.x - 55,
-              top: pt.y - 55,
-              width: 110,
-              height: 110,
-              borderRadius: 55,
-              backgroundColor: pt.color,
-              borderWidth: 6,
-              borderColor: pt.border,
-              justifyContent: "center",
-              alignItems: "center",
-              shadowColor: pt.border,
-              shadowOpacity: 0.15,
-              shadowRadius: 16,
-              elevation: 8,
-            }}
-          >
-            <Ionicons name={pt.icon} size={48} color={pt.border} />
-          </View>
+            x={pt.x}
+            y={pt.y}
+            progress={Math.random() * 100} // Random progress for demo
+            borderColor={pt.border}
+            fillColor={pt.color}
+            icon={pt.icon}
+            id={`journey-${idx}`}
+          />
         ))}
-
-        {/* For debugging: Control Points */}
-        {/* {controlPoints.map((ctrl, idx) => (
-          <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
-        ))} */}
-      </Svg>
+      </View>
     </ScrollView>
   );
 }
