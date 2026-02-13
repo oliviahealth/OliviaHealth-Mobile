@@ -1,24 +1,29 @@
-import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, {
+  AsyncStorageKeys,
+  IResources,
+  loadSavedResources,
+} from "@/src/store/useResourcesStore";
 import { Stack } from "expo-router";
-import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WelcomeScreen from "./Welcome";
 
 SplashScreen.preventAutoHideAsync();
 
-const resources_url = "https://oliviahealth.org/wp-content/uploads/resources.json";
+const resources_url =
+  "https://oliviahealth.org/wp-content/uploads/resources.json";
 const MIN_SPLASH_TIME = 1000;
 
 export default function RootLayout() {
   const [isFirstLaunch, setIsFirstLaunch] = useState<null | boolean>(null);
 
   const [isReady, setIsReady] = useState(false);
-  const resources = useResourcesStore(state => state.resources);
-  const setResources = useResourcesStore(state => state.setResources);
+  const resources = useResourcesStore((state) => state.resources);
+  const setResources = useResourcesStore((state) => state.setResources);
 
   useEffect(() => {
     const checkFirstLaunch = async () => {
@@ -30,18 +35,17 @@ export default function RootLayout() {
           setIsFirstLaunch(false);
         }
       } catch (error) {
-        console.error('Error checking first launch:', error);
+        console.error("Error checking first launch:", error);
       }
     };
     checkFirstLaunch();
   }, []);
 
-
   useEffect(() => {
-    if(resources) {
+    if (resources) {
       setIsReady(true);
       SplashScreen.hideAsync();
-    };
+    }
 
     async function prepare() {
       const startTime = Date.now();
@@ -54,7 +58,6 @@ export default function RootLayout() {
 
         // Load saved resources from AsyncStorage
         await loadSavedResources();
-
       } catch (e) {
         console.error("Failed to fetch resources", e);
       } finally {
@@ -80,15 +83,15 @@ export default function RootLayout() {
   }
 
   if (isFirstLaunch) {
-    return <WelcomeScreen />
+    return <WelcomeScreen />;
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']} onLayout={onLayoutRootView}>
+    <SafeAreaProvider onLayout={onLayoutRootView}>
       <StatusBar barStyle="dark-content" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
