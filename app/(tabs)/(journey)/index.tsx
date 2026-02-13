@@ -22,6 +22,7 @@ export default function JourneyScreen() {
     color: string;
     border: string;
     icon: keyof typeof Ionicons.glyphMap;
+    id: string;
   }
 
   // Used to easily adjust the entire path's position
@@ -35,35 +36,40 @@ export default function JourneyScreen() {
       color: "#f3e6ff",
       border: "#a259ff",
       icon: "medkit",
-    }, // Pill
+      id: "Preconception",
+    },
     {
       x: width * 0.6 + HORIZONTAL_CHANGE,
       y: 90 + VERTICAL_CHANGE,
       color: "#ffe6f0",
       border: "#ff6f91",
       icon: "nutrition",
-    }, // Fruit
+      id: "Conception",
+    },
     {
       x: width * 0.8 + HORIZONTAL_CHANGE,
       y: 260 + VERTICAL_CHANGE,
       color: "#e6f7ff",
       border: "#43b0f1",
       icon: "git-branch",
-    }, // Family Tree
+      id: "1st Trimester",
+    },
     {
       x: width * 0.4 + HORIZONTAL_CHANGE,
       y: 460 + VERTICAL_CHANGE,
       color: "#fffbe6",
       border: "#ffd700",
       icon: "flask",
-    }, // Vaccine
+      id: "2nd Trimester",
+    },
     {
       x: width * 0.8 + HORIZONTAL_CHANGE,
       y: 610 + VERTICAL_CHANGE,
       color: "#e6fff7",
       border: "#00b894",
       icon: "arrow-down",
-    }, // Down arrow
+      id: "3rd Trimester",
+    },
   ];
 
   const controlPoints = [
@@ -110,9 +116,14 @@ export default function JourneyScreen() {
               marginTop: useSafeAreaInsets().top,
             }}
           >
-            <Text style={{ fontSize: 28, fontWeight: "600", color: "#000" }}>
-              Your Journey
-            </Text>
+            <View style={{ flexDirection: "column", gap: 8 }}>
+              <Text style={{ fontSize: 22, fontWeight: "bold", color: "#000" }}>
+                Explore Your Journey
+              </Text>
+              <Text style={{ fontSize: 14, color: "#555", fontWeight: "500" }}>
+                What are your learning needs?
+              </Text>
+            </View>
             <AnimatedCircularProgress
               size={100}
               width={10}
@@ -126,7 +137,7 @@ export default function JourneyScreen() {
                 <Text
                   style={{
                     fontSize: 20,
-                    fontWeight: "500",
+                    fontWeight: "bold",
                   }}
                 >{`${Math.round(fill)}%`}</Text>
               )}
@@ -169,7 +180,7 @@ export default function JourneyScreen() {
                 borderColor={pt.border}
                 fillColor={pt.color}
                 icon={pt.icon}
-                id={`journey-${idx}`}
+                id={pt.id}
               />
             ))}
           </View>
