@@ -1,8 +1,16 @@
 import { MapJourneyButton } from "@/components/MapJourneyButton";
 import { TINT_COLOR } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
-import { ScrollView, Text, View, useWindowDimensions } from "react-native";
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
 export default function JourneyScreen() {
@@ -75,84 +83,98 @@ export default function JourneyScreen() {
 
   const pathString = getPathString(points, controlPoints);
 
+  const backgroundImage = require("../../../assets/images/journey-background.png"); // Adjust path as needed
+
   return (
-    <ScrollView
-      contentContainerStyle={{ paddingTop: 20, paddingHorizontal: 20, gap: 18 }}
-      showsVerticalScrollIndicator={false}
-    >
-      {/* Header */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 12,
-        }}
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        source={backgroundImage}
+        style={StyleSheet.absoluteFill}
+        imageStyle={{ resizeMode: "cover" }}
       >
-        <Text style={{ fontSize: 28, fontWeight: "600", color: "#000" }}>
-          Your Journey
-        </Text>
-        <AnimatedCircularProgress
-          size={100}
-          width={10}
-          fill={75}
-          tintColor={TINT_COLOR}
-          backgroundColor="#fff"
-          lineCap="round"
-          rotation={0}
+        <ScrollView
+          contentContainerStyle={{
+            paddingTop: 20,
+            paddingHorizontal: 20,
+            gap: 18,
+          }}
+          showsVerticalScrollIndicator={false}
         >
-          {(fill: number) => (
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "500",
-              }}
-            >{`${Math.round(fill)}%`}</Text>
-          )}
-        </AnimatedCircularProgress>
-      </View>
+          {/* Header */}
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 12,
+              marginTop: useSafeAreaInsets().top,
+            }}
+          >
+            <Text style={{ fontSize: 28, fontWeight: "600", color: "#000" }}>
+              Your Journey
+            </Text>
+            <AnimatedCircularProgress
+              size={100}
+              width={10}
+              fill={75}
+              tintColor={TINT_COLOR}
+              backgroundColor="#fff"
+              lineCap="round"
+              rotation={0}
+            >
+              {(fill: number) => (
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "500",
+                  }}
+                >{`${Math.round(fill)}%`}</Text>
+              )}
+            </AnimatedCircularProgress>
+          </View>
 
-      {/* Journey Path and Buttons */}
-      <View
-        style={{
-          position: "relative",
-          width: width,
-          height: points[points.length - 1].y + 100,
-          marginTop: 40,
-        }}
-      >
-        <Svg
-          height={points[points.length - 1].y + 100}
-          width={width}
-          style={{ position: "absolute", left: 0, top: 0 }}
-        >
-          <Path
-            d={pathString}
-            stroke="#a259ff"
-            strokeWidth={12}
-            fill="none"
-            opacity={0.09}
-            strokeLinecap="round"
-          />
-
-          {/* For debugging: Control Points */}
-          {/* {controlPoints.map((ctrl, idx) => (
-            <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
-          ))} */}
-        </Svg>
-        {points.map((pt, idx) => (
-          <MapJourneyButton
-            key={idx}
-            x={pt.x}
-            y={pt.y}
-            progress={Math.random() * 100} // Random progress for demo
-            borderColor={pt.border}
-            fillColor={pt.color}
-            icon={pt.icon}
-            id={`journey-${idx}`}
-          />
-        ))}
-      </View>
-    </ScrollView>
+          {/* Journey Path and Buttons */}
+          <View
+            style={{
+              position: "relative",
+              width: width,
+              height: points[points.length - 1].y + 100,
+              marginTop: 40,
+            }}
+          >
+            <Svg
+              height={points[points.length - 1].y + 100}
+              width={width}
+              style={{ position: "absolute", left: 0, top: 0 }}
+            >
+              <Path
+                d={pathString}
+                stroke="#a259ff"
+                strokeWidth={12}
+                fill="none"
+                opacity={0.09}
+                strokeLinecap="round"
+              />
+              {/* For debugging: Control Points */}
+              {/* {controlPoints.map((ctrl, idx) => (
+                <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
+              ))} */}
+            </Svg>
+            {points.map((pt, idx) => (
+              <MapJourneyButton
+                key={idx}
+                x={pt.x}
+                y={pt.y}
+                progress={Math.random() * 100} // Random progress for demo
+                borderColor={pt.border}
+                fillColor={pt.color}
+                icon={pt.icon}
+                id={`journey-${idx}`}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      </ImageBackground>
+    </View>
   );
 }
