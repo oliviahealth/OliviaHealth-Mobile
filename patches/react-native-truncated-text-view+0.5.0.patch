@@ -1,0 +1,41 @@
+diff --git a/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx b/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx
+index bb8de72..94ab9d9 100644
+--- a/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx
++++ b/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx
+@@ -126,7 +126,7 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+   if (!fullText) return <View />;
+ 
+   return (
+-    <View style={[styles.container, containerStyle]}>
++    <View style={[containerStyle]}>
+       <Pressable
+         onPress={() => {
+           if (enableOnPressToggle) {
+@@ -167,7 +167,7 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+               ]}
+             >
+               <Text
+-                style={[styles.tailText, tailTextStyle, { lineHeight }]}
++                style={[tailTextStyle, { lineHeight }]}
+                 onPress={_handlePress}
+                 suppressHighlighting={true}
+                 {...textPropsChild}
+@@ -184,18 +184,9 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+ 
+ const styles = StyleSheet.create({
+   tailViewContainer: {
+-    backgroundColor: 'white',
+     position: 'absolute',
+     bottom: 0,
+   },
+-  container: {
+-    // backgroundColor: 'white',
+-    backgroundColor: 'lightblue',
+-  },
+-  tailText: {
+-    color: 'black',
+-    fontWeight: 'bold',
+-  },
+ 
+   expandedTailTextContainer: {
+     margin: -4,

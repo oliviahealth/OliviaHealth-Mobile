@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Text, Image, Pressable, LayoutAnimation, Platform, UIManager, Animated } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { View, Text, Image, Pressable, Platform, UIManager, Animated } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { TruncatedTextView } from 'react-native-truncated-text-view';
 import { Ionicons } from "@expo/vector-icons";
 
 if (Platform.OS === "android") {
@@ -54,18 +55,11 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
 }
 
 export default function OllieOverviewCard({ data }: Props) {
-    const [expanded, setExpanded] = useState(false);
-
-    const toggleExpand = () => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setExpanded(!expanded);
-    };
-
     const isLoading = data == null;
 
     return (
-        <View style={{ paddingHorizontal: 16, marginTop: 8 }}>
-            <View style={{ borderRadius: 18, borderWidth: 1, borderColor: "rgba(0,0,0,0.08)", overflow: "hidden" }}>
+        <View style={{  marginTop: 8 }}>
+            <View style={{ borderRadius: 18, borderWidth: 1, borderColor: "rgba(0,0,0,0.06)", overflow: "hidden" }}>
                 <LinearGradient
                     colors={["#EDF3FF", "#F3EEFF", "#F6EBF6"]}
                     start={{ x: 0.1, y: 0.1 }}
@@ -89,40 +83,27 @@ export default function OllieOverviewCard({ data }: Props) {
                             <SkeletonLine width="60%" height={12} style={{ marginTop: 10 }} />
                         </View>
                     ) : (
-                        <Text
-                            style={{ marginTop: 10, fontSize: 14, lineHeight: 22, color: "#3A3A3A" }}
-                            numberOfLines={expanded ? undefined : 4}
-                        >
-                            {data.response}
-                        </Text>
+                        
+                        // <Text
+                        //     style={{ marginTop: 10, fontSize: 14, lineHeight: 22, color: "#3A3A3A" }}
+                        //     numberOfLines={expanded ? undefined : 4}
+                        // >
+                        //     {data.response}  
+                        // </Text>
+
+                        <TruncatedTextView
+                            text={data.response}
+                            numberOfLines={4}
+                            lineHeight={22}
+                            enableShowLess={false}
+                            textPropsChild={{allowFontScaling: false}}
+                            textPropsRoot={{allowFontScaling: false}}
+                            style={{ marginTop: 10, fontSize: 14, color: "#3A3A3A", backgroundColor: 'transparent' }}
+                        />
                     )}
 
                     {/* CTA */}
-                    {!isLoading && !expanded && (
-                        <Pressable
-                            onPress={toggleExpand}
-                            style={({ pressed }) => [
-                                {
-                                    marginTop: 14,
-                                    height: 36,
-                                    borderRadius: 18,
-                                    borderWidth: 1,
-                                    borderColor: "rgba(0,0,0,0.12)",
-                                    backgroundColor: "rgba(255,255,255,0.9)",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                },
-                                pressed && { opacity: 0.85 },
-                            ]}
-                        >
-                            <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                <Ionicons name="chevron-down-outline" size={14} color="#2E2E2E" />
-                                <Text style={{ fontSize: 13, fontWeight: "600", marginLeft: 6, color: "#2E2E2E" }}>Show more</Text>
-                            </View>
-                        </Pressable>
-                    )}
-
-                    {!isLoading && expanded && (
+                    {!isLoading && (
                         <Pressable
                             style={({ pressed }) => [
                                 {
