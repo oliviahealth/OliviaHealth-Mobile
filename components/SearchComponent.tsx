@@ -1,10 +1,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useState } from "react";
+import React from "react";
 import { Text, TextInput, View } from "react-native";
+import { useMutation } from '@tanstack/react-query';
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
 import OllieOverviewCard from "./OllieOverview";
+
+const OLLIE_URL = "https://intelligentchild.org/ollie/formattedresults";
 
 interface SearchComponentProps {
   placeholder?: string;
@@ -14,16 +17,8 @@ interface SearchComponentProps {
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, onChangeText }) => {
 
-  const [ollieResponse, setOllieResponse] = useState(null);
-  const [ollieLoading, setOllieLoading] = useState(false);
-
-  const getOllieOverview = async () => {
-    const OLLIE_URL = "https://intelligentchild.org/ollie/formattedresults";
-
-    try {
-      setOllieLoading(true);
-      setOllieResponse(null);
-
+  const mutation = useMutation({
+    mutationFn: async (value: string | undefined) => {
       const formData = new FormData();
       // use the user's actual input instead of a hardcoded string:
       formData.append("data", value?.trim() ?? "");
@@ -37,13 +32,12 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
 
-      setOllieResponse(data);
-    } catch (e) {
-      console.error("Failed to get Ollie overview", e);
-    } finally {
-      setOllieLoading(false);
-    }
-  };
+      return data
+    },
+    onError: (error) => {
+      console.error("Failed to get Ollie overview", error);
+    },
+  })
 
   return (
     <View>
@@ -67,17 +61,15 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
             // if they start typing again after submitting, you can either keep hasSubmitted
             // or reset it—this keeps it until they clear the box
             onChangeText?.(t as any);
-
-            setOllieLoading(false);
-            setOllieResponse(null);
+            mutation.reset();
           }}
           returnKeyType="search"
-          onSubmitEditing={getOllieOverview}
+          onSubmitEditing={() => mutation.mutate(value)}
         />
       </View>
 
       <View>
-        {!ollieResponse && !ollieLoading && value && (
+        {!mutation.data && !mutation.isError && !mutation.isPending && value && (
           <View
             style={{
               paddingHorizontal: 16,
@@ -92,9 +84,11 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           </View>
         )}
 
-        {(ollieLoading || ollieResponse) && (
+        {(mutation.isPending || mutation.data || mutation.error) && (
           <OllieOverviewCard
-            data={ollieResponse}
+            data={mutation.data}
+            isError={mutation.isError}
+            isLoading={mutation.isPending}
           />
         )}
       </View>

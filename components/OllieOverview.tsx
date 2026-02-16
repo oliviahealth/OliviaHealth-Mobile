@@ -15,8 +15,10 @@ interface IOllieOverviewResponse {
     documents: string[];
 }
 
-type Props = {
+type OllieOverviewProps = {
     data: IOllieOverviewResponse | null;
+    isError: boolean
+    isLoading: boolean
 };
 
 function SkeletonLine({ width, height = 12, style }: { width: string | number; height?: number; style?: any }) {
@@ -54,12 +56,17 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
     );
 }
 
-export default function OllieOverviewCard({ data }: Props) {
-    const isLoading = data == null;
-
+export default function OllieOverviewCard({ data, isError, isLoading }: OllieOverviewProps) {
     return (
         <View style={{ marginTop: 10 }}>
-            <View style={{ borderRadius: 18, borderWidth: 1, borderColor: "rgba(0,0,0,0.06)", overflow: "hidden" }}>
+            <View
+                style={{
+                    borderRadius: 18,
+                    borderWidth: 1,
+                    borderColor: "rgba(0,0,0,0.06)",
+                    overflow: "hidden",
+                }}
+            >
                 <LinearGradient
                     colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
                     locations={[0, 0.5, 1]}
@@ -72,7 +79,9 @@ export default function OllieOverviewCard({ data }: Props) {
                             source={require("../assets/images/ollie_avatar.png")}
                             style={{ width: 28, height: 28, borderRadius: 14, marginRight: 8 }}
                         />
-                        <Text style={{ fontSize: 14, fontWeight: "600", color: "#2E2E2E" }}>Ollie Overview</Text>
+                        <Text style={{ fontSize: 14, fontWeight: "600", color: "#2E2E2E" }}>
+                            Ollie Overview
+                        </Text>
                     </View>
 
                     {/* BODY */}
@@ -83,21 +92,31 @@ export default function OllieOverviewCard({ data }: Props) {
                             <SkeletonLine width="78%" height={12} style={{ marginTop: 10 }} />
                             <SkeletonLine width="60%" height={12} style={{ marginTop: 10 }} />
                         </View>
+                    ) : isError ? (
+                        <View style={{ marginTop: 10 }}>
+                            <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
+                                Couldn&apos;t load Ollie overview, please try again later.
+                            </Text>
+                        </View>
                     ) : (
-
                         <TruncatedTextView
-                            text={data.response}
+                            text={data!.response}
                             numberOfLines={4}
                             lineHeight={22}
                             enableShowLess={false}
                             textPropsChild={{ allowFontScaling: false }}
                             textPropsRoot={{ allowFontScaling: false }}
-                            style={{ marginTop: 10, fontSize: 14, color: "#3A3A3A", backgroundColor: 'transparent' }}
+                            style={{
+                                marginTop: 10,
+                                fontSize: 14,
+                                color: "#3A3A3A",
+                                backgroundColor: "transparent",
+                            }}
                         />
                     )}
 
-                    {/* CTA */}
-                    {!isLoading && (
+                    {/* CTA (only on success) */}
+                    {!isLoading && !isError && (
                         <Pressable
                             style={({ pressed }) => [
                                 {
@@ -115,7 +134,14 @@ export default function OllieOverviewCard({ data }: Props) {
                         >
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
                                 <Ionicons name="sparkles-outline" size={14} color="#2E2E2E" />
-                                <Text style={{ fontSize: 13, fontWeight: "600", marginLeft: 6, color: "#2E2E2E" }}>
+                                <Text
+                                    style={{
+                                        fontSize: 13,
+                                        fontWeight: "600",
+                                        marginLeft: 6,
+                                        color: "#2E2E2E",
+                                    }}
+                                >
                                     Dive deeper with Ollie
                                 </Text>
                             </View>

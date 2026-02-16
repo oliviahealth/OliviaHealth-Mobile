@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,6 +13,8 @@ SplashScreen.preventAutoHideAsync();
 
 const resources_url = "https://oliviahealth.org/wp-content/uploads/resources.json";
 const MIN_SPLASH_TIME = 1000;
+
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const [isFirstLaunch, setIsFirstLaunch] = useState<null | boolean>(null);
@@ -38,7 +41,7 @@ export default function RootLayout() {
 
 
   useEffect(() => {
-    if(resources) {
+    if (resources) {
       setIsReady(true);
       SplashScreen.hideAsync();
     };
@@ -84,11 +87,13 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']} onLayout={onLayoutRootView}>
-      <StatusBar barStyle="dark-content" />
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']} onLayout={onLayoutRootView}>
+        <StatusBar barStyle="dark-content" />
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }
