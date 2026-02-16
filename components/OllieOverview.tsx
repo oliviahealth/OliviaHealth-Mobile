@@ -58,7 +58,7 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
 
 export default function OllieOverviewCard({ data, isError, isLoading }: OllieOverviewProps) {
     return (
-        <View style={{ marginTop: 10 }}>
+        <View style={{ marginVertical: 10 }}>
             <View
                 style={{
                     borderRadius: 18,
