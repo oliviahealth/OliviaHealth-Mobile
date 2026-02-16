@@ -58,12 +58,13 @@ export default function OllieOverviewCard({ data }: Props) {
     const isLoading = data == null;
 
     return (
-        <View style={{  marginTop: 8 }}>
+        <View style={{ marginTop: 10 }}>
             <View style={{ borderRadius: 18, borderWidth: 1, borderColor: "rgba(0,0,0,0.06)", overflow: "hidden" }}>
                 <LinearGradient
-                    colors={["#EDF3FF", "#F3EEFF", "#F6EBF6"]}
-                    start={{ x: 0.1, y: 0.1 }}
-                    end={{ x: 0.9, y: 0.9 }}
+                    colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
+                    locations={[0, 0.5, 1]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
                     style={{ padding: 14 }}
                 >
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -83,21 +84,14 @@ export default function OllieOverviewCard({ data }: Props) {
                             <SkeletonLine width="60%" height={12} style={{ marginTop: 10 }} />
                         </View>
                     ) : (
-                        
-                        // <Text
-                        //     style={{ marginTop: 10, fontSize: 14, lineHeight: 22, color: "#3A3A3A" }}
-                        //     numberOfLines={expanded ? undefined : 4}
-                        // >
-                        //     {data.response}  
-                        // </Text>
 
                         <TruncatedTextView
                             text={data.response}
                             numberOfLines={4}
                             lineHeight={22}
                             enableShowLess={false}
-                            textPropsChild={{allowFontScaling: false}}
-                            textPropsRoot={{allowFontScaling: false}}
+                            textPropsChild={{ allowFontScaling: false }}
+                            textPropsRoot={{ allowFontScaling: false }}
                             style={{ marginTop: 10, fontSize: 14, color: "#3A3A3A", backgroundColor: 'transparent' }}
                         />
                     )}
