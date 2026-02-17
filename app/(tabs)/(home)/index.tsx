@@ -1,4 +1,4 @@
-import SearchBar from "@/components/SearchBar";
+import SearchComponent from "@/components/SearchComponent";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
@@ -84,7 +84,7 @@ export default function Index() {
           </View>
 
           {/* Search */}
-          <SearchBar placeholder="Looking for something specific?" value={searchQuery} onChangeText={setSearchQuery} />
+          <SearchComponent placeholder="Looking for something specific?" value={searchQuery} onChangeText={setSearchQuery} />
 
           {/* Tiles row only when no search */}
           {!searchQuery && (

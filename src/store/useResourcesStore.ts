@@ -53,6 +53,7 @@ export interface IResources {
     quick_tips: IQuickTips[],
     infographics: IInfographics[]
 }
+export type IResourceItem = IResources[keyof IResources][number];
 
 export interface ISavedResourceIds {
     local_resources: string[],

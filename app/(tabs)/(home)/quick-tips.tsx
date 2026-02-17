@@ -1,8 +1,8 @@
 import QuickTipCard from "@/components/QuickTipCard";
-import SearchBar from "@/components/SearchBar";
+import SearchComponent from "@/components/SearchComponent";
 import useResourcesStore from "@/src/store/useResourcesStore";
 import React, { useState } from "react";
-import { KeyboardAvoidingView, ScrollView, View, Text } from "react-native";
+import { KeyboardAvoidingView, ScrollView, Text, View } from "react-native";
 
 export default function QuickTips() {
   const resources = useResourcesStore(state => state.resources);
@@ -29,7 +29,7 @@ export default function QuickTips() {
         showsVerticalScrollIndicator={false}
       >
         <View style={{ flex: 1, gap: 18 }}>
-          <SearchBar
+          <SearchComponent
             placeholder="Search by title"
             value={searchQuery}
             onChangeText={setSearchQuery}

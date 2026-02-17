@@ -1,0 +1,307 @@
+diff --git a/node_modules/react-native-truncated-text-view/lib/typescript/types/types.d.ts b/node_modules/react-native-truncated-text-view/lib/typescript/types/types.d.ts
+index c688e7f..3699398 100644
+--- a/node_modules/react-native-truncated-text-view/lib/typescript/types/types.d.ts
++++ b/node_modules/react-native-truncated-text-view/lib/typescript/types/types.d.ts
+@@ -1,5 +1,7 @@
+ import type { StyleProp, TextStyle, TextProps, ViewStyle } from 'react-native';
+ export type TruncatedTextViewProps = {
++    children?: React.ReactNode
++
+     /**
+      * The text to be displayed
+      */
+diff --git a/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx b/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx
+index bb8de72..768b42f 100644
+--- a/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx
++++ b/node_modules/react-native-truncated-text-view/src/component/truncated_text_view.tsx
+@@ -1,4 +1,4 @@
+-import React, { useCallback, useEffect, useMemo } from 'react';
++import React, { useCallback, useEffect, useMemo } from "react";
+ import {
+   LayoutAnimation,
+   NativeSyntheticEvent,
+@@ -9,23 +9,46 @@ import {
+   TextLayoutEventData,
+   UIManager,
+   View,
+-} from 'react-native';
++} from "react-native";
+ 
+-import {
+-  DEFAULT_LINE_HEIGHT,
+-  DEFAULT_NUMBER_OF_LINE,
+-} from '../contacts/general';
+-import { useTruncatedLogic } from '../logic/useTruncatedLogic';
++import { DEFAULT_LINE_HEIGHT, DEFAULT_NUMBER_OF_LINE } from "../contacts/general";
++import { useTruncatedLogic } from "../logic/useTruncatedLogic";
+ 
+-import type { TruncatedTextViewProps } from '../types/types';
++import type { TruncatedTextViewProps } from "../types/types";
+ 
+-if (
+-  Platform.OS === 'android' &&
+-  UIManager.setLayoutAnimationEnabledExperimental
+-) {
++if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+   UIManager.setLayoutAnimationEnabledExperimental(true);
+ }
+ 
++/**
++ * Split children into:
++ * - inlineTextChildren: safe to render INSIDE <Text> (strings/numbers/<Text/>)
++ * - blockChildren: everything else (View, icons, etc.) rendered OUTSIDE the truncating <Text>
++ */
++function splitChildren(children: React.ReactNode) {
++  const inlineTextChildren: React.ReactNode[] = [];
++  const blockChildren: React.ReactNode[] = [];
++
++  React.Children.forEach(children, (child) => {
++    if (child === null || child === undefined || child === false) return;
++
++    if (typeof child === "string" || typeof child === "number") {
++      inlineTextChildren.push(child);
++      return;
++    }
++
++    if (React.isValidElement(child) && child.type === Text) {
++      inlineTextChildren.push(child);
++      return;
++    }
++
++    // Anything not renderable inside <Text> goes outside
++    blockChildren.push(child);
++  });
++
++  return { inlineTextChildren, blockChildren };
++}
++
+ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+   const {
+     style,
+@@ -35,16 +58,19 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+     textPropsChild,
+     numberOfLineGapOnExpanded = 1,
+     onChangeExpandedStatus,
++    children,
+   } = props;
++
+   const {
+-    text: fullText,
++    // keep supporting the old API (text prop) if you still pass it
++    text: legacyText,
+     lineHeight = DEFAULT_LINE_HEIGHT,
+     numberOfLines = DEFAULT_NUMBER_OF_LINE,
+     enableShowLess = true,
+     enableOnPressToggle = true,
+     enableLayoutAnimation = true,
+-    collapsedText = '.. See more',
+-    expandedText = '.. See Less',
++    collapsedText = "See more",
++    expandedText = "See Less",
+     enableTailView = true,
+   } = props;
+ 
+@@ -58,25 +84,34 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+     setTextLines,
+   } = useTruncatedLogic({ numberOfLine: numberOfLines });
+ 
+-  const _numberOfLine = React.useMemo(
+-    () => textLines.length,
+-    [textLines.length]
++  const contentNode = useMemo(() => {
++    // Prefer children; fall back to legacyText
++    if (children !== undefined) return children;
++    if (legacyText !== undefined) return legacyText;
++    return null;
++  }, [children, legacyText]);
++
++  const { inlineTextChildren, blockChildren } = useMemo(
++    () => splitChildren(contentNode),
++    [contentNode]
+   );
+ 
+-  const _handleTextLayout = (
+-    event: NativeSyntheticEvent<TextLayoutEventData>
+-  ) => {
++  const hasAnyInlineText = inlineTextChildren.length > 0;
++
++  const _numberOfLine = useMemo(() => textLines.length, [textLines.length]);
++
++  const _handleTextLayout = (event: NativeSyntheticEvent<TextLayoutEventData>) => {
+     const { lines } = event.nativeEvent;
+     setTextLines(lines);
+   };
+ 
+   const _handlePress = useCallback(() => {
+-    if (enableLayoutAnimation)
++    if (enableLayoutAnimation) {
+       LayoutAnimation.configureNext({
+         ...LayoutAnimation.Presets.easeInEaseOut,
+         duration: 250,
+       });
+-
++    }
+     toggleShowFullText();
+   }, [enableLayoutAnimation, toggleShowFullText]);
+ 
+@@ -85,28 +120,24 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+       (textLines[textLines.length - 1]?.text.length ?? 0) >
+       (textLines[0]?.text.length ?? 0);
+ 
+-    if (isExpanded) {
+-      return enableShowLess;
+-    }
+-
++    if (isExpanded) return enableShowLess;
+     return i;
+   }, [enableShowLess, isExpanded, textLines]);
+ 
+-  const _shouldShowTailViewAndroid = React.useMemo(() => {
++  const _shouldShowTailViewAndroid = useMemo(() => {
+     const i = _numberOfLine > numberOfLines;
+ 
+-    if (isExpanded) {
+-      return enableShowLess;
+-    }
+-
++    if (isExpanded) return enableShowLess;
+     return i;
+   }, [_numberOfLine, enableShowLess, isExpanded, numberOfLines]);
+ 
+   const _shouldShowTailView = useMemo(() => {
+     if (!enableTailView) return false;
+-
+     if (numberOfLines === 0) return false;
+ 
++    // If there’s no inline text to measure, we can’t reliably truncate
++    if (!hasAnyInlineText) return false;
++
+     return Platform.select({
+       ios: _shouldShowTailViewIOS,
+       android: _shouldShowTailViewAndroid,
+@@ -116,20 +147,21 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+     _shouldShowTailViewIOS,
+     enableTailView,
+     numberOfLines,
++    hasAnyInlineText,
+   ]);
+ 
+   useEffect(() => {
+     onChangeExpandedStatus?.(isExpanded);
+   }, [isExpanded, onChangeExpandedStatus]);
+ 
+-  // this will hide the text view if the text is empty
+-  if (!fullText) return <View />;
++  // If there is no content at all, render nothing
++  if (contentNode === null) return <View />;
+ 
+   return (
+-    <View style={[styles.container, containerStyle]}>
++    <View style={[containerStyle]}>
+       <Pressable
+         onPress={() => {
+-          if (enableOnPressToggle) {
++          if (enableOnPressToggle && _shouldShowTailView) {
+             _handlePress();
+           }
+         }}
+@@ -139,18 +171,22 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+             setTextContainerLayout(e.nativeEvent.layout);
+           }}
+         >
+-          <Text
+-            style={[style, { lineHeight }]}
+-            numberOfLines={isExpanded ? 0 : numberOfLines}
+-            onTextLayout={_handleTextLayout}
+-            {...textPropsRoot}
+-          >
+-            {fullText}
+-            {_shouldShowTailView &&
+-              '\n'.repeat(numberOfLineGapOnExpanded) +
+-                `${numberOfLineGapOnExpanded === 1 ? '‎ ' : ''}`}
+-          </Text>
+-
++          {/* Truncating text area */}
++          {hasAnyInlineText ? (
++            <Text
++              style={[style, { lineHeight }]}
++              numberOfLines={isExpanded ? 0 : numberOfLines}
++              onTextLayout={_handleTextLayout}
++              {...textPropsRoot}
++            >
++              {inlineTextChildren}
++              {_shouldShowTailView &&
++                "\n".repeat(numberOfLineGapOnExpanded) +
++                  `${numberOfLineGapOnExpanded === 1 ? "‎ " : ""}`}
++            </Text>
++          ) : null}
++
++          {/* Tail "See more / See less" */}
+           {_shouldShowTailView && (
+             <View
+               onLayout={(e) => {
+@@ -158,24 +194,23 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+               }}
+               style={[
+                 styles.tailViewContainer,
+-                {
+-                  left: seeMorePosition,
+-                },
+-                isExpanded &&
+-                  numberOfLineGapOnExpanded === 1 &&
+-                  styles.expandedTailTextContainer,
++                { left: seeMorePosition },
++                isExpanded && numberOfLineGapOnExpanded === 1 && styles.expandedTailTextContainer,
+               ]}
+             >
+               <Text
+-                style={[styles.tailText, tailTextStyle, { lineHeight }]}
++                style={[tailTextStyle, { lineHeight }]}
+                 onPress={_handlePress}
+-                suppressHighlighting={true}
++                suppressHighlighting
+                 {...textPropsChild}
+               >
+                 {isExpanded ? expandedText : collapsedText}
+               </Text>
+             </View>
+           )}
++
++          {/* Non-Text children render below the truncated text */}
++          {blockChildren.length > 0 ? <View>{blockChildren}</View> : null}
+         </View>
+       </Pressable>
+     </View>
+@@ -184,19 +219,8 @@ export const TruncatedTextView = (props: TruncatedTextViewProps) => {
+ 
+ const styles = StyleSheet.create({
+   tailViewContainer: {
+-    backgroundColor: 'white',
+-    position: 'absolute',
+     bottom: 0,
+   },
+-  container: {
+-    // backgroundColor: 'white',
+-    backgroundColor: 'lightblue',
+-  },
+-  tailText: {
+-    color: 'black',
+-    fontWeight: 'bold',
+-  },
+-
+   expandedTailTextContainer: {
+     margin: -4,
+   },
+diff --git a/node_modules/react-native-truncated-text-view/src/types/types.ts b/node_modules/react-native-truncated-text-view/src/types/types.ts
+index 52aaa71..e13f736 100644
+--- a/node_modules/react-native-truncated-text-view/src/types/types.ts
++++ b/node_modules/react-native-truncated-text-view/src/types/types.ts
+@@ -1,6 +1,8 @@
+ import type { StyleProp, TextStyle, TextProps, ViewStyle } from 'react-native';
+ 
+ export type TruncatedTextViewProps = {
++  children?: React.ReactNode;
++  
+   /**
+    * The text to be displayed
+    */
