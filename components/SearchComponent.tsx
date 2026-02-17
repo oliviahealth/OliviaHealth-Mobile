@@ -21,7 +21,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
   const getOllieOverview = useMutation({
     mutationFn: async (value: string | undefined) => {
       const searchQuery = value?.trim() ?? null;
-      if (!searchQuery || searchQuery === '') return;
+      if (!searchQuery) return;
 
       const formData = new FormData();
       // use the user's actual input instead of a hardcoded string:
