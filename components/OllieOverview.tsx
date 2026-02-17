@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { View, Text, Image, Pressable, Platform, UIManager, Animated } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { TruncatedTextView } from 'react-native-truncated-text-view';
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import React, { useEffect, useRef, useState } from "react";
+import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, UIManager, View } from "react-native";
+import { useRouter } from "expo-router";
+import { TruncatedTextView } from 'react-native-truncated-text-view';
+
+import useResourcesStore, { IResources, IResourceItem } from "@/src/store/useResourcesStore";
 
 if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
@@ -20,6 +23,7 @@ type OllieOverviewProps = {
     isError: boolean
     isLoading: boolean
 };
+
 
 function SkeletonLine({ width, height = 12, style }: { width: string | number; height?: number; style?: any }) {
     const shimmer = useRef(new Animated.Value(0)).current;
@@ -57,6 +61,71 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
 }
 
 export default function OllieOverviewCard({ data, isError, isLoading }: OllieOverviewProps) {
+    const router = useRouter();
+
+    const resources = useResourcesStore(state => state.resources);
+
+    const [sources, setSources] = useState<{ doc: IResourceItem; type: string; }[]>();
+
+    // link the resouces to data.sources
+    const fetchSources = (dataSources: string[], resources: IResources) => {
+        const res: { doc: any; type: string; }[] = [];
+
+        for (const [key, resources_arr] of Object.entries(resources)) {
+            for (const doc of resources_arr) {
+                if (dataSources.includes(doc.id)) {
+                    res.push({ 'doc': doc, 'type': key });
+                }
+            }
+        }
+
+        return res;
+    }
+
+    const navigateToSource = (source: { doc: IResourceItem; type: string }) => {
+        switch (source.type) {
+            case "infographic":
+                router.push({
+                    pathname: "/(tabs)/(home)/infographic",
+                    params: { infographic: JSON.stringify(source.doc) },
+                });
+                break;
+
+            case "local_resources":
+                router.push({
+                    pathname: "/(tabs)/(home)/local-resource",
+                    params: { localResource: JSON.stringify(source.doc) },
+                });
+                break;
+
+            case "video_spotlights":
+                router.push({
+                    pathname: "/(tabs)/(home)/video-spotlight",
+                    params: { videoSpotlight: JSON.stringify(source.doc) },
+                });
+                break;
+
+            case "quick_tips":
+                router.push({
+                    pathname: "/(tabs)/(home)/quick-tip",
+                    params: { quickTip: JSON.stringify(source.doc) },
+                });
+                break;
+
+            default:
+                console.warn("Unknown source type:", source.type);
+        }
+    };
+
+
+    useEffect(() => {
+        if (!resources) return;
+
+        const referenceSources = fetchSources(data?.documents ?? [], resources);
+        setSources(referenceSources);
+
+    }, [data?.documents, resources])
+
     return (
         <View style={{ marginVertical: 10 }}>
             <View
@@ -92,15 +161,8 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                             <SkeletonLine width="78%" height={12} style={{ marginTop: 10 }} />
                             <SkeletonLine width="60%" height={12} style={{ marginTop: 10 }} />
                         </View>
-                    ) : isError ? (
-                        <View style={{ marginTop: 10 }}>
-                            <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
-                                Couldn&apos;t load Ollie overview, please try again later.
-                            </Text>
-                        </View>
-                    ) : (
+                    ) : data?.response && sources ? (
                         <TruncatedTextView
-                            text={data!.response}
                             numberOfLines={4}
                             lineHeight={22}
                             enableShowLess={false}
@@ -112,7 +174,45 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                 color: "#3A3A3A",
                                 backgroundColor: "transparent",
                             }}
-                        />
+                        >
+                            <View style={{ marginTop: 12 }}>
+                                <Text>{data.response}</Text>
+
+                                {sources.map((source, index) => (
+                                    <TouchableOpacity
+                                        key={source.doc.id}
+                                        activeOpacity={0.6}
+                                        onPress={() => navigateToSource(source)}
+                                        style={{
+                                            alignSelf: "flex-start",
+                                            marginTop: index === 0 ? 12 : 6,
+                                            paddingHorizontal: 12,
+                                            paddingVertical: 6,
+                                            borderRadius: 12,
+                                            backgroundColor: "rgba(0, 0, 0, 0.04)",
+                                        }}
+                                    >
+                                        <Text
+                                            style={{
+                                                fontSize: 12,
+                                                color: "#555",
+                                                fontWeight: "500",
+                                            }}
+                                            numberOfLines={1}
+                                        >
+                                            {source.doc.title}
+                                        </Text>
+                                    </TouchableOpacity>
+                                ))}
+
+                            </View>
+                        </TruncatedTextView>
+                    ) : (
+                        <View style={{ marginTop: 10 }}>
+                            <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
+                                Couldn&apos;t load Ollie overview, please try again later.
+                            </Text>
+                        </View>
                     )}
 
                     {/* CTA (only on success) */}

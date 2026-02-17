@@ -17,7 +17,8 @@ interface SearchComponentProps {
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, onChangeText }) => {
 
-  const mutation = useMutation({
+  // fetch ollie overview given the search string
+  const getOllieOverview = useMutation({
     mutationFn: async (value: string | undefined) => {
       const formData = new FormData();
       // use the user's actual input instead of a hardcoded string:
@@ -61,15 +62,15 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
             // if they start typing again after submitting, you can either keep hasSubmitted
             // or reset it—this keeps it until they clear the box
             onChangeText?.(t as any);
-            mutation.reset();
+            getOllieOverview.reset();
           }}
           returnKeyType="search"
-          onSubmitEditing={() => mutation.mutate(value)}
+          onSubmitEditing={() => getOllieOverview.mutate(value)}
         />
       </View>
 
       <View>
-        {!mutation.data && !mutation.isError && !mutation.isPending && value && (
+        {!getOllieOverview.data && !getOllieOverview.isError && !getOllieOverview.isPending && value && (
           <View
             style={{
               paddingHorizontal: 16,
@@ -84,11 +85,11 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           </View>
         )}
 
-        {(mutation.isPending || mutation.data || mutation.error) && (
+        {(getOllieOverview.isPending || getOllieOverview.data || getOllieOverview.error) && (
           <OllieOverviewCard
-            data={mutation.data}
-            isError={mutation.isError}
-            isLoading={mutation.isPending}
+            data={getOllieOverview.data}
+            isError={getOllieOverview.isError}
+            isLoading={getOllieOverview.isPending}
           />
         )}
       </View>
