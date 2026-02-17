@@ -226,7 +226,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                             )}
 
                     {/* CTA (only on success) */}
-                    {data?.response && sources && (
+                    {/* {data?.response && sources && (
                         <Pressable
                             style={({ pressed }) => [
                                 {
@@ -256,7 +256,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                 </Text>
                             </View>
                         </Pressable>
-                    )}
+                    )} */}
                 </LinearGradient>
             </View>
         </View>
