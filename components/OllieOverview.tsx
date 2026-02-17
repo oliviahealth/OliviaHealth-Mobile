@@ -62,7 +62,6 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
 
 export default function OllieOverviewCard({ data, isError, isLoading }: OllieOverviewProps) {
     const router = useRouter();
-
     const resources = useResourcesStore(state => state.resources);
 
     const [sources, setSources] = useState<{ doc: IResourceItem; type: string; }[]>();
@@ -117,7 +116,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
         }
     };
 
-
+    // link data.documents to resources
     useEffect(() => {
         if (!resources) return;
 
@@ -161,62 +160,73 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                             <SkeletonLine width="78%" height={12} style={{ marginTop: 10 }} />
                             <SkeletonLine width="60%" height={12} style={{ marginTop: 10 }} />
                         </View>
-                    ) : data?.response && sources ? (
-                        <TruncatedTextView
-                            numberOfLines={4}
-                            lineHeight={22}
-                            enableShowLess={false}
-                            textPropsChild={{ allowFontScaling: false }}
-                            textPropsRoot={{ allowFontScaling: false }}
-                            style={{
-                                marginTop: 10,
-                                fontSize: 14,
-                                color: "#3A3A3A",
-                                backgroundColor: "transparent",
-                            }}
-                        >
-                            <View style={{ marginTop: 12 }}>
-                                <Text>{data.response}</Text>
-
-                                {sources.map((source, index) => (
-                                    <TouchableOpacity
-                                        key={source.doc.id}
-                                        activeOpacity={0.6}
-                                        onPress={() => navigateToSource(source)}
-                                        style={{
-                                            alignSelf: "flex-start",
-                                            marginTop: index === 0 ? 12 : 6,
-                                            paddingHorizontal: 12,
-                                            paddingVertical: 6,
-                                            borderRadius: 12,
-                                            backgroundColor: "rgba(0, 0, 0, 0.04)",
-                                        }}
-                                    >
-                                        <Text
-                                            style={{
-                                                fontSize: 12,
-                                                color: "#555",
-                                                fontWeight: "500",
-                                            }}
-                                            numberOfLines={1}
-                                        >
-                                            {source.doc.title}
-                                        </Text>
-                                    </TouchableOpacity>
-                                ))}
-
+                    )
+                        : isError ? (
+                            <View style={{ marginTop: 10 }}>
+                                <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
+                                    Couldn&apos;t load Ollie overview, please try again later.
+                                </Text>
                             </View>
-                        </TruncatedTextView>
-                    ) : (
-                        <View style={{ marginTop: 10 }}>
-                            <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
-                                Couldn&apos;t load Ollie overview, please try again later.
-                            </Text>
-                        </View>
-                    )}
+                        )
+                            : data?.response && sources ? (
+                                <TruncatedTextView
+                                    numberOfLines={4}
+                                    lineHeight={22}
+                                    enableShowLess={false}
+                                    textPropsChild={{ allowFontScaling: false }}
+                                    textPropsRoot={{ allowFontScaling: false }}
+                                    style={{
+                                        marginTop: 10,
+                                        fontSize: 14,
+                                        color: "#3A3A3A",
+                                        backgroundColor: "transparent",
+                                    }}
+                                >
+                                    <View style={{ marginTop: 12 }}>
+                                        <Text>{data.response}</Text>
+
+                                        {sources.map((source, index) => (
+                                            <TouchableOpacity
+                                                key={source.doc.id}
+                                                activeOpacity={0.6}
+                                                onPress={() => navigateToSource(source)}
+                                                style={{
+                                                    alignSelf: "flex-start",
+                                                    marginTop: index === 0 ? 12 : 6,
+                                                    paddingHorizontal: 12,
+                                                    paddingVertical: 6,
+                                                    borderRadius: 12,
+                                                    backgroundColor: "rgba(0, 0, 0, 0.04)",
+                                                }}
+                                            >
+                                                <View style={{ display: 'flex', flexDirection: "row",  alignItems: "center", gap: 4 }}>
+                                                    <Text
+                                                        style={{
+                                                            fontSize: 12,
+                                                            color: "#555",
+                                                            fontWeight: "500",
+                                                        }}
+                                                        numberOfLines={1}
+                                                    >
+                                                        {source.doc.title}
+                                                    </Text>
+                                                    <Ionicons name="chevron-forward-outline" />
+                                                </View>
+                                            </TouchableOpacity>
+                                        ))}
+
+                                    </View>
+                                </TruncatedTextView>
+                            ) : (
+                                <View style={{ marginTop: 10 }}>
+                                    <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
+                                        Couldn&apos;t load Ollie overview, please try again later.
+                                    </Text>
+                                </View>
+                            )}
 
                     {/* CTA (only on success) */}
-                    {!isLoading && !isError && (
+                    {data?.response && sources && (
                         <Pressable
                             style={({ pressed }) => [
                                 {
