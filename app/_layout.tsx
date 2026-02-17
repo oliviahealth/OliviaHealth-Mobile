@@ -53,6 +53,7 @@ export default function RootLayout() {
         const res = await fetch(resources_url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const resources: IResources = await res.json();
+
         setResources(resources);
 
         // Load saved resources from AsyncStorage
@@ -71,7 +72,7 @@ export default function RootLayout() {
       }
     }
     prepare();
-  }, [setResources, resources]);
+  }, [setResources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
 
   const onLayoutRootView = useCallback(async () => {
     if (isReady) await SplashScreen.hideAsync();
