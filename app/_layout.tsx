@@ -11,7 +11,7 @@ import WelcomeScreen from "./Welcome";
 
 SplashScreen.preventAutoHideAsync();
 
-const resources_url = "https://oliviahealth.org/wp-content/uploads/resources.json";
+const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL!;
 const MIN_SPLASH_TIME = 1000;
 
 const queryClient = new QueryClient();

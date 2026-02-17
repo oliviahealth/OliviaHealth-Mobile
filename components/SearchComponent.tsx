@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 
 import OllieOverviewCard from "./OllieOverview";
 
-const OLLIE_URL = "https://intelligentchild.org/ollie/formattedresults";
+const OLLIE_URL = process.env.EXPO_PUBLIC_OLLIE_URL!;
 
 interface SearchComponentProps {
   placeholder?: string;
@@ -25,7 +25,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
       formData.append("data", value?.trim() ?? "");
       formData.append("conversationId", uuid());
 
-      const res = await fetch(OLLIE_URL, {
+      const res = await fetch(`${OLLIE_URL}/formattedresults`, {
         method: "POST",
         body: formData,
       });
