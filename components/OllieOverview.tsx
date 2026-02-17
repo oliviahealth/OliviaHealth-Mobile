@@ -178,7 +178,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                     style={{
                                         marginTop: 10,
                                         fontSize: 14,
-                                        color: "#3A3A3A",
+                                        color: "#444",
                                         backgroundColor: "transparent",
                                     }}
                                 >
