@@ -171,7 +171,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                             : data?.response && sources ? (
                                 <TruncatedTextView
                                     numberOfLines={4}
-                                    lineHeight={22}
+                                    lineHeight={28}
                                     enableShowLess={false}
                                     textPropsChild={{ allowFontScaling: false }}
                                     textPropsRoot={{ allowFontScaling: false }}

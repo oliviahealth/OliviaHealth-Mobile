@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, Pressable } from "react-native";
 import { useMutation } from '@tanstack/react-query';
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
@@ -20,6 +20,9 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
   // fetch ollie overview given the search string
   const getOllieOverview = useMutation({
     mutationFn: async (value: string | undefined) => {
+      const searchQuery = value?.trim() ?? null;
+      if (!searchQuery || searchQuery === '') return;
+
       const formData = new FormData();
       // use the user's actual input instead of a hardcoded string:
       formData.append("data", value?.trim() ?? "");
@@ -40,6 +43,11 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
     },
   })
 
+  const clearSearch = () => {
+    onChangeText?.("");
+    getOllieOverview.reset();
+  };
+
   return (
     <View>
       <View
@@ -52,21 +60,40 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           height: 45,
         }}
       >
-        <Ionicons name="search" size={20} color="#aaa" style={{ marginRight: 10 }} />
+        <Ionicons
+          name="search"
+          size={20}
+          color="#aaa"
+          style={{ marginRight: 10 }}
+        />
+
         <TextInput
           placeholder={placeholder ?? ""}
           placeholderTextColor="#aaa"
-          style={{ flex: 1, fontSize: 16, color: "#555" }}
+          style={{
+            flex: 1,
+            fontSize: 16,
+            color: "#555",
+          }}
           value={value}
           onChangeText={(t) => {
-            // if they start typing again after submitting, you can either keep hasSubmitted
-            // or reset it—this keeps it until they clear the box
             onChangeText?.(t as any);
             getOllieOverview.reset();
           }}
           returnKeyType="search"
           onSubmitEditing={() => getOllieOverview.mutate(value)}
         />
+
+        {/* CLEAR BUTTON */}
+        {!!value && (
+          <Pressable
+            onPress={clearSearch}
+            hitSlop={10}
+            style={{ marginLeft: 6 }}
+          >
+            <Ionicons name="close-circle" size={18} color="#aaa" />
+          </Pressable>
+        )}
       </View>
 
       <View>
@@ -77,7 +104,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
               paddingVertical: 12,
             }}
           >
-            <Text style={{ fontSize: 13, color: "#444", lineHeight: 18 }}>
+            <Text style={{ fontSize: 13, color: "#666", lineHeight: 18 }}>
               Not finding what you need? Enter your question above and press{" "}
               <Text style={{ fontWeight: "700" }}>Enter</Text> for more results.
             </Text>
