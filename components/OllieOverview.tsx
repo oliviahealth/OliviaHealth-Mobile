@@ -83,7 +83,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
 
     const navigateToSource = (source: { doc: IResourceItem; type: string }) => {
         switch (source.type) {
-            case "infographic":
+            case "infographics":
                 router.push({
                     pathname: "/(tabs)/(home)/infographic",
                     params: { infographic: JSON.stringify(source.doc) },
