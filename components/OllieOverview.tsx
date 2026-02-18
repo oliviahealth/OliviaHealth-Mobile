@@ -186,6 +186,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                     enableShowLess={false}
                                     textPropsChild={{ allowFontScaling: false }}
                                     textPropsRoot={{ allowFontScaling: false }}
+                                    tailTextStyle={{ marginTop: 5, color: '#666' }}
                                     style={{
                                         marginTop: 10,
                                         fontSize: 14,
