@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, UIManager, View } from "react-native";
+import { Animated, Image, Platform, Text, TouchableOpacity, UIManager, View, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import { TruncatedTextView } from 'react-native-truncated-text-view';
+import Markdown from 'react-native-markdown-display';
 
 import useResourcesStore, { IResources, IResourceItem } from "@/src/store/useResourcesStore";
 
@@ -61,6 +62,15 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
 }
 
 export default function OllieOverviewCard({ data, isError, isLoading }: OllieOverviewProps) {
+    const { width, height } = useWindowDimensions();
+    const COLLAPSE_CHARS = Math.round((width * height) / 1500);
+
+    const responseText = data?.response ?? "";
+    const collapsedMarkdown =
+        responseText.length > COLLAPSE_CHARS
+            ? responseText.slice(0, COLLAPSE_CHARS).trimEnd() + "…"
+            : responseText;
+
     const router = useRouter();
     const resources = useResourcesStore(state => state.resources);
 
@@ -170,6 +180,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                         )
                             : data?.response && sources ? (
                                 <TruncatedTextView
+                                    text={data.response} // need to pass in the data.response to calculate how many lines to display before the 'show more' button
                                     numberOfLines={4}
                                     lineHeight={28}
                                     enableShowLess={false}
@@ -181,42 +192,39 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                         color: "#444",
                                         backgroundColor: "transparent",
                                     }}
-                                >
-                                    <View style={{ marginTop: 12 }}>
-                                        <Text>{data.response}</Text>
+                                    renderContent={(isExpanded) => ( // main content to be displayed before the 'show more' button
+                                        <View style={{ marginTop: 12 }}>
+                                            <Markdown>{isExpanded ? data.response : collapsedMarkdown}</Markdown>
 
-                                        {sources.map((source, index) => (
-                                            <TouchableOpacity
-                                                key={source.doc.id}
-                                                activeOpacity={0.6}
-                                                onPress={() => navigateToSource(source)}
-                                                style={{
-                                                    alignSelf: "flex-start",
-                                                    marginTop: index === 0 ? 12 : 6,
-                                                    paddingHorizontal: 12,
-                                                    paddingVertical: 6,
-                                                    borderRadius: 12,
-                                                    backgroundColor: "rgba(0, 0, 0, 0.04)",
-                                                }}
-                                            >
-                                                <View style={{ display: 'flex', flexDirection: "row",  alignItems: "center", gap: 4 }}>
-                                                    <Text
+                                            {isExpanded &&
+                                                sources.map((source, index) => (
+                                                    <TouchableOpacity
+                                                        key={source.doc.id}
+                                                        activeOpacity={0.6}
+                                                        onPress={() => navigateToSource(source)}
                                                         style={{
-                                                            fontSize: 12,
-                                                            color: "#555",
-                                                            fontWeight: "500",
+                                                            alignSelf: "flex-start",
+                                                            marginTop: index === 0 ? 12 : 6,
+                                                            paddingHorizontal: 12,
+                                                            paddingVertical: 6,
+                                                            borderRadius: 12,
+                                                            backgroundColor: "rgba(0, 0, 0, 0.04)",
                                                         }}
-                                                        numberOfLines={1}
                                                     >
-                                                        {source.doc.title}
-                                                    </Text>
-                                                    <Ionicons name="chevron-forward-outline" />
-                                                </View>
-                                            </TouchableOpacity>
-                                        ))}
-
-                                    </View>
-                                </TruncatedTextView>
+                                                        <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                                                            <Text
+                                                                style={{ fontSize: 12, color: "#555", fontWeight: "500" }}
+                                                                numberOfLines={1}
+                                                            >
+                                                                {source.doc.title}
+                                                            </Text>
+                                                            <Ionicons name="chevron-forward-outline" />
+                                                        </View>
+                                                    </TouchableOpacity>
+                                                ))}
+                                        </View>
+                                    )}
+                                />
                             ) : (
                                 <View style={{ marginTop: 10 }}>
                                     <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
