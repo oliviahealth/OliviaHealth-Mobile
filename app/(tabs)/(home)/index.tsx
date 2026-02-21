@@ -73,7 +73,7 @@ export default function Index() {
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={44}>
-      <ScrollView contentContainerStyle={{ paddingTop: 20, paddingHorizontal: 20, gap: 18 }} showsVerticalScrollIndicator={false} >
+      <ScrollView contentContainerStyle={{ paddingTop: 10, paddingHorizontal: 20, gap: 18 }} showsVerticalScrollIndicator={false} >
         <View style={{ flex: 1, gap: 18 }}>
           {/* Header */}
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
