@@ -1,10 +1,13 @@
-import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, {
+  AsyncStorageKeys,
+  IResources,
+  loadSavedResources,
+} from "@/src/store/useResourcesStore";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
-import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
-import { StatusBar } from "react-native";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar, View } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WelcomeScreen from "./Welcome";
@@ -20,8 +23,8 @@ export default function RootLayout() {
   const [isFirstLaunch, setIsFirstLaunch] = useState<null | boolean>(null);
 
   const [isReady, setIsReady] = useState(false);
-  const resources = useResourcesStore(state => state.resources);
-  const setResources = useResourcesStore(state => state.setResources);
+  const resources = useResourcesStore((state) => state.resources);
+  const setResources = useResourcesStore((state) => state.setResources);
 
   useEffect(() => {
     const checkFirstLaunch = async () => {
@@ -33,18 +36,17 @@ export default function RootLayout() {
           setIsFirstLaunch(false);
         }
       } catch (error) {
-        console.error('Error checking first launch:', error);
+        console.error("Error checking first launch:", error);
       }
     };
     checkFirstLaunch();
   }, []);
 
-
   useEffect(() => {
     if (resources) {
       setIsReady(true);
       SplashScreen.hideAsync();
-    };
+    }
 
     async function prepare() {
       const startTime = Date.now();
@@ -58,7 +60,6 @@ export default function RootLayout() {
 
         // Load saved resources from AsyncStorage
         await loadSavedResources();
-
       } catch (e) {
         console.error("Failed to fetch resources", e);
       } finally {
@@ -84,15 +85,20 @@ export default function RootLayout() {
   }
 
   if (isFirstLaunch) {
-    return <WelcomeScreen />
+    return <WelcomeScreen />;
   }
 
   return (
     <QueryClientProvider client={queryClient}>
+      <View
+        style={{ flex: 1, backgroundColor: "white" }}
+        onLayout={onLayoutRootView}
+      >
         <StatusBar barStyle="dark-content" />
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
+      </View>
     </QueryClientProvider>
   );
 }
