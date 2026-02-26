@@ -141,16 +141,18 @@ export default function Chat() {
                                     </View>
                                 </ChatBubble>
 
-                                {submittedQuery && (
-                                    <ChatBubble isResponse={false}>
-                                        <Text>{submittedQuery}</Text>
-                                    </ChatBubble>
-                                )}
                                 {apiResponse && (
                                     <ChatBubble isResponse={true}>
                                         <Text>{apiResponse}</Text>
                                     </ChatBubble>
                                 )}
+
+                                {submittedQuery && (
+                                    <ChatBubble isResponse={false}>
+                                        <Text>{submittedQuery}</Text>
+                                    </ChatBubble>
+                                )}
+
                             </View>
                         </ScrollView>
 
