@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import LoadingDot from "@/components/LoadingDot";
 
 import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
@@ -17,12 +18,13 @@ interface ChatBubbleProps {
     isResponse: boolean
     isLocationResponse?: boolean
     isFocused?: boolean
+    background?: boolean
 }
-const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocationResponse: isLocation, isFocused: focused }) => {
+const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocationResponse: isLocation, isFocused: focused, background = true }) => {
     return (
         <View
             style={{ width: "100%", flexDirection: "row", justifyContent: isResponse ? "flex-start" : "flex-end", marginVertical: 6, }} >
-            <View style={{ flexDirection: "row", borderRadius: 16, maxWidth: "100%", backgroundColor: "#ffffff", opacity: focused ? 1 : 0.8, }}>
+            <View style={{ flexDirection: "row", borderRadius: 16, maxWidth: "100%", backgroundColor: background ? "#ffffff" : "transparent", opacity: focused ? 1 : 0.8, }}>
                 {isLocation && (
                     <View style={{ width: 8, backgroundColor: focused ? PRIMARY : "transparent", borderTopLeftRadius: 12, borderBottomLeftRadius: 12, }} />
                 )}
@@ -60,7 +62,7 @@ export default function Chat() {
         getResponse({ query: submitQuery });
     }
 
-    const { mutate: getResponse } = useMutation({
+    const { mutate: getResponse, isPending: ollieRepsonsePending } = useMutation({
         mutationFn: async (data: { query: string }) => {
             if (data.query === "") return;
 
@@ -173,6 +175,12 @@ export default function Chat() {
                                 {submittedQuery && (
                                     <ChatBubble isResponse={false}>
                                         <Text>{submittedQuery}</Text>
+                                    </ChatBubble>
+                                )}
+
+                                {ollieRepsonsePending && (
+                                    <ChatBubble isResponse={true} background={false}>
+                                        <LoadingDot />
                                     </ChatBubble>
                                 )}
 
