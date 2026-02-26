@@ -1,12 +1,13 @@
+import LoadingDot from "@/components/LoadingDot";
 import { TINT_COLOR } from "@/theme";
 import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
-import LoadingDot from "@/components/LoadingDot";
 
 import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
+import { useLocalSearchParams } from "expo-router";
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
@@ -38,16 +39,22 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocatio
 };
 
 export default function Chat() {
+    const { conversationIdParam, ollieResponseParam } = useLocalSearchParams<{ conversationIdParam: string, ollieResponseParam: string }>();
+
     const quickResponses = [
         "Where can I find prenatal vitamins?",
         "Where is a good food pantry near me?",
         "Where can I find mental health support?",
     ];
 
+    const [conversationId, setConversationId] = useState(conversationIdParam ?? uuid());
+
     const [query, setQuery] = useState<string>();
 
     const [submittedQuery, setSubmittedQuery] = useState<null | string>(null);
-    const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>([]);
+    const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>( ollieResponseParam ? [JSON.parse(ollieResponseParam).data] : [] );
+
+    console.log(ollieResponses);
 
     const handleQuickResponseSubmit = (query: string) => {
         getResponse({ query });
@@ -65,8 +72,6 @@ export default function Chat() {
     const { mutate: getResponse, isPending: ollieRepsonsePending } = useMutation({
         mutationFn: async (data: { query: string }) => {
             if (data.query === "") return;
-
-            const conversationId = uuid();
 
             const formData = new FormData();
             formData.append("data", data.query);
@@ -157,9 +162,9 @@ export default function Chat() {
                                 </ChatBubble>
 
                                 {
-                                    ollieResponses.map((ollieResponse) => (
+                                    ollieResponses.map((ollieResponse, index) => (
                                         (
-                                            <>
+                                            <View key={`OllieResponse-${index}`}>
                                                 <ChatBubble isResponse={false}>
                                                     <Text>{ollieResponse.userQuery}</Text>
                                                 </ChatBubble>
@@ -167,7 +172,7 @@ export default function Chat() {
                                                 <ChatBubble isResponse={true}>
                                                     <Text>{ollieResponse.response}</Text>
                                                 </ChatBubble>
-                                            </>
+                                            </View>
                                         )
                                     ))
                                 }
