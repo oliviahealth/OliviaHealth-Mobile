@@ -42,11 +42,22 @@ export default function Chat() {
         "Where can I find mental health support?",
     ];
 
-    const [submittedQuery, setSubmittedQuery] = useState<null | string>(null);
-    const [apiResponse, setApiResponse] = useState<IOllieResponseSchema>();
+    const [query, setQuery] = useState<string>();
 
-    const handleSubmit = (query: string) => {
+    const [submittedQuery, setSubmittedQuery] = useState<null | string>(null);
+    const [apiResponse, setApiResponse] = useState<IOllieResponse>();
+
+    const handleQuickResponseSubmit = (query: string) => {
         getResponse({ query });
+    }
+
+    const handleInputSubmit = () => {
+        if (!query?.trim()) return;
+
+        const submitQuery = query;
+        setQuery("")
+
+        getResponse({ query: submitQuery });
     }
 
     const { mutate: getResponse } = useMutation({
@@ -84,12 +95,11 @@ export default function Chat() {
             setSubmittedQuery(null);
         },
         onError() {
-            setApiResponse("Something went wrong");
+            console.error("Something went wrong");
         },
         onSuccess: async (data) => {
             if (!data) return;
-            console.log(data.response);
-            setApiResponse(data.response);
+            setApiResponse(data);
         }
     },);
 
@@ -124,7 +134,7 @@ export default function Chat() {
                                         {quickResponses.map((quickResponse, index) => (
                                             <Pressable
                                                 key={index}
-                                                onPress={() => handleSubmit(quickResponse)}
+                                                onPress={() => handleQuickResponseSubmit(quickResponse)}
                                             >
                                                 {({ pressed }) => (
                                                     <Text
@@ -142,9 +152,15 @@ export default function Chat() {
                                 </ChatBubble>
 
                                 {apiResponse && (
-                                    <ChatBubble isResponse={true}>
-                                        <Text>{apiResponse}</Text>
-                                    </ChatBubble>
+                                    <>
+                                        <ChatBubble isResponse={false}>
+                                            <Text>{apiResponse.userQuery}</Text>
+                                        </ChatBubble>
+
+                                        <ChatBubble isResponse={true}>
+                                            <Text>{apiResponse.response}</Text>
+                                        </ChatBubble>
+                                    </>
                                 )}
 
                                 {submittedQuery && (
@@ -177,6 +193,9 @@ export default function Chat() {
                             >
                                 <TextInput
                                     placeholder="Message"
+                                    value={query}
+                                    onChangeText={(text) => setQuery(text)}
+                                    onSubmitEditing={handleInputSubmit}
                                     placeholderTextColor="rgba(0,0,0,0.35)"
                                     style={{
                                         flex: 1,
@@ -196,6 +215,7 @@ export default function Chat() {
                                         alignItems: "center",
                                         justifyContent: "center",
                                     })}
+                                    onPress={handleInputSubmit}
                                 >
                                     <Text style={{ color: "#fff", fontSize: 16, fontWeight: "700" }}>
                                         ↑
