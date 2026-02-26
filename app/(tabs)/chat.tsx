@@ -45,7 +45,7 @@ export default function Chat() {
     const [query, setQuery] = useState<string>();
 
     const [submittedQuery, setSubmittedQuery] = useState<null | string>(null);
-    const [apiResponse, setApiResponse] = useState<IOllieResponse>();
+    const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>([]);
 
     const handleQuickResponseSubmit = (query: string) => {
         getResponse({ query });
@@ -99,7 +99,10 @@ export default function Chat() {
         },
         onSuccess: async (data) => {
             if (!data) return;
-            setApiResponse(data);
+            const ollieReponsesCopy = [...ollieResponses];
+            ollieReponsesCopy.push(data);
+
+            setOllieResponses(ollieReponsesCopy);
         }
     },);
 
@@ -151,17 +154,21 @@ export default function Chat() {
                                     </View>
                                 </ChatBubble>
 
-                                {apiResponse && (
-                                    <>
-                                        <ChatBubble isResponse={false}>
-                                            <Text>{apiResponse.userQuery}</Text>
-                                        </ChatBubble>
+                                {
+                                    ollieResponses.map((ollieResponse) => (
+                                        (
+                                            <>
+                                                <ChatBubble isResponse={false}>
+                                                    <Text>{ollieResponse.userQuery}</Text>
+                                                </ChatBubble>
 
-                                        <ChatBubble isResponse={true}>
-                                            <Text>{apiResponse.response}</Text>
-                                        </ChatBubble>
-                                    </>
-                                )}
+                                                <ChatBubble isResponse={true}>
+                                                    <Text>{ollieResponse.response}</Text>
+                                                </ChatBubble>
+                                            </>
+                                        )
+                                    ))
+                                }
 
                                 {submittedQuery && (
                                     <ChatBubble isResponse={false}>
