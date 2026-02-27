@@ -1,18 +1,12 @@
 import { MapJourneyButton } from "@/components/MapJourneyButton";
-import { TINT_COLOR } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  ScrollView,
-  Text,
-  View,
-  useWindowDimensions
-} from "react-native";
-import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { ScrollView, Text, View, useWindowDimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
 export default function JourneyScreen() {
   const { width } = useWindowDimensions();
+  const { top } = useSafeAreaInsets();
 
   interface Point {
     x: number;
@@ -98,41 +92,17 @@ export default function JourneyScreen() {
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 12,
-            marginTop: useSafeAreaInsets().top,
-          }}
-        >
-          <View style={{ flexDirection: "column", gap: 8 }}>
-            <Text style={{ fontSize: 22, fontWeight: "bold", color: "#000" }}>
-              Explore Your Journey
+        <View style={{ marginTop: top, paddingTop: 20, paddingBottom: 40 }}>
+          <View style={{ flexDirection: "column" }}>
+            <Text style={{ fontSize: 18, fontWeight: "500", color: "#A781B1" }}>
+              OliviaHealth
             </Text>
-            <Text style={{ fontSize: 14, color: "#555", fontWeight: "500" }}>
-              What are your learning needs?
+            <Text
+              style={{ fontSize: 35, color: "#73577A", fontWeight: "bold" }}
+            >
+              Journey
             </Text>
           </View>
-          <AnimatedCircularProgress
-            size={100}
-            width={10}
-            fill={75}
-            tintColor={TINT_COLOR}
-            backgroundColor="#fff"
-            lineCap="round"
-            rotation={0}
-          >
-            {(fill: number) => (
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "bold",
-                }}
-              >{`${Math.round(fill)}%`}</Text>
-            )}
-          </AnimatedCircularProgress>
         </View>
 
         {/* Journey Path and Buttons */}
