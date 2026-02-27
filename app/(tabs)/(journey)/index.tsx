@@ -1,7 +1,7 @@
 import { MapJourneyButton } from "@/components/MapJourneyButton";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, Text, View, useWindowDimensions } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
 export default function JourneyScreen() {
@@ -82,17 +82,16 @@ export default function JourneyScreen() {
   const pathString = getPathString(points, controlPoints);
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView edges={['top']} style={{ flex: 1 }}>
       <ScrollView
         contentContainerStyle={{
-          paddingTop: 20,
           paddingHorizontal: 20,
           gap: 18,
         }}
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
-        <View style={{ marginTop: top, paddingTop: 20, paddingBottom: 40 }}>
+        <View style={{ paddingBottom: 40 }}>
           <View style={{ flexDirection: "column" }}>
             <Text style={{ fontSize: 18, fontWeight: "500", color: "#A781B1" }}>
               OliviaHealth
@@ -146,6 +145,6 @@ export default function JourneyScreen() {
           ))}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

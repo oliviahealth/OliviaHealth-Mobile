@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function JourneyDetailsScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -70,7 +71,7 @@ export default function JourneyDetailsScreen() {
   ];
 
   return (
-    <>
+    <SafeAreaView>
       <ScrollView
         contentContainerStyle={{
           paddingTop: 20,
@@ -228,6 +229,6 @@ export default function JourneyDetailsScreen() {
           </TouchableOpacity>
         </View>
       </Modal>
-    </>
+    </SafeAreaView>
   );
 }
