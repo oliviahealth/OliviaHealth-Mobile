@@ -118,7 +118,7 @@ export default function Chat() {
 
             if (resources) {
                 const fetchedSources = fetchSources(data.documents, resources)
-                data.sources = fetchedSources.map(item => item.doc)
+                data.sources = fetchedSources;
             }
 
             ollieReponsesCopy.push(data);
