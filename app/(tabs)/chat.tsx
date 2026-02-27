@@ -3,7 +3,7 @@ import { TINT_COLOR } from "@/theme";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Markdown from 'react-native-markdown-display';
 
@@ -15,26 +15,31 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
-const PRIMARY = "#F5F5F7"; // same role as bg-primary
 const OLLIE_URL = process.env.EXPO_PUBLIC_OLLIE_URL!;
 
 interface ChatBubbleProps {
     children: React.ReactNode
     isResponse: boolean
     isLocationResponse?: boolean
-    isFocused?: boolean
     background?: boolean
 }
-const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocationResponse: isLocation, isFocused: focused, background = true }) => {
+const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocationResponse: isLocation, background = true }) => {
     return (
-        <View
-            style={{ width: "100%", flexDirection: "row", justifyContent: isResponse ? "flex-start" : "flex-end", marginVertical: 6, }} >
-            <View style={{ flexDirection: "row", borderRadius: 16, maxWidth: "100%", backgroundColor: background ? "#ffffff" : "transparent", opacity: focused ? 1 : 0.8, }}>
+        <View style={{ width: "100%", flexDirection: "row", justifyContent: isResponse ? "flex-start" : "flex-end", marginVertical: 6, paddingHorizontal: 20 }}>
+            <View style={{
+                flexDirection: "row",
+                borderRadius: 16,
+                maxWidth: "100%",
+                backgroundColor: background ? "rgba(255,255,255,0.75)" : "transparent",
+                shadowColor: "#a78bfa",
+                shadowOpacity: 0.15,
+                shadowRadius: 5,
+                elevation: 2,
+            }}>
                 {isLocation && (
-                    <View style={{ width: 8, backgroundColor: focused ? PRIMARY : "transparent", borderTopLeftRadius: 12, borderBottomLeftRadius: 12, }} />
+                    <View style={{ width: 8, backgroundColor: "#F5F5F7", borderTopLeftRadius: 12, borderBottomLeftRadius: 12 }} />
                 )}
-
-                <View style={{ paddingVertical: 12, paddingHorizontal: 16, flexShrink: 1, }} >
+                <View style={{ paddingVertical: 12, paddingHorizontal: 16, flexShrink: 1 }}>
                     {children}
                 </View>
             </View>
@@ -53,6 +58,8 @@ export default function Chat() {
 
     const [submittedQuery, setSubmittedQuery] = useState<null | string>(null);
     const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>([]);
+
+    const scrollRef = useRef<ScrollView>(null);
 
     useEffect(() => {
         if (!ollieResponseParam) return;
@@ -173,10 +180,12 @@ export default function Chat() {
         >
             <SafeAreaView style={{ flex: 1 }}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
-                    <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, paddingHorizontal: 20, gap: 8 }}>
-                        <Pressable>
-                            <Ionicons size={24} name="menu-outline" color={TINT_COLOR} />
-                        </Pressable>
+                    <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
+                        <View style={{ paddingHorizontal: 20 }}>
+                            <Pressable>
+                                <Ionicons size={24} name="menu-outline" color={TINT_COLOR} />
+                            </Pressable>
+                        </View>
 
                         <ScrollView
                             contentContainerStyle={{
@@ -184,6 +193,8 @@ export default function Chat() {
                                 flexGrow: 1,
                             }}
                             showsVerticalScrollIndicator={false}
+                            ref={scrollRef}
+                            onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
                         >
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end' }}>
 
@@ -250,7 +261,7 @@ export default function Chat() {
                             </View>
                         </ScrollView>
 
-                        <View style={{ paddingBottom: 6 }}>
+                        <View style={{ paddingBottom: 6, paddingHorizontal: 20 }}>
                             <View
                                 style={{
                                     flexDirection: "row",
@@ -275,11 +286,15 @@ export default function Chat() {
                                     onChangeText={(text) => setQuery(text)}
                                     onSubmitEditing={handleInputSubmit}
                                     placeholderTextColor="rgba(0,0,0,0.35)"
+                                    multiline
                                     style={{
                                         flex: 1,
-                                        fontSize: 15,              // ↓ smaller text
+                                        fontSize: 15,
                                         paddingRight: 8,
-                                        color: "#111",
+                                        color: "#555",
+                                        maxHeight: 120,
+                                        paddingTop: 8,
+                                        paddingBottom: 8,
                                     }}
                                     returnKeyType="send"
                                 />
