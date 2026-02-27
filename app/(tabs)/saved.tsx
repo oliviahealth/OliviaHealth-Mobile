@@ -14,6 +14,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useMemo, useState } from "react";
 import {
   KeyboardAvoidingView,
+  SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -96,6 +97,7 @@ export default function Index() {
   }, [resources?.infographics, savedResources?.infographics]);
 
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
     <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
       <ScrollView
         contentContainerStyle={{
@@ -285,5 +287,6 @@ export default function Index() {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }

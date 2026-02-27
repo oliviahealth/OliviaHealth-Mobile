@@ -6,12 +6,12 @@ const BackButton = () => {
   const router = useRouter();
 
   return (
-    <TouchableOpacity onPress={() => router.back()} activeOpacity={0.9}>
-      <Ionicons
-        name="chevron-back"
-        size={24}
-        color="#000"
-      />
+    <TouchableOpacity
+      style={{ marginLeft: 5 }}
+      onPress={() => router.back()}
+      activeOpacity={0.9}
+    >
+      <Ionicons name="chevron-back" size={24} color="#000" />
     </TouchableOpacity>
   );
 };
