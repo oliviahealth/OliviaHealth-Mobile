@@ -89,12 +89,10 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} edges={['top']} onLayout={onLayoutRootView}>
         <StatusBar barStyle="dark-content" />
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
-      </SafeAreaView>
     </QueryClientProvider>
   );
 }
