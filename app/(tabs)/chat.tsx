@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Markdown from 'react-native-markdown-display';
 
+import ErrorPopup from "@/components/ErrorPopup";
 import SideDrawer from "@/components/SideDrawer";
 
 import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
@@ -88,7 +89,7 @@ export default function Chat() {
         getResponse({ query: submitQuery });
     }
 
-    const { mutate: getResponse, isPending: ollieRepsonsePending, reset } = useMutation({
+    const { mutate: getResponse, isPending: ollieRepsonsePending, isError, reset } = useMutation({
         mutationFn: async (data: { query: string }) => {
             if (data.query === "") return;
 
@@ -120,8 +121,13 @@ export default function Chat() {
         onSettled() {
             setSubmittedQuery(null);
         },
-        onError() {
-            console.error("Something went wrong");
+        onError(error) {
+            console.error(error);
+            
+            // show the error dialog for 5 seconds
+            setTimeout(() => {
+                reset();
+            }, 5000)
         },
         onSuccess: async (data) => {
             if (!data) return;
@@ -190,10 +196,12 @@ export default function Chat() {
             end={{ x: 1, y: 1 }}
             style={{ flex: 1 }}
         >
-            <SafeAreaView style={{ flex: 1 }}>        
+            <SafeAreaView style={{ flex: 1 }}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
-                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }}  onReset={resetChat} />
-                    
+                    <ErrorPopup message="Something went wrong. Please try again later" visible={isError} />
+
+                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} />
+
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ paddingHorizontal: 20 }}>
                             <Pressable onPress={() => setDrawerOpen(true)}>
