@@ -37,7 +37,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
             top: y - BUTTON_SIZE / 2,
           },
         ]}
-        onPress={() => router.push(`details/${id}`)} // If this errors, ignore it, it leads to a proper route
+        onPress={() => router.push(`/(tabs)/(journey)/details/${id}`)}
         activeOpacity={0.85}
       >
         <AnimatedCircularProgress
