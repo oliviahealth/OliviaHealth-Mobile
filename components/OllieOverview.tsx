@@ -6,7 +6,8 @@ import { useRouter } from "expo-router";
 import { TruncatedTextView } from 'react-native-truncated-text-view';
 import Markdown from 'react-native-markdown-display';
 
-import useResourcesStore, { IResources, IResourceItem } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
+import fetchSources from "@/src/utils/fetchSources";
 
 if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
@@ -76,21 +77,6 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
 
     const [sources, setSources] = useState<{ doc: IResourceItem; type: string; }[]>();
 
-    // link the resouces to data.sources
-    const fetchSources = (dataSources: string[], resources: IResources) => {
-        const res: { doc: any; type: string; }[] = [];
-
-        for (const [key, resources_arr] of Object.entries(resources)) {
-            for (const doc of resources_arr) {
-                if (dataSources.includes(doc.id)) {
-                    res.push({ 'doc': doc, 'type': key });
-                }
-            }
-        }
-
-        return res;
-    }
-
     const navigateToSource = (source: { doc: IResourceItem; type: string }) => {
         switch (source.type) {
             case "infographics":
@@ -107,7 +93,7 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
                 });
                 break;
 
-                
+
             case "video_spotlights":
                 router.push({
                     pathname: "/(tabs)/(home)/video-spotlight",
@@ -130,7 +116,7 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
     const navigateToChat = () => {
         router.push({
             pathname: "/(tabs)/chat",
-            params: { conversationIdParam: ollieResponse?.conversationId, ollieResponseParam: JSON.stringify(ollieResponse) },
+            params: { ollieResponseParam: JSON.stringify({ ...ollieResponse, sources }) },
         });
     }
 

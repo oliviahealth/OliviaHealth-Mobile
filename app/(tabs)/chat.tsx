@@ -1,15 +1,17 @@
 import LoadingDot from "@/components/LoadingDot";
 import { TINT_COLOR } from "@/theme";
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Markdown from 'react-native-markdown-display';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
+import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
+import fetchSources from "@/src/utils/fetchSources";
 import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
@@ -41,7 +43,9 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocatio
 };
 
 export default function Chat() {
-    const { conversationIdParam, ollieResponseParam } = useLocalSearchParams<{ conversationIdParam: string, ollieResponseParam: string }>();
+    const router = useRouter();
+    const { ollieResponseParam } = useLocalSearchParams<{ ollieResponseParam: string }>();
+    const resources = useResourcesStore(state => state.resources);
 
     const [conversationId, setConversationId] = useState(uuid());
 
@@ -52,12 +56,17 @@ export default function Chat() {
 
     useEffect(() => {
         if (!ollieResponseParam) return;
-        const lastResponse = JSON.parse(ollieResponseParam).data;
+        const ollieResponseParsed = JSON.parse(ollieResponseParam);
 
+        const lastResponse = ollieResponseParsed.data;
+        const convoId = ollieResponseParsed.conversationId
+        const lastSources = ollieResponseParsed.sources;
+
+        lastResponse.sources = lastSources
+
+        setConversationId(convoId);
         setOllieResponses([lastResponse]);
-        setConversationId(conversationIdParam);
-
-    }, [conversationIdParam, ollieResponseParam])
+    }, [ollieResponseParam])
 
     const handleInputSubmit = () => {
         if (!query?.trim()) return;
@@ -106,11 +115,53 @@ export default function Chat() {
         onSuccess: async (data) => {
             if (!data) return;
             const ollieReponsesCopy = [...ollieResponses];
+
+            if (resources) {
+                const fetchedSources = fetchSources(data.documents, resources)
+                data.sources = fetchedSources.map(item => item.doc)
+            }
+
             ollieReponsesCopy.push(data);
 
             setOllieResponses(ollieReponsesCopy);
         }
-    },);
+    });
+
+    const navigateToSource = (source: { doc: IResourceItem; type: string }) => {
+        switch (source.type) {
+            case "infographics":
+                router.push({
+                    pathname: "/(tabs)/(home)/infographic",
+                    params: { infographic: JSON.stringify(source.doc) },
+                });
+                break;
+
+            case "local_resources":
+                router.push({
+                    pathname: "/(tabs)/(home)/local-resource",
+                    params: { localResource: JSON.stringify(source.doc) },
+                });
+                break;
+
+
+            case "video_spotlights":
+                router.push({
+                    pathname: "/(tabs)/(home)/video-spotlight",
+                    params: { videoSpotlight: JSON.stringify(source.doc) },
+                });
+                break;
+
+            case "quick_tips":
+                router.push({
+                    pathname: "/(tabs)/(home)/quick-tip",
+                    params: { quickTip: JSON.stringify(source.doc) },
+                });
+                break;
+
+            default:
+                console.warn("Unknown source type:", source.type);
+        }
+    };
 
     return (
         <LinearGradient
@@ -150,6 +201,34 @@ export default function Chat() {
                                                     <Markdown>
                                                         {ollieResponse.response}
                                                     </Markdown>
+
+                                                    {
+                                                        ollieResponse.sources?.map((source, index) => (
+                                                            <TouchableOpacity
+                                                                key={source.doc.id}
+                                                                activeOpacity={0.6}
+                                                                onPress={() => navigateToSource(source)}
+                                                                style={{
+                                                                    alignSelf: "flex-start",
+                                                                    marginTop: index === 0 ? 12 : 6,
+                                                                    paddingHorizontal: 12,
+                                                                    paddingVertical: 6,
+                                                                    borderRadius: 12,
+                                                                    backgroundColor: "rgba(0, 0, 0, 0.04)",
+                                                                }}
+                                                            >
+                                                                <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                                                                    <Text
+                                                                        style={{ fontSize: 12, color: "#555", fontWeight: "500" }}
+                                                                        numberOfLines={1}
+                                                                    >
+                                                                        {source.doc.title}
+                                                                    </Text>
+                                                                    <Ionicons name="chevron-forward-outline" />
+                                                                </View>
+                                                            </TouchableOpacity>
+                                                        ))
+                                                    }
                                                 </ChatBubble>
                                             </View>
                                         )

@@ -1,5 +1,5 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useState } from "react";
+import React from "react";
 import { Text, TextInput, View, Pressable } from "react-native";
 import { useMutation } from '@tanstack/react-query';
 import 'react-native-get-random-values';
@@ -16,8 +16,6 @@ interface SearchComponentProps {
 }
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, onChangeText }) => {
-  const [conversationId, setConversationId] = useState();
-
   // fetch ollie overview given the search string
   const getOllieOverview = useMutation({
     mutationFn: async (value: string | undefined) => {
