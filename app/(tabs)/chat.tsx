@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Markdown from 'react-native-markdown-display';
 
+import SideDrawer from "@/components/SideDrawer";
+
 import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
 import fetchSources from "@/src/utils/fetchSources";
 import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
@@ -61,6 +63,8 @@ export default function Chat() {
 
     const scrollRef = useRef<ScrollView>(null);
 
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
     useEffect(() => {
         if (!ollieResponseParam) return;
         const ollieResponseParsed = JSON.parse(ollieResponseParam);
@@ -84,7 +88,7 @@ export default function Chat() {
         getResponse({ query: submitQuery });
     }
 
-    const { mutate: getResponse, isPending: ollieRepsonsePending } = useMutation({
+    const { mutate: getResponse, isPending: ollieRepsonsePending, reset } = useMutation({
         mutationFn: async (data: { query: string }) => {
             if (data.query === "") return;
 
@@ -170,6 +174,14 @@ export default function Chat() {
         }
     };
 
+    const resetChat = () => {
+        setConversationId(uuid());
+        setQuery("");
+        setSubmittedQuery(null);
+        setOllieResponses([]);
+        reset();
+    }
+
     return (
         <LinearGradient
             colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -178,11 +190,13 @@ export default function Chat() {
             end={{ x: 1, y: 1 }}
             style={{ flex: 1 }}
         >
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>        
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
+                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }}  onReset={resetChat} />
+                    
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ paddingHorizontal: 20 }}>
-                            <Pressable>
+                            <Pressable onPress={() => setDrawerOpen(true)}>
                                 <Ionicons size={24} name="menu-outline" color={TINT_COLOR} />
                             </Pressable>
                         </View>
