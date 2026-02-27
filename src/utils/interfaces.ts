@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ResourceItemSchema } from '../store/useResourcesStore';
 
 export const LocationSchema = z.object({
     id: z.string(),
@@ -22,6 +23,12 @@ export const OllieResponseSchema = z.object({
     response_type: z.enum(["location", "direct"]),
     locations: z.array(LocationSchema),
     documents: z.array(z.string()),
+    sources: z.array(
+        z.object({
+            doc: ResourceItemSchema,
+            type: z.string(),
+        })
+    ).optional(),
     dateCreated: z.number(),
     conversationId: z.string()
 });
