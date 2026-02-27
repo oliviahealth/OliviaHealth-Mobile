@@ -1,4 +1,4 @@
-import BackButton from "@/components/BackButton";
+import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
 import { Stack } from "expo-router";
 import { ImageBackground, StyleSheet } from "react-native";
 
@@ -17,7 +17,12 @@ export default function JourneyLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen
           name="details/[id]"
-          options={{ headerLeft: () => <BackButton />, title: "Details" }}
+          options={{
+            header: ({ route }) => {
+              const id = (route.params as { id?: string })?.id ?? "Details";
+              return <JourneyDetailsHeader islandName={id} />;
+            },
+          }}
         />
       </Stack>
     </ImageBackground>
