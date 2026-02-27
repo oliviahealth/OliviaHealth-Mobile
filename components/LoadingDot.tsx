@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, ViewStyle } from "react-native";
+import { TINT_COLOR } from "@/theme";
 
 type Props = {
     size?: number;
@@ -10,7 +11,7 @@ type Props = {
 
 export default function LoadingDot({
     size = 10,
-    color = "#000",
+    color = TINT_COLOR,
     durationMs = 700,
     style,
 }: Props) {

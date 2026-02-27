@@ -2,8 +2,10 @@ import LoadingDot from "@/components/LoadingDot";
 import { TINT_COLOR } from "@/theme";
 import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import Markdown from 'react-native-markdown-display';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
@@ -41,24 +43,21 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocatio
 export default function Chat() {
     const { conversationIdParam, ollieResponseParam } = useLocalSearchParams<{ conversationIdParam: string, ollieResponseParam: string }>();
 
-    const quickResponses = [
-        "Where can I find prenatal vitamins?",
-        "Where is a good food pantry near me?",
-        "Where can I find mental health support?",
-    ];
-
-    const [conversationId, setConversationId] = useState(conversationIdParam ?? uuid());
+    const [conversationId, setConversationId] = useState(uuid());
 
     const [query, setQuery] = useState<string>();
 
     const [submittedQuery, setSubmittedQuery] = useState<null | string>(null);
-    const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>( ollieResponseParam ? [JSON.parse(ollieResponseParam).data] : [] );
+    const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>([]);
 
-    console.log(ollieResponses);
+    useEffect(() => {
+        if (!ollieResponseParam) return;
+        const lastResponse = JSON.parse(ollieResponseParam).data;
 
-    const handleQuickResponseSubmit = (query: string) => {
-        getResponse({ query });
-    }
+        setOllieResponses([lastResponse]);
+        setConversationId(conversationIdParam);
+
+    }, [conversationIdParam, ollieResponseParam])
 
     const handleInputSubmit = () => {
         if (!query?.trim()) return;
@@ -124,10 +123,9 @@ export default function Chat() {
             <SafeAreaView style={{ flex: 1 }}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, paddingHorizontal: 20, gap: 8 }}>
-                        <View style={{ gap: 2 }}>
-                            <Text style={{ fontWeight: "500", fontSize: 32, color: TINT_COLOR }}>OllieChat</Text>
-                            <Text style={{ paddingHorizontal: 2 }} >Powered by <Text style={{ color: TINT_COLOR }} >OliviaHealth</Text></Text>
-                        </View>
+                        <Pressable>
+                            <Ionicons size={24} name="menu-outline" color={TINT_COLOR} />
+                        </Pressable>
 
                         <ScrollView
                             contentContainerStyle={{
@@ -137,40 +135,21 @@ export default function Chat() {
                             showsVerticalScrollIndicator={false}
                         >
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end' }}>
-                                <ChatBubble isResponse={true}>
-                                    <Text style={{ fontWeight: 700, fontSize: 16, marginBottom: 12 }} >Quick Responses</Text>
-
-                                    <View style={{ gap: 12 }}>
-                                        {quickResponses.map((quickResponse, index) => (
-                                            <Pressable
-                                                key={index}
-                                                onPress={() => handleQuickResponseSubmit(quickResponse)}
-                                            >
-                                                {({ pressed }) => (
-                                                    <Text
-                                                        style={{
-                                                            color: pressed ? "#a138bb" : TINT_COLOR,
-                                                        }}
-                                                    >
-                                                        {quickResponse}
-                                                    </Text>
-                                                )}
-                                            </Pressable>
-
-                                        ))}
-                                    </View>
-                                </ChatBubble>
 
                                 {
                                     ollieResponses.map((ollieResponse, index) => (
                                         (
                                             <View key={`OllieResponse-${index}`}>
                                                 <ChatBubble isResponse={false}>
-                                                    <Text>{ollieResponse.userQuery}</Text>
+                                                    <Markdown>
+                                                        {ollieResponse.userQuery}
+                                                    </Markdown>
                                                 </ChatBubble>
 
                                                 <ChatBubble isResponse={true}>
-                                                    <Text>{ollieResponse.response}</Text>
+                                                    <Markdown>
+                                                        {ollieResponse.response}
+                                                    </Markdown>
                                                 </ChatBubble>
                                             </View>
                                         )
@@ -231,7 +210,7 @@ export default function Chat() {
                                         width: 34,                 // ↓ smaller button
                                         height: 34,
                                         borderRadius: 17,
-                                        backgroundColor: pressed ? "#8A6BFF" : "#7B61FF",
+                                        backgroundColor: pressed ? "#a138bb" : TINT_COLOR,
                                         alignItems: "center",
                                         justifyContent: "center",
                                     })}

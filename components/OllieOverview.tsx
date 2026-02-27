@@ -107,6 +107,7 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
                 });
                 break;
 
+                
             case "video_spotlights":
                 router.push({
                     pathname: "/(tabs)/(home)/video-spotlight",
