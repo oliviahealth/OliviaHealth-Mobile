@@ -10,6 +10,7 @@ interface JourneyDetailItemProps {
   fillColor: string;
   icon: keyof typeof Ionicons.glyphMap;
   renderSVGLine: boolean;
+  onPress?: () => void;
 }
 
 const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
@@ -19,6 +20,7 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
   fillColor,
   icon,
   renderSVGLine,
+  onPress,
 }) => {
   const PROGRESS_SIZE = 50;
   const LINE_HEIGHT = 15;
@@ -38,6 +40,7 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
           borderColor: "#CCCCCC",
         }}
         activeOpacity={0.8}
+        onPress={onPress}
       >
         <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
           <AnimatedCircularProgress
