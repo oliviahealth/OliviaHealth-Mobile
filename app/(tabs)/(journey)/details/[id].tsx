@@ -1,5 +1,7 @@
 import JourneyDetailItem from "@/components/JourneyDetailItem";
+import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
 import { Ionicons } from "@expo/vector-icons";
+import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
@@ -8,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function JourneyDetailsScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
+  const { id } = useLocalSearchParams();
 
   interface DetailItem {
     title: string;
@@ -71,15 +74,17 @@ export default function JourneyDetailsScreen() {
   ];
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      edges={["top"]}
+      style={{ flex: 1, backgroundColor: "transparent" }}
+    >
       <ScrollView
         contentContainerStyle={{
-          paddingTop: 20,
           paddingHorizontal: 20,
-          marginBottom: 20,
         }}
         showsVerticalScrollIndicator={false}
       >
+        <JourneyDetailsHeader islandName={id as string} />
         {detailItems.map((item, index) => (
           <JourneyDetailItem
             key={index}
