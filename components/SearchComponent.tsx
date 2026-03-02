@@ -77,7 +77,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           style={{
             flex: 1,
             fontSize: 16,
-            color: "#555",
+            color: "#222222",
           }}
           value={value}
           onChangeText={(t) => {
