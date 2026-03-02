@@ -123,7 +123,7 @@ export default function Chat() {
         },
         onError(error) {
             console.error(error);
-            
+
             // show the error dialog for 5 seconds
             setTimeout(() => {
                 reset();
@@ -205,7 +205,13 @@ export default function Chat() {
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ paddingHorizontal: 20 }}>
                             <Pressable onPress={() => setDrawerOpen(true)}>
-                                <Ionicons size={24} name="menu-outline" color={TINT_COLOR} />
+                                {({ pressed }) => (
+                                    <Ionicons
+                                        size={24}
+                                        name="menu-outline"
+                                        color={pressed ? "#a138bb" : TINT_COLOR}
+                                    />
+                                )}
                             </Pressable>
                         </View>
 
@@ -252,7 +258,7 @@ export default function Chat() {
                                                             >
                                                                 <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
                                                                     <Text
-                                                                        style={{ fontSize: 12, color: "#555", fontWeight: "500" }}
+                                                                        style={{ fontSize: 12, color: "#222222", fontWeight: "500" }}
                                                                         numberOfLines={1}
                                                                     >
                                                                         {source.doc.title}
@@ -313,7 +319,7 @@ export default function Chat() {
                                         flex: 1,
                                         fontSize: 15,
                                         paddingRight: 8,
-                                        color: "#555",
+                                        color: "#222222",
                                         maxHeight: 120,
                                         paddingTop: 8,
                                         paddingBottom: 8,

@@ -208,7 +208,7 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
                                                     >
                                                         <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
                                                             <Text
-                                                                style={{ fontSize: 12, color: "#555", fontWeight: "500" }}
+                                                                style={{ fontSize: 12, color: "#222222", fontWeight: "500" }}
                                                                 numberOfLines={1}
                                                             >
                                                                 {source.doc.title}

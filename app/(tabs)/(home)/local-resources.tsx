@@ -45,13 +45,13 @@ export default function LocalResources() {
                 gap: 12,
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: "600", color: "#555" }}>
+              <Text style={{ fontSize: 18, fontWeight: "600", color: "#222222" }}>
                 Something went wrong
               </Text>
               <Text
                 style={{
                   fontSize: 14,
-                  color: "#999",
+                  color: "#222222",
                   textAlign: "center",
                   paddingHorizontal: 40,
                 }}
