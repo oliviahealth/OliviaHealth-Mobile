@@ -1,4 +1,5 @@
 import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
+import { loadSavedConversations } from "@/src/store/useConversationsStores";
 import { Stack } from "expo-router";
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from "react";
@@ -71,6 +72,8 @@ export default function RootLayout() {
       }
     }
     prepare();
+    loadSavedConversations();
+    
   }, [setResources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
 
   const onLayoutRootView = useCallback(async () => {
