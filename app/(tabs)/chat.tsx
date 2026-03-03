@@ -90,6 +90,8 @@ export default function Chat() {
 
         setConversationId(id);
         setOllieResponses(responses);
+
+        setDrawerOpen(false);
     }
 
     const handleInputSubmit = () => {
