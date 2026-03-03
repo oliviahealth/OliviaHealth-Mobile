@@ -7,21 +7,16 @@ import { TruncatedTextView } from 'react-native-truncated-text-view';
 import Markdown from 'react-native-markdown-display';
 
 import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
+import useConversationsStore from "@/src/store/useConversationsStores";
 import fetchSources from "@/src/utils/fetchSources";
+import { IOllieResponse } from "@/src/utils/interfaces";
 
 if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
 }
 
-interface IOllieOverviewResponse {
-    response: string;
-    response_type: string;
-    locations: string[];
-    documents: string[];
-}
-
 type OllieOverviewProps = {
-    ollieResponse?: { conversationId: string, data: IOllieOverviewResponse };
+    ollieResponse?: { conversationId: string, data: IOllieResponse };
     isError: boolean
     isLoading: boolean
 };
@@ -74,6 +69,7 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
 
     const router = useRouter();
     const resources = useResourcesStore(state => state.resources);
+    const addResponse = useConversationsStore(state => state.addResponse);
 
     const [sources, setSources] = useState<{ doc: IResourceItem; type: string; }[]>();
 
@@ -114,6 +110,20 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
     };
 
     const navigateToChat = () => {
+        // Create a new conversation record in the store
+        if (ollieResponse?.data) {
+            addResponse({
+                userQuery: ollieResponse.data.userQuery,
+                response: ollieResponse.data.response,
+                response_type: ollieResponse.data.response_type as "location" | "direct",
+                locations: ollieResponse.data.locations,
+                documents: ollieResponse.data.documents,
+                dateCreated: Date.now(),
+                conversationId: ollieResponse.conversationId,
+                sources,
+            });
+        }
+
         router.push({
             pathname: "/(tabs)/chat",
             params: { ollieResponseParam: JSON.stringify({ ...ollieResponse, sources }) },

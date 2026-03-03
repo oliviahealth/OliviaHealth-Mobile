@@ -4,38 +4,24 @@ import { useEffect, useRef } from "react";
 import { Animated, Dimensions, Pressable, View, Text, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import useConversationsStore, { IConversation } from "@/src/store/useConversationsStores";
+
 const DRAWER_WIDTH = Dimensions.get("window").width * 0.6;
 
 interface SideDrawerProps {
     isOpen: boolean;
     onClose: () => void;
     onReset: () => void;
+    restoreConversation: (conversation: IConversation) => void
 }
 
-export default function SideDrawer({ isOpen, onClose, onReset }: SideDrawerProps) {
+export default function SideDrawer({ isOpen, onClose, onReset, restoreConversation }: SideDrawerProps) {
+    const conversations = useConversationsStore(state => state.conversations);
+
     const translateX = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
     const overlayOpacity = useRef(new Animated.Value(0)).current;
 
     const insets = useSafeAreaInsets();
-
-    const recentChats = [
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?',
-        'Where can i find prenatal vitamins?'
-    ]
 
     useEffect(() => {
         Animated.parallel([
@@ -128,9 +114,10 @@ export default function SideDrawer({ isOpen, onClose, onReset }: SideDrawerProps
                         paddingBottom: insets.bottom + 100,
                         gap: 8,
                     }}>
-                        {recentChats.map((recentChat, index) => (
+                        {Object.values(conversations).map((conversation, index) => (
                             <Pressable
                                 key={`recentchat-${index}`}
+                                onPress={() => restoreConversation(conversation)}
                                 style={({ pressed }) => ({
                                     paddingVertical: 8,
                                     paddingHorizontal: 14,
@@ -150,7 +137,7 @@ export default function SideDrawer({ isOpen, onClose, onReset }: SideDrawerProps
                                         lineHeight: 18,
                                     }}
                                 >
-                                    Where can I find prenatal vitamins?
+                                    {conversation.title}
                                 </Text>
                             </Pressable>
                         ))}

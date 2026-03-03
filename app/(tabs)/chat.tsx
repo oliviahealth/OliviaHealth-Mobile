@@ -11,6 +11,8 @@ import ErrorPopup from "@/components/ErrorPopup";
 import SideDrawer from "@/components/SideDrawer";
 
 import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
+import useConversationsStore, { IConversation } from "@/src/store/useConversationsStores";
+
 import fetchSources from "@/src/utils/fetchSources";
 import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
@@ -54,6 +56,7 @@ export default function Chat() {
     const router = useRouter();
     const { ollieResponseParam } = useLocalSearchParams<{ ollieResponseParam: string }>();
     const resources = useResourcesStore(state => state.resources);
+    const addResponse = useConversationsStore(state => state.addResponse);
 
     const [conversationId, setConversationId] = useState(uuid());
 
@@ -79,6 +82,15 @@ export default function Chat() {
         setConversationId(convoId);
         setOllieResponses([lastResponse]);
     }, [ollieResponseParam])
+
+
+    // restore a conversation from the side drawer
+    const restoreConversation = (conversation: IConversation) => {
+        const { id, responses } = conversation;
+
+        setConversationId(id);
+        setOllieResponses(responses);
+    }
 
     const handleInputSubmit = () => {
         if (!query?.trim()) return;
@@ -141,6 +153,8 @@ export default function Chat() {
             ollieReponsesCopy.push(data);
 
             setOllieResponses(ollieReponsesCopy);
+
+            addResponse(data);
         }
     });
 
@@ -200,7 +214,7 @@ export default function Chat() {
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
                     <ErrorPopup message="Something went wrong. Please try again later" visible={isError} />
 
-                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} />
+                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} />
 
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ paddingHorizontal: 20 }}>
