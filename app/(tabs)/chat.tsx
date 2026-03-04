@@ -216,7 +216,7 @@ export default function Chat() {
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
                     <ErrorPopup message="Something went wrong. Please try again later" visible={isError} />
 
-                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} />
+                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} currentConversationId={conversationId} />
 
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ paddingHorizontal: 20 }}>
