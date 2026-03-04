@@ -13,9 +13,10 @@ interface SideDrawerProps {
     onClose: () => void;
     onReset: () => void;
     restoreConversation: (conversation: IConversation) => void
+    currentConversationId?: string
 }
 
-export default function SideDrawer({ isOpen, onClose, onReset, restoreConversation }: SideDrawerProps) {
+export default function SideDrawer({ isOpen, onClose, onReset, restoreConversation, currentConversationId }: SideDrawerProps) {
     const conversations = useConversationsStore(state => state.conversations);
 
     const translateX = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
@@ -124,7 +125,7 @@ export default function SideDrawer({ isOpen, onClose, onReset, restoreConversati
                                     borderRadius: 14,
 
                                     // Light gray on press
-                                    backgroundColor: pressed ? "#F2F2F2" : "transparent",
+                                    backgroundColor: (pressed || currentConversationId === conversation.id) ? "#F2F2F2" : "transparent",
 
                                     // Keep subtle depth
                                     shadowColor: "#000",
