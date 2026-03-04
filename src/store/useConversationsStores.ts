@@ -17,6 +17,7 @@ export interface IConversationsState {
     conversations: { [key: string]: IConversation };
     setConversations: (conversations: { [key: string]: IConversation }) => void
     addResponse: (response: IOllieResponse) => void; // Add response to conversation. If conversation record doesn't exist, add it
+    deleteConversation: (conversationId: string) => void
 }
 
 const useConversationsStore = create<IConversationsState>()((set, get) => ({
@@ -57,6 +58,19 @@ const useConversationsStore = create<IConversationsState>()((set, get) => ({
                 conversations: updatedConversationHistory,
             };
         });
+    },
+    deleteConversation(conversationId) {
+        const conversations = { ...get().conversations };
+
+        for (const id of Object.keys(conversations)) {
+            if (id === conversationId) {
+                delete conversations[id];
+            }
+        }
+
+        AsyncStorage.setItem('conversationHistory', JSON.stringify(conversations))
+            .catch(error => console.error('Error saving to AsyncStorage:', error));
+        set({ conversations });
     },
 }))
 
