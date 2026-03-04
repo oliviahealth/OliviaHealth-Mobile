@@ -68,6 +68,7 @@ export default function Chat() {
     const scrollRef = useRef<ScrollView>(null);
 
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
 
     useEffect(() => {
         if (!ollieResponseParam) return;
@@ -204,6 +205,11 @@ export default function Chat() {
         reset();
     }
 
+    const handleConversationDelete = () => {
+        resetChat();
+        setOptionsMenuOpen(false);
+    }
+
     return (
         <LinearGradient
             colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -219,7 +225,7 @@ export default function Chat() {
                     <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} currentConversationId={conversationId} />
 
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
-                        <View style={{ paddingHorizontal: 20 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
                             <Pressable onPress={() => setDrawerOpen(true)}>
                                 {({ pressed }) => (
                                     <Ionicons
@@ -229,6 +235,51 @@ export default function Chat() {
                                     />
                                 )}
                             </Pressable>
+
+                            <Pressable onPress={() => setOptionsMenuOpen(!optionsMenuOpen)}>
+                                {({ pressed }) => (
+                                    <Ionicons
+                                        size={24}
+                                        name="ellipsis-horizontal-circle-outline"
+                                        color={pressed ? "#a138bb" : TINT_COLOR}
+                                    />
+                                )}
+                            </Pressable>
+
+                            {optionsMenuOpen && (
+                                <View
+                                    style={{
+                                        position: "absolute",
+                                        top: 30,
+                                        right: 20,
+                                        backgroundColor: "white",
+                                        borderRadius: 10,
+                                        shadowColor: "#000",
+                                        shadowOpacity: 0.15,
+                                        shadowRadius: 8,
+                                        elevation: 5,
+                                        minWidth: 140,
+                                        zIndex: 999,
+                                        padding: 6
+                                    }}
+                                >
+                                    <Pressable
+                                        onPress={handleConversationDelete}
+                                    >
+                                        {({ pressed }) => (
+                                            <View style={{ paddingHorizontal: 12, paddingVertical: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: pressed ? "#F2F2F2" : 'transparent', borderRadius: 6 }}>
+                                                <Text style={{ color: 'red' }}>Delete</Text>
+                                                <Ionicons
+                                                    size={18}
+                                                    name="trash-outline"
+                                                    color='red'
+                                                />
+                                            </View>
+                                        )}
+
+                                    </Pressable>
+                                </View>
+                            )}
                         </View>
 
                         <ScrollView
@@ -239,6 +290,7 @@ export default function Chat() {
                             showsVerticalScrollIndicator={false}
                             ref={scrollRef}
                             onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
+                            onTouchStart={() => setOptionsMenuOpen(false)}
                         >
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end' }}>
 
