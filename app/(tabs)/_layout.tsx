@@ -5,12 +5,14 @@ import { TINT_COLOR } from "../../theme";
 export default function TabLayout() {
   return (
     <Tabs
+      detachInactiveScreens={false}
       screenOptions={{
         tabBarActiveTintColor: TINT_COLOR,
         headerShown: false,
         sceneStyle: {
           backgroundColor: "#ffff",
         },
+        animation: "shift",
       }}
     >
       <Tabs.Screen
