@@ -56,7 +56,11 @@ export default function Chat() {
     const router = useRouter();
     const { ollieResponseParam } = useLocalSearchParams<{ ollieResponseParam: string }>();
     const resources = useResourcesStore(state => state.resources);
+
+    const conversations = useConversationsStore(state => state.conversations);
+    const setConversations = useConversationsStore(state => state.setConversations);
     const addResponse = useConversationsStore(state => state.addResponse);
+    const deleteConversation = useConversationsStore(state => state.deleteConversation);
 
     const [conversationId, setConversationId] = useState(uuid());
 
@@ -161,6 +165,47 @@ export default function Chat() {
         }
     });
 
+    const { mutate: deleteConversationMutation, isError: isDeleteConversationError } = useMutation({
+        mutationFn: async (conversationId: string) => {
+            if (!conversationId) return;
+
+            const formData = new FormData();
+            formData.append('conversationId', conversationId);
+
+            const res = await fetch(`${OLLIE_URL}/conversations`, { method: 'DELETE', body: formData });
+            if (!res.ok) {
+                throw new Error(`Delete request failed with status ${res.status}`);
+            }
+        },
+        // optimistically update the conversations to disclude the deleted conversation.
+        // If the mutation fails, reset to the last state, else lock in the delete
+        onMutate: (conversationId) => {
+            const previousConversations = { ...conversations };
+            const newConversations = { ...conversations };
+
+            for (const id of Object.keys(newConversations)) {
+                if (id === conversationId) {
+                    delete newConversations[id];
+                }
+            }
+            setConversations(newConversations);
+
+            return { previousConversations };
+        },
+        // reset the state is the mutation fails
+        onError: (error, conversationId, context) => {
+            console.error(error);
+
+            if (context?.previousConversations) {
+                setConversations(context.previousConversations);
+            }
+        },
+        // lock in the delete by updating local storage
+        onSuccess: (res, conversationId) => {
+            deleteConversation(conversationId);
+        }
+    })
+
     const navigateToSource = (source: { doc: IResourceItem; type: string }) => {
         switch (source.type) {
             case "infographics":
@@ -208,6 +253,8 @@ export default function Chat() {
     const handleConversationDelete = () => {
         resetChat();
         setOptionsMenuOpen(false);
+
+        deleteConversationMutation(conversationId);
     }
 
     return (
@@ -220,7 +267,7 @@ export default function Chat() {
         >
             <SafeAreaView style={{ flex: 1 }}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
-                    <ErrorPopup message="Something went wrong. Please try again later" visible={isError} />
+                    <ErrorPopup message="Something went wrong. Please try again later" visible={isError || isDeleteConversationError} />
 
                     <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} currentConversationId={conversationId} />
 
