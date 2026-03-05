@@ -65,7 +65,7 @@ export default function Chat() {
     const addResponse = useConversationsStore(state => state.addResponse);
     const deleteConversation = useConversationsStore(state => state.deleteConversation);
 
-    const [conversationId, setConversationId] = useState(uuid());
+    const [currentConversationId, setCurrentConversationId] = useState(uuid());
 
     const [query, setQuery] = useState<string>();
 
@@ -87,7 +87,7 @@ export default function Chat() {
 
         lastResponse.sources = lastSources
 
-        setConversationId(convoId);
+        setCurrentConversationId(convoId);
         setOllieResponses([lastResponse]);
     }, [ollieResponseParam])
 
@@ -96,7 +96,7 @@ export default function Chat() {
     const restoreConversation = (conversation: IConversation) => {
         const { id, responses } = conversation;
 
-        setConversationId(id);
+        setCurrentConversationId(id);
         setOllieResponses(responses);
 
         setDrawerOpen(false);
@@ -117,7 +117,7 @@ export default function Chat() {
 
             const formData = new FormData();
             formData.append("data", data.query);
-            formData.append("conversationId", conversationId);
+            formData.append("conversationId", currentConversationId);
 
             const res = await fetch(
                 `${OLLIE_URL}/formattedresults`,
@@ -183,6 +183,10 @@ export default function Chat() {
         // optimistically update the conversations to disclude the deleted conversation.
         // If the mutation fails, reset to the last state, else lock in the delete
         onMutate: (conversationId) => {
+            if(conversationId === currentConversationId) {
+                resetChat();
+            }
+
             const previousConversations = { ...conversations };
             const newConversations = { ...conversations };
 
@@ -250,7 +254,7 @@ export default function Chat() {
     };
 
     const resetChat = () => {
-        setConversationId(uuid());
+        setCurrentConversationId(uuid());
         setQuery("");
         setSubmittedQuery(null);
         setOllieResponses([]);
@@ -261,7 +265,7 @@ export default function Chat() {
         resetChat();
         setOptionsMenuOpen(false);
 
-        deleteConversationMutation(conversationId);
+        deleteConversationMutation(currentConversationId);
     }
 
     return (
@@ -276,7 +280,7 @@ export default function Chat() {
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={10}>
                     <ErrorPopup message="Something went wrong. Please try again later" visible={isError || isDeleteConversationError} />
 
-                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} deleteConversation={deleteConversationMutation} currentConversationId={conversationId} />
+                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} deleteConversation={deleteConversationMutation} currentConversationId={currentConversationId} />
 
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
