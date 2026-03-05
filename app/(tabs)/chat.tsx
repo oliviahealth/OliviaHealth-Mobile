@@ -2,9 +2,10 @@ import LoadingDot from "@/components/LoadingDot";
 import { TINT_COLOR } from "@/theme";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMutation } from "@tanstack/react-query";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
-import { KeyboardAvoidingView, Pressable, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Markdown from 'react-native-markdown-display';
 
 import ErrorPopup from "@/components/ErrorPopup";
@@ -53,6 +54,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocatio
 };
 
 export default function Chat() {
+    const insets = useSafeAreaInsets();
+
     const router = useRouter();
     const { ollieResponseParam } = useLocalSearchParams<{ ollieResponseParam: string }>();
     const resources = useResourcesStore(state => state.resources);
@@ -108,7 +111,7 @@ export default function Chat() {
         getResponse({ query: submitQuery });
     }
 
-    const { mutate: getResponse, isPending: ollieRepsonsePending, isError, reset } = useMutation({
+    const { mutate: getResponse, isPending: ollieRepsonsePending, isError, reset: resetGetResponseMutation } = useMutation({
         mutationFn: async (data: { query: string }) => {
             if (data.query === "") return;
 
@@ -145,7 +148,7 @@ export default function Chat() {
 
             // show the error dialog for 5 seconds
             setTimeout(() => {
-                reset();
+                resetGetResponseMutation();
             }, 5000)
         },
         onSuccess: async (data) => {
@@ -165,7 +168,7 @@ export default function Chat() {
         }
     });
 
-    const { mutate: deleteConversationMutation, isError: isDeleteConversationError } = useMutation({
+    const { mutate: deleteConversationMutation, isError: isDeleteConversationError, reset: resetDeleteConversationMutation } = useMutation({
         mutationFn: async (conversationId: string) => {
             if (!conversationId) return;
 
@@ -199,6 +202,10 @@ export default function Chat() {
             if (context?.previousConversations) {
                 setConversations(context.previousConversations);
             }
+
+            setTimeout(() => {
+                resetDeleteConversationMutation();
+            }, 5000)
         },
         // lock in the delete by updating local storage
         onSuccess: (res, conversationId) => {
@@ -247,7 +254,7 @@ export default function Chat() {
         setQuery("");
         setSubmittedQuery(null);
         setOllieResponses([]);
-        reset();
+        resetGetResponseMutation();
     }
 
     const handleConversationDelete = () => {
@@ -266,10 +273,10 @@ export default function Chat() {
             style={{ flex: 1 }}
         >
             <SafeAreaView style={{ flex: 1 }}>
-                <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={40}>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={10}>
                     <ErrorPopup message="Something went wrong. Please try again later" visible={isError || isDeleteConversationError} />
 
-                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} currentConversationId={conversationId} />
+                    <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} deleteConversation={deleteConversationMutation} currentConversationId={conversationId} />
 
                     <View style={{ flex: 1, paddingTop: 20, paddingBottom: 5, gap: 8 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
@@ -294,38 +301,48 @@ export default function Chat() {
                             </Pressable>
 
                             {optionsMenuOpen && (
-                                <View
-                                    style={{
-                                        position: "absolute",
-                                        top: 30,
-                                        right: 20,
-                                        backgroundColor: "white",
-                                        borderRadius: 10,
-                                        shadowColor: "#000",
-                                        shadowOpacity: 0.15,
-                                        shadowRadius: 8,
-                                        elevation: 5,
-                                        minWidth: 140,
-                                        zIndex: 999,
-                                        padding: 6
-                                    }}
-                                >
+                                <Modal transparent animationType="none" onRequestClose={() => setOptionsMenuOpen(false)}>
+                                    {/* Full-screen dismiss layer */}
                                     <Pressable
-                                        onPress={handleConversationDelete}
-                                    >
-                                        {({ pressed }) => (
-                                            <View style={{ paddingHorizontal: 12, paddingVertical: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: pressed ? "#F2F2F2" : 'transparent', borderRadius: 6 }}>
-                                                <Text style={{ color: 'red' }}>Delete</Text>
-                                                <Ionicons
-                                                    size={18}
-                                                    name="trash-outline"
-                                                    color='red'
-                                                />
-                                            </View>
-                                        )}
+                                        style={StyleSheet.absoluteFillObject}
+                                        onPress={() => setOptionsMenuOpen(false)}
+                                    />
 
-                                    </Pressable>
-                                </View>
+                                    {/* Menu */}
+                                    <View
+                                        style={{
+                                            position: "absolute",
+                                            top: insets.top + 44, // adjust to sit below the ellipsis button
+                                            right: 20,
+                                            backgroundColor: "white",
+                                            borderRadius: 10,
+                                            shadowColor: "#000",
+                                            shadowOpacity: 0.15,
+                                            shadowRadius: 8,
+                                            elevation: 5,
+                                            minWidth: 140,
+                                            zIndex: 100,
+                                            padding: 6,
+                                        }}
+                                    >
+                                        <Pressable onPress={handleConversationDelete}>
+                                            {({ pressed }) => (
+                                                <View style={{
+                                                    paddingHorizontal: 12,
+                                                    paddingVertical: 5,
+                                                    flexDirection: 'row',
+                                                    justifyContent: 'space-between',
+                                                    alignItems: 'center',
+                                                    backgroundColor: pressed ? "#F2F2F2" : 'transparent',
+                                                    borderRadius: 6
+                                                }}>
+                                                    <Text style={{ color: 'red' }}>Delete</Text>
+                                                    <Ionicons size={18} name="trash-outline" color='red' />
+                                                </View>
+                                            )}
+                                        </Pressable>
+                                    </View>
+                                </Modal>
                             )}
                         </View>
 
@@ -337,7 +354,6 @@ export default function Chat() {
                             showsVerticalScrollIndicator={false}
                             ref={scrollRef}
                             onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
-                            onTouchStart={() => setOptionsMenuOpen(false)}
                         >
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end' }}>
 
