@@ -16,7 +16,7 @@ export default function TabLayout() {
         name="(home)"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <Ionicons size={24} name="home" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons size={24} name="home-outline" color={color} />,
         }}
       />
       <Tabs.Screen
@@ -30,7 +30,7 @@ export default function TabLayout() {
         name="saved"
         options={{
           title: 'Saved',
-          tabBarIcon: ({ color }) => <Ionicons size={24} name="bookmark" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons size={24} name="bookmark-outline" color={color} />,
         }}
       />
     </Tabs>
