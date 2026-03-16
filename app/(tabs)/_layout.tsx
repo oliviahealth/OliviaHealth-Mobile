@@ -1,6 +1,6 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { Tabs } from 'expo-router';
-import { TINT_COLOR } from '../../theme';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tabs } from "expo-router";
+import { TINT_COLOR } from "../../theme";
 
 export default function TabLayout() {
   return (
@@ -19,6 +19,17 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Ionicons size={24} name="home-outline" color={color} />,
         }}
       />
+
+      <Tabs.Screen
+        name="(journey)"
+        options={{
+          title: "Journey",
+          tabBarIcon: ({ color }) => (
+            <Ionicons size={28} name="map" color={color} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="chat"
         options={{
@@ -33,6 +44,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Ionicons size={24} name="bookmark-outline" color={color} />,
         }}
       />
+
     </Tabs>
   );
 }

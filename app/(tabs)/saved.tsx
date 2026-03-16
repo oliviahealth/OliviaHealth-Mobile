@@ -288,6 +288,5 @@ export default function Index() {
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
-
   );
 }
