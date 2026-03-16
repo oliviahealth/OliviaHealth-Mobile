@@ -25,7 +25,7 @@ export default function TabLayout() {
         options={{
           title: "Journey",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name="map" color={color} />
+            <Ionicons size={28} name="map-outline" color={color} />
           ),
         }}
       />
