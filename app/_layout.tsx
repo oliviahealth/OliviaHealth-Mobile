@@ -9,6 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar, View } from "react-native";
 
+import ErrorPopup from "@/components/ErrorPopup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WelcomeScreen from "./Welcome";
 
@@ -23,6 +24,8 @@ export default function RootLayout() {
   const [isFirstLaunch, setIsFirstLaunch] = useState<null | boolean>(null);
 
   const [isReady, setIsReady] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const resources = useResourcesStore((state) => state.resources);
   const setResources = useResourcesStore((state) => state.setResources);
 
@@ -62,6 +65,11 @@ export default function RootLayout() {
         await loadSavedResources();
       } catch (e) {
         console.error("Failed to fetch resources", e);
+        setIsError(true);
+
+        setTimeout(() => {
+          setIsError(false);
+        }, 5000);
       } finally {
         // show the splash screen for a minimum of MIN_SPLASH_TIME even if the fetch completes faster
         const elapsed = Date.now() - startTime;
@@ -73,6 +81,7 @@ export default function RootLayout() {
       }
     }
     prepare();
+    loadSavedConversations();
   }, [setResources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
 
   const onLayoutRootView = useCallback(async () => {
@@ -95,6 +104,12 @@ export default function RootLayout() {
         onLayout={onLayoutRootView}
       >
         <StatusBar barStyle="dark-content" />
+        <View style={{ marginTop: 20 }}>
+          <ErrorPopup
+            message="Something went wrong. Please try again later"
+            visible={isError}
+          />
+        </View>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
