@@ -1,6 +1,6 @@
+import { SafeAreaView } from "react-native";
 import BackButton from "@/components/BackButton";
 import { Stack } from "expo-router";
-import { SafeAreaView } from "react-native";
 
 export default function HomeLayout() {
 
@@ -51,5 +51,6 @@ export default function HomeLayout() {
         />
       </Stack>
     </SafeAreaView>
+
   );
 }

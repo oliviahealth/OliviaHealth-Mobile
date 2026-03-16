@@ -1,26 +1,22 @@
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Image, Platform, Text, TouchableOpacity, UIManager, View, useWindowDimensions } from "react-native";
+import { Animated, Image, Platform, Pressable, Text, TouchableOpacity, UIManager, View, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import { TruncatedTextView } from 'react-native-truncated-text-view';
 import Markdown from 'react-native-markdown-display';
 
-import useResourcesStore, { IResources, IResourceItem } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
+import useConversationsStore from "@/src/store/useConversationsStores";
+import fetchSources from "@/src/utils/fetchSources";
+import { IOllieResponse } from "@/src/utils/interfaces";
 
 if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
 }
 
-interface IOllieOverviewResponse {
-    response: string;
-    response_type: string;
-    locations: string[];
-    documents: string[];
-}
-
 type OllieOverviewProps = {
-    data: IOllieOverviewResponse | null;
+    ollieResponse?: { conversationId: string, data: IOllieResponse };
     isError: boolean
     isLoading: boolean
 };
@@ -61,11 +57,11 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
     );
 }
 
-export default function OllieOverviewCard({ data, isError, isLoading }: OllieOverviewProps) {
+export default function OllieOverviewCard({ ollieResponse, isError, isLoading }: OllieOverviewProps) {
     const { width, height } = useWindowDimensions();
     const COLLAPSE_CHARS = Math.round((width * height) / 1500);
 
-    const responseText = data?.response ?? "";
+    const responseText = ollieResponse?.data?.response ?? "";
     const collapsedMarkdown =
         responseText.length > COLLAPSE_CHARS
             ? responseText.slice(0, COLLAPSE_CHARS).trimEnd() + "…"
@@ -73,23 +69,9 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
 
     const router = useRouter();
     const resources = useResourcesStore(state => state.resources);
+    const addResponse = useConversationsStore(state => state.addResponse);
 
     const [sources, setSources] = useState<{ doc: IResourceItem; type: string; }[]>();
-
-    // link the resouces to data.sources
-    const fetchSources = (dataSources: string[], resources: IResources) => {
-        const res: { doc: any; type: string; }[] = [];
-
-        for (const [key, resources_arr] of Object.entries(resources)) {
-            for (const doc of resources_arr) {
-                if (dataSources.includes(doc.id)) {
-                    res.push({ 'doc': doc, 'type': key });
-                }
-            }
-        }
-
-        return res;
-    }
 
     const navigateToSource = (source: { doc: IResourceItem; type: string }) => {
         switch (source.type) {
@@ -106,6 +88,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                     params: { localResource: JSON.stringify(source.doc) },
                 });
                 break;
+
 
             case "video_spotlights":
                 router.push({
@@ -126,14 +109,35 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
         }
     };
 
+    const navigateToChat = () => {
+        // Create a new conversation record in the store
+        if (ollieResponse?.data) {
+            addResponse({
+                userQuery: ollieResponse.data.userQuery,
+                response: ollieResponse.data.response,
+                response_type: ollieResponse.data.response_type as "location" | "direct",
+                locations: ollieResponse.data.locations,
+                documents: ollieResponse.data.documents,
+                dateCreated: Date.now(),
+                conversationId: ollieResponse.conversationId,
+                sources,
+            });
+        }
+
+        router.push({
+            pathname: "/(tabs)/chat",
+            params: { ollieResponseParam: JSON.stringify({ ...ollieResponse, sources }) },
+        });
+    }
+
     // link data.documents to resources
     useEffect(() => {
         if (!resources) return;
 
-        const referenceSources = fetchSources(data?.documents ?? [], resources);
+        const referenceSources = fetchSources(ollieResponse?.data?.documents ?? [], resources);
         setSources(referenceSources);
 
-    }, [data?.documents, resources])
+    }, [ollieResponse?.data?.documents, resources])
 
     return (
         <View style={{ marginVertical: 10 }}>
@@ -178,9 +182,9 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                 </Text>
                             </View>
                         )
-                            : data?.response && sources ? (
+                            : ollieResponse?.data?.response && sources ? (
                                 <TruncatedTextView
-                                    text={data.response} // need to pass in the data.response to calculate how many lines to display before the 'show more' button
+                                    text={ollieResponse.data.response} // need to pass in the data.response to calculate how many lines to display before the 'show more' button
                                     numberOfLines={4}
                                     lineHeight={28}
                                     enableShowLess={false}
@@ -195,7 +199,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                     }}
                                     renderContent={(isExpanded) => ( // main content to be displayed before the 'show more' button
                                         <View style={{ marginTop: 12 }}>
-                                            <Markdown>{isExpanded ? data.response : collapsedMarkdown}</Markdown>
+                                            <Markdown>{isExpanded ? ollieResponse.data.response : collapsedMarkdown}</Markdown>
 
                                             {isExpanded &&
                                                 sources.map((source, index) => (
@@ -214,7 +218,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                                     >
                                                         <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
                                                             <Text
-                                                                style={{ fontSize: 12, color: "#555", fontWeight: "500" }}
+                                                                style={{ fontSize: 12, color: "#222222", fontWeight: "500" }}
                                                                 numberOfLines={1}
                                                             >
                                                                 {source.doc.title}
@@ -235,7 +239,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                             )}
 
                     {/* CTA (only on success) */}
-                    {/* {data?.response && sources && (
+                    {ollieResponse?.data?.response && sources && (
                         <Pressable
                             style={({ pressed }) => [
                                 {
@@ -250,6 +254,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                 },
                                 pressed && { opacity: 0.85 },
                             ]}
+                            onPress={navigateToChat}
                         >
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
                                 <Ionicons name="sparkles-outline" size={14} color="#2E2E2E" />
@@ -265,7 +270,7 @@ export default function OllieOverviewCard({ data, isError, isLoading }: OllieOve
                                 </Text>
                             </View>
                         </Pressable>
-                    )} */}
+                    )}
                 </LinearGradient>
             </View>
         </View>

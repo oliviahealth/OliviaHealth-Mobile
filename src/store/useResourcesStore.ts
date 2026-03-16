@@ -1,66 +1,85 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
+import { z } from "zod";
 
-export interface ILocalResources {
-    id: string,
-    title: string,
-    subtitle: string,
-    video_url: string,
-    video_id: string,
-    video_description: string,
-    transcript: string,
-    thumbnail_url: string,
-    spotlight?: boolean
-}
+export const LocalResourceSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  subtitle: z.string(),
+  video_url: z.string(),
+  video_id: z.string(),
+  video_description: z.string(),
+  transcript: z.string(),
+  thumbnail_url: z.string(),
+  spotlight: z.boolean().optional(),
+});
+export type ILocalResources = z.infer<typeof LocalResourceSchema>;
 
-export interface IVideoSpotlights {
-    id: string,
-    title: string,
-    subtitle: string,
-    video_url: string,
-    video_id: string,
-    video_description: string,
-    transcript: string,
-    thumbnail_url: string,
-    spotlight?: boolean
-}
+export const VideoSpotlightSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  subtitle: z.string(),
+  video_url: z.string(),
+  video_id: z.string(),
+  video_description: z.string(),
+  transcript: z.string(),
+  thumbnail_url: z.string(),
+  spotlight: z.boolean().optional(),
+});
+export type IVideoSpotlights = z.infer<typeof VideoSpotlightSchema>;
 
-export interface IQuickTips {
-    id: string,
-    title: string,
-    video_url: string,
-    video_id: string,
-    description: string,
-    infographic_url: string,
-    infographic_description: string,
-    transcript: string,
-    thumbnail_url: string,
-    spotlight?: boolean
-}
+export const QuickTipSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  video_url: z.string(),
+  video_id: z.string(),
+  description: z.string(),
+  infographic_url: z.string(),
+  infographic_description: z.string(),
+  transcript: z.string(),
+  thumbnail_url: z.string(),
+  spotlight: z.boolean().optional(),
+});
+export type IQuickTips = z.infer<typeof QuickTipSchema>;
 
-export interface IInfographics {
-    id: string,
-    title: string,
-    description: string,
-    thumbnail_url: string,
-    infographic_url: string,
-    spotlight?: boolean
-}
+export const InfographicSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+  thumbnail_url: z.string(),
+  infographic_url: z.string(),
+  spotlight: z.boolean().optional(),
+});
+export type IInfographics = z.infer<typeof InfographicSchema>;
 
-export interface IResources {
-    local_resources: ILocalResources[],
-    video_spotlights: IVideoSpotlights[],
-    quick_tips: IQuickTips[],
-    infographics: IInfographics[]
-}
-export type IResourceItem = IResources[keyof IResources][number];
+/** ========= Collection schemas ========= */
 
-export interface ISavedResourceIds {
-    local_resources: string[],
-    video_spotlights: string[],
-    quick_tips: string[],
-    infographics: string[]
-}
+export const ResourcesSchema = z.object({
+  local_resources: z.array(LocalResourceSchema),
+  video_spotlights: z.array(VideoSpotlightSchema),
+  quick_tips: z.array(QuickTipSchema),
+  infographics: z.array(InfographicSchema),
+});
+export type IResources = z.infer<typeof ResourcesSchema>;
+
+/** Union of any single resource item (runtime + type) */
+export const ResourceItemSchema = z.union([
+  LocalResourceSchema,
+  VideoSpotlightSchema,
+  QuickTipSchema,
+  InfographicSchema,
+]);
+export type IResourceItem = z.infer<typeof ResourceItemSchema>;
+
+/** ========= Saved IDs + State schemas ========= */
+
+export const SavedResourceIdsSchema = z.object({
+  local_resources: z.array(z.string()),
+  video_spotlights: z.array(z.string()),
+  quick_tips: z.array(z.string()),
+  infographics: z.array(z.string()),
+});
+export type ISavedResourceIds = z.infer<typeof SavedResourceIdsSchema>;
 
 export interface IResourcesState {
     resources: IResources | null

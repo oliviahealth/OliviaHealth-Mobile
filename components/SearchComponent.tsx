@@ -16,17 +16,18 @@ interface SearchComponentProps {
 }
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, onChangeText }) => {
-
   // fetch ollie overview given the search string
   const getOllieOverview = useMutation({
     mutationFn: async (value: string | undefined) => {
       const searchQuery = value?.trim() ?? null;
       if (!searchQuery) return;
 
+      const conversationId = uuid();
+
       const formData = new FormData();
       // use the user's actual input instead of a hardcoded string:
       formData.append("data", value?.trim() ?? "");
-      formData.append("conversationId", uuid());
+      formData.append("conversationId", conversationId);
 
       const res = await fetch(`${OLLIE_URL}/formattedresults`, {
         method: "POST",
@@ -36,7 +37,10 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
 
-      return data
+      return {
+        conversationId,
+        data
+      }
     },
     onError: (error) => {
       console.error("Failed to get Ollie overview", error);
@@ -73,7 +77,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           style={{
             flex: 1,
             fontSize: 16,
-            color: "#555",
+            color: "#222222",
           }}
           value={value}
           onChangeText={(t) => {
@@ -114,7 +118,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
 
         {(getOllieOverview.isPending || getOllieOverview.data || getOllieOverview.error) && (
           <OllieOverviewCard
-            data={getOllieOverview.data}
+            ollieResponse={getOllieOverview.data}
             isError={getOllieOverview.isError}
             isLoading={getOllieOverview.isPending}
           />
