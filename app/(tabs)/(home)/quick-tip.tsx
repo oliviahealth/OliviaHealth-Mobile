@@ -4,6 +4,7 @@ import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Markdown from "react-native-markdown-display";
+import WebView from "react-native-webview";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function QuickTip() {
@@ -177,15 +178,9 @@ export default function QuickTip() {
 
                         {infographicLoading && <ActivityIndicator />}
 
-                        <Image
-                            source={{
-                                uri:
-                                    quickTipParsed.infographic_url,
-                            }}
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                            }}
+                        <WebView
+                            style={{ width: "100%", height: "100%" }}
+                            source={{ uri: quickTipParsed.infographic_url }}
                             resizeMode="contain"
                             resizeMethod="scale"
                             onLoadStart={() => setInfographicLoading(true)}
