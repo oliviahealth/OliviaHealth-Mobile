@@ -2,7 +2,7 @@
   "expo": {
     "name": "OliviaHealth",
     "slug": "OliviaHealth",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "oliviahealth",
@@ -14,7 +14,7 @@
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       },
-      "buildNumber": "1.0.6"
+      "buildNumber": "1.0.7"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +24,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.oliviahealth.OliviaHealth"
     },
     "web": {
       "output": "static",
