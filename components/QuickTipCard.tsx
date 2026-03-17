@@ -2,6 +2,7 @@ import { IQuickTips } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+import WebView from "react-native-webview";
 
 interface QuickTipCardProps {
   quickTip: IQuickTips;
@@ -16,7 +17,11 @@ const QuickTipCard: React.FC<QuickTipCardProps> = ({ quickTip }) => {
 
   return (
     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', borderRadius: 12, padding: 12, borderWidth: 1, borderColor: '#E9E9E9', gap: 2 }} activeOpacity={0.9}>
-      <Image source={{ uri: quickTip.thumbnail_url }} style={{ width: '100%', height: 120, borderRadius: 12, marginBottom: 8 }} />
+      <WebView
+        style={{ width: "100%", aspectRatio: 16 / 9, borderRadius: 12, marginBottom: 8, resizeMode: 'contain' }}
+        source={{ uri: quickTip.thumbnail_url }}
+        scrollEnabled={false}
+      />
 
       <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* TODO: Replace with proper profile picture */}

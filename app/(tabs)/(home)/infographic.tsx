@@ -1,6 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { ScrollView, View, Image, Text, ActivityIndicator } from "react-native";
+import { ScrollView, View, Text, ActivityIndicator } from "react-native";
+import { WebView } from "react-native-webview";
 import useResourcesStore, { IInfographics } from "@/src/store/useResourcesStore";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 
@@ -73,15 +74,9 @@ export default function Infographic() {
 
                 {infographicLoading && <ActivityIndicator />}
 
-                <Image
-                    source={{
-                        uri:
-                            infographicParsed.infographic_url,
-                    }}
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                    }}
+                <WebView
+                    style={{ width: "100%", height: "100%" }}
+                    source={{ uri: infographicParsed.infographic_url }}
                     resizeMode="contain"
                     resizeMethod="scale"
                     onLoadStart={() => setInfographicLoading(true)}
