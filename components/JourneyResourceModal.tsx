@@ -1,17 +1,8 @@
 import { DetailItem } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import {
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface JourneyResourceModalProps {
   selectedItem: DetailItem | null;
@@ -24,8 +15,6 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   isVisible,
   onClose,
 }) => {
-  const { height } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
   return (
     <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
       <Modal
@@ -38,7 +27,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
           style={{
             backgroundColor: "white",
             width: "100%",
-            height: height - insets.top,
+            height: "97%",
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             paddingTop: 10,

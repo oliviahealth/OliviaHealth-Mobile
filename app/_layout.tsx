@@ -1,3 +1,4 @@
+import { loadSavedConversations } from "@/src/store/useConversationsStores";
 import useResourcesStore, {
   AsyncStorageKeys,
   IResources,
@@ -82,7 +83,7 @@ export default function RootLayout() {
     }
     prepare();
     loadSavedConversations();
-  }, [setResources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
+  }, [setResources, resources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
 
   const onLayoutRootView = useCallback(async () => {
     if (isReady) await SplashScreen.hideAsync();
