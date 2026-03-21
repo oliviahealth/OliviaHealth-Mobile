@@ -1,8 +1,17 @@
 import { MapJourneyButton } from "@/components/MapJourneyButton";
 import { Ionicons } from "@expo/vector-icons";
-import { ScrollView, Text, View, useWindowDimensions } from "react-native";
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
+
+const backgroundImage = require("../../../assets/images/journey-background.png");
 
 export default function JourneyScreen() {
   const { width } = useWindowDimensions();
@@ -81,69 +90,77 @@ export default function JourneyScreen() {
   const pathString = getPathString(points, controlPoints);
 
   return (
-    <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: 20,
-          gap: 18,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Header */}
-        <View style={{ paddingTop: 20, paddingBottom: 40 }}>
-          <View style={{ flexDirection: "column" }}>
-            <Text style={{ fontSize: 18, fontWeight: "500", color: "#A781B1" }}>
-              OliviaHealth
-            </Text>
-            <Text
-              style={{ fontSize: 35, color: "#73577A", fontWeight: "bold" }}
-            >
-              Journey
-            </Text>
-          </View>
-        </View>
-
-        {/* Journey Path and Buttons */}
-        <View
-          style={{
-            position: "relative",
-            width: width,
-            height: points[points.length - 1].y + 100,
-            marginTop: 40,
+    <ImageBackground
+      source={backgroundImage}
+      style={StyleSheet.absoluteFill}
+      imageStyle={{ resizeMode: "cover" }}
+    >
+      <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+            gap: 18,
           }}
+          showsVerticalScrollIndicator={false}
         >
-          <Svg
-            height={points[points.length - 1].y + 100}
-            width={width}
-            style={{ position: "absolute", left: 0, top: 0 }}
+          {/* Header */}
+          <View style={{ paddingTop: 20, paddingBottom: 40 }}>
+            <View style={{ flexDirection: "column" }}>
+              <Text
+                style={{ fontSize: 18, fontWeight: "500", color: "#A781B1" }}
+              >
+                OliviaHealth
+              </Text>
+              <Text
+                style={{ fontSize: 35, color: "#73577A", fontWeight: "bold" }}
+              >
+                Journey
+              </Text>
+            </View>
+          </View>
+
+          {/* Journey Path and Buttons */}
+          <View
+            style={{
+              position: "relative",
+              width: width,
+              height: points[points.length - 1].y + 100,
+              marginTop: 40,
+            }}
           >
-            <Path
-              d={pathString}
-              stroke="#a259ff"
-              strokeWidth={12}
-              fill="none"
-              opacity={0.09}
-              strokeLinecap="round"
-            />
-            {/* For debugging: Control Points */}
-            {/* {controlPoints.map((ctrl, idx) => (
-              <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
-            ))} */}
-          </Svg>
-          {points.map((pt, idx) => (
-            <MapJourneyButton
-              key={idx}
-              x={pt.x}
-              y={pt.y}
-              progress={Math.random() * 100} // Random progress for demo
-              borderColor={pt.border}
-              fillColor={pt.color}
-              icon={pt.icon}
-              id={pt.id}
-            />
-          ))}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+            <Svg
+              height={points[points.length - 1].y + 100}
+              width={width}
+              style={{ position: "absolute", left: 0, top: 0 }}
+            >
+              <Path
+                d={pathString}
+                stroke="#a259ff"
+                strokeWidth={12}
+                fill="none"
+                opacity={0.09}
+                strokeLinecap="round"
+              />
+              {/* For debugging: Control Points */}
+              {/* {controlPoints.map((ctrl, idx) => (
+                <Circle key={idx} cx={ctrl.x} cy={ctrl.y} r={5} fill="red" />
+              ))} */}
+            </Svg>
+            {points.map((pt, idx) => (
+              <MapJourneyButton
+                key={idx}
+                x={pt.x}
+                y={pt.y}
+                progress={Math.random() * 100} // Random progress for demo
+                borderColor={pt.border}
+                fillColor={pt.color}
+                icon={pt.icon}
+                id={pt.id}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }

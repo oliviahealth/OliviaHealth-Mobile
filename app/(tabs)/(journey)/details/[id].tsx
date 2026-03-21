@@ -4,8 +4,10 @@ import JourneyResourceModal from "@/components/JourneyResourceModal";
 import { DetailItem } from "@/src/store/useResourcesStore";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { ScrollView } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const backgroundImage = require("../../../../assets/images/journey-background.png");
 
 export default function JourneyDetailsScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -66,35 +68,38 @@ export default function JourneyDetailsScreen() {
   ];
 
   return (
-    <SafeAreaView
-      edges={["top"]}
-      style={{ flex: 1, backgroundColor: "transparent" }}
+    <ImageBackground
+      source={backgroundImage}
+      style={StyleSheet.absoluteFill}
+      imageStyle={{ resizeMode: "cover" }}
     >
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: 20,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        <JourneyDetailsHeader islandName={id as string} />
-        {detailItems.map((item, index) => (
-          <JourneyDetailItem
-            key={index}
-            {...item}
-            renderSVGLine={index < detailItems.length - 1}
-            onPress={() => {
-              setSelectedItem(item);
-              setModalVisible(true);
-            }}
-          />
-        ))}
-      </ScrollView>
-      {/* Modal Implementation */}
-      <JourneyResourceModal
-        selectedItem={selectedItem}
-        isVisible={isModalVisible}
-        onClose={() => setModalVisible(false)}
-      />
-    </SafeAreaView>
+      <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <JourneyDetailsHeader islandName={id as string} />
+          {detailItems.map((item, index) => (
+            <JourneyDetailItem
+              key={index}
+              {...item}
+              renderSVGLine={index < detailItems.length - 1}
+              onPress={() => {
+                setSelectedItem(item);
+                setModalVisible(true);
+              }}
+            />
+          ))}
+        </ScrollView>
+        {/* Modal Implementation */}
+        <JourneyResourceModal
+          selectedItem={selectedItem}
+          isVisible={isModalVisible}
+          onClose={() => setModalVisible(false)}
+        />
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
