@@ -1,15 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { create } from 'zustand';
 import { z } from "zod";
-import { create } from "zustand";
-
-export interface DetailItem {
-  title: string;
-  progress: number;
-  borderColor: string;
-  fillColor: string;
-  icon: keyof typeof Ionicons.glyphMap;
-}
 
 export const LocalResourceSchema = z.object({
   id: z.string(),

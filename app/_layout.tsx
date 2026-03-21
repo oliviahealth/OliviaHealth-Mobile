@@ -1,15 +1,10 @@
+import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
 import { loadSavedConversations } from "@/src/store/useConversationsStores";
-import useResourcesStore, {
-  AsyncStorageKeys,
-  IResources,
-  loadSavedResources,
-} from "@/src/store/useResourcesStore";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import ErrorPopup from "@/components/ErrorPopup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -28,8 +23,8 @@ export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const resources = useResourcesStore((state) => state.resources);
-  const setResources = useResourcesStore((state) => state.setResources);
+  const resources = useResourcesStore(state => state.resources);
+  const setResources = useResourcesStore(state => state.setResources);
 
   useEffect(() => {
     const checkFirstLaunch = async () => {
@@ -71,7 +66,7 @@ export default function RootLayout() {
 
         setTimeout(() => {
           setIsError(false);
-        }, 5000);
+        }, 5000)
       } finally {
         // show the splash screen for a minimum of MIN_SPLASH_TIME even if the fetch completes faster
         const elapsed = Date.now() - startTime;
@@ -84,7 +79,8 @@ export default function RootLayout() {
     }
     prepare();
     loadSavedConversations();
-  }, [setResources, resources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
+
+  }, [setResources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
 
   const onLayoutRootView = useCallback(async () => {
     if (isReady) await SplashScreen.hideAsync();
@@ -100,22 +96,17 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <QueryClientProvider client={queryClient}>
-        <View
-          style={{ flex: 1, backgroundColor: "white" }}
-          onLayout={onLayoutRootView}
-        >
-          <StatusBar barStyle="dark-content" />
-          <ErrorPopup
-            message="Something went wrong. Please try again later"
-            visible={isError}
-          />
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
-        </View>
-      </QueryClientProvider>
-    </SafeAreaProvider>
+    <QueryClientProvider client={queryClient}>
+      <View style={{ flex: 1, backgroundColor: 'transparent' }} onLayout={onLayoutRootView}>
+        <StatusBar barStyle="dark-content" />
+        <ErrorPopup
+          message="Something went wrong. Please try again later"
+          visible={isError}
+        />
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </View>
+    </QueryClientProvider>
   );
 }
