@@ -1,6 +1,5 @@
 import { Text, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BackButton from "./BackButton";
 
 interface JourneyDetailsHeaderProps {
@@ -10,19 +9,16 @@ interface JourneyDetailsHeaderProps {
 const JourneyDetailsHeader: React.FC<JourneyDetailsHeaderProps> = ({
   islandName,
 }) => {
-  const insets = useSafeAreaInsets();
   const exampleProgress = Math.floor(Math.random() * 100); // Example progress value
 
   return (
     <View
       style={{
-        paddingTop: insets.top + 20,
-        paddingBottom: 20,
         alignItems: "center",
         backgroundColor: "transparent",
-        flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 20,
+        flexDirection: "row",
+        paddingVertical: 20,
       }}
     >
       <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>

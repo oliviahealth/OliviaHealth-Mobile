@@ -3,7 +3,6 @@ import BackButton from "@/components/BackButton";
 import { Stack } from "expo-router";
 
 export default function HomeLayout() {
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <Stack screenOptions={{ contentStyle: { backgroundColor: 'white' } }}>

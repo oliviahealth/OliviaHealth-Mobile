@@ -1,13 +1,13 @@
 import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
 import { loadSavedConversations } from "@/src/store/useConversationsStores";
 import { Stack } from "expo-router";
-import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar, View } from "react-native";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import ErrorPopup from "@/components/ErrorPopup";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import WelcomeScreen from "./Welcome";
 
 SplashScreen.preventAutoHideAsync();
@@ -36,18 +36,17 @@ export default function RootLayout() {
           setIsFirstLaunch(false);
         }
       } catch (error) {
-        console.error('Error checking first launch:', error);
+        console.error("Error checking first launch:", error);
       }
     };
     checkFirstLaunch();
   }, []);
 
-
   useEffect(() => {
     if (resources) {
       setIsReady(true);
       SplashScreen.hideAsync();
-    };
+    }
 
     async function prepare() {
       const startTime = Date.now();
@@ -61,7 +60,6 @@ export default function RootLayout() {
 
         // Load saved resources from AsyncStorage
         await loadSavedResources();
-
       } catch (e) {
         console.error("Failed to fetch resources", e);
         setIsError(true);
@@ -94,16 +92,17 @@ export default function RootLayout() {
   }
 
   if (isFirstLaunch) {
-    return <WelcomeScreen />
+    return <WelcomeScreen />;
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <View style={{ flex: 1, backgroundColor: 'white' }} onLayout={onLayoutRootView}>
+      <View style={{ flex: 1, backgroundColor: 'transparent' }} onLayout={onLayoutRootView}>
         <StatusBar barStyle="dark-content" />
-        <View style={{ marginTop: 20 }}>
-          <ErrorPopup message="Something went wrong. Please try again later" visible={isError} />
-        </View>
+        <ErrorPopup
+          message="Something went wrong. Please try again later"
+          visible={isError}
+        />
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>

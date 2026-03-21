@@ -1,21 +1,18 @@
 import JourneyDetailItem from "@/components/JourneyDetailItem";
-import { Ionicons } from "@expo/vector-icons";
+import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
+import JourneyResourceModal from "@/components/JourneyResourceModal";
+import { DetailItem } from "@/src/store/useResourcesStore";
+import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import Modal from "react-native-modal";
+import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const backgroundImage = require("../../../../assets/images/journey-background.png");
 
 export default function JourneyDetailsScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
-
-  interface DetailItem {
-    title: string;
-    progress: number;
-    borderColor: string;
-    fillColor: string;
-    icon: keyof typeof Ionicons.glyphMap;
-  }
+  const { id } = useLocalSearchParams();
 
   // Sample data
   const detailItems: DetailItem[] = [
@@ -71,164 +68,38 @@ export default function JourneyDetailsScreen() {
   ];
 
   return (
-    <SafeAreaView>
-      <ScrollView
-        contentContainerStyle={{
-          paddingTop: 20,
-          paddingHorizontal: 20,
-          marginBottom: 20,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        {detailItems.map((item, index) => (
-          <JourneyDetailItem
-            key={index}
-            {...item}
-            renderSVGLine={index < detailItems.length - 1}
-            onPress={() => {
-              setSelectedItem(item);
-              setModalVisible(true);
-            }}
-          />
-        ))}
-      </ScrollView>
-      {/* Modal Implementation */}
-      <Modal
-        isVisible={isModalVisible}
-        onBackdropPress={() => setModalVisible(false)}
-        backdropOpacity={0}
-        style={{ margin: 0, justifyContent: "center", alignItems: "center" }}
-      >
-        <View
-          style={{
-            backgroundColor: "white",
-            width: "100%",
-            height: "100%",
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            paddingVertical: 24,
+    <ImageBackground
+      source={backgroundImage}
+      style={StyleSheet.absoluteFill}
+      imageStyle={{ resizeMode: "cover" }}
+    >
+      <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
             paddingHorizontal: 20,
-            alignItems: "stretch",
           }}
+          showsVerticalScrollIndicator={false}
         >
-          {/* Header Row */}
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginBottom: 5,
-            }}
-          >
-            {/* X Button */}
-            <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              style={{ padding: 8, marginRight: 8 }}
-              accessibilityLabel="Close"
-            >
-              <Ionicons name="close" size={28} color="#222" />
-            </TouchableOpacity>
-            {/* Progress Bar */}
-            <View
-              style={{ flex: 1, marginHorizontal: 8, justifyContent: "center" }}
-            >
-              <View
-                style={{
-                  height: 16,
-                  backgroundColor: "#F0F0F0",
-                  borderRadius: 8,
-                  overflow: "hidden",
-                }}
-              >
-                <View
-                  style={{
-                    width: `${selectedItem?.progress || 0}%`,
-                    height: "100%",
-                    backgroundColor: selectedItem?.borderColor || "#a259ff",
-                    borderRadius: 8,
-                  }}
-                />
-              </View>
-            </View>
-            {/* Progress Number */}
-            <Text
-              style={{
-                marginLeft: 8,
-                fontWeight: "bold",
-                fontSize: 16,
-                color: selectedItem?.borderColor || "#a259ff",
-                minWidth: 40,
-                textAlign: "right",
+          <JourneyDetailsHeader islandName={id as string} />
+          {detailItems.map((item, index) => (
+            <JourneyDetailItem
+              key={index}
+              {...item}
+              renderSVGLine={index < detailItems.length - 1}
+              onPress={() => {
+                setSelectedItem(item);
+                setModalVisible(true);
               }}
-            >
-              {selectedItem?.progress}%
-            </Text>
-          </View>
-
-          {/* Title Row */}
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginBottom: 18,
-            }}
-          >
-            <Text style={{ fontSize: 20, fontWeight: "bold", color: "#222" }}>
-              {selectedItem?.title}
-            </Text>
-            <Text
-              style={{ fontSize: 16, color: "#888", marginLeft: 8 }}
-            >{`(1/3)`}</Text>
-          </View>
-
-          {/* Infographic View */}
-          <View
-            style={{
-              backgroundColor: selectedItem?.fillColor || "#f3e6ff",
-              borderRadius: 16,
-              height: 600,
-              marginBottom: 24,
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              alignSelf: "center",
-            }}
-          >
-            {/* Placeholder for infographic */}
-            <Ionicons
-              name="image"
-              size={64}
-              color={selectedItem?.borderColor || "#a259ff"}
             />
-            <Text
-              style={{
-                color: selectedItem?.borderColor || "#a259ff",
-                marginTop: 12,
-                fontWeight: "600",
-              }}
-            >
-              Infographic
-            </Text>
-          </View>
-
-          {/* Continue Button */}
-          <TouchableOpacity
-            style={{
-              backgroundColor: selectedItem?.borderColor || "#a259ff",
-              borderRadius: 12,
-              paddingVertical: 18,
-              alignItems: "center",
-              width: "100%",
-              alignSelf: "center",
-            }}
-            onPress={() => setModalVisible(false)}
-            activeOpacity={0.85}
-          >
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }}>
-              Continue
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
-    </SafeAreaView>
+          ))}
+        </ScrollView>
+        {/* Modal Implementation */}
+        <JourneyResourceModal
+          selectedItem={selectedItem}
+          isVisible={isModalVisible}
+          onClose={() => setModalVisible(false)}
+        />
+      </SafeAreaView>
+    </ImageBackground>
   );
 }

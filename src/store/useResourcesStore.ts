@@ -82,75 +82,92 @@ export const SavedResourceIdsSchema = z.object({
 export type ISavedResourceIds = z.infer<typeof SavedResourceIdsSchema>;
 
 export interface IResourcesState {
-    resources: IResources | null
-    setResources: (resources: IResources) => void
-    savedResources: ISavedResourceIds
-    addToSavedResources: (key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics", resourceId: string) => void
-    removeFromSavedResources: (key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics", resourceId: string) => void
-    setSavedResources: (savedResources: ISavedResourceIds) => void
+  resources: IResources | null;
+  setResources: (resources: IResources) => void;
+  savedResources: ISavedResourceIds;
+  addToSavedResources: (
+    key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics",
+    resourceId: string,
+  ) => void;
+  removeFromSavedResources: (
+    key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics",
+    resourceId: string,
+  ) => void;
+  setSavedResources: (savedResources: ISavedResourceIds) => void;
 }
 
 export enum AsyncStorageKeys {
-    SAVED_RESOURCES = 'savedResources',
-    FIRST_LAUNCH = 'firstLaunch'
+  SAVED_RESOURCES = "savedResources",
+  FIRST_LAUNCH = "firstLaunch",
 }
 
 const useResourcesStore = create<IResourcesState>()((set, get) => ({
-    resources: null,
-    setResources: (resources) => set(() => ({ resources })),
-    savedResources: { local_resources: [], video_spotlights: [], quick_tips: [], infographics: [] },
-    addToSavedResources: async (key, resourceId) => {
-        set((state) => {
-            const currentList = state.savedResources[key];
-            // Prevent duplicates
-            if (currentList.includes(resourceId)) {
-                return state;
-            }
-            const newSavedResources = {
-                ...state.savedResources,
-                [key]: [...currentList, resourceId],
-            };
+  resources: null,
+  setResources: (resources) => set(() => ({ resources })),
+  savedResources: {
+    local_resources: [],
+    video_spotlights: [],
+    quick_tips: [],
+    infographics: [],
+  },
+  addToSavedResources: async (key, resourceId) => {
+    set((state) => {
+      const currentList = state.savedResources[key];
+      // Prevent duplicates
+      if (currentList.includes(resourceId)) {
+        return state;
+      }
+      const newSavedResources = {
+        ...state.savedResources,
+        [key]: [...currentList, resourceId],
+      };
 
-            // Save to AsyncStorage
-            AsyncStorage.setItem(AsyncStorageKeys.SAVED_RESOURCES, JSON.stringify(newSavedResources))
-                .catch(error => console.error('Error saving to AsyncStorage:', error));
+      // Save to AsyncStorage
+      AsyncStorage.setItem(
+        AsyncStorageKeys.SAVED_RESOURCES,
+        JSON.stringify(newSavedResources),
+      ).catch((error) => console.error("Error saving to AsyncStorage:", error));
 
-            return {
-                savedResources: newSavedResources,
-            };
-        });
-    },
-    removeFromSavedResources: async (key, resourceId) => {
-        set((state) => {
-            const currentList = state.savedResources[key];
-            const newSavedResources = {
-                ...state.savedResources,
-                [key]: currentList.filter((id) => id !== resourceId),
-            };
+      return {
+        savedResources: newSavedResources,
+      };
+    });
+  },
+  removeFromSavedResources: async (key, resourceId) => {
+    set((state) => {
+      const currentList = state.savedResources[key];
+      const newSavedResources = {
+        ...state.savedResources,
+        [key]: currentList.filter((id) => id !== resourceId),
+      };
 
-            // Save to AsyncStorage
-            AsyncStorage.setItem(AsyncStorageKeys.SAVED_RESOURCES, JSON.stringify(newSavedResources))
-                .catch(error => console.error('Error saving to AsyncStorage:', error));
+      // Save to AsyncStorage
+      AsyncStorage.setItem(
+        AsyncStorageKeys.SAVED_RESOURCES,
+        JSON.stringify(newSavedResources),
+      ).catch((error) => console.error("Error saving to AsyncStorage:", error));
 
-            return {
-                savedResources: newSavedResources,
-            };
-        });
-    },
-    setSavedResources: (savedResources) => set({ savedResources })
+      return {
+        savedResources: newSavedResources,
+      };
+    });
+  },
+  setSavedResources: (savedResources) => set({ savedResources }),
 }));
 
 // Helper function to load saved resources from AsyncStorage
 export const loadSavedResources = async () => {
-    try {
-        const savedData = await AsyncStorage.getItem(AsyncStorageKeys.SAVED_RESOURCES);
-        if (savedData) {
-            const parsedData: ISavedResourceIds = JSON.parse(savedData);
-            useResourcesStore.getState().setSavedResources(parsedData);
-        }
-    } catch (error) {
-        console.error('Error loading from AsyncStorage:', error);
+  try {
+    const savedData = await AsyncStorage.getItem(
+      AsyncStorageKeys.SAVED_RESOURCES,
+    );
+    if (savedData) {
+      const parsedData: ISavedResourceIds = JSON.parse(savedData);
+      useResourcesStore.getState().setSavedResources(parsedData);
     }
+  } catch (error) {
+    console.error("Error loading from AsyncStorage:", error);
+  }
 };
 
 export default useResourcesStore;

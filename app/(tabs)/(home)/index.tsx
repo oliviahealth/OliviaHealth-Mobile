@@ -281,7 +281,7 @@ export default function Index() {
               {infographics_features.map((elm) => (
                 <TouchableOpacity
                   key={elm.id}
-                  style={{ flexDirection: "row", alignItems: "center", backgroundColor: "#fff", borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: "#eee", gap: 2, }} 
+                  style={{ flexDirection: "row", alignItems: "center", backgroundColor: "#fff", borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: "#eee", gap: 2, }}
                   activeOpacity={0.9}
                 >
                   <Image
