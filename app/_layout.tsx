@@ -9,6 +9,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import ErrorPopup from "@/components/ErrorPopup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -99,20 +100,22 @@ export default function RootLayout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <View
-        style={{ flex: 1, backgroundColor: "white" }}
-        onLayout={onLayoutRootView}
-      >
-        <StatusBar barStyle="dark-content" />
-        <ErrorPopup
-          message="Something went wrong. Please try again later"
-          visible={isError}
-        />
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </View>
-    </QueryClientProvider>
+    <SafeAreaProvider>
+      <QueryClientProvider client={queryClient}>
+        <View
+          style={{ flex: 1, backgroundColor: "white" }}
+          onLayout={onLayoutRootView}
+        >
+          <StatusBar barStyle="dark-content" />
+          <ErrorPopup
+            message="Something went wrong. Please try again later"
+            visible={isError}
+          />
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </View>
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 }
