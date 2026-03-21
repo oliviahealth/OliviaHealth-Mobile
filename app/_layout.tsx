@@ -105,12 +105,10 @@ export default function RootLayout() {
         onLayout={onLayoutRootView}
       >
         <StatusBar barStyle="dark-content" />
-        <View style={{ marginTop: 20 }}>
-          <ErrorPopup
-            message="Something went wrong. Please try again later"
-            visible={isError}
-          />
-        </View>
+        <ErrorPopup
+          message="Something went wrong. Please try again later"
+          visible={isError}
+        />
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
