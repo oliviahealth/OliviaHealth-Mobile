@@ -1,4 +1,4 @@
-import useResourcesStore, { AsyncStorageKeys, IResources, loadSavedResources } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IResources, loadSavedResources } from "@/src/store/useResourcesStore";
 import { loadSavedConversations } from "@/src/store/useConversationsStores";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -7,8 +7,6 @@ import { StatusBar, View } from "react-native";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import ErrorPopup from "@/components/ErrorPopup";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import WelcomeScreen from "./Welcome";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -18,29 +16,12 @@ const MIN_SPLASH_TIME = 1000;
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
-  const [isFirstLaunch, setIsFirstLaunch] = useState<null | boolean>(null);
-
   const [isReady, setIsReady] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const resources = useResourcesStore(state => state.resources);
   const setResources = useResourcesStore(state => state.setResources);
 
-  useEffect(() => {
-    const checkFirstLaunch = async () => {
-      try {
-        const value = await AsyncStorage.getItem(AsyncStorageKeys.FIRST_LAUNCH);
-        if (value === null) {
-          setIsFirstLaunch(true);
-        } else {
-          setIsFirstLaunch(false);
-        }
-      } catch (error) {
-        console.error("Error checking first launch:", error);
-      }
-    };
-    checkFirstLaunch();
-  }, []);
 
   useEffect(() => {
     if (resources) {
@@ -89,10 +70,6 @@ export default function RootLayout() {
   if (!isReady) {
     // keep showing splash screen
     return null;
-  }
-
-  if (isFirstLaunch) {
-    return <WelcomeScreen />;
   }
 
   return (
