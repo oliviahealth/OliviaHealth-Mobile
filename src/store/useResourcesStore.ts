@@ -96,7 +96,7 @@ export interface IResourcesState {
   setSavedResources: (savedResources: ISavedResourceIds) => void;
 }
 
-export enum AsyncStorageKeys {
+export enum ResourceStorageKeys {
   SAVED_RESOURCES = "savedResources",
   FIRST_LAUNCH = "firstLaunch",
 }
@@ -124,7 +124,7 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
 
       // Save to AsyncStorage
       AsyncStorage.setItem(
-        AsyncStorageKeys.SAVED_RESOURCES,
+        ResourceStorageKeys.SAVED_RESOURCES,
         JSON.stringify(newSavedResources),
       ).catch((error) => console.error("Error saving to AsyncStorage:", error));
 
@@ -143,7 +143,7 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
 
       // Save to AsyncStorage
       AsyncStorage.setItem(
-        AsyncStorageKeys.SAVED_RESOURCES,
+        ResourceStorageKeys.SAVED_RESOURCES,
         JSON.stringify(newSavedResources),
       ).catch((error) => console.error("Error saving to AsyncStorage:", error));
 
@@ -159,7 +159,7 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
 export const loadSavedResources = async () => {
   try {
     const savedData = await AsyncStorage.getItem(
-      AsyncStorageKeys.SAVED_RESOURCES,
+      ResourceStorageKeys.SAVED_RESOURCES,
     );
     if (savedData) {
       const parsedData: ISavedResourceIds = JSON.parse(savedData);
