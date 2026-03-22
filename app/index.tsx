@@ -1,23 +1,9 @@
+import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useEffect, useRef, useState } from "react";
-import {
-    Animated,
-    Dimensions,
-    Image,
-    Modal,
-    Pressable,
-    Text,
-    View,
-} from "react-native";
-import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
+import { Animated, Dimensions, Image, Modal, Pressable, Text, View } from "react-native";
+import { useRouter } from "expo-router";
 
-const { width, height } = Dimensions.get("window");
-
-const BG_WIDTH = 360;
-const BG_HEIGHT = 800;
-
-const bgScale = width / BG_WIDTH;
-const bgRenderedHeight = BG_HEIGHT * bgScale;
-const bgTop = (height - bgRenderedHeight) / 2;
+const { width } = Dimensions.get("window");
 
 const SHEET_HEIGHT = 350;
 
@@ -43,37 +29,15 @@ function MenuCard({ title, subtitle, children, onPress }: any) {
                 opacity: pressed ? 0.94 : 1,
             })}
         >
-            <View
-                style={{
-                    height: 52,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: 8,
-                }}
-            >
+            <View style={{ height: 52, alignItems: "center", justifyContent: "center", marginBottom: 8, }} >
                 {children}
             </View>
-``
-            <Text
-                style={{
-                    color: "#2A2230",
-                    fontSize: 14,
-                    fontWeight: "700",
-                    textAlign: "center",
-                    marginBottom: 4,
-                }}
-            >
+            
+            <Text style={{ color: "#2A2230", fontSize: 14, fontWeight: "700", textAlign: "center", marginBottom: 4, }} >
                 {title}
             </Text>
 
-            <Text
-                style={{
-                    color: "#8B7D92",
-                    fontSize: 11,
-                    lineHeight: 15,
-                    textAlign: "center",
-                }}
-            >
+            <Text style={{ color: "#8B7D92", fontSize: 11, lineHeight: 15, textAlign: "center" }} >
                 {subtitle}
             </Text>
         </Pressable>
@@ -81,6 +45,9 @@ function MenuCard({ title, subtitle, children, onPress }: any) {
 }
 
 export default function IntroScreen() {
+    const router = useRouter();
+    
+
     const [visible] = useState(true);
 
     const sheetTranslateY = useRef(new Animated.Value(SHEET_HEIGHT + 40)).current;
@@ -103,9 +70,22 @@ export default function IntroScreen() {
         ]).start();
     }, []);
 
+    const navigateToJourney = () => {
+        router.replace('/(tabs)/(journey)');
+    }
+    const navigateToChat = () => {
+        router.replace('/(tabs)/chat');
+    }
+    const navigateToLibrary = () => {
+        router.replace('/(tabs)/(library)')
+    }
+    const navigateToAbout = () => {
+        router.replace('/(tabs)/(about)');
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: "#000" }}>
-            
+
             <Image
                 source={require("../assets/images/olivia-splash.png")}
                 style={{
@@ -129,40 +109,19 @@ export default function IntroScreen() {
                             transform: [{ translateY: sheetTranslateY }],
                         }}
                     >
-                        <Text
-                            style={{
-                                color: "#FFFFFF",
-                                fontSize: 20,
-                                fontWeight: "700",
-                                textAlign: "center",
-                                marginBottom: 6,
-                            }}
-                        >
+                        <Text style={{ color: "#FFFFFF", fontSize: 20, fontWeight: "700", textAlign: "center", marginBottom: 6, }} >
                             Select a path
                         </Text>
 
-                        <Text
-                            style={{
-                                color: "rgba(255,255,255,0.86)",
-                                fontSize: 13,
-                                textAlign: "center",
-                                marginBottom: 18,
-                            }}
-                        >
+                        <Text style={{ color: "rgba(255,255,255,0.86)", fontSize: 13, textAlign: "center", marginBottom: 18, }} >
                             Where would you like to go?
                         </Text>
 
-                        <View
-                            style={{
-                                flexDirection: "row",
-                                flexWrap: "wrap",
-                                justifyContent: "space-between",
-                                rowGap: 12,
-                            }}
-                        >
+                        <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 12, }} >
                             <MenuCard
                                 title="Olivia Journey"
                                 subtitle="Progress at your speed"
+                                onPress={navigateToJourney}
                             >
                                 <View
                                     style={{
@@ -179,8 +138,9 @@ export default function IntroScreen() {
                             </MenuCard>
 
                             <MenuCard
-                                title="Chat with Oli"
+                                title="Chat with Ollie"
                                 subtitle="Answer all things parenthood"
+                                onPress={navigateToChat}
                             >
                                 <View
                                     style={{
@@ -200,7 +160,8 @@ export default function IntroScreen() {
 
                             <MenuCard
                                 title="Library"
-                                subtitle="Browse all our content"
+                                subtitle="Browse all of our content"
+                                onPress={navigateToLibrary}
                             >
                                 <View
                                     style={{
@@ -219,6 +180,7 @@ export default function IntroScreen() {
                             <MenuCard
                                 title="About us"
                                 subtitle="Learn about the Olivia team"
+                                onPress={navigateToAbout}
                             >
                                 <View
                                     style={{

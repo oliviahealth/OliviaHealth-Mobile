@@ -49,26 +49,26 @@ export default function Index() {
     [resources, searchLower]
   );
 
-  const goToQuickTips = () => router.push("/(tabs)/(home)/quick-tips");
-  const goToVideoSpotlights = () => router.push("/(tabs)/(home)/video-spotlights");
-  const goToLocalResources = () => router.push("/(tabs)/(home)/local-resources");
-  const goToInfographics = () => router.push("/(tabs)/(home)/infographics");
-  const goToAbout = () => router.push("/(tabs)/(home)/about-us");
+  const goToQuickTips = () => router.push("/(tabs)/(library)/quick-tips");
+  const goToVideoSpotlights = () => router.push("/(tabs)/(library)/video-spotlights");
+  const goToLocalResources = () => router.push("/(tabs)/(library)/local-resources");
+  const goToInfographics = () => router.push("/(tabs)/(library)/infographics");
+  const goToSaved = () => router.push("/(tabs)/(library)/saved");
 
   const goToVideoSpotlight = (videoSpotlight: IVideoSpotlights) => {
-    router.push({ pathname: "/(tabs)/(home)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
+    router.push({ pathname: "/(tabs)/(library)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
   };
 
   const goToLocalResource = (localResource: ILocalResources) => {
-    router.push({ pathname: "/(tabs)/(home)/local-resource", params: { localResource: JSON.stringify(localResource) } });
+    router.push({ pathname: "/(tabs)/(library)/local-resource", params: { localResource: JSON.stringify(localResource) } });
   };
 
   const goToQuickTip = (quickTip: IQuickTips) => {
-    router.push({ pathname: "/(tabs)/(home)/quick-tip", params: { quickTip: JSON.stringify(quickTip) } });
+    router.push({ pathname: "/(tabs)/(library)/quick-tip", params: { quickTip: JSON.stringify(quickTip) } });
   };
 
   const goToInfographic = (infographic: IInfographics) => {
-    router.push({ pathname: "/(tabs)/(home)/infographic", params: { infographic: JSON.stringify(infographic) } });
+    router.push({ pathname: "/(tabs)/(library)/infographic", params: { infographic: JSON.stringify(infographic) } });
   };
 
   return (
@@ -78,8 +78,8 @@ export default function Index() {
           {/* Header */}
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
             <Image source={oliviahealth_branding} style={{ width: 200, resizeMode: "contain" }} />
-            <Pressable onPress={goToAbout}>
-              <Ionicons name="information-circle-outline" size={24} color="#B642D3" />
+            <Pressable onPress={goToSaved}>
+              <Ionicons name="bookmark-outline" size={24} color="#B642D3" />
             </Pressable>
           </View>
 

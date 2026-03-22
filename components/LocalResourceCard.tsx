@@ -12,7 +12,7 @@ const LocalResourceCard: React.FC<LocalResourceCardProps> = ({ localResource }) 
   const router = useRouter();
 
   const goToLocalResource = () => {
-    router.push({ pathname: "/(tabs)/(home)/local-resource", params: { localResource: JSON.stringify(localResource) } });
+    router.push({ pathname: "/(tabs)/(library)/local-resource", params: { localResource: JSON.stringify(localResource) } });
   }
 
   return (

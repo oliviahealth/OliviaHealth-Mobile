@@ -49,8 +49,8 @@ https://nursing.tamu.edu/research/cpp/poemcf/index.html
 export default function WelcomeScreen() {
     const router = useRouter();
 
-    const goToHome = () => {
-        router.push("/(tabs)/(home)");
+    const goToLibrary = () => {
+        router.push("/(tabs)/(library)");
     };
 
     useEffect(() => {
@@ -157,7 +157,7 @@ export default function WelcomeScreen() {
                     </ScrollView>
 
                     <TouchableOpacity
-                        onPress={goToHome}
+                        onPress={goToLibrary}
                         activeOpacity={0.7}
                         style={{
                             backgroundColor: "#B642D3",

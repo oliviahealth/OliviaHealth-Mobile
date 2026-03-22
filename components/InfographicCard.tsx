@@ -12,7 +12,7 @@ const InfographicCard: React.FC<InfographicCardProps> = ({ infographic }) => {
   const router = useRouter();
 
   const goToInfographic = () => {
-    router.push({ pathname: "/(tabs)/(home)/infographic", params: { infographic: JSON.stringify(infographic) } });
+    router.push({ pathname: "/(tabs)/(library)/infographic", params: { infographic: JSON.stringify(infographic) } });
   }
 
   return (

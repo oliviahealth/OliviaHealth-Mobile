@@ -9,7 +9,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ErrorPopup from "@/components/ErrorPopup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WelcomeScreen from "./Welcome";
-import IntroScreen from "./Splash";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -92,10 +91,6 @@ export default function RootLayout() {
     return null;
   }
 
-  // return (
-  //   <IntroScreen />
-  // )
-
   if (isFirstLaunch) {
     return <WelcomeScreen />;
   }
@@ -109,6 +104,7 @@ export default function RootLayout() {
           visible={isError}
         />
         <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
       </View>
