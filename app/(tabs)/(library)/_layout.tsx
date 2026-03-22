@@ -2,7 +2,7 @@ import { SafeAreaView } from "react-native";
 import BackButton from "@/components/BackButton";
 import { Stack } from "expo-router";
 
-export default function HomeLayout() {
+export default function LibraryLayout() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <Stack screenOptions={{ contentStyle: { backgroundColor: 'white' } }}>
@@ -42,11 +42,6 @@ export default function HomeLayout() {
         <Stack.Screen
           name="infographic"
           options={{ headerLeft: () => <BackButton />, title: "Infographic" }}
-        />
-
-        <Stack.Screen
-          name="about-us"
-          options={{ headerLeft: () => <BackButton />, title: "About Olivia Health" }}
         />
       </Stack>
     </SafeAreaView>

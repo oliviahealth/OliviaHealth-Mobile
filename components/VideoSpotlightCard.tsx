@@ -1,4 +1,4 @@
-import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import { IVideoSpotlights } from "@/src/store/useResourcesStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -12,7 +12,7 @@ const VideoSpotlightCard: React.FC<VideoSpotlightCardProps> = ({ videoSpotlight 
   const router = useRouter();
 
   const goToVideoSpotlight = () => {
-    router.push({ pathname: "/(tabs)/(home)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
+    router.push({ pathname: "/(tabs)/(library)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
   }
 
   return (

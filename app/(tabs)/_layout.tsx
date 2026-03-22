@@ -13,14 +13,6 @@ export default function TabLayout() {
       animation: 'shift',
     }}>
       <Tabs.Screen
-        name="(home)"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <Ionicons size={24} name="home-outline" color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
         name="(journey)"
         options={{
           title: "Journey",
@@ -37,11 +29,22 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <Ionicons size={24} name="sparkles-outline" color={color} />,
         }}
       />
+
       <Tabs.Screen
-        name="saved"
+        name="(library)"
         options={{
-          title: 'Saved',
-          tabBarIcon: ({ color }) => <Ionicons size={24} name="bookmark-outline" color={color} />,
+          title: 'Library',
+          tabBarIcon: ({ color }) => <Ionicons size={24} name="library-outline" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="(about)"
+        options={{
+          title: "About",
+          tabBarIcon: ({ color }) => (
+            <Ionicons size={24} name="information-circle-outline" color={color} />
+          ),
         }}
       />
 

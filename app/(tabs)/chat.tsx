@@ -221,14 +221,14 @@ export default function Chat() {
         switch (source.type) {
             case "infographics":
                 router.push({
-                    pathname: "/(tabs)/(home)/infographic",
+                    pathname: "/(tabs)/(library)/infographic",
                     params: { infographic: JSON.stringify(source.doc) },
                 });
                 break;
 
             case "local_resources":
                 router.push({
-                    pathname: "/(tabs)/(home)/local-resource",
+                    pathname: "/(tabs)/(library)/local-resource",
                     params: { localResource: JSON.stringify(source.doc) },
                 });
                 break;
@@ -236,14 +236,14 @@ export default function Chat() {
 
             case "video_spotlights":
                 router.push({
-                    pathname: "/(tabs)/(home)/video-spotlight",
+                    pathname: "/(tabs)/(library)/video-spotlight",
                     params: { videoSpotlight: JSON.stringify(source.doc) },
                 });
                 break;
 
             case "quick_tips":
                 router.push({
-                    pathname: "/(tabs)/(home)/quick-tip",
+                    pathname: "/(tabs)/(library)/quick-tip",
                     params: { quickTip: JSON.stringify(source.doc) },
                 });
                 break;
