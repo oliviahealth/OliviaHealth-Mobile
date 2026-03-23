@@ -8,9 +8,11 @@ import { useEffect, useRef, useState } from "react";
 import { KeyboardAvoidingView, Modal, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Markdown from 'react-native-markdown-display';
 
+import AIDisclaimerModal from "@/components/AIDisclaimerModal";
 import ErrorPopup from "@/components/ErrorPopup";
 import SideDrawer from "@/components/SideDrawer";
 
+import useAppStore from "@/src/store/useAppStore";
 import useResourcesStore, { IResourceItem } from "@/src/store/useResourcesStore";
 import useConversationsStore, { IConversation } from "@/src/store/useConversationsStores";
 
@@ -55,6 +57,9 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ children, isResponse, isLocatio
 
 export default function Chat() {
     const insets = useSafeAreaInsets();
+
+    const aiConsent = useAppStore(state => state.aiConsent);
+    const setAiConsent = useAppStore(state => state.setAiConsent);
 
     const router = useRouter();
     const { ollieResponseParam } = useLocalSearchParams<{ ollieResponseParam: string }>();
@@ -183,7 +188,7 @@ export default function Chat() {
         // optimistically update the conversations to disclude the deleted conversation.
         // If the mutation fails, reset to the last state, else lock in the delete
         onMutate: (conversationId) => {
-            if(conversationId === currentConversationId) {
+            if (conversationId === currentConversationId) {
                 resetChat();
             }
 
@@ -268,6 +273,10 @@ export default function Chat() {
         deleteConversationMutation(currentConversationId);
     }
 
+    const handleAiConsent = () => {
+        setAiConsent(true);
+    }
+
     return (
         <LinearGradient
             colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -279,6 +288,7 @@ export default function Chat() {
             <SafeAreaView style={{ flex: 1 }}>
                 <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={10}>
                     <ErrorPopup message="Something went wrong. Please try again later" visible={isError || isDeleteConversationError} />
+                    <AIDisclaimerModal visible={!aiConsent} denyVisible={false} onAccept={handleAiConsent}  />
 
                     <SideDrawer isOpen={drawerOpen} onClose={() => { setDrawerOpen(false) }} onReset={resetChat} restoreConversation={restoreConversation} deleteConversation={deleteConversationMutation} currentConversationId={currentConversationId} />
 

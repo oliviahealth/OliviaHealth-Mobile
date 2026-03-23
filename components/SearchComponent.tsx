@@ -1,11 +1,14 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React from "react";
+import React, { useState } from "react";
 import { Text, TextInput, View, Pressable } from "react-native";
 import { useMutation } from '@tanstack/react-query';
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
+import useAppStore from "@/src/store/useAppStore";
+
 import OllieOverviewCard from "./OllieOverview";
+import AIDisclaimerModal from "./AIDisclaimerModal";
 
 const OLLIE_URL = process.env.EXPO_PUBLIC_OLLIE_URL!;
 
@@ -16,11 +19,16 @@ interface SearchComponentProps {
 }
 
 const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, onChangeText }) => {
+  const [showAiDisclaimerModal, setShowAiDisclaimerModal] = useState(false);
+
+  const aiConsent = useAppStore(state => state.aiConsent);
+
   // fetch ollie overview given the search string
   const getOllieOverview = useMutation({
     mutationFn: async (value: string | undefined) => {
       const searchQuery = value?.trim() ?? null;
       if (!searchQuery) return;
+      if(!aiConsent) return;
 
       const conversationId = uuid();
 
@@ -42,6 +50,11 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
         data
       }
     },
+    onMutate: () => {
+      if (!aiConsent) {
+        setShowAiDisclaimerModal(true);
+      }
+    },
     onError: (error) => {
       console.error("Failed to get Ollie overview", error);
     },
@@ -52,8 +65,17 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
     getOllieOverview.reset();
   };
 
+  const handleAiConsentGiven = () => {
+    setShowAiDisclaimerModal(false);
+  }
+
+  const handleAiConsentDeny = () => {
+    setShowAiDisclaimerModal(false);
+  }
+
   return (
     <View>
+      <AIDisclaimerModal visible={showAiDisclaimerModal} denyVisible={true} onAccept={handleAiConsentGiven} onDeny={handleAiConsentDeny} />
       <View
         style={{
           flexDirection: "row",
@@ -88,7 +110,6 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           onSubmitEditing={() => getOllieOverview.mutate(value)}
         />
 
-        {/* CLEAR BUTTON */}
         {!!value && (
           <Pressable
             onPress={clearSearch}
@@ -116,13 +137,13 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ placeholder, value, o
           </View>
         )}
 
-        {(getOllieOverview.isPending || getOllieOverview.data || getOllieOverview.error) && (
-          <OllieOverviewCard
+        <OllieOverviewCard
             ollieResponse={getOllieOverview.data}
             isError={getOllieOverview.isError}
             isLoading={getOllieOverview.isPending}
+            aiConsent={aiConsent}
+            visible={!getOllieOverview.isIdle}
           />
-        )}
       </View>
     </View>
   );
