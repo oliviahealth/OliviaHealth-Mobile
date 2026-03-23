@@ -17,6 +17,8 @@ if (Platform.OS === "android") {
 
 type OllieOverviewProps = {
     ollieResponse?: { conversationId: string, data: IOllieResponse };
+    visible: boolean
+    aiConsent?: boolean
     isError: boolean
     isLoading: boolean
 };
@@ -57,7 +59,7 @@ function SkeletonLine({ width, height = 12, style }: { width: string | number; h
     );
 }
 
-export default function OllieOverviewCard({ ollieResponse, isError, isLoading }: OllieOverviewProps) {
+export default function OllieOverviewCard({ ollieResponse, isError, isLoading, aiConsent, visible }: OllieOverviewProps) {
     const { width, height } = useWindowDimensions();
     const COLLAPSE_CHARS = Math.round((width * height) / 1500);
 
@@ -139,6 +141,10 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
 
     }, [ollieResponse?.data?.documents, resources])
 
+    if(!visible) {
+        return <></>
+    }
+
     return (
         <View style={{ marginVertical: 10 }}>
             <View
@@ -181,62 +187,78 @@ export default function OllieOverviewCard({ ollieResponse, isError, isLoading }:
                                     Couldn&apos;t load Ollie overview, please try again later.
                                 </Text>
                             </View>
-                        )
-                            : ollieResponse?.data?.response && sources ? (
-                                <TruncatedTextView
-                                    text={ollieResponse.data.response} // need to pass in the data.response to calculate how many lines to display before the 'show more' button
-                                    numberOfLines={4}
-                                    lineHeight={28}
-                                    enableShowLess={false}
-                                    textPropsChild={{ allowFontScaling: false }}
-                                    textPropsRoot={{ allowFontScaling: false }}
-                                    tailTextStyle={{ marginTop: 5, color: '#666' }}
-                                    style={{
-                                        marginTop: 10,
-                                        fontSize: 14,
-                                        color: "#444",
-                                        backgroundColor: "transparent",
-                                    }}
-                                    renderContent={(isExpanded) => ( // main content to be displayed before the 'show more' button
-                                        <View style={{ marginTop: 12 }}>
-                                            <Markdown>{isExpanded ? ollieResponse.data.response : collapsedMarkdown}</Markdown>
+                        ) :
 
-                                            {isExpanded &&
-                                                sources.map((source, index) => (
-                                                    <TouchableOpacity
-                                                        key={source.doc.id}
-                                                        activeOpacity={0.6}
-                                                        onPress={() => navigateToSource(source)}
-                                                        style={{
-                                                            alignSelf: "flex-start",
-                                                            marginTop: index === 0 ? 12 : 6,
-                                                            paddingHorizontal: 12,
-                                                            paddingVertical: 6,
-                                                            borderRadius: 12,
-                                                            backgroundColor: "rgba(0, 0, 0, 0.04)",
-                                                        }}
-                                                    >
-                                                        <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-                                                            <Text
-                                                                style={{ fontSize: 12, color: "#222222", fontWeight: "500" }}
-                                                                numberOfLines={1}
-                                                            >
-                                                                {source.doc.title}
-                                                            </Text>
-                                                            <Ionicons name="chevron-forward-outline" />
-                                                        </View>
-                                                    </TouchableOpacity>
-                                                ))}
+                            !aiConsent ? (
+                                <TruncatedTextView
+                                    text="You must accept AI features to use Ollie Search."
+                                    renderContent={(isExpanded) => (
+                                        <View style={{ marginTop: 12 }}>
+                                            <Markdown>
+                                                You must accept AI features to use Ollie Search
+                                            </Markdown>
                                         </View>
                                     )}
-                                />
-                            ) : (
-                                <View style={{ marginTop: 10 }}>
-                                    <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
-                                        Couldn&apos;t load Ollie overview, please try again later.
-                                    </Text>
-                                </View>
-                            )}
+                                >
+
+                                </TruncatedTextView>
+                            )
+
+                                : ollieResponse?.data?.response && sources ? (
+                                    <TruncatedTextView
+                                        text={ollieResponse.data.response} // need to pass in the data.response to calculate how many lines to display before the 'show more' button
+                                        numberOfLines={4}
+                                        lineHeight={28}
+                                        enableShowLess={false}
+                                        textPropsChild={{ allowFontScaling: false }}
+                                        textPropsRoot={{ allowFontScaling: false }}
+                                        tailTextStyle={{ marginTop: 5, color: '#666' }}
+                                        style={{
+                                            marginTop: 10,
+                                            fontSize: 14,
+                                            color: "#444",
+                                            backgroundColor: "transparent",
+                                        }}
+                                        renderContent={(isExpanded) => ( // main content to be displayed before the 'show more' button
+                                            <View style={{ marginTop: 12 }}>
+                                                <Markdown>{isExpanded ? ollieResponse.data.response : collapsedMarkdown}</Markdown>
+
+                                                {isExpanded &&
+                                                    sources.map((source, index) => (
+                                                        <TouchableOpacity
+                                                            key={source.doc.id}
+                                                            activeOpacity={0.6}
+                                                            onPress={() => navigateToSource(source)}
+                                                            style={{
+                                                                alignSelf: "flex-start",
+                                                                marginTop: index === 0 ? 12 : 6,
+                                                                paddingHorizontal: 12,
+                                                                paddingVertical: 6,
+                                                                borderRadius: 12,
+                                                                backgroundColor: "rgba(0, 0, 0, 0.04)",
+                                                            }}
+                                                        >
+                                                            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                                                                <Text
+                                                                    style={{ fontSize: 12, color: "#222222", fontWeight: "500" }}
+                                                                    numberOfLines={1}
+                                                                >
+                                                                    {source.doc.title}
+                                                                </Text>
+                                                                <Ionicons name="chevron-forward-outline" />
+                                                            </View>
+                                                        </TouchableOpacity>
+                                                    ))}
+                                            </View>
+                                        )}
+                                    />
+                                ) : (
+                                    <View style={{ marginTop: 10 }}>
+                                        <Text style={{ fontSize: 14, color: "#2E2E2E" }}>
+                                            Couldn&apos;t load Ollie overview, please try again later.
+                                        </Text>
+                                    </View>
+                                )}
 
                     {/* CTA (only on success) */}
                     {ollieResponse?.data?.response && sources && (
