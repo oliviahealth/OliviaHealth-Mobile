@@ -1,7 +1,8 @@
 import JourneyDetailItem from "@/components/JourneyDetailItem";
 import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
 import JourneyResourceModal from "@/components/JourneyResourceModal";
-import { DetailItem } from "@/src/store/useResourcesStore";
+import { IJourneyDetail } from "@/src/store/useJourneyStore";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
@@ -11,11 +12,11 @@ const backgroundImage = require("../../../../assets/images/journey-background.pn
 
 export default function JourneyDetailsScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<DetailItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<IJourneyDetail | null>(null);
   const { id } = useLocalSearchParams();
 
   // Sample data
-  const detailItems: DetailItem[] = [
+  const detailItems: IJourneyDetail[] = [
     {
       title: "Nutrition",
       progress: Math.floor(Math.random() * 100),
@@ -85,6 +86,7 @@ export default function JourneyDetailsScreen() {
             <JourneyDetailItem
               key={index}
               {...item}
+              icon={item.icon as keyof typeof Ionicons.glyphMap}
               renderSVGLine={index < detailItems.length - 1}
               onPress={() => {
                 setSelectedItem(item);

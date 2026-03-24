@@ -1,4 +1,4 @@
-import { DetailItem } from "@/src/store/useResourcesStore";
+import { IJourneyDetail } from "@/src/store/useJourneyStore";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {
   Platform,
@@ -12,7 +12,7 @@ import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface JourneyResourceModalProps {
-  selectedItem: DetailItem | null;
+  selectedItem: IJourneyDetail | null;
   isVisible: boolean;
   onClose: () => void;
 }
