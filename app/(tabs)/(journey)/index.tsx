@@ -11,6 +11,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 
+// import PreconceptionIcon from "../../../assets/images/journey_icons/preconception.svg";
+
 const backgroundImage = require("../../../assets/images/journey-background.png");
 
 export default function JourneyScreen() {
