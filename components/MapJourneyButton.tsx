@@ -1,4 +1,3 @@
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
@@ -9,7 +8,7 @@ interface MapJourneyButtonProps {
   progress: number; // 0-100
   borderColor: string;
   fillColor: string;
-  icon: keyof typeof Ionicons.glyphMap;
+  Icon: React.ComponentType<{ width?: number; height?: number }>;
   id: string;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -22,7 +21,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
   progress,
   borderColor,
   fillColor,
-  icon,
+  Icon,
   id,
   setModalState,
 }) => {
@@ -50,7 +49,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
           rotation={0}
         />
         <View style={[styles.innerCircle, { backgroundColor: fillColor }]}>
-          <Ionicons name={icon} size={48} color={borderColor} />
+          <Icon width={48} height={48} />
         </View>
       </TouchableOpacity>
       <Text
