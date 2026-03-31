@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Modal from "react-native-modal";
 
 interface JourneyIslandModalProps {
   visible: boolean;
   onClose: () => void;
-  iconUrl: string;
+  Icon: React.ComponentType<{ width?: number; height?: number }>;
   title: string;
   subtitle: string;
   description: string;
@@ -21,7 +15,7 @@ interface JourneyIslandModalProps {
 const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({
   visible,
   onClose,
-  iconUrl,
+  Icon,
   title,
   subtitle,
   description,
@@ -29,10 +23,10 @@ const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({
 }) => {
   return (
     <Modal
-      visible={visible}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
+      isVisible={visible}
+      backdropOpacity={0.2}
+      onBackdropPress={onClose}
+      style={{ margin: 0, justifyContent: "flex-end", alignItems: "center" }}
     >
       <View style={styles.overlay}>
         <View style={styles.container}>
@@ -43,11 +37,9 @@ const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({
           >
             <Text style={styles.closeText}>×</Text>
           </TouchableOpacity>
-          <Image
-            source={{ uri: iconUrl }}
-            style={styles.icon}
-            resizeMode="contain"
-          />
+          <View style={styles.icon}>
+            <Icon width={56} height={56} />
+          </View>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
           <Text style={styles.description}>{description}</Text>
@@ -66,17 +58,19 @@ const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0,0,0,0.2)",
-    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
   container: {
     backgroundColor: "#fff",
-    borderRadius: 16,
-    padding: 24,
+    width: "100%",
+    paddingVertical: 24,
+    paddingHorizontal: 35,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
     alignItems: "center",
-    width: 300,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -102,7 +96,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   title: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: "600",
     color: "#222",
     marginBottom: 2,
@@ -111,7 +105,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     color: "#6CB6FF",
-    fontWeight: "500",
+    fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
   },
@@ -120,7 +114,6 @@ const styles = StyleSheet.create({
     color: "#888",
     textAlign: "center",
     marginBottom: 20,
-    marginHorizontal: 8,
   },
   exploreButton: {
     backgroundColor: "#6CB6FF",
