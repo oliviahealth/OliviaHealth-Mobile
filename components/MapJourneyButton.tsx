@@ -1,5 +1,3 @@
-import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
@@ -10,8 +8,9 @@ interface MapJourneyButtonProps {
   progress: number; // 0-100
   borderColor: string;
   fillColor: string;
-  icon: keyof typeof Ionicons.glyphMap;
+  Icon: React.ComponentType<{ width?: number; height?: number }>;
   id: string;
+  setModalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BUTTON_SIZE = 110;
@@ -22,11 +21,10 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
   progress,
   borderColor,
   fillColor,
-  icon,
+  Icon,
   id,
+  setModalState,
 }) => {
-  const router = useRouter();
-
   return (
     <>
       <TouchableOpacity
@@ -37,7 +35,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
             top: y - BUTTON_SIZE / 2,
           },
         ]}
-        onPress={() => router.push(`/(tabs)/(journey)/details/${id}`)}
+        onPress={() => setModalState(true)}
         activeOpacity={0.85}
       >
         <AnimatedCircularProgress
@@ -51,7 +49,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
           rotation={0}
         />
         <View style={[styles.innerCircle, { backgroundColor: fillColor }]}>
-          <Ionicons name={icon} size={48} color={borderColor} />
+          <Icon width={48} height={48} />
         </View>
       </TouchableOpacity>
       <Text
