@@ -27,7 +27,7 @@ export default function Index() {
     if (!items) return [];
     return items.filter((item) => {
       if (!searchLower) {
-        return item.spotlight;
+        return Boolean(item.spotlight);
       }
       return item.title.toLowerCase().includes(searchLower);
     });
@@ -123,7 +123,6 @@ export default function Index() {
           )}
 
           {/* Video Spotlights */}
-          {video_spotlights_featured.length > 0 && (
             <View style={{ marginTop: 16 }}>
               <View
                 style={{
@@ -170,10 +169,8 @@ export default function Index() {
                 </TouchableOpacity>
               ))}
             </View>
-          )}
 
           {/* Local Resources */}
-          {local_resources_featured.length > 0 && (
             <View>
               <View
                 style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}
@@ -215,10 +212,8 @@ export default function Index() {
                 </TouchableOpacity>
               ))}
             </View>
-          )}
 
           {/* Quick Tips */}
-          {quick_tips_featured.length > 0 && (
             <View>
               <View
                 style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 10, }}
@@ -262,10 +257,8 @@ export default function Index() {
                 </TouchableOpacity>
               ))}
             </View>
-          )}
 
           {/* Infographics */}
-          {infographics_features.length > 0 && (
             <View>
               <View
                 style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 10, }}
@@ -309,7 +302,6 @@ export default function Index() {
                 </TouchableOpacity>
               ))}
             </View>
-          )}
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
