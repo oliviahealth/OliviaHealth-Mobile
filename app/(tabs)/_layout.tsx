@@ -1,17 +1,21 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
+import ProfessionalIcon from "../../assets/images/professionals_icon.svg";
 import { TINT_COLOR } from "../../theme";
 
 export default function TabLayout() {
   return (
-    <Tabs detachInactiveScreens={false} screenOptions={{
-      tabBarActiveTintColor: TINT_COLOR,
-      headerShown: false,
-      sceneStyle: {
-        backgroundColor: "#ffff",
-      },
-      animation: 'shift',
-    }}>
+    <Tabs
+      detachInactiveScreens={false}
+      screenOptions={{
+        tabBarActiveTintColor: TINT_COLOR,
+        headerShown: false,
+        sceneStyle: {
+          backgroundColor: "#ffff",
+        },
+        animation: "shift",
+      }}
+    >
       <Tabs.Screen
         name="(journey)"
         options={{
@@ -23,18 +27,22 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="chat"
+        name="(library)"
         options={{
-          title: 'Chat',
-          tabBarIcon: ({ color }) => <Ionicons size={24} name="sparkles-outline" color={color} />,
+          title: "Library",
+          tabBarIcon: ({ color }) => (
+            <Ionicons size={24} name="library-outline" color={color} />
+          ),
         }}
       />
 
       <Tabs.Screen
-        name="(library)"
+        name="chat"
         options={{
-          title: 'Library',
-          tabBarIcon: ({ color }) => <Ionicons size={24} name="library-outline" color={color} />,
+          title: "Ollie AI",
+          tabBarIcon: ({ color }) => (
+            <Ionicons size={24} name="sparkles-outline" color={color} />
+          ),
         }}
       />
 
@@ -43,11 +51,29 @@ export default function TabLayout() {
         options={{
           title: "About",
           tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="information-circle-outline" color={color} />
+            <Ionicons
+              size={24}
+              name="information-circle-outline"
+              color={color}
+            />
           ),
         }}
       />
 
+      <Tabs.Screen
+        name="professionals"
+        options={{
+          title: "Professionals",
+          tabBarIcon: ({ color }) => (
+            <ProfessionalIcon
+              width={24}
+              height={24}
+              fill="none"
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
