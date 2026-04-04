@@ -1,6 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import ProfessionalIcon from "../../assets/images/professionals_icon.svg";
+import OllieTabIcon from "../../components/OllieTabIcon";
 import { TINT_COLOR } from "../../theme";
 
 export default function TabLayout() {
@@ -40,9 +41,7 @@ export default function TabLayout() {
         name="chat"
         options={{
           title: "Ollie AI",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={24} name="sparkles-outline" color={color} />
-          ),
+          tabBarIcon: ({ focused }) => <OllieTabIcon focused={focused} />,
         }}
       />
 
