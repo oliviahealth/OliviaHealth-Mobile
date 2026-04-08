@@ -1,7 +1,8 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
+import OllieLineArt from "../../assets/images/ollie-avatar-lineart.svg"; // Uncomment for line art version of Ollie for tab icon
 import ProfessionalIcon from "../../assets/images/professionals_icon.svg";
-import OllieTabIcon from "../../components/OllieTabIcon";
+// import OllieTabIcon from "../../components/OllieTabIcon"; // Uncomment for non-line art version of Ollie for tab icon
 import { TINT_COLOR } from "../../theme";
 
 export default function TabLayout() {
@@ -37,13 +38,25 @@ export default function TabLayout() {
         }}
       />
 
+      {/* Line art Ollie Version */}
       <Tabs.Screen
+        name="chat"
+        options={{
+          title: "Ollie AI",
+          tabBarIcon: ({ color }) => (
+            <OllieLineArt width={24} height={24} fill="none" color={color} />
+          ),
+        }}
+      />
+
+      {/* Non-lineart Ollie Version */}
+      {/* <Tabs.Screen
         name="chat"
         options={{
           title: "Ollie AI",
           tabBarIcon: ({ focused }) => <OllieTabIcon focused={focused} />,
         }}
-      />
+      /> */}
 
       <Tabs.Screen
         name="(about)"

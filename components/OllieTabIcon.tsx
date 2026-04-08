@@ -4,7 +4,7 @@ interface OllieTabIconProps {
   focused: boolean;
 }
 
-const ICON_SIZE = 24;
+const ICON_SIZE = 28;
 const ICON_SOURCE = require("@/assets/images/ollie_avatar.png");
 
 export default function OllieTabIcon({ focused }: OllieTabIconProps) {
