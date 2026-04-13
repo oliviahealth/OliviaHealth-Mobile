@@ -1,12 +1,15 @@
-import JourneyDetailItem from "@/components/JourneyDetailItem";
-import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
-import JourneyResourceModal from "@/components/JourneyResourceModal";
-import { IJourneyDetail } from "@/src/store/useJourneyStore";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useLocalSearchParams } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
+import JourneyDetailItem from "@/components/JourneyDetailItem";
+import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
+import JourneyResourceModal from "@/components/JourneyResourceModal";
+
+import { IJourneyDetail } from "@/src/store/useJourneyStore";
+import useResourcesStore from "@/src/store/useResourcesStore";
 
 const backgroundImage = require("../../../../assets/images/journey-background.png");
 
@@ -14,6 +17,10 @@ export default function JourneyDetailsScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IJourneyDetail | null>(null);
   const { id } = useLocalSearchParams();
+
+  const resources = useResourcesStore(state => state.resources);
+  const island = resources?.islands.find(i => i.id === id);
+
 
   // Sample data
   const detailItems: IJourneyDetail[] = [
@@ -81,7 +88,7 @@ export default function JourneyDetailsScreen() {
           }}
           showsVerticalScrollIndicator={false}
         >
-          <JourneyDetailsHeader islandName={id as string} />
+          <JourneyDetailsHeader islandName={island?.name ?? ""} />
           {detailItems.map((item, index) => (
             <JourneyDetailItem
               key={index}

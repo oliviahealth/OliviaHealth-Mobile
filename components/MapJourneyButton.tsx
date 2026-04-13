@@ -5,7 +5,7 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 interface MapJourneyButtonProps {
   x: number;
   y: number;
-  progress: number; // 0-100
+  progress: number;
   borderColor: string;
   fillColor: string;
   Icon: React.ComponentType<{ width?: number; height?: number }>;
@@ -14,6 +14,8 @@ interface MapJourneyButtonProps {
 }
 
 const BUTTON_SIZE = 110;
+const INNER_CIRCLE_SIZE = BUTTON_SIZE * 0.82;
+const PROGRESS_RING_WIDTH = 8;
 
 export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
   x,
@@ -25,6 +27,8 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
   id,
   setModalState,
 }) => {
+  const trackColor = borderColor + "33"; // 20% opacity of border color
+
   return (
     <>
       <TouchableOpacity
@@ -40,28 +44,42 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
       >
         <AnimatedCircularProgress
           size={BUTTON_SIZE}
-          width={8}
+          width={PROGRESS_RING_WIDTH}
           fill={progress}
           tintColor={borderColor}
-          backgroundColor={fillColor}
+          backgroundColor={trackColor}
           lineCap="round"
-          style={StyleSheet.absoluteFill}
-          rotation={0}
+          rotation={-120}         // start from upper-left like the design
+          arcSweepAngle={360}
+          style={StyleSheet.absoluteFillObject}
         />
-        <View style={[styles.innerCircle, { backgroundColor: fillColor }]}>
+
+        {/* Inner fill circle sits on top of the ring */}
+        <View
+          style={[
+            styles.innerCircle,
+            {
+              width: INNER_CIRCLE_SIZE,
+              height: INNER_CIRCLE_SIZE,
+              borderRadius: INNER_CIRCLE_SIZE / 2,
+              backgroundColor: fillColor,
+            },
+          ]}
+        >
           <Icon width={48} height={48} />
         </View>
       </TouchableOpacity>
+
       <Text
-        style={{
-          position: "absolute",
-          left: x - BUTTON_SIZE / 2,
-          top: y + 60,
-          fontWeight: "bold",
-          color: borderColor,
-          textAlign: "center",
-          width: BUTTON_SIZE,
-        }}
+        style={[
+          styles.label,
+          {
+            left: x - BUTTON_SIZE / 2,
+            top: y + 60,
+            color: borderColor,
+            width: BUTTON_SIZE,
+          },
+        ]}
       >
         {id}
       </Text>
@@ -79,12 +97,17 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   innerCircle: {
-    width: BUTTON_SIZE * 0.8636, // 95/110
-    height: BUTTON_SIZE * 0.8636,
-    borderRadius: 1000,
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#000",
     shadowOpacity: 0.15,
     shadowRadius: 16,
+    shadowOffset: { width: 0, height: 4 },
+  },
+  label: {
+    position: "absolute",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 12,
   },
 });
