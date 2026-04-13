@@ -1,17 +1,9 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useEffect, useMemo, useState } from "react";
-import {
-  ActivityIndicator,
-  Image,
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { ActivityIndicator, Platform, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { WebView } from "react-native-webview";
 
 import { saturateAndDarken } from "@/app/utils/utils";
 import useResourcesStore, { IJourneyDetail } from "@/src/store/useResourcesStore";
@@ -28,13 +20,12 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   onClose,
 }) => {
   const insets = useSafeAreaInsets();
-  const { height, width } = useWindowDimensions();
+  const { height } = useWindowDimensions();
   const modalHeightOffset = Platform.OS === "android" ? 30 : 0;
+
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const darkenedColor = saturateAndDarken(selectedItem?.color || "#f3e6ff");
 
   const allInfographics = useResourcesStore(state => state.resources)?.infographics;
 
@@ -53,11 +44,11 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   const currentInfographic = resolvedInfographics[currentIndex];
   const modalTitle = currentInfographic?.title || selectedItem?.name || "Resource";
 
-  const infographicViewportHeight = height - insets.top - modalHeightOffset - 240;
-
   const hasInfographics = resolvedInfographics.length > 0;
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === resolvedInfographics.length - 1;
+
+  const darkenedColor = saturateAndDarken(selectedItem?.color || "#f3e6ff");
 
   const handleBack = () => {
     if (!isFirst) {
@@ -190,26 +181,17 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
                 </View>
               )}
 
-              <ScrollView
+              <WebView
                 key={currentInfographic.id}
-                showsVerticalScrollIndicator={false}
+                source={{ uri: currentInfographic.infographic_url }}
                 style={{ flex: 1 }}
-                contentContainerStyle={{ paddingBottom: 8 }}
-              >
-                <Image
-                  source={{ uri: currentInfographic.infographic_url }}
-                  style={{
-                    width: width - 36,
-                    height: height,
-                    alignSelf: "center",
-                    opacity: isImageLoading ? 0 : 1,
-                  }}
-                  resizeMode="contain"
-                  onLoadStart={() => setIsImageLoading(true)}
-                  onLoadEnd={() => setIsImageLoading(false)}
-                  onError={() => setIsImageLoading(false)}
-                />
-              </ScrollView>
+                onLoadStart={() => setIsImageLoading(true)}
+                onLoadEnd={() => setIsImageLoading(false)}
+                onError={() => setIsImageLoading(false)}
+                originWhitelist={["*"]}
+                scalesPageToFit
+                startInLoadingState={false}
+              />
             </View>
           ) : (
             <View
