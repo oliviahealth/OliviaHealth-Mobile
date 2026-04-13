@@ -1,13 +1,14 @@
-import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { Ionicons } from "@expo/vector-icons";
 import SVG, { Line } from "react-native-svg";
+
+import { saturateAndDarken } from "@/app/utils/utils";
 
 interface JourneyDetailItemProps {
   title: string;
   progress: number; // 0-100
-  borderColor: string;
-  fillColor: string;
+  color: string;
   icon: keyof typeof Ionicons.glyphMap;
   renderSVGLine: boolean;
   onPress?: () => void;
@@ -16,14 +17,15 @@ interface JourneyDetailItemProps {
 const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
   title,
   progress,
-  borderColor,
-  fillColor,
+  color,
   icon,
   renderSVGLine,
   onPress,
 }) => {
   const PROGRESS_SIZE = 50;
   const LINE_HEIGHT = 15;
+
+  const darkenedColor = saturateAndDarken(color);
 
   return (
     <>
@@ -47,8 +49,8 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
             size={PROGRESS_SIZE}
             width={6}
             fill={progress}
-            tintColor={borderColor}
-            backgroundColor={fillColor}
+            tintColor={color}
+            backgroundColor={darkenedColor}
             lineCap="round"
             rotation={0}
             style={{ zIndex: 1 }}
@@ -61,7 +63,7 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
               width: PROGRESS_SIZE - 12,
               height: PROGRESS_SIZE - 12,
               borderRadius: 1000,
-              backgroundColor: fillColor,
+              backgroundColor: color,
               alignItems: "center",
               justifyContent: "center",
               shadowOpacity: 0.15,
@@ -69,7 +71,7 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
               zIndex: 2,
             }}
           >
-            <Ionicons name={icon} size={24} color={borderColor} />
+            <Ionicons name={icon} size={24} color={darkenedColor} />
           </View>
           <Text style={{ fontSize: 16, fontWeight: "bold", color: "#565656" }}>
             {title}
@@ -77,7 +79,7 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
         </View>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
           <Text
-            style={{ fontSize: 16, color: borderColor, fontWeight: "bold" }}
+            style={{ fontSize: 16, color: darkenedColor, fontWeight: "bold" }}
           >{`${progress}%`}</Text>
           <Ionicons name="chevron-forward" size={20} color="black" />
         </View>

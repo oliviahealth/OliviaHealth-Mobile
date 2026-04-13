@@ -1,19 +1,16 @@
-import { Point } from "@/app/(tabs)/(journey)";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
 
+import { IPoint } from "@/app/(tabs)/(journey)";
+
 interface JourneyIslandModalProps {
-  pt: Point;
+  pt: IPoint;
   Icon: React.ComponentType<{ width?: number; height?: number }>;
   onExplore: () => void;
 }
 
-const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({
-  pt,
-  Icon,
-  onExplore,
-}) => {
+const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({ pt, Icon, onExplore }) => {
   const styles = StyleSheet.create({
     overlay: {
       width: "100%",
