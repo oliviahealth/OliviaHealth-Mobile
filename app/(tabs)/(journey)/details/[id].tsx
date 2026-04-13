@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams } from "expo-router";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 import JourneyDetailItem from "@/components/JourneyDetailItem";
 import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
@@ -13,96 +12,75 @@ import useResourcesStore from "@/src/store/useResourcesStore";
 
 const backgroundImage = require("../../../../assets/images/journey-background.png");
 
+const DEFAULT_COLOR = "#FFDADA";
+const DEFAULT_ICON = "heart";
+
 export default function JourneyDetailsScreen() {
+  const { id } = useLocalSearchParams();
+  const islandId = Array.isArray(id) ? id[0] : id;
+
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IJourneyDetail | null>(null);
-  const { id } = useLocalSearchParams();
 
-  const resources = useResourcesStore(state => state.resources);
-  const island = resources?.islands.find(i => i.id === id);
+  const resources = useResourcesStore((state) => state.resources);
 
+  const island = useMemo(
+    () => resources?.islands.find((item) => item.id === islandId),
+    [resources, islandId],
+  );
 
-  // Sample data
-  const detailItems: IJourneyDetail[] = [
-    {
-      title: "Nutrition",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#FF6F91",
-      fillColor: "#FFE6F0",
-      icon: "nutrition",
-    },
-    {
-      title: "Family History",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#43B0F1",
-      fillColor: "#E6F7FF",
-      icon: "walk",
-    },
-    {
-      title: "Vaccinations",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#00B894",
-      fillColor: "#E6FFF7",
-      icon: "moon",
-    },
-    {
-      title: "Lifestyle",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#a259ff",
-      fillColor: "#f3e6ff",
-      icon: "bicycle",
-    },
-    {
-      title: "Lifestyle",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#FFD700",
-      fillColor: "#FFFBE6",
-      icon: "bicycle",
-    },
-    {
-      title: "Lifestyle",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#FF6F91",
-      fillColor: "#FFE6F0",
-      icon: "bicycle",
-    },
-    {
-      title: "Lifestyle",
-      progress: Math.floor(Math.random() * 100),
-      borderColor: "#00B894",
-      fillColor: "#E6FFF7",
-      icon: "bicycle",
-    },
-  ];
+  const subcategories = island?.data?.subcategories ?? [];
+
+  const handleOpenModal = (item: (typeof subcategories)[number]) => {
+    const color = item?.color ?? DEFAULT_COLOR;
+    const title = item?.name ?? "";
+    const progress = Math.floor(Math.random() * 100);
+
+    setSelectedItem({
+      title,
+      progress,
+      borderColor: color,
+      fillColor: color,
+      icon: item?.icon ?? DEFAULT_ICON,
+    });
+
+    setModalVisible(true);
+  };
 
   return (
     <ImageBackground
       source={backgroundImage}
       style={StyleSheet.absoluteFill}
-      imageStyle={{ resizeMode: "cover" }}
+      imageStyle={styles.backgroundImage}
     >
-      <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
+      <SafeAreaView edges={["top"]} style={styles.safeArea}>
         <ScrollView
-          contentContainerStyle={{
-            paddingHorizontal: 20,
-          }}
+          contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
           <JourneyDetailsHeader islandName={island?.name ?? ""} />
-          {detailItems.map((item, index) => (
-            <JourneyDetailItem
-              key={index}
-              {...item}
-              icon={item.icon as keyof typeof Ionicons.glyphMap}
-              renderSVGLine={index < detailItems.length - 1}
-              onPress={() => {
-                setSelectedItem(item);
-                setModalVisible(true);
-              }}
-            />
-          ))}
+
+          {subcategories.map((item, index) => {
+            const color = item?.color ?? DEFAULT_COLOR;
+            const title = item?.name ?? "";
+            const progress = Math.floor(Math.random() * 100);
+
+            return (
+              <JourneyDetailItem
+                key={item?.id ?? `${title}-${index}`}
+                {...item}
+                title={title}
+                progress={progress}
+                color={color}
+                // @ts-expect-error
+                icon={item?.icon ?? DEFAULT_ICON}
+                renderSVGLine={index < subcategories.length - 1}
+                onPress={() => handleOpenModal(item)}
+              />
+            );
+          })}
         </ScrollView>
-        {/* Modal Implementation */}
+
         <JourneyResourceModal
           selectedItem={selectedItem}
           isVisible={isModalVisible}
@@ -112,3 +90,15 @@ export default function JourneyDetailsScreen() {
     </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    resizeMode: "cover",
+  },
+  safeArea: {
+    flex: 1,
+  },
+  contentContainer: {
+    paddingHorizontal: 20,
+  },
+});

@@ -11,6 +11,8 @@ import {
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { saturateAndDarken } from "@/app/utils/utils";
+
 interface JourneyResourceModalProps {
   selectedItem: IJourneyDetail | null;
   isVisible: boolean;
@@ -25,6 +27,9 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
   const modalHeightOffset = Platform.OS === "android" ? 30 : 0;
+
+  const darkenedColor = saturateAndDarken(selectedItem?.fillColor || "#f3e6ff");
+
   return (
     <Modal
       isVisible={isVisible}
@@ -76,7 +81,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
                 style={{
                   width: `${selectedItem?.progress || 0}%`,
                   height: "100%",
-                  backgroundColor: selectedItem?.borderColor || "#a259ff",
+                  backgroundColor: darkenedColor,
                   borderRadius: 8,
                 }}
               />
@@ -88,7 +93,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
               marginLeft: 8,
               fontWeight: "bold",
               fontSize: 16,
-              color: selectedItem?.borderColor || "#a259ff",
+              color: darkenedColor,
               minWidth: 40,
               textAlign: "right",
             }}
@@ -134,11 +139,11 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
             <Ionicons
               name="image"
               size={64}
-              color={selectedItem?.borderColor || "#a259ff"}
+              color={darkenedColor}
             />
             <Text
               style={{
-                color: selectedItem?.borderColor || "#a259ff",
+                color: darkenedColor,
                 marginTop: 12,
                 fontWeight: "600",
               }}
@@ -150,7 +155,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
           {/* Continue Button */}
           <TouchableOpacity
             style={{
-              backgroundColor: selectedItem?.borderColor || "#a259ff",
+              backgroundColor: darkenedColor,
               borderRadius: 12,
               paddingVertical: 18,
               alignItems: "center",

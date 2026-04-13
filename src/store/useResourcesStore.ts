@@ -74,11 +74,14 @@ export const IslandSchema = z.object({
     description: z.string().optional(),
     secondary_name: z.string().optional(),
     color: z.string().optional(),
+    order: z.number().optional(),
     subcategories: z
       .array(
         z.object({
           id: z.string(),
           name: z.string().optional(),
+          color: z.string().optional(),
+          icon: z.string().optional(),
           infographics: z.array(z.string()).optional(),
         }),
       )
