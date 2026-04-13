@@ -65,30 +65,37 @@ export const InfographicSchema = z.object({
 });
 export type IInfographics = z.infer<typeof InfographicSchema>;
 
+export const IslandSubcategorySchema = z.object({
+  id: z.string(),
+  name: z.string().optional(),
+  color: z.string().optional(),
+  icon: z.string().optional(),
+  infographics: z.array(z.string()).optional(),
+});
+export type IIslandSubcategories = z.infer<typeof IslandSubcategorySchema>;
+
 export const IslandSchema = z.object({
   id: z.string(),
   name: z.string(),
-  data: z.object({
-    name: z.string().optional(),
-    icon: z.string().optional(),
-    description: z.string().optional(),
-    secondary_name: z.string().optional(),
-    color: z.string().optional(),
-    order: z.number().optional(),
-    subcategories: z
-      .array(
-        z.object({
-          id: z.string(),
-          name: z.string().optional(),
-          color: z.string().optional(),
-          icon: z.string().optional(),
-          infographics: z.array(z.string()).optional(),
-        }),
-      )
-      .optional(),
-  }).optional(),
+  data: z
+    .object({
+      name: z.string().optional(),
+      icon: z.string().optional(),
+      description: z.string().optional(),
+      secondary_name: z.string().optional(),
+      color: z.string().optional(),
+      order: z.number().optional(),
+      subcategories: z.array(IslandSubcategorySchema).optional(),
+    })
+    .optional(),
 });
 export type IIslands = z.infer<typeof IslandSchema>;
+
+export const JourneyDetailSchema = IslandSubcategorySchema.extend({
+  progress: z.number().min(0).max(100),
+});
+
+export type IJourneyDetail = z.infer<typeof JourneyDetailSchema>;
 
 /** ========= Collection schemas ========= */
 

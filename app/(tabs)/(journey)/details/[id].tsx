@@ -1,14 +1,13 @@
+import { useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams } from "expo-router";
 
 import JourneyDetailItem from "@/components/JourneyDetailItem";
 import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
 import JourneyResourceModal from "@/components/JourneyResourceModal";
 
-import { IJourneyDetail } from "@/src/store/useJourneyStore";
-import useResourcesStore from "@/src/store/useResourcesStore";
+import useResourcesStore, { IJourneyDetail } from "@/src/store/useResourcesStore";
 
 const backgroundImage = require("../../../../assets/images/journey-background.png");
 
@@ -24,8 +23,7 @@ export default function JourneyDetailsScreen() {
 
   const resources = useResourcesStore((state) => state.resources);
 
-  const island = useMemo(
-    () => resources?.islands.find((item) => item.id === islandId),
+  const island = useMemo(() => resources?.islands.find((item) => item.id === islandId),
     [resources, islandId],
   );
 
@@ -33,15 +31,18 @@ export default function JourneyDetailsScreen() {
 
   const handleOpenModal = (item: (typeof subcategories)[number]) => {
     const color = item?.color ?? DEFAULT_COLOR;
-    const title = item?.name ?? "";
+    const name = item?.name ?? "";
     const progress = Math.floor(Math.random() * 100);
+    const icon = item.icon ?? DEFAULT_ICON;
+    const infographics = item.infographics ?? [];
 
     setSelectedItem({
-      title,
+      id: item.id,
+      name,
       progress,
-      borderColor: color,
-      fillColor: color,
-      icon: item?.icon ?? DEFAULT_ICON,
+      color,
+      icon,
+      infographics
     });
 
     setModalVisible(true);
