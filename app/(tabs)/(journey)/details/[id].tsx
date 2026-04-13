@@ -59,7 +59,7 @@ export default function JourneyDetailsScreen() {
           contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
-          <JourneyDetailsHeader islandName={island?.name ?? ""} />
+          <JourneyDetailsHeader islandName={island?.name ?? ""} islandSecondaryName={island?.data?.secondary_name} />
 
           {subcategories.map((item, index) => {
             const color = item?.color ?? DEFAULT_COLOR;

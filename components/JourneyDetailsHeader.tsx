@@ -4,10 +4,12 @@ import BackButton from "./BackButton";
 
 interface JourneyDetailsHeaderProps {
   islandName: string;
+  islandSecondaryName?: string;
 }
 
 const JourneyDetailsHeader: React.FC<JourneyDetailsHeaderProps> = ({
   islandName,
+  islandSecondaryName
 }) => {
   const exampleProgress = Math.floor(Math.random() * 100); // Example progress value
 
@@ -23,9 +25,9 @@ const JourneyDetailsHeader: React.FC<JourneyDetailsHeaderProps> = ({
     >
       <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
         <BackButton />
-        <View style={{ gap: 8 }}>
+        <View style={{ gap: 2 }}>
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>{islandName}</Text>
-          <Text style={{ fontSize: 14, color: "#A27CAC" }}>Your Progress</Text>
+          {islandSecondaryName && (<Text style={{ fontSize: 14, color: "#A27CAC" }}>{islandSecondaryName}</Text>)}
         </View>
       </View>
       <AnimatedCircularProgress
