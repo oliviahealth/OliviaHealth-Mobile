@@ -1,5 +1,6 @@
 import ProfessionalsIcon from "@/assets/images/professionals_icon.svg";
 import TopicCard from "@/components/TopicCard";
+import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 import { TINT_COLOR } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
@@ -11,27 +12,9 @@ import {
   View,
 } from "react-native";
 
-export interface Topic {
-  id: string;
-  title: string;
-  documents: string[];
-}
-
-// Sample data
-const TOPICS: Topic[] = [
-  {
-    id: "1",
-    title: "Safety Protocol",
-    documents: ["Safety_Protocol.pdf"],
-  },
-  {
-    id: "2",
-    title: "Topic 2",
-    documents: ["Safety_Protocol.pdf"],
-  },
-];
-
 export default function Professionals() {
+  const { topics } = useProfessionalsStore();
+
   const styles = StyleSheet.create({
     header: {
       flexDirection: "row",
@@ -94,7 +77,7 @@ export default function Professionals() {
       </Text>
 
       {/* Topic List */}
-      {TOPICS.map((topic) => (
+      {topics.map((topic) => (
         <View key={topic.id} style={{ marginBottom: 12 }}>
           <TopicCard topic={topic} />
         </View>

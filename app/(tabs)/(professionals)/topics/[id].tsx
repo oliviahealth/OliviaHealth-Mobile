@@ -1,4 +1,5 @@
 import TopicCard from "@/components/TopicCard";
+import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
@@ -10,29 +11,10 @@ import {
   View,
 } from "react-native";
 
-export interface Topic {
-  id: string;
-  title: string;
-  documents: string[];
-}
-
-// Sample data
-const TOPICS: Topic[] = [
-  {
-    id: "1",
-    title: "Supporting Anxious Children",
-    documents: ["Safety_Protocol.pdf"],
-  },
-  {
-    id: "2",
-    title: "Topic 2",
-    documents: ["Safety_Protocol.pdf"],
-  },
-];
-
 export default function Professionals() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
+  const { topics } = useProfessionalsStore();
   const styles = StyleSheet.create({
     header: {
       flexDirection: "row",
@@ -50,6 +32,7 @@ export default function Professionals() {
       paddingBottom: 32,
     },
   });
+
   return (
     <ScrollView
       style={{
@@ -67,7 +50,7 @@ export default function Professionals() {
       </View>
 
       {/* Topic List */}
-      {TOPICS.map((topic) => (
+      {topics.map((topic) => (
         <View key={topic.id} style={{ marginBottom: 12 }}>
           <TopicCard topic={topic} />
         </View>

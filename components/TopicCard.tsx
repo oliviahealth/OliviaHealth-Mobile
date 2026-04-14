@@ -1,14 +1,18 @@
-import { Topic } from "@/app/(tabs)/(professionals)/index";
+import {
+  ITopic,
+  useProfessionalsStore,
+} from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface TopicCardProps {
-  topic: Topic;
+  topic: ITopic;
 }
 
 export default function TopicCard({ topic }: TopicCardProps) {
   const router = useRouter();
+  const { setSelectedTopic } = useProfessionalsStore();
   const styles = StyleSheet.create({
     card: {
       flexDirection: "row",
@@ -39,11 +43,16 @@ export default function TopicCard({ topic }: TopicCardProps) {
     },
   });
 
+  const handleTopicSelect = () => {
+    setSelectedTopic(topic);
+    router.push(`topics/${topic.title}`);
+  };
+
   return (
     <TouchableOpacity
       style={styles.card}
       activeOpacity={0.7}
-      onPress={() => router.push(`topics/${topic.title}`)}
+      onPress={handleTopicSelect}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.avatar} />
