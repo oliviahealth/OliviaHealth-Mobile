@@ -1,5 +1,6 @@
 import { Topic } from "@/app/(tabs)/(professionals)/index";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface TopicCardProps {
@@ -7,6 +8,7 @@ interface TopicCardProps {
 }
 
 export default function TopicCard({ topic }: TopicCardProps) {
+  const router = useRouter();
   const styles = StyleSheet.create({
     card: {
       flexDirection: "row",
@@ -38,7 +40,11 @@ export default function TopicCard({ topic }: TopicCardProps) {
   });
 
   return (
-    <TouchableOpacity style={styles.card} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.7}
+      onPress={() => router.push(`topics/${topic.title}`)}
+    >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.avatar} />
         <Text style={styles.cardTitle}>{topic.title}</Text>
