@@ -44,6 +44,7 @@ export default function DocumentCard({ document }: DocumentCardProps) {
   const handleDocumentSelect = () => {
     setSelectedDocument(document);
     console.log("Selected document:", document);
+    // Render document
   };
 
   return (
