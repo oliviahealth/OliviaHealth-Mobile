@@ -3,7 +3,11 @@ import {
   useProfessionalsStore,
 } from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
+import { Asset } from "expo-asset";
+import * as Linking from "expo-linking";
+import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import LoadingDot from "./LoadingDot";
 
 interface DocumentCardProps {
   document: IDocument;
@@ -11,6 +15,8 @@ interface DocumentCardProps {
 
 export default function DocumentCard({ document }: DocumentCardProps) {
   const { setSelectedDocument } = useProfessionalsStore();
+  const [isLoading, setIsLoading] = useState(false);
+
   const styles = StyleSheet.create({
     card: {
       flexDirection: "row",
@@ -41,10 +47,17 @@ export default function DocumentCard({ document }: DocumentCardProps) {
     },
   });
 
-  const handleDocumentSelect = () => {
+  const handleDocumentSelect = async () => {
+    setIsLoading(true);
     setSelectedDocument(document);
-    console.log("Selected document:", document);
-    // Render document
+    const asset = Asset.fromModule(document.uri);
+
+    if (!asset.localUri) {
+      await asset.downloadAsync();
+    }
+
+    await Linking.openURL(asset.localUri!);
+    setIsLoading(false);
   };
 
   return (
@@ -56,6 +69,7 @@ export default function DocumentCard({ document }: DocumentCardProps) {
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.avatar} />
         <Text style={styles.cardTitle}>{document.filename}</Text>
+        {isLoading && <LoadingDot durationMs={500} style={{ marginLeft: 8 }} />}
       </View>
       <Ionicons name="chevron-forward" size={18} color="black" />
     </TouchableOpacity>
