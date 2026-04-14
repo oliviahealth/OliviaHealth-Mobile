@@ -14,8 +14,7 @@ import ErrorPopup from "@/components/ErrorPopup";
 
 SplashScreen.preventAutoHideAsync();
 
-const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL!;
-console.log("Resources URL:", resources_url);
+const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL ?? "";
 const MIN_SPLASH_TIME = 1000;
 
 const queryClient = new QueryClient();
@@ -37,6 +36,9 @@ export default function RootLayout() {
       const startTime = Date.now();
       try {
         // Fetch resources
+        if (!resources_url || resources_url.trim() === "") {
+          throw new Error("Resources URL is not defined");
+        }
         const res = await fetch(resources_url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const resources: IResources = await res.json();
