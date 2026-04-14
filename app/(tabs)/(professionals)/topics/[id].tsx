@@ -1,4 +1,4 @@
-import TopicCard from "@/components/TopicCard";
+import DocumentCard from "@/components/DocumentCard";
 import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -14,7 +14,7 @@ import {
 export default function Professionals() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
-  const { topics } = useProfessionalsStore();
+  const { selectedTopic } = useProfessionalsStore();
   const styles = StyleSheet.create({
     header: {
       flexDirection: "row",
@@ -50,11 +50,13 @@ export default function Professionals() {
       </View>
 
       {/* Topic List */}
-      {topics.map((topic) => (
-        <View key={topic.id} style={{ marginBottom: 12 }}>
-          <TopicCard topic={topic} />
-        </View>
-      ))}
+      {selectedTopic &&
+        selectedTopic.documents &&
+        selectedTopic.documents.map((doc) => (
+          <View style={{ marginBottom: 12 }} key={doc.id}>
+            <DocumentCard document={doc} />
+          </View>
+        ))}
     </ScrollView>
   );
 }

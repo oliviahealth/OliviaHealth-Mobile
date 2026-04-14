@@ -1,18 +1,16 @@
 import {
-  ITopic,
+  IDocument,
   useProfessionalsStore,
 } from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
-import { RelativePathString, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface TopicCardProps {
-  topic: ITopic;
+interface DocumentCardProps {
+  document: IDocument;
 }
 
-export default function TopicCard({ topic }: TopicCardProps) {
-  const router = useRouter();
-  const { setSelectedTopic } = useProfessionalsStore();
+export default function DocumentCard({ document }: DocumentCardProps) {
+  const { setSelectedDocument } = useProfessionalsStore();
   const styles = StyleSheet.create({
     card: {
       flexDirection: "row",
@@ -43,20 +41,20 @@ export default function TopicCard({ topic }: TopicCardProps) {
     },
   });
 
-  const handleTopicSelect = () => {
-    setSelectedTopic(topic);
-    router.push(`topics/${topic.title}` as RelativePathString);
+  const handleDocumentSelect = () => {
+    setSelectedDocument(document);
+    console.log("Selected document:", document);
   };
 
   return (
     <TouchableOpacity
       style={styles.card}
       activeOpacity={0.7}
-      onPress={handleTopicSelect}
+      onPress={handleDocumentSelect}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.avatar} />
-        <Text style={styles.cardTitle}>{topic.title}</Text>
+        <Text style={styles.cardTitle}>{document.filename}</Text>
       </View>
       <Ionicons name="chevron-forward" size={18} color="black" />
     </TouchableOpacity>
