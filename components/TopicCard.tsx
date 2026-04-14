@@ -1,4 +1,4 @@
-import { Topic } from "@/app/(tabs)/professionals";
+import { Topic } from "@/app/(tabs)/(professionals)/index";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 

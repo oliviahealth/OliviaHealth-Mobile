@@ -1,4 +1,5 @@
 import ProfessionalsIcon from "@/assets/images/professionals_icon.svg";
+import TopicCard from "@/components/TopicCard";
 import { TINT_COLOR } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
@@ -9,8 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import TopicCard from "../../components/TopicCard";
 
 export interface Topic {
   id: string;
@@ -73,38 +72,33 @@ export default function Professionals() {
         backgroundColor: "#FFFFFF",
       }}
     >
-      <SafeAreaView
-        edges={["top"]}
-        style={{ flex: 1, backgroundColor: "#FFFFFF" }}
-      >
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <ProfessionalsIcon width={30} height={30} color={TINT_COLOR} />
-            <Text style={styles.headerTitle}>For Professionals</Text>
-          </View>
-          <TouchableOpacity hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-            <Ionicons
-              name="information-circle-outline"
-              size={24}
-              color={TINT_COLOR}
-            />
-          </TouchableOpacity>
+      {/* Header */}
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <ProfessionalsIcon width={30} height={30} color={TINT_COLOR} />
+          <Text style={styles.headerTitle}>For Professionals</Text>
         </View>
+        <TouchableOpacity hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+          <Ionicons
+            name="information-circle-outline"
+            size={24}
+            color={TINT_COLOR}
+          />
+        </TouchableOpacity>
+      </View>
 
-        {/* Subtitle */}
-        <Text style={styles.subtitle}>
-          Lessons for healthcare professionals to best support children and
-          caregivers.
-        </Text>
+      {/* Subtitle */}
+      <Text style={styles.subtitle}>
+        Lessons for healthcare professionals to best support children and
+        caregivers.
+      </Text>
 
-        {/* Topic List */}
-        {TOPICS.map((topic) => (
-          <View key={topic.id} style={{ marginBottom: 12 }}>
-            <TopicCard topic={topic} />
-          </View>
-        ))}
-      </SafeAreaView>
+      {/* Topic List */}
+      {TOPICS.map((topic) => (
+        <View key={topic.id} style={{ marginBottom: 12 }}>
+          <TopicCard topic={topic} />
+        </View>
+      ))}
     </ScrollView>
   );
 }
