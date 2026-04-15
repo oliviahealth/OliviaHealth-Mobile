@@ -69,7 +69,6 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
 
   const getResourceObject = (path: string) => {
     const object_url = EXPO_PUBLIC_S3_URL + "/" + path;
-    console.log(object_url);
     return object_url;
   }
 
