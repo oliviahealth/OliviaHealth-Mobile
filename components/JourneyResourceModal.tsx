@@ -8,6 +8,8 @@ import { WebView } from "react-native-webview";
 import { saturateAndDarken } from "@/app/utils/utils";
 import useResourcesStore, { IJourneyDetail } from "@/src/store/useResourcesStore";
 
+const EXPO_PUBLIC_S3_URL = process.env.EXPO_PUBLIC_S3_URL!;
+
 interface JourneyResourceModalProps {
   selectedItem: IJourneyDetail | null;
   isVisible: boolean;
@@ -64,6 +66,12 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
 
     setCurrentIndex(prev => prev + 1);
   };
+
+  const getResourceObject = (path: string) => {
+    const object_url = EXPO_PUBLIC_S3_URL + "/" + path;
+    console.log(object_url);
+    return object_url;
+  }
 
   useEffect(() => {
     setIsImageLoading(!!currentInfographic);
@@ -176,14 +184,14 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
                       fontWeight: "500",
                     }}
                   >
-                    Loading infographic...
+                    Loading resource...
                   </Text>
                 </View>
               )}
 
               <WebView
                 key={currentInfographic.id}
-                source={{ uri: currentInfographic.infographic_url }}
+                source={{ uri: getResourceObject(currentInfographic.path) }}
                 style={{ flex: 1 }}
                 onLoadStart={() => setIsImageLoading(true)}
                 onLoadEnd={() => setIsImageLoading(false)}

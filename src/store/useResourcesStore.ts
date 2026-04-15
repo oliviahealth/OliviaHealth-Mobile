@@ -24,6 +24,7 @@ export const LocalResourceSchema = z.object({
   video_description: z.string(),
   transcript: z.string(),
   thumbnail_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type ILocalResources = z.infer<typeof LocalResourceSchema>;
@@ -37,6 +38,7 @@ export const VideoSpotlightSchema = z.object({
   video_description: z.string(),
   transcript: z.string(),
   thumbnail_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type IVideoSpotlights = z.infer<typeof VideoSpotlightSchema>;
@@ -51,6 +53,7 @@ export const QuickTipSchema = z.object({
   infographic_description: z.string(),
   transcript: z.string(),
   thumbnail_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type IQuickTips = z.infer<typeof QuickTipSchema>;
@@ -61,6 +64,7 @@ export const InfographicSchema = z.object({
   description: z.string(),
   thumbnail_url: z.string(),
   infographic_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type IInfographics = z.infer<typeof InfographicSchema>;
