@@ -1,4 +1,4 @@
-import DocumentCard from "@/components/DocumentCard";
+import ProfessionalItemCard from "@/components/ProfessionalItemCard";
 import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -51,10 +51,10 @@ export default function Professionals() {
 
       {/* Topic List */}
       {selectedTopic &&
-        selectedTopic.documents &&
-        selectedTopic.documents.map((doc) => (
+        selectedTopic.professionalItems &&
+        selectedTopic.professionalItems.map((doc) => (
           <View style={{ marginBottom: 12 }} key={doc.id}>
-            <DocumentCard document={doc} />
+            <ProfessionalItemCard professionalItem={doc} />
           </View>
         ))}
     </ScrollView>

@@ -1,6 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { create } from 'zustand';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { z } from "zod";
+import { create } from "zustand";
 
 export const LocalResourceSchema = z.object({
   id: z.string(),
@@ -52,6 +52,14 @@ export const InfographicSchema = z.object({
 });
 export type IInfographics = z.infer<typeof InfographicSchema>;
 
+export const ProfessionalItemSchema = z.object({
+  id: z.string(),
+  key: z.string(),
+  size: z.number(),
+  lastModified: z.string(),
+  url: z.string(),
+});
+export type IProfessionalItem = z.infer<typeof ProfessionalItemSchema>;
 /** ========= Collection schemas ========= */
 
 export const ResourcesSchema = z.object({
@@ -59,6 +67,7 @@ export const ResourcesSchema = z.object({
   video_spotlights: z.array(VideoSpotlightSchema),
   quick_tips: z.array(QuickTipSchema),
   infographics: z.array(InfographicSchema),
+  professional_items: z.array(ProfessionalItemSchema),
 });
 export type IResources = z.infer<typeof ResourcesSchema>;
 
@@ -68,6 +77,7 @@ export const ResourceItemSchema = z.union([
   VideoSpotlightSchema,
   QuickTipSchema,
   InfographicSchema,
+  ProfessionalItemSchema,
 ]);
 export type IResourceItem = z.infer<typeof ResourceItemSchema>;
 
