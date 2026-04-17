@@ -46,7 +46,7 @@ export default function RootLayout() {
         if (!resources_url || resources_url.trim() === "") {
           throw new Error("Resources URL is not defined");
         }
-        console.log("Fetching resources from", resources_url);
+
         const res = await fetch(resources_url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const resources: IResources = await res.json();
