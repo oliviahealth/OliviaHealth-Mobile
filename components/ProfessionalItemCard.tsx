@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
+import { useState } from "react";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 import { IProfessionalItem } from "@/src/store/useResourcesStore";
@@ -17,10 +17,17 @@ export default function ProfessionalItemCard({ professionalItem }: ProfessionalI
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDocumentSelect = async () => {
-    setIsLoading(true);
-    setSelectedProfessionalItem(professionalItem);
-    await Linking.openURL(professionalItem.url);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      setSelectedProfessionalItem(professionalItem);
+      await Linking.openURL(professionalItem.url);
+      setIsLoading(false);
+    }
+    catch (error) {
+      console.error("Failed to open document URL", error);
+      setIsLoading(false);
+      Alert.alert("Error", "Failed to open document. Please try again later.");
+    }
   };
 
   return (
