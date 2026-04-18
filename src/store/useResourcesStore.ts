@@ -69,6 +69,15 @@ export const InfographicSchema = z.object({
 });
 export type IInfographics = z.infer<typeof InfographicSchema>;
 
+export const ProfessionalItemSchema = z.object({
+  id: z.string(),
+  key: z.string(),
+  size: z.number(),
+  lastModified: z.string(),
+  url: z.string(),
+});
+export type IProfessionalItem = z.infer<typeof ProfessionalItemSchema>;
+
 export const IslandSubcategorySchema = z.object({
   id: z.string(),
   name: z.string().optional(),
@@ -108,6 +117,7 @@ export const ResourcesSchema = z.object({
   video_spotlights: z.array(VideoSpotlightSchema),
   quick_tips: z.array(QuickTipSchema),
   infographics: z.array(InfographicSchema),
+  professional_items: z.array(ProfessionalItemSchema),
   islands: z.array(IslandSchema)
 });
 export type IResources = z.infer<typeof ResourcesSchema>;
@@ -118,6 +128,7 @@ export const ResourceItemSchema = z.union([
   VideoSpotlightSchema,
   QuickTipSchema,
   InfographicSchema,
+  ProfessionalItemSchema,
 ]);
 export type IResourceItem = z.infer<typeof ResourceItemSchema>;
 

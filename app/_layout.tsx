@@ -1,17 +1,26 @@
-import useResourcesStore, { IResources, loadSavedResources } from "@/src/store/useResourcesStore";
-import { loadSavedConversations } from "@/src/store/useConversationsStores";
 import { loadAiConsent } from "@/src/store/useAppStore";
+import { loadSavedConversations } from "@/src/store/useConversationsStores";
+import useResourcesStore, {
+  IResources,
+  loadSavedResources,
+} from "@/src/store/useResourcesStore";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
 import { StatusBar, View } from "react-native";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import ErrorPopup from "@/components/ErrorPopup";
+import {
+  ITopic,
+  useProfessionalsStore,
+} from "@/src/store/useProfessionalsStore";
 
 SplashScreen.preventAutoHideAsync();
 
-const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL!;
+const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL ?? "";
 const MIN_SPLASH_TIME = 1000;
 
 const queryClient = new QueryClient();
@@ -20,9 +29,9 @@ export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const resources = useResourcesStore(state => state.resources);
-  const setResources = useResourcesStore(state => state.setResources);
-
+  const resources = useResourcesStore((state) => state.resources);
+  const setResources = useResourcesStore((state) => state.setResources);
+  const setTopics = useProfessionalsStore((state) => state.setTopics);
 
   useEffect(() => {
     if (resources) {
@@ -34,6 +43,10 @@ export default function RootLayout() {
       const startTime = Date.now();
       try {
         // Fetch resources
+        if (!resources_url || resources_url.trim() === "") {
+          throw new Error("Resources URL is not defined");
+        }
+
         const res = await fetch(resources_url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const resources: IResources = await res.json();
@@ -42,13 +55,23 @@ export default function RootLayout() {
 
         // Load saved resources from AsyncStorage
         await loadSavedResources();
+
+        // Set professionals topics from fetched resources
+        let topics: ITopic[] = [
+          { id: "1", title: "Safety Protocol", professionalItems: [] },
+          { id: "2", title: "Topic 2", professionalItems: [] },
+        ];
+        for (let topic of topics) {
+          topic.professionalItems = resources.professional_items; // Assigning all topics to the same documents for now
+        }
+        setTopics(topics);
       } catch (e) {
         console.error("Failed to fetch resources", e);
         setIsError(true);
 
         setTimeout(() => {
           setIsError(false);
-        }, 5000)
+        }, 5000);
       } finally {
         // show the splash screen for a minimum of MIN_SPLASH_TIME even if the fetch completes faster
         const elapsed = Date.now() - startTime;
@@ -62,7 +85,6 @@ export default function RootLayout() {
     prepare();
     loadAiConsent();
     loadSavedConversations();
-
   }, [setResources]); // do not include resources in the dependency array. this will cause this to fetch infinitly
 
   const onLayoutRootView = useCallback(async () => {
@@ -75,18 +97,25 @@ export default function RootLayout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <View style={{ flex: 1, backgroundColor: 'transparent' }} onLayout={onLayoutRootView}>
-        <StatusBar barStyle="dark-content" />
-        <ErrorPopup
-          message="Something went wrong. Please try again later"
-          visible={isError}
-        />
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </View>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <BottomSheetModalProvider>
+        <QueryClientProvider client={queryClient}>
+          <View
+            style={{ flex: 1, backgroundColor: "transparent" }}
+            onLayout={onLayoutRootView}
+          >
+            <StatusBar barStyle="dark-content" />
+            <ErrorPopup
+              message="Something went wrong. Please try again later"
+              visible={isError}
+            />
+            <Stack>
+              <Stack.Screen name="index" options={{ headerShown: false }} />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+          </View>
+        </QueryClientProvider>
+      </BottomSheetModalProvider>
+    </GestureHandlerRootView>
   );
 }
