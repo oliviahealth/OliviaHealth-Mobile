@@ -49,19 +49,11 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Non-lineart Ollie Version */}
-      {/* <Tabs.Screen
-        name="chat"
-        options={{
-          title: "Ollie AI",
-          tabBarIcon: ({ focused }) => <OllieTabIcon focused={focused} />,
-        }}
-      /> */}
-
       <Tabs.Screen
         name="(about)"
         options={{
           title: "About",
+          href: null, // disabling the about icon right now since it looks out of place
           tabBarIcon: ({ color }) => (
             <Ionicons
               size={24}

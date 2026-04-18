@@ -24,7 +24,6 @@ const QuickTipCard: React.FC<QuickTipCardProps> = ({ quickTip }) => {
       />
 
       <View style={{ flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* TODO: Replace with proper profile picture */}
         <Image source={{ uri: quickTip.thumbnail_url }} style={{ width: 38, height: 38, borderRadius: 30, marginRight: 8, alignSelf: 'center' }} />
 
         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', marginHorizontal: 8 }}>

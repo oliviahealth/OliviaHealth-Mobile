@@ -1,6 +1,19 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { z } from "zod";
-import { create } from "zustand";
+import { create } from 'zustand';
+
+import ConceptionIcon from "@/assets/images/journey_icons/conception.svg";
+import FirstTrimesterIcon from "@/assets/images/journey_icons/first_trimester.svg";
+import LaborAndDeliveryIcon from "@/assets/images/journey_icons/labor_and_delivery.svg";
+import NewbornIcon from "@/assets/images/journey_icons/newborn.svg";
+import PostpartumIcon from "@/assets/images/journey_icons/postpartum.svg";
+import PreconceptionIcon from "@/assets/images/journey_icons/preconception.svg";
+import PrematureBirthIcon from "@/assets/images/journey_icons/premature_birth.svg";
+import SecondTrimesterIcon from "@/assets/images/journey_icons/second_trimester.svg";
+import ThirdTrimesterIcon from "@/assets/images/journey_icons/third_trimester.svg";
+import YearOneIcon from "@/assets/images/journey_icons/year1.svg";
+import YearTwoIcon from "@/assets/images/journey_icons/year2.svg";
+import YearThreeIcon from "@/assets/images/journey_icons/year3.svg";
 
 export const LocalResourceSchema = z.object({
   id: z.string(),
@@ -11,6 +24,7 @@ export const LocalResourceSchema = z.object({
   video_description: z.string(),
   transcript: z.string(),
   thumbnail_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type ILocalResources = z.infer<typeof LocalResourceSchema>;
@@ -24,6 +38,7 @@ export const VideoSpotlightSchema = z.object({
   video_description: z.string(),
   transcript: z.string(),
   thumbnail_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type IVideoSpotlights = z.infer<typeof VideoSpotlightSchema>;
@@ -38,6 +53,7 @@ export const QuickTipSchema = z.object({
   infographic_description: z.string(),
   transcript: z.string(),
   thumbnail_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type IQuickTips = z.infer<typeof QuickTipSchema>;
@@ -48,6 +64,7 @@ export const InfographicSchema = z.object({
   description: z.string(),
   thumbnail_url: z.string(),
   infographic_url: z.string(),
+  path: z.string(),
   spotlight: z.boolean().optional(),
 });
 export type IInfographics = z.infer<typeof InfographicSchema>;
@@ -60,6 +77,39 @@ export const ProfessionalItemSchema = z.object({
   url: z.string(),
 });
 export type IProfessionalItem = z.infer<typeof ProfessionalItemSchema>;
+
+export const IslandSubcategorySchema = z.object({
+  id: z.string(),
+  name: z.string().optional(),
+  color: z.string().optional(),
+  icon: z.string().optional(),
+  infographics: z.array(z.string()).optional(),
+});
+export type IIslandSubcategories = z.infer<typeof IslandSubcategorySchema>;
+
+export const IslandSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  data: z
+    .object({
+      name: z.string().optional(),
+      icon: z.string().optional(),
+      description: z.string().optional(),
+      secondary_name: z.string().optional(),
+      color: z.string().optional(),
+      order: z.number().optional(),
+      subcategories: z.array(IslandSubcategorySchema).optional(),
+    })
+    .optional(),
+});
+export type IIslands = z.infer<typeof IslandSchema>;
+
+export const JourneyDetailSchema = IslandSubcategorySchema.extend({
+  progress: z.number().min(0).max(100),
+});
+
+export type IJourneyDetail = z.infer<typeof JourneyDetailSchema>;
+
 /** ========= Collection schemas ========= */
 
 export const ResourcesSchema = z.object({
@@ -68,6 +118,7 @@ export const ResourcesSchema = z.object({
   quick_tips: z.array(QuickTipSchema),
   infographics: z.array(InfographicSchema),
   professional_items: z.array(ProfessionalItemSchema),
+  islands: z.array(IslandSchema)
 });
 export type IResources = z.infer<typeof ResourcesSchema>;
 
@@ -95,6 +146,7 @@ export interface IResourcesState {
   resources: IResources | null;
   setResources: (resources: IResources) => void;
   savedResources: ISavedResourceIds;
+  icon_map: Record<string, any>
   addToSavedResources: (
     key: "local_resources" | "video_spotlights" | "quick_tips" | "infographics",
     resourceId: string,
@@ -119,6 +171,20 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
     video_spotlights: [],
     quick_tips: [],
     infographics: [],
+  },
+  icon_map: {
+    "shooting star": PreconceptionIcon,
+    sparkle: ConceptionIcon,
+    acorn: FirstTrimesterIcon,
+    "plant pot": SecondTrimesterIcon,
+    "growing plant": ThirdTrimesterIcon,
+    flower: LaborAndDeliveryIcon,
+    nest: PostpartumIcon,
+    sunrise: PrematureBirthIcon,
+    "hatching egg": NewbornIcon,
+    "newborn bird": YearOneIcon,
+    "young bird": YearTwoIcon,
+    bird: YearThreeIcon,
   },
   addToSavedResources: async (key, resourceId) => {
     set((state) => {
