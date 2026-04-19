@@ -74,7 +74,7 @@ export const ProfessionalItemSchema = z.object({
   key: z.string(),
   size: z.number(),
   lastModified: z.string(),
-  url: z.string(),
+  path: z.string(),
 });
 export type IProfessionalItem = z.infer<typeof ProfessionalItemSchema>;
 

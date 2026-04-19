@@ -8,6 +8,8 @@ import { IProfessionalItem } from "@/src/store/useResourcesStore";
 
 import LoadingDot from "./LoadingDot";
 
+const EXPO_PUBLIC_S3_URL = process.env.EXPO_PUBLIC_S3_URL!;
+
 interface ProfessionalItemCardProps {
   professionalItem: IProfessionalItem;
 }
@@ -20,7 +22,9 @@ export default function ProfessionalItemCard({ professionalItem }: ProfessionalI
     try {
       setIsLoading(true);
       setSelectedProfessionalItem(professionalItem);
-      await Linking.openURL(professionalItem.url);
+
+      const url = EXPO_PUBLIC_S3_URL + "/" + professionalItem.path;
+      await Linking.openURL(url);
       setIsLoading(false);
     }
     catch (error) {
