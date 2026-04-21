@@ -2,6 +2,8 @@ import { ILocation } from "@/src/utils/interfaces";
 import { Ionicons } from "@expo/vector-icons";
 import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
 import AppBottomSheet from "./BottomSheet";
+import React from "react";
+import MapView from 'react-native-maps';
 
 interface LocationBottomSheetProps {
   location: ILocation,
@@ -77,18 +79,22 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({locatio
         // backgroundColor: 'red'
       }}
     >
-      <View
+      <MapView
         style={{
           width: '100%',
           aspectRatio: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.15)',
           borderRadius: 24,
           marginBottom: 24,
         }}
+        initialRegion={{
+          latitude: 48.8584,
+          longitude: 2.2945,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        }}
       >
-        {/* TODO GOOGLE MAPS GOES HERE*/}
-        <Text>google maps</Text>
-      </View>
+        
+      </MapView>
       <Text
         style={{fontSize: 18, fontWeight: 'bold'}}
       >

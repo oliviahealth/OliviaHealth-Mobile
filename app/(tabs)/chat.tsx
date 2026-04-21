@@ -538,6 +538,7 @@ export default function Chat() {
                               }}
                               numberOfLines={1}
                             >
+                              {/* @ts-ignore */}
                               {source.doc.title}
                             </Text>
                             <Ionicons name="chevron-forward-outline" />
