@@ -12,8 +12,10 @@ import {
     StyleSheet,
     Text,
     TextInput,
+    TextStyle,
     TouchableOpacity,
     View,
+    ViewStyle,
 } from "react-native";
 import Markdown from "react-native-markdown-display";
 import {
@@ -34,11 +36,13 @@ import useResourcesStore, {
 } from "@/src/store/useResourcesStore";
 
 import fetchSources from "@/src/utils/fetchSources";
-import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
+import { ILocation, IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import "react-native-get-random-values";
 import { v4 as uuid } from "uuid";
+import { OllieLocationCard } from "@/components/OllieLocationCard";
+import { LocationBottomSheet } from "@/components/LocationBottomSheet";
 
 const OLLIE_URL = process.env.EXPO_PUBLIC_OLLIE_URL!;
 
@@ -130,6 +134,8 @@ export default function Chat() {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
+
+  const [bottomSheetLocation, setBottomSheetLocation] = useState<ILocation | null>(null);
 
   useEffect(() => {
     if (!ollieResponseParam) return;
@@ -333,6 +339,8 @@ export default function Chat() {
     setAiConsent(true);
   };
 
+  // console.log(JSON.stringify(ollieResponses[0].locations, null, 2))
+
   return (
     <LinearGradient
       colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -481,6 +489,26 @@ export default function Chat() {
                     <ChatBubble isResponse={true}>
                       <Markdown>{ollieResponse.response}</Markdown>
 
+                      {ollieResponse.locations.map((loc) =>
+                        (
+                        <View 
+                          key={loc.id}
+                          style={{
+                            width: '80%',
+                            marginTop: 8,
+                            marginStart: 8,
+                            alignSelf: 'flex-start',
+                          }}
+                        >
+                          <OllieLocationCard 
+                            location={loc} 
+                            onClick={() => {
+                              setBottomSheetLocation(loc);
+                            }}
+                          />
+                        </View>
+                      ))}
+
                       {ollieResponse.sources?.map((source, index) => (
                         <TouchableOpacity
                           key={source.doc.id}
@@ -592,6 +620,15 @@ export default function Chat() {
               </View>
             </View>
           </View>
+                    
+          <LocationBottomSheet 
+            location={bottomSheetLocation ?? {} as ILocation} 
+            isOpen={(bottomSheetLocation !== null)} 
+            onClose={() => {
+              setBottomSheetLocation(null)
+            }} 
+          />
+
         </KeyboardAvoidingView>
       </SafeAreaView>
     </LinearGradient>
