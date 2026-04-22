@@ -68,6 +68,9 @@ const openLink = async (url: string) => {
 }
 
 export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({location, isOpen, onClose}) => {
+
+  // console.log(location.longitude, location.latitude);
+
   return <AppBottomSheet 
     isOpen={isOpen} 
     onClose={onClose}
@@ -79,22 +82,29 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({locatio
         // backgroundColor: 'red'
       }}
     >
-      <MapView
+      <View
         style={{
+          overflow: 'hidden',
           width: '100%',
           aspectRatio: 1,
           borderRadius: 24,
           marginBottom: 24,
         }}
-        initialRegion={{
-          latitude: 48.8584,
-          longitude: 2.2945,
-          latitudeDelta: 0.05,
-          longitudeDelta: 0.05,
-        }}
       >
-        
-      </MapView>
+        <MapView
+          style={{
+            width: '100%',
+            aspectRatio: 1,
+          }}
+          initialRegion={{
+            latitude: location.latitude ?? Math.random() * 180,
+            longitude: location.longitude ?? Math.random() * 180,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          }}
+        >
+        </MapView>
+      </View>
       <Text
         style={{fontSize: 18, fontWeight: 'bold'}}
       >
