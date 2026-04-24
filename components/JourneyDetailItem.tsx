@@ -33,18 +33,28 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
         style={{
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-between",
           paddingVertical: 12,
-          paddingHorizontal: 20,
+          paddingHorizontal: 16,
           backgroundColor: "white",
           borderRadius: 12,
           borderWidth: 1,
           borderColor: "#CCCCCC",
+          width: "100%",
         }}
         activeOpacity={0.8}
         onPress={onPress}
       >
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 15 }}>
+        {/* LEFT SIDE */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            flex: 1,
+            minWidth: 0,
+            gap: 15,
+            marginRight: 8,
+          }}
+        >
           <AnimatedCircularProgress
             size={PROGRESS_SIZE}
             width={6}
@@ -55,11 +65,11 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
             rotation={0}
             style={{ zIndex: 1 }}
           />
-          {/* Inner circle */}
+
           <View
             style={{
               position: "absolute",
-              left: PROGRESS_SIZE * 0.12, // estimates offset by progress size
+              left: PROGRESS_SIZE * 0.12,
               width: PROGRESS_SIZE - 12,
               height: PROGRESS_SIZE - 12,
               borderRadius: 1000,
@@ -71,25 +81,54 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
               zIndex: 2,
             }}
           >
-            <Ionicons name={icon} size={24} color={darkenedColor} />
+            <Ionicons name={icon} size={22} color={darkenedColor} />
           </View>
-          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#565656" }}>
+
+          <Text
+            style={{
+              flex: 1,
+              flexShrink: 1,
+              fontSize: 16,
+              fontWeight: "bold",
+              color: "#565656",
+              lineHeight: 20,
+            }}
+            numberOfLines={2}
+          >
             {title}
           </Text>
         </View>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+
+        {/* RIGHT SIDE */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            width: 60,
+            gap: 4,
+            flexShrink: 0,
+          }}
+        >
           <Text
-            style={{ fontSize: 16, color: darkenedColor, fontWeight: "bold" }}
-          >{`${progress}%`}</Text>
-          <Ionicons name="chevron-forward" size={20} color="black" />
+            style={{
+              fontSize: 16,
+              color: darkenedColor,
+              fontWeight: "bold",
+            }}
+          >
+            {`${progress}%`}
+          </Text>
+          <Ionicons name="chevron-forward" size={18} color="black" />
         </View>
       </TouchableOpacity>
+
       {renderSVGLine ? (
         <SVG
           height={LINE_HEIGHT}
           width={20}
           style={{
-            marginLeft: 20 + PROGRESS_SIZE / 2 - 10, // paddingHorizontal + half of progress size - half of line width
+            marginLeft: 16 + PROGRESS_SIZE / 2 - 10,
           }}
         >
           <Line
