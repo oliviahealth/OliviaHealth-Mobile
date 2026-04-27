@@ -44,8 +44,8 @@ export default function ProfessionalItemCard({ professionalItem }: ProfessionalI
         <View style={styles.avatar} />
         <Text style={styles.cardTitle}>
           {
-            professionalItem.key.split("/")[
-            professionalItem.key.split("/").length - 1
+            professionalItem.title.split("/")[
+            professionalItem.title.split("/").length - 1
             ]
           }
         </Text>

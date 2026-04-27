@@ -71,7 +71,7 @@ export type IInfographics = z.infer<typeof InfographicSchema>;
 
 export const ProfessionalItemSchema = z.object({
   id: z.string(),
-  key: z.string(),
+  title: z.string(),
   size: z.number(),
   lastModified: z.string(),
   path: z.string(),
