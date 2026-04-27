@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from "react";
-import { ImageBackground, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet, Text, View, useWindowDimensions, RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import Svg, { Path } from "react-native-svg";
 
 import JourneyIslandModal from "@/components/JourneyIslandModal";
 import { MapJourneyButton } from "@/components/MapJourneyButton";
-import useResourcesStore from "@/src/store/useResourcesStore";
+import useResourcesStore, { fetchResources } from "@/src/store/useResourcesStore";
 
 import { saturateAndDarken } from "@/app/utils/utils";
 
@@ -109,6 +109,18 @@ export default function JourneyScreen() {
   const containerHeight =
     points.length > 0 ? points[points.length - 1].y + 100 : 400;
 
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(async () => {
+    if (refreshing) return;
+
+    setRefreshing(true);
+    try {
+      await fetchResources();
+    } finally {
+      setRefreshing(false);
+    }
+  }, [fetchResources, refreshing]);
+
   return (
     <ImageBackground
       source={backgroundImage}
@@ -122,6 +134,7 @@ export default function JourneyScreen() {
             gap: 18,
           }}
           showsVerticalScrollIndicator={false}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
           <View style={{ paddingTop: 20, paddingBottom: 40 }}>
             <View style={{ flexDirection: "column" }}>

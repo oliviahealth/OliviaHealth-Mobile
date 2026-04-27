@@ -1,8 +1,7 @@
 import { loadAiConsent } from "@/src/store/useAppStore";
 import { loadSavedConversations } from "@/src/store/useConversationsStores";
 import useResourcesStore, {
-  IResources,
-  loadSavedResources,
+  fetchResources
 } from "@/src/store/useResourcesStore";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,7 +19,6 @@ import {
 
 SplashScreen.preventAutoHideAsync();
 
-const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL ?? "";
 const MIN_SPLASH_TIME = 1000;
 
 const queryClient = new QueryClient();
@@ -43,18 +41,7 @@ export default function RootLayout() {
       const startTime = Date.now();
       try {
         // Fetch resources
-        if (!resources_url || resources_url.trim() === "") {
-          throw new Error("Resources URL is not defined");
-        }
-
-        const res = await fetch(resources_url);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const resources: IResources = await res.json();
-
-        setResources(resources);
-
-        // Load saved resources from AsyncStorage
-        await loadSavedResources();
+        const resources = await fetchResources()
 
         // Set professionals topics from fetched resources
         let topics: ITopic[] = [

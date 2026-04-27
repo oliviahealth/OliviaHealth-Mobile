@@ -14,6 +14,7 @@ import ThirdTrimesterIcon from "@/assets/images/journey_icons/third_trimester.sv
 import YearOneIcon from "@/assets/images/journey_icons/year1.svg";
 import YearTwoIcon from "@/assets/images/journey_icons/year2.svg";
 import YearThreeIcon from "@/assets/images/journey_icons/year3.svg";
+import { ITopic, useProfessionalsStore } from './useProfessionalsStore';
 
 export const LocalResourceSchema = z.object({
   id: z.string(),
@@ -230,6 +231,36 @@ const useResourcesStore = create<IResourcesState>()((set, get) => ({
   },
   setSavedResources: (savedResources) => set({ savedResources }),
 }));
+
+// Helper function to fetch and store resources
+export const fetchResources = async () => {
+  const resources_url = process.env.EXPO_PUBLIC_RESOURCES_URL ?? "";
+
+  if (!resources_url || resources_url.trim() === "") {
+    throw new Error("Resources URL is not defined");
+  }
+
+  const res = await fetch(resources_url);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const resources: IResources = await res.json();
+
+  useResourcesStore.getState().setResources(resources);
+
+  // Load saved resources from AsyncStorage
+  await loadSavedResources();
+
+  // Set professionals topics from fetched resources
+  let topics: ITopic[] = [
+    { id: "1", title: "Safety Protocol", professionalItems: [] },
+    { id: "2", title: "Topic 2", professionalItems: [] },
+  ];
+  for (let topic of topics) {
+    topic.professionalItems = resources.professional_items; // Assigning all topics to the same documents for now
+  }
+  useProfessionalsStore.getState().setTopics(topics);
+
+  return resources
+}
 
 // Helper function to load saved resources from AsyncStorage
 export const loadSavedResources = async () => {

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import {
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,9 +14,22 @@ import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 
 import TopicCard from "@/components/TopicCard";
 import ProfessionalsIcon from "@/assets/images/professionals_icon.svg";
+import { fetchResources } from "@/src/store/useResourcesStore";
 
 export default function Professionals() {
   const { topics } = useProfessionalsStore();
+
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(async () => {
+    if (refreshing) return;
+
+    setRefreshing(true);
+    try {
+      await fetchResources();
+    } finally {
+      setRefreshing(false);
+    }
+  }, [fetchResources, refreshing]);
 
   return (
     <ScrollView
@@ -24,6 +38,7 @@ export default function Professionals() {
         marginTop: 20,
         backgroundColor: "#FFFFFF",
       }}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
       <View style={styles.header}>
         <View style={styles.headerLeft}>
