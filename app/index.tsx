@@ -2,29 +2,41 @@ import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import {
-    Animated,
-    Dimensions,
-    Image,
-    Modal,
-    Pressable,
-    Text,
-    View,
+  Animated,
+  Dimensions,
+  Image,
+  Modal,
+  Pressable,
+  Text,
+  View,
 } from "react-native";
 import OllieLineArt from "../assets/images/ollie-avatar-lineart.svg";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
-const SHEET_HEIGHT = 350;
+const sizeScale = Math.min(width / 393, height / 852);
+const scale = Math.min(Math.max(sizeScale, 0.82), 1);
+
+const SHEET_HEIGHT = 390 * scale;
+
+const CARD_WIDTH = (width - 16 * 2 - 12) / 2;
+const CARD_HEIGHT = 136;
+
+const ICON_CIRCLE_SIZE = 48;
+const ICON_SIZE = 26;
+
+const TITLE_SIZE = 14;
+const SUBTITLE_SIZE = 11;
 
 function MenuCard({ title, subtitle, children, onPress }: any) {
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => ({
-        width: (width - 16 * 2 - 12) / 2,
-        minHeight: 136,
+        width: CARD_WIDTH,
+        height: CARD_HEIGHT,
         borderRadius: 24,
-        paddingHorizontal: 14,
+        paddingHorizontal: 12,
         paddingVertical: 14,
         alignItems: "center",
         justifyContent: "center",
@@ -40,7 +52,7 @@ function MenuCard({ title, subtitle, children, onPress }: any) {
     >
       <View
         style={{
-          height: 52,
+          height: ICON_CIRCLE_SIZE,
           alignItems: "center",
           justifyContent: "center",
           marginBottom: 8,
@@ -52,11 +64,12 @@ function MenuCard({ title, subtitle, children, onPress }: any) {
       <Text
         style={{
           color: "#2A2230",
-          fontSize: 14,
+          fontSize: TITLE_SIZE,
           fontWeight: "700",
           textAlign: "center",
           marginBottom: 4,
         }}
+        numberOfLines={1}
       >
         {title}
       </Text>
@@ -64,14 +77,34 @@ function MenuCard({ title, subtitle, children, onPress }: any) {
       <Text
         style={{
           color: "#8B7D92",
-          fontSize: 11,
-          lineHeight: 15,
+          fontSize: SUBTITLE_SIZE,
+          lineHeight: SUBTITLE_SIZE + 4,
           textAlign: "center",
         }}
+        numberOfLines={2}
       >
         {subtitle}
       </Text>
     </Pressable>
+  );
+}
+
+function IconCircle({ children, bordered = false }: any) {
+  return (
+    <View
+      style={{
+        width: ICON_CIRCLE_SIZE,
+        height: ICON_CIRCLE_SIZE,
+        borderRadius: ICON_CIRCLE_SIZE / 2,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#F4E9FF",
+        borderWidth: bordered ? 1 : 0,
+        borderColor: "#E7D5FF",
+      }}
+    >
+      {children}
+    </View>
   );
 }
 
@@ -82,6 +115,12 @@ export default function IntroScreen() {
 
   const sheetTranslateY = useRef(new Animated.Value(SHEET_HEIGHT + 40)).current;
   const sheetOpacity = useRef(new Animated.Value(0)).current;
+
+  const isSmallScreen = height < 860;
+
+  const backgroundImage = isSmallScreen
+    ? require("../assets/images/olivia-splash-smaller.png")
+    : require("../assets/images/olivia-splash.png");
 
   useEffect(() => {
     Animated.parallel([
@@ -103,12 +142,15 @@ export default function IntroScreen() {
   const navigateToJourney = () => {
     router.replace("/(tabs)/(journey)");
   };
+
   const navigateToChat = () => {
     router.replace("/(tabs)/chat");
   };
+
   const navigateToLibrary = () => {
     router.replace("/(tabs)/(library)");
   };
+
   const navigateToAbout = () => {
     router.replace("/(tabs)/(about)");
   };
@@ -116,7 +158,7 @@ export default function IntroScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
       <Image
-        source={require("../assets/images/olivia-splash.png")}
+        source={backgroundImage}
         style={{
           width: "100%",
           height: "100%",
@@ -135,8 +177,8 @@ export default function IntroScreen() {
             style={{
               minHeight: SHEET_HEIGHT,
               paddingHorizontal: 16,
-              paddingTop: 10,
-              paddingBottom: 22,
+              paddingTop: 4 * scale,
+              paddingBottom: 18 * scale,
               borderTopLeftRadius: 28,
               borderTopRightRadius: 28,
               opacity: sheetOpacity,
@@ -146,10 +188,10 @@ export default function IntroScreen() {
             <Text
               style={{
                 color: "#FFFFFF",
-                fontSize: 20,
+                fontSize: 20 * scale,
                 fontWeight: "700",
                 textAlign: "center",
-                marginBottom: 6,
+                marginBottom: 4,
               }}
             >
               Select a path
@@ -158,9 +200,9 @@ export default function IntroScreen() {
             <Text
               style={{
                 color: "rgba(255,255,255,0.86)",
-                fontSize: 13,
+                fontSize: 13 * scale,
                 textAlign: "center",
-                marginBottom: 18,
+                marginBottom: 14,
               }}
             >
               Where would you like to go?
@@ -179,22 +221,13 @@ export default function IntroScreen() {
                 subtitle="Progress at your speed"
                 onPress={navigateToJourney}
               >
-                <View
-                  style={{
-                    width: 54,
-                    height: 54,
-                    borderRadius: 27,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#F4E9FF",
-                  }}
-                >
+                <IconCircle>
                   <MaterialCommunityIcons
                     name="orbit"
-                    size={30}
+                    size={ICON_SIZE}
                     color="#B642D3"
                   />
-                </View>
+                </IconCircle>
               </MenuCard>
 
               <MenuCard
@@ -202,25 +235,14 @@ export default function IntroScreen() {
                 subtitle="Answer all things parenthood"
                 onPress={navigateToChat}
               >
-                <View
-                  style={{
-                    width: 54,
-                    height: 54,
-                    borderRadius: 27,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#F4E9FF",
-                    borderWidth: 1,
-                    borderColor: "#E7D5FF",
-                  }}
-                >
+                <IconCircle bordered>
                   <OllieLineArt
-                    width={28}
-                    height={28}
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
                     fill="none"
                     color="#B642D3"
                   />
-                </View>
+                </IconCircle>
               </MenuCard>
 
               <MenuCard
@@ -228,18 +250,13 @@ export default function IntroScreen() {
                 subtitle="Browse all of our content"
                 onPress={navigateToLibrary}
               >
-                <View
-                  style={{
-                    width: 54,
-                    height: 54,
-                    borderRadius: 27,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#F4E9FF",
-                  }}
-                >
-                  <Feather name="book-open" size={26} color="#B642D3" />
-                </View>
+                <IconCircle>
+                  <Feather
+                    name="book-open"
+                    size={ICON_SIZE - 2}
+                    color="#B642D3"
+                  />
+                </IconCircle>
               </MenuCard>
 
               <MenuCard
@@ -247,22 +264,13 @@ export default function IntroScreen() {
                 subtitle="Learn about the Olivia team"
                 onPress={navigateToAbout}
               >
-                <View
-                  style={{
-                    width: 54,
-                    height: 54,
-                    borderRadius: 27,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#F4E9FF",
-                  }}
-                >
+                <IconCircle>
                   <Ionicons
                     name="information-circle-outline"
-                    size={28}
+                    size={ICON_SIZE}
                     color="#B642D3"
                   />
-                </View>
+                </IconCircle>
               </MenuCard>
             </View>
           </Animated.View>
