@@ -1,9 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { ILocation } from "../src/utils/interfaces";
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
-import { useState } from "react";
-import { LocationBottomSheet } from "./LocationBottomSheet";
 
 interface OllieLocationCardProps {
   location: ILocation,

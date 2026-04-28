@@ -339,8 +339,6 @@ export default function Chat() {
     setAiConsent(true);
   };
 
-  // console.log(JSON.stringify(ollieResponses[0].locations, null, 2))
-
   return (
     <LinearGradient
       colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -503,7 +501,6 @@ export default function Chat() {
                           <OllieLocationCard 
                             location={loc} 
                             onClick={() => {
-                              console.log("setting to", loc);
                               setBottomSheetLocation(loc);
                             }}
                           />
@@ -539,7 +536,6 @@ export default function Chat() {
                               }}
                               numberOfLines={1}
                             >
-                              {/* @ts-ignore */}
                               {source.doc.title}
                             </Text>
                             <Ionicons name="chevron-forward-outline" />

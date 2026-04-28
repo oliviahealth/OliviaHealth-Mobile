@@ -91,13 +91,9 @@ const openNativeMaps = async (
 
 export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({location, isOpen, onClose}) => {
 
-  console.log('location sheet', location);
-  
   const latitude = location.latitude ?? 0;
   const longitude = location.longitude ?? 0;
   
-  console.log(longitude, latitude);
-
   return <AppBottomSheet 
     isOpen={isOpen} 
     onClose={onClose}
