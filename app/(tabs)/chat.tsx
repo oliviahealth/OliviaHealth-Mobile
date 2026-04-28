@@ -5,20 +5,20 @@ import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
 import {
-    KeyboardAvoidingView,
-    Modal,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import Markdown from "react-native-markdown-display";
 import {
-    SafeAreaView,
-    useSafeAreaInsets,
+  SafeAreaView,
+  useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
 import AIDisclaimerModal from "@/components/AIDisclaimerModal";
@@ -27,18 +27,20 @@ import SideDrawer from "@/components/SideDrawer";
 
 import useAppStore from "@/src/store/useAppStore";
 import useConversationsStore, {
-    IConversation,
+  IConversation,
 } from "@/src/store/useConversationsStores";
 import useResourcesStore, {
-    IResourceItem,
+  IResourceItem,
 } from "@/src/store/useResourcesStore";
 
 import fetchSources from "@/src/utils/fetchSources";
-import { IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
+import { ILocation, IOllieResponse, OllieResponseSchema } from "@/src/utils/interfaces";
 import parseWithZod from "@/src/utils/parseWithZod";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import "react-native-get-random-values";
 import { v4 as uuid } from "uuid";
+import { OllieLocationCard } from "@/components/OllieLocationCard";
+import { LocationBottomSheet } from "@/components/LocationBottomSheet";
 
 const OLLIE_URL = process.env.EXPO_PUBLIC_OLLIE_URL!;
 
@@ -127,9 +129,12 @@ export default function Chat() {
   const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>([]);
 
   const scrollRef = useRef<ScrollView>(null);
+  const lastResponseY = useRef(0);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
+
+  const [bottomSheetLocation, setBottomSheetLocation] = useState<ILocation | null>(null);
 
   useEffect(() => {
     if (!ollieResponseParam) return;
@@ -160,6 +165,10 @@ export default function Chat() {
 
     const submitQuery = query;
     setQuery("");
+
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: true });
+    }, 50);
 
     getResponse({ query: submitQuery });
   };
@@ -333,6 +342,13 @@ export default function Chat() {
     setAiConsent(true);
   };
 
+  // start at bottom of chat
+  useEffect(() => {
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: true });
+    }, 50)
+  }, [currentConversationId])
+
   return (
     <LinearGradient
       colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -462,7 +478,10 @@ export default function Chat() {
               showsVerticalScrollIndicator={false}
               ref={scrollRef}
               onContentSizeChange={() =>
-                scrollRef.current?.scrollToEnd({ animated: true })
+                scrollRef.current?.scrollTo({
+                  y: lastResponseY.current,
+                  animated: true,
+                })
               }
             >
               <View
@@ -473,13 +492,40 @@ export default function Chat() {
                 }}
               >
                 {ollieResponses.map((ollieResponse, index) => (
-                  <View key={`OllieResponse-${index}`}>
+                  <View
+                    key={`OllieResponse-${index}`}
+                    onLayout={(event) => {
+                      if (index === ollieResponses.length - 1) {
+                        lastResponseY.current = event.nativeEvent.layout.y;
+                      }
+                    }}
+                  >
                     <ChatBubble isResponse={false}>
                       <Markdown>{ollieResponse.userQuery}</Markdown>
                     </ChatBubble>
 
                     <ChatBubble isResponse={true}>
                       <Markdown>{ollieResponse.response}</Markdown>
+
+                      {ollieResponse.locations.map((loc) =>
+                      (
+                        <View
+                          key={loc.id}
+                          style={{
+                            width: '85%',
+                            marginTop: 8,
+                            marginStart: 8,
+                            alignSelf: 'flex-start',
+                          }}
+                        >
+                          <OllieLocationCard
+                            location={loc}
+                            onClick={() => {
+                              setBottomSheetLocation(loc);
+                            }}
+                          />
+                        </View>
+                      ))}
 
                       {ollieResponse.sources?.map((source, index) => (
                         <TouchableOpacity
@@ -592,6 +638,15 @@ export default function Chat() {
               </View>
             </View>
           </View>
+
+          <LocationBottomSheet
+            location={bottomSheetLocation ?? {} as ILocation}
+            isOpen={(bottomSheetLocation !== null)}
+            onClose={() => {
+              setBottomSheetLocation(null)
+            }}
+          />
+
         </KeyboardAvoidingView>
       </SafeAreaView>
     </LinearGradient>
