@@ -1,9 +1,9 @@
 import { ILocation } from "@/src/utils/interfaces";
 import { Ionicons } from "@expo/vector-icons";
-import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Linking, Platform, Text, TouchableOpacity, View } from "react-native";
 import AppBottomSheet from "./BottomSheet";
 import React from "react";
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 interface LocationBottomSheetProps {
   location: ILocation,
@@ -11,50 +11,52 @@ interface LocationBottomSheetProps {
   onClose: () => void;
 }
 
-const LinkButton: React.FC<{
-  icon: any, 
-  text: string, 
-  func: any,
-  redirect: boolean,
-}> = ({icon, text, func, redirect }: {icon: any, text: string, func: any, redirect: boolean}) => {
-  return <TouchableOpacity
-    onPress={func}
-    activeOpacity={0.8}
-    style={{
-      marginTop: 8
-    }}
-  >
-    <View
-      style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        alignSelf: 'flex-start',
-        borderRadius: 8,
-      }}
+const LinkButton = ({ icon, text, func, redirect }: any) => {
+  return (
+    <TouchableOpacity
+      onPress={func}
+      activeOpacity={0.8}
+      style={{ marginTop: 12 }}
     >
       <View
         style={{
-          flexDirection:'row',
-          alignSelf: 'flex-start',
-          alignItems: 'center',
-          gap: 4,
-          padding: 6,
+          backgroundColor: "rgba(0,0,0,0.1)",
+          alignSelf: "flex-start",
+          borderRadius: 8,
         }}
       >
-        <Ionicons name={icon} size={16} color={'rgba(0, 0, 0, 0.75)'}></Ionicons>
-        <Text
+        <View
           style={{
-            color:'rgba(0, 0, 0, 0.75)',
-            fontSize: 14,
-            fontWeight: 'bold'
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 4,
+            padding: 6,
           }}
         >
-          {text}
-        </Text>
-        {redirect && (<Ionicons name={'open-outline'} size={16} color={'rgba(0, 0, 0, 0.75)'}></Ionicons>)}
+          <Ionicons name={icon} size={16} color="rgba(0,0,0,0.75)" />
+          <Text
+            style={{
+              color: "rgba(0,0,0,0.75)",
+              fontSize: 14,
+              fontWeight: "bold",
+            }}
+          >
+            {text}
+          </Text>
+
+          {redirect && (
+            <Ionicons
+              name="open-outline"
+              size={16}
+              color="rgba(0,0,0,0.75)"
+            />
+          )}
+        </View>
       </View>
-    </View>
-  </TouchableOpacity>
-}
+    </TouchableOpacity>
+  );
+};
+
 
 const openLink = async (url: string) => {
   const supported = await Linking.canOpenURL(url);
@@ -62,23 +64,53 @@ const openLink = async (url: string) => {
   if (supported) {
     await Linking.openURL(url);
   } else {
-    console.log(`Don't know how to open this URL: ${url}`);
-    Alert.alert('Error', 'Unable to perform action');
+    Alert.alert("Error", "Could not open maps");
   }
-}
+};
+
+const openNativeMaps = async (
+  latitude: number,
+  longitude: number,
+  name: string
+) => {
+  const label = encodeURIComponent(name);
+
+  const url =
+    Platform.OS === "ios"
+      ? `http://maps.apple.com/?ll=${latitude},${longitude}&q=${label}`
+      : `geo:${latitude},${longitude}?q=${latitude},${longitude}(${label})`;
+
+  const supported = await Linking.canOpenURL(url);
+
+  if (supported) {
+    await Linking.openURL(url);
+  } else {
+    Alert.alert("Error", "Could not open maps");
+  }
+};
 
 export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({location, isOpen, onClose}) => {
 
-  // console.log(location.longitude, location.latitude);
+  console.log('location sheet', location);
+  
+  const latitude = location.latitude ?? 0;
+  const longitude = location.longitude ?? 0;
+  
+  console.log(longitude, latitude);
 
   return <AppBottomSheet 
     isOpen={isOpen} 
     onClose={onClose}
+    snapPoints={['90%']}
+    initialSnapIndex={0}
   >
     <View
       style={{
         flexDirection: 'column',
-        padding: 24,
+        height: '100%',
+        overflow: 'scroll',
+        paddingHorizontal: 4,
+        paddingTop: 18,
         // backgroundColor: 'red'
       }}
     >
@@ -86,23 +118,29 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({locatio
         style={{
           overflow: 'hidden',
           width: '100%',
-          aspectRatio: 1,
-          borderRadius: 24,
+          aspectRatio: 2,
+          borderRadius: 16,
           marginBottom: 24,
         }}
       >
         <MapView
           style={{
             width: '100%',
-            aspectRatio: 1,
+            aspectRatio: 2,
           }}
-          initialRegion={{
-            latitude: location.latitude ?? Math.random() * 180,
-            longitude: location.longitude ?? Math.random() * 180,
-            latitudeDelta: 0.02,
-            longitudeDelta: 0.02,
+          region={{
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: 0.001,
+            longitudeDelta: 0.001,
           }}
         >
+          <Marker
+            coordinate={{ latitude: latitude, longitude: longitude }}
+            title={location.name}
+            description={location.address}
+            opacity={0.8}
+          />
         </MapView>
       </View>
       <Text
@@ -116,14 +154,16 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({locatio
         {location.address}
       </Text>
       <Text
-        style={{marginTop: 16}}
+        style={{marginTop: 16, marginBottom: 16}}
       >
         {location.description}
       </Text>
-      <LinkButton 
-        icon={'location-outline'} 
-        text={"Open in maps"} 
-        func={() => {openLink(location.addressLink ?? "about:any")}} 
+      <LinkButton
+        icon="location-outline"
+        text="Open in Maps"
+        func={() =>
+          openNativeMaps(latitude, longitude, location.name || "Location")
+        }
         redirect={true}
       />
       <LinkButton 

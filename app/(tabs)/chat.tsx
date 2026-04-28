@@ -494,7 +494,7 @@ export default function Chat() {
                         <View 
                           key={loc.id}
                           style={{
-                            width: '80%',
+                            width: '85%',
                             marginTop: 8,
                             marginStart: 8,
                             alignSelf: 'flex-start',
@@ -503,6 +503,7 @@ export default function Chat() {
                           <OllieLocationCard 
                             location={loc} 
                             onClick={() => {
+                              console.log("setting to", loc);
                               setBottomSheetLocation(loc);
                             }}
                           />

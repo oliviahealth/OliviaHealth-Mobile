@@ -12,14 +12,13 @@ interface OllieLocationCardProps {
 
 export const OllieLocationCard: React.FC<OllieLocationCardProps> = ({location, onClick}) => {
 
-  //TODO  this should be the distance from your location to this location
-  const locOpen = Math.random() < 0.5;
-  
+  //TODO get the actual distance, or we can just ignore this
+  // const locDistance = 1.1;
+
   return (
-  <>
     <TouchableOpacity
       onPress={onClick}
-      activeOpacity={0.6}
+      activeOpacity={0.8}
     >
       <View
         style={{
@@ -30,16 +29,19 @@ export const OllieLocationCard: React.FC<OllieLocationCardProps> = ({location, o
           borderWidth: 1,
           borderRadius: 16,
           backgroundColor: 'white',
-          padding: 8,
-          paddingEnd: 24,
+          padding: 12,
+          paddingEnd: 0,
         }}
       >
         <View
           style={{
+            flex: 85,
             flexDirection: 'column',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            gap: 4
+            gap: 4,
+            marginRight: 16,
+            // backgroundColor: 'red'
           }}
         >
           <Text
@@ -53,23 +55,24 @@ export const OllieLocationCard: React.FC<OllieLocationCardProps> = ({location, o
           </Text>
           <Text 
             style={{ 
-              // fontWeight: 'bold',
-              color: 'rgba(0, 0, 0, 0.5)' 
+              color: 'rgba(0, 0, 0, 0.5)', 
+              fontSize: 13,
             }}
           >
-            <Text 
-              style={{ 
-                fontWeight: 'bold', 
-                color: locOpen ? 'rgba(0, 200, 0, 0.6)' : 'rgba(200, 0, 0, 0.6)' 
-              }}
-            >
-              {locOpen ? "Open" : "Closed"}
-            </Text>
-            {" • " + location.address}
+            {location.address}
           </Text>
         </View>
-        <Ionicons style={{alignSelf: 'center'}} name="chevron-forward" size={20} color="black"/>
+        <View
+          style={{
+            // backgroundColor: 'green', 
+            flex: 15,
+            alignSelf: 'center'
+          }}
+        >
+          <Ionicons
+            name="chevron-forward" size={20} color="black"
+          />
+        </View>
       </View>
-    </TouchableOpacity>
-  </>)
+    </TouchableOpacity>)
 }
