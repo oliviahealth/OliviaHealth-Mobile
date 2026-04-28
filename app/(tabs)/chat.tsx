@@ -5,22 +5,20 @@ import { useMutation } from "@tanstack/react-query";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
 import {
-    KeyboardAvoidingView,
-    Modal,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TextStyle,
-    TouchableOpacity,
-    View,
-    ViewStyle,
+  KeyboardAvoidingView,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import Markdown from "react-native-markdown-display";
 import {
-    SafeAreaView,
-    useSafeAreaInsets,
+  SafeAreaView,
+  useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
 import AIDisclaimerModal from "@/components/AIDisclaimerModal";
@@ -29,10 +27,10 @@ import SideDrawer from "@/components/SideDrawer";
 
 import useAppStore from "@/src/store/useAppStore";
 import useConversationsStore, {
-    IConversation,
+  IConversation,
 } from "@/src/store/useConversationsStores";
 import useResourcesStore, {
-    IResourceItem,
+  IResourceItem,
 } from "@/src/store/useResourcesStore";
 
 import fetchSources from "@/src/utils/fetchSources";
@@ -131,6 +129,7 @@ export default function Chat() {
   const [ollieResponses, setOllieResponses] = useState<IOllieResponse[]>([]);
 
   const scrollRef = useRef<ScrollView>(null);
+  const lastResponseY = useRef(0);
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
@@ -166,6 +165,10 @@ export default function Chat() {
 
     const submitQuery = query;
     setQuery("");
+
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: true });
+    }, 50);
 
     getResponse({ query: submitQuery });
   };
@@ -339,6 +342,13 @@ export default function Chat() {
     setAiConsent(true);
   };
 
+  // start at bottom of chat
+  useEffect(() => {
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: true });
+    }, 50)
+  }, [currentConversationId])
+
   return (
     <LinearGradient
       colors={["#F8FAFF", "#F6F0FF", "#FFF6FA"]}
@@ -468,7 +478,10 @@ export default function Chat() {
               showsVerticalScrollIndicator={false}
               ref={scrollRef}
               onContentSizeChange={() =>
-                scrollRef.current?.scrollToEnd({ animated: true })
+                scrollRef.current?.scrollTo({
+                  y: lastResponseY.current,
+                  animated: true,
+                })
               }
             >
               <View
@@ -479,7 +492,14 @@ export default function Chat() {
                 }}
               >
                 {ollieResponses.map((ollieResponse, index) => (
-                  <View key={`OllieResponse-${index}`}>
+                  <View
+                    key={`OllieResponse-${index}`}
+                    onLayout={(event) => {
+                      if (index === ollieResponses.length - 1) {
+                        lastResponseY.current = event.nativeEvent.layout.y;
+                      }
+                    }}
+                  >
                     <ChatBubble isResponse={false}>
                       <Markdown>{ollieResponse.userQuery}</Markdown>
                     </ChatBubble>
@@ -488,8 +508,8 @@ export default function Chat() {
                       <Markdown>{ollieResponse.response}</Markdown>
 
                       {ollieResponse.locations.map((loc) =>
-                        (
-                        <View 
+                      (
+                        <View
                           key={loc.id}
                           style={{
                             width: '85%',
@@ -498,8 +518,8 @@ export default function Chat() {
                             alignSelf: 'flex-start',
                           }}
                         >
-                          <OllieLocationCard 
-                            location={loc} 
+                          <OllieLocationCard
+                            location={loc}
                             onClick={() => {
                               setBottomSheetLocation(loc);
                             }}
@@ -618,13 +638,13 @@ export default function Chat() {
               </View>
             </View>
           </View>
-                    
-          <LocationBottomSheet 
-            location={bottomSheetLocation ?? {} as ILocation} 
-            isOpen={(bottomSheetLocation !== null)} 
+
+          <LocationBottomSheet
+            location={bottomSheetLocation ?? {} as ILocation}
+            isOpen={(bottomSheetLocation !== null)}
             onClose={() => {
               setBottomSheetLocation(null)
-            }} 
+            }}
           />
 
         </KeyboardAvoidingView>
