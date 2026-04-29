@@ -42,13 +42,15 @@ const ProfessionalResourceModal: React.FC<ProfessionalResourceModalProps> = ({
         state => state.resources?.infographics
     );
 
-    const resolvedInfographics = useMemo(
-        () =>
-            allInfographics?.filter(item =>
-                selectedItem?.infographics?.includes(item.id)
-            ) ?? [],
-        [allInfographics, selectedItem?.infographics]
-    );
+    const resolvedInfographics = useMemo(() => {
+        if (!allInfographics || !selectedItem?.infographics) return [];
+
+        const map = new Map(allInfographics.map(item => [item.id, item]));
+
+        return selectedItem.infographics
+            .map(id => map.get(id))
+            .filter(Boolean);
+    }, [allInfographics, selectedItem?.infographics]);
 
     const currentInfographic = resolvedInfographics[currentIndex];
 
