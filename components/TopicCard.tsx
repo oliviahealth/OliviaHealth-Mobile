@@ -1,19 +1,17 @@
-import { ITopic, useProfessionalsStore } from "@/src/store/useProfessionalsStore";
 import { Ionicons } from "@expo/vector-icons";
 import { RelativePathString, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { IProfessionalResource } from "@/src/store/useResourcesStore";
 interface TopicCardProps {
-  topic: ITopic;
+  professionalResourceTopic: IProfessionalResource;
 }
 
-export default function TopicCard({ topic }: TopicCardProps) {
+export default function TopicCard({ professionalResourceTopic }: TopicCardProps) {
   const router = useRouter();
-  const { setSelectedTopic } = useProfessionalsStore();
 
   const handleTopicSelect = () => {
-    setSelectedTopic(topic);
-    router.push(`topics/${topic.title}` as RelativePathString);
+    router.push(`topics/${professionalResourceTopic.id}` as RelativePathString);
   };
 
   return (
@@ -24,7 +22,7 @@ export default function TopicCard({ topic }: TopicCardProps) {
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.avatar} />
-        <Text style={styles.cardTitle}>{topic.title}</Text>
+        <Text style={styles.cardTitle}>{professionalResourceTopic.name}</Text>
       </View>
       <Ionicons name="chevron-forward" size={18} color="black" />
     </TouchableOpacity>

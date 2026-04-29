@@ -1,3 +1,5 @@
+import { TINT_COLOR } from "@/theme";
+import { Ionicons } from "@expo/vector-icons";
 import React, { useCallback, useState } from "react";
 import {
   RefreshControl,
@@ -7,17 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TINT_COLOR } from "@/theme";
-import { Ionicons } from "@expo/vector-icons";
 
-import { useProfessionalsStore } from "@/src/store/useProfessionalsStore";
+import useResourcesStore, { fetchResources } from "@/src/store/useResourcesStore";
 
-import TopicCard from "@/components/TopicCard";
 import ProfessionalsIcon from "@/assets/images/professionals_icon.svg";
-import { fetchResources } from "@/src/store/useResourcesStore";
+import TopicCard from "@/components/TopicCard";
 
 export default function Professionals() {
-  const { topics } = useProfessionalsStore();
+  const professionalResources = useResourcesStore(state => state.resources?.professional_resources);
 
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(async () => {
@@ -59,9 +58,9 @@ export default function Professionals() {
         caregivers.
       </Text>
 
-      {topics.map((topic) => (
-        <View key={topic.id} style={{ marginBottom: 12 }}>
-          <TopicCard topic={topic} />
+      {professionalResources && professionalResources.map((professionalResource, index) => (
+        <View key={`Professional Resource Item - ${index}`} style={{ marginBottom: 12 }}>
+          <TopicCard professionalResourceTopic={professionalResource} />
         </View>
       ))}
     </ScrollView>

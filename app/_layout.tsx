@@ -12,10 +12,6 @@ import { StatusBar, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import ErrorPopup from "@/components/ErrorPopup";
-import {
-  ITopic,
-  useProfessionalsStore,
-} from "@/src/store/useProfessionalsStore";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,7 +25,6 @@ export default function RootLayout() {
 
   const resources = useResourcesStore((state) => state.resources);
   const setResources = useResourcesStore((state) => state.setResources);
-  const setTopics = useProfessionalsStore((state) => state.setTopics);
 
   useEffect(() => {
     if (resources) {
@@ -41,17 +36,8 @@ export default function RootLayout() {
       const startTime = Date.now();
       try {
         // Fetch resources
-        const resources = await fetchResources()
+        await fetchResources()
 
-        // Set professionals topics from fetched resources
-        let topics: ITopic[] = [
-          { id: "1", title: "Safety Protocol", professionalItems: [] },
-          { id: "2", title: "Topic 2", professionalItems: [] },
-        ];
-        for (let topic of topics) {
-          topic.professionalItems = resources.professional_items; // Assigning all topics to the same documents for now
-        }
-        setTopics(topics);
       } catch (e) {
         console.error("Failed to fetch resources", e);
         setIsError(true);

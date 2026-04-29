@@ -14,7 +14,6 @@ import ThirdTrimesterIcon from "@/assets/images/journey_icons/third_trimester.sv
 import YearOneIcon from "@/assets/images/journey_icons/year1.svg";
 import YearTwoIcon from "@/assets/images/journey_icons/year2.svg";
 import YearThreeIcon from "@/assets/images/journey_icons/year3.svg";
-import { ITopic, useProfessionalsStore } from './useProfessionalsStore';
 
 export const LocalResourceSchema = z.object({
   id: z.string(),
@@ -79,6 +78,24 @@ export const ProfessionalItemSchema = z.object({
 });
 export type IProfessionalItem = z.infer<typeof ProfessionalItemSchema>;
 
+export const ProfessionalResourceItemSchema = z.object({
+  name: z.string().optional(),
+  description: z.string().optional(),
+  infographics: z.array(z.string()).optional()
+})
+export type IProfessionalResourceItem = z.infer<typeof ProfessionalResourceItemSchema>;
+
+export const ProfessionalResourceSchema = z.object({
+  id: z.string(),
+  name: z.string().optional(),
+  data: z.object({
+    name: z.string().optional(),
+    description: z.string().optional(),
+    resources: z.array(ProfessionalResourceItemSchema.optional()).optional()
+  }).optional()
+});
+export type IProfessionalResource = z.infer<typeof ProfessionalResourceSchema>
+
 export const IslandSubcategorySchema = z.object({
   id: z.string(),
   name: z.string().optional(),
@@ -118,7 +135,7 @@ export const ResourcesSchema = z.object({
   video_spotlights: z.array(VideoSpotlightSchema),
   quick_tips: z.array(QuickTipSchema),
   infographics: z.array(InfographicSchema),
-  professional_items: z.array(ProfessionalItemSchema),
+  professional_resources: z.array(ProfessionalResourceSchema),
   islands: z.array(IslandSchema)
 });
 export type IResources = z.infer<typeof ResourcesSchema>;
@@ -129,7 +146,8 @@ export const ResourceItemSchema = z.union([
   VideoSpotlightSchema,
   QuickTipSchema,
   InfographicSchema,
-  ProfessionalItemSchema,
+  IslandSchema,
+  ProfessionalResourceSchema,
 ]);
 export type IResourceItem = z.infer<typeof ResourceItemSchema>;
 
@@ -248,16 +266,6 @@ export const fetchResources = async () => {
 
   // Load saved resources from AsyncStorage
   await loadSavedResources();
-
-  // Set professionals topics from fetched resources
-  let topics: ITopic[] = [
-    { id: "1", title: "Safety Protocol", professionalItems: [] },
-    { id: "2", title: "Topic 2", professionalItems: [] },
-  ];
-  for (let topic of topics) {
-    topic.professionalItems = resources.professional_items; // Assigning all topics to the same documents for now
-  }
-  useProfessionalsStore.getState().setTopics(topics);
 
   return resources
 }
