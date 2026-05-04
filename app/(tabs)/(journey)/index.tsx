@@ -7,6 +7,7 @@ import Svg, { Path } from "react-native-svg";
 import JourneyIslandModal from "@/components/JourneyIslandModal";
 import { MapJourneyButton } from "@/components/MapJourneyButton";
 import useResourcesStore, { fetchResources } from "@/src/store/useResourcesStore";
+import useJourneyStore from "@/src/store/useJourneyStore";
 
 import { saturateAndDarken } from "@/app/utils/utils";
 
@@ -41,7 +42,14 @@ export default function JourneyScreen() {
 
   const [visibleModalId, setVisibleModalId] = useState<string | null>(null);
 
-  const islands = resources?.islands.sort((a, b) => (a.data?.order ?? 0) - (b.data?.order ?? 0)) ?? [];
+  const islands = useMemo(() => {
+    if (!resources?.islands) return [];
+
+    return [...resources.islands].sort(
+      (a, b) => (a.data?.order ?? 0) - (b.data?.order ?? 0)
+    );
+  }, [resources]);
+  const progress = useJourneyStore(state => state.progress);
 
   const points: IPoint[] = useMemo(() => {
     return islands.map((island, index) => {
@@ -85,10 +93,38 @@ export default function JourneyScreen() {
     });
   }, [points, width]);
 
-  const progressValues = useMemo(
-    () => points.map(() => Math.random() * 100),
-    [points.length],
-  );
+  const progressValues = useMemo(() => {
+    return islands.map((island) => {
+      const islandProgress = progress.islands.find(
+        (progressIsland) => progressIsland.id === island.id
+      );
+
+      const subcategories = island.data?.subcategories ?? [];
+
+      if (!islandProgress || subcategories.length === 0) return 0;
+
+      let total = 0;
+      let viewed = 0;
+
+      subcategories.forEach((subcategory) => {
+        const progressSub = islandProgress.subcategories.find(
+          (s) => s.id === subcategory.id
+        );
+
+        const totalForSub = subcategory.infographics?.length || 0;
+        total += totalForSub;
+
+        if (progressSub) {
+          viewed += Math.min(
+            progressSub.viewedInfographics.size,
+            totalForSub
+          );
+        }
+      });
+
+      return total === 0 ? 0 : (viewed / total) * 100;
+    });
+  }, [islands, progress]);
 
   function getPathString(
     pts: IPoint[],
