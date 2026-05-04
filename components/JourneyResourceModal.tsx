@@ -6,12 +6,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { WebView } from "react-native-webview";
 
 import { saturateAndDarken } from "@/app/utils/utils";
-import useResourcesStore, { IJourneyDetail } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IIslandSubcategories } from "@/src/store/useResourcesStore";
 
 const EXPO_PUBLIC_S3_URL = process.env.EXPO_PUBLIC_S3_URL!;
 
 interface JourneyResourceModalProps {
-  selectedItem: IJourneyDetail | null;
+  selectedItem: IIslandSubcategories | null;
+  progress: number;
   isVisible: boolean;
   markViewedInfographic: (infographicId: string) => void;
   onClose: () => void;
@@ -19,6 +20,7 @@ interface JourneyResourceModalProps {
 
 const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   selectedItem,
+  progress,
   isVisible,
   markViewedInfographic,
   onClose,
@@ -110,7 +112,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
 
           <View style={{ flex: 1, marginHorizontal: 8, justifyContent: "center" }}>
             <View style={{ height: 16, backgroundColor: "#F0F0F0", borderRadius: 8, overflow: "hidden", }} >
-              <View style={{ width: `${selectedItem?.progress || 0}%`, height: "100%", backgroundColor: darkenedColor, borderRadius: 8, }} />
+              <View style={{ width: `${progress}%`, height: "100%", backgroundColor: darkenedColor, borderRadius: 8, }} />
             </View>
           </View>
 
@@ -124,7 +126,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
               textAlign: "right",
             }}
           >
-            {selectedItem?.progress ?? 0}%
+            {progress}%
           </Text>
         </View>
 

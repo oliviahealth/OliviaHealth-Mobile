@@ -122,12 +122,6 @@ export const IslandSchema = z.object({
 });
 export type IIslands = z.infer<typeof IslandSchema>;
 
-export const JourneyDetailSchema = IslandSubcategorySchema.extend({
-  progress: z.number().min(0).max(100),
-});
-
-export type IJourneyDetail = z.infer<typeof JourneyDetailSchema>;
-
 /** ========= Collection schemas ========= */
 
 export const ResourcesSchema = z.object({

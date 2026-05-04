@@ -7,7 +7,7 @@ import JourneyDetailItem from "@/components/JourneyDetailItem";
 import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
 import JourneyResourceModal from "@/components/JourneyResourceModal";
 
-import useResourcesStore, { IJourneyDetail } from "@/src/store/useResourcesStore";
+import useResourcesStore, { IIslandSubcategories } from "@/src/store/useResourcesStore";
 import useJourneyStore, { saveProgress } from "@/src/store/useJourneyStore";
 
 const backgroundImage = require("../../../../assets/images/journey-background.png");
@@ -20,7 +20,7 @@ export default function JourneyDetailsScreen() {
   const islandId = Array.isArray(id) ? id[0] : id;
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<IJourneyDetail | null>(null);
+  const [selectedItem, setSelectedItem] = useState<IIslandSubcategories | null>(null);
 
   const resources = useResourcesStore((state) => state.resources);
   const progress = useJourneyStore(state => state.progress);
@@ -34,52 +34,57 @@ export default function JourneyDetailsScreen() {
     () => island?.data?.subcategories ?? [],
     [island]
   );
-
+  
   const islandProgress = useMemo(
     () => progress.islands.find((island) => island.id === islandId),
     [progress, islandId]
   );
 
-  const completion = useMemo(() => {
-    if (!islandProgress || subcategories.length === 0) return 0;
+  // get the progress for a particualr subcategory
+  const calculateSubcategoryProgress = (
+    subcategory: (typeof subcategories)[number]
+  ) => {
+    const total = subcategory.infographics?.length || 0;
+    if (!islandProgress || total === 0) return 0;
 
-    let total = 0;
-    let viewed = 0;
+    const progressSub = islandProgress.subcategories.find(
+      (s) => s.id === subcategory.id
+    );
 
-    subcategories.forEach((subcategory) => {
-      const progressSub = islandProgress.subcategories.find(
-        (s) => s.id === subcategory.id
-      );
+    if (!progressSub) return 0;
 
-      const totalForSub = subcategory.infographics?.length || 0;
-      total += totalForSub;
+    const viewed = Math.min(progressSub.viewedInfographics.size, total);
 
-      if (progressSub) {
-        viewed += Math.min(progressSub.viewedInfographics.size, totalForSub);
-      }
-    });
+    return viewed / total;
+  };
 
-    return total === 0 ? 0 : viewed / total;
+  // get the overall island progress
+  const totalCompletion = useMemo(() => {
+    if (subcategories.length === 0) return 0;
+
+    const totalProgress = subcategories.reduce((sum, subcategory) => {
+      return sum + calculateSubcategoryProgress(subcategory);
+    }, 0);
+
+    return totalProgress / subcategories.length;
   }, [islandProgress, subcategories]);
 
-  const completionPercent = useMemo(() => {
-    return Math.round(completion * 100);
-  }, [completion]);
+  const totalCompletionPercent = useMemo(() => {
+    return Math.round(totalCompletion * 100);
+  }, [totalCompletion]);
 
   const handleOpenModal = (item: (typeof subcategories)[number]) => {
     const color = item?.color ?? DEFAULT_COLOR;
     const name = item?.name ?? "";
-    const progress = Math.floor(Math.random() * 100);
     const icon = item.icon ?? DEFAULT_ICON;
     const infographics = item.infographics ?? [];
 
     setSelectedItem({
       id: item.id,
       name,
-      progress,
       color,
       icon,
-      infographics
+      infographics,
     });
 
     setModalVisible(true);
@@ -105,12 +110,12 @@ export default function JourneyDetailsScreen() {
           contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
-          <JourneyDetailsHeader islandName={island?.name ?? ""} islandSecondaryName={island?.data?.secondary_name} completionPercent={completionPercent} />
+          <JourneyDetailsHeader islandName={island?.name ?? ""} islandSecondaryName={island?.data?.secondary_name} completionPercent={totalCompletionPercent} />
 
           {subcategories.map((item, index) => {
             const color = item?.color ?? DEFAULT_COLOR;
             const title = item?.name ?? "";
-            const progress = Math.floor(Math.random() * 100);
+            const progress = Math.round(calculateSubcategoryProgress(item) * 100);
 
             return (
               <JourneyDetailItem
@@ -130,6 +135,11 @@ export default function JourneyDetailsScreen() {
 
         <JourneyResourceModal
           selectedItem={selectedItem}
+          progress={
+            selectedItem
+              ? Math.round(calculateSubcategoryProgress(selectedItem) * 100)
+              : 0
+          }
           isVisible={isModalVisible}
           markViewedInfographic={markViewedInfographic}
           onClose={handleCloseModal}
