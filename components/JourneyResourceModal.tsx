@@ -13,12 +13,14 @@ const EXPO_PUBLIC_S3_URL = process.env.EXPO_PUBLIC_S3_URL!;
 interface JourneyResourceModalProps {
   selectedItem: IJourneyDetail | null;
   isVisible: boolean;
+  markViewedInfographic: (infographicId: string) => void;
   onClose: () => void;
 }
 
 const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   selectedItem,
   isVisible,
+  markViewedInfographic,
   onClose,
 }) => {
   const insets = useSafeAreaInsets();
@@ -75,6 +77,11 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   useEffect(() => {
     setIsImageLoading(!!currentInfographic);
   }, [currentInfographic?.id]);
+
+  useEffect(() => {
+    if(!currentInfographic) return;
+    markViewedInfographic(currentInfographic.id);
+  }, [currentInfographic])
 
   return (
     <Modal

@@ -5,14 +5,14 @@ import BackButton from "./BackButton";
 interface JourneyDetailsHeaderProps {
   islandName: string;
   islandSecondaryName?: string;
+  completionPercent: number;
 }
 
 const JourneyDetailsHeader: React.FC<JourneyDetailsHeaderProps> = ({
   islandName,
-  islandSecondaryName
+  islandSecondaryName,
+  completionPercent
 }) => {
-  const exampleProgress = Math.floor(Math.random() * 100); // Example progress value
-
   return (
     <View
       style={{
@@ -33,7 +33,7 @@ const JourneyDetailsHeader: React.FC<JourneyDetailsHeaderProps> = ({
       <AnimatedCircularProgress
         size={85}
         width={10}
-        fill={exampleProgress}
+        fill={completionPercent}
         tintColor={"#D674EE"}
         backgroundColor="#fff"
         lineCap="round"
