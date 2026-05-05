@@ -1,4 +1,5 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, Platform, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import Modal from "react-native-modal";
@@ -81,7 +82,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   }, [currentInfographic?.id]);
 
   useEffect(() => {
-    if(!currentInfographic) return;
+    if (!currentInfographic) return;
     markViewedInfographic(currentInfographic.id);
   }, [currentInfographic, markViewedInfographic])
 
@@ -104,30 +105,59 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
         >
           <TouchableOpacity
             onPress={onClose}
-            style={{ paddingVertical: 8, marginRight: 8 }}
+            style={{ width: 40, alignItems: "flex-start" }}
             accessibilityLabel="Close"
           >
             <Ionicons name="close" size={28} color="#222" />
           </TouchableOpacity>
 
-          <View style={{ flex: 1, marginHorizontal: 8, justifyContent: "center" }}>
-            <View style={{ height: 16, backgroundColor: "#F0F0F0", borderRadius: 8, overflow: "hidden", }} >
-              <View style={{ width: `${progress}%`, height: "100%", backgroundColor: darkenedColor, borderRadius: 8, }} />
-            </View>
-          </View>
-
-          <Text
+          <View
             style={{
-              marginLeft: 8,
-              fontWeight: "bold",
-              fontSize: 16,
-              color: darkenedColor,
-              minWidth: 40,
-              textAlign: "right",
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              marginHorizontal: 8,
             }}
           >
-            {progress}%
-          </Text>
+            <View
+              style={{
+                flex: 1,
+                height: 16,
+                backgroundColor: "#F0F0F0",
+                borderRadius: 8,
+                overflow: "hidden",
+              }}
+            >
+              <View
+                style={{
+                  width: `${progress}%`,
+                  height: "100%",
+                  backgroundColor: darkenedColor,
+                  borderRadius: 8,
+                }}
+              />
+            </View>
+
+            <Text
+              style={{
+                marginLeft: 8,
+                fontWeight: "bold",
+                fontSize: 16,
+                color: darkenedColor,
+                width: 55,
+                textAlign: "right",
+              }}
+              numberOfLines={1}
+            >
+              {`${progress}%`}
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            style={{ width: 32, alignItems: "flex-end" }}
+          >
+            <MaterialIcons name="window" size={24} color="black" />
+          </TouchableOpacity>
         </View>
 
         <View
