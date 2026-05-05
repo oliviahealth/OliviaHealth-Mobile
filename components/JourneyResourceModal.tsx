@@ -83,7 +83,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
   useEffect(() => {
     if(!currentInfographic) return;
     markViewedInfographic(currentInfographic.id);
-  }, [currentInfographic])
+  }, [currentInfographic, markViewedInfographic])
 
   return (
     <Modal

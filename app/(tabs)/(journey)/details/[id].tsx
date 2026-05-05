@@ -1,5 +1,5 @@
 import { useLocalSearchParams } from "expo-router";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -94,10 +94,10 @@ export default function JourneyDetailsScreen() {
     setModalVisible(false);
   }
 
-  const markViewedInfographic = (infographicId: string) => {
+  const markViewedInfographic = useCallback((infographicId: string) => {
     if (!islandId || !selectedItem?.id) return;
     saveProgress(islandId, selectedItem?.id, infographicId);
-  }
+  }, [islandId, selectedItem?.id])
 
   return (
     <ImageBackground
