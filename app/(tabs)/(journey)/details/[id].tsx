@@ -1,14 +1,13 @@
-import { useLocalSearchParams } from "expo-router";
-import { useCallback, useMemo, useState } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useMemo } from "react";
 import { ImageBackground, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import JourneyDetailItem from "@/components/JourneyDetailItem";
 import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
-import JourneyResourceModal from "@/components/JourneyResourceModal";
 
 import useResourcesStore, { IIslandSubcategories } from "@/src/store/useResourcesStore";
-import useJourneyStore, { saveProgress } from "@/src/store/useJourneyStore";
+import useJourneyStore from "@/src/store/useJourneyStore";
 
 const backgroundImage = require("../../../../assets/images/journey-background.png");
 
@@ -17,10 +16,8 @@ const DEFAULT_ICON = "heart";
 
 export default function JourneyDetailsScreen() {
   const { id } = useLocalSearchParams();
+  const router = useRouter();
   const islandId = Array.isArray(id) ? id[0] : id;
-
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<IIslandSubcategories | null>(null);
 
   const resources = useResourcesStore((state) => state.resources);
   const progress = useJourneyStore(state => state.progress);
@@ -34,7 +31,7 @@ export default function JourneyDetailsScreen() {
     () => island?.data?.subcategories ?? [],
     [island]
   );
-  
+
   const islandProgress = useMemo(
     () => progress.islands.find((island) => island.id === islandId),
     [progress, islandId]
@@ -74,30 +71,16 @@ export default function JourneyDetailsScreen() {
   }, [totalCompletion]);
 
   const handleOpenModal = (item: (typeof subcategories)[number]) => {
-    const color = item?.color ?? DEFAULT_COLOR;
-    const name = item?.name ?? "";
-    const icon = item.icon ?? DEFAULT_ICON;
-    const infographics = item.infographics ?? [];
+    if (!islandId) return;
 
-    setSelectedItem({
-      id: item.id,
-      name,
-      color,
-      icon,
-      infographics,
+    router.push({
+      pathname: "/(tabs)/(journey)/details/[id]",
+      params: {
+        id: islandId,
+        subcategoryId: item.id,
+      },
     });
-
-    setModalVisible(true);
   };
-
-  const handleCloseModal = () => {
-    setModalVisible(false);
-  }
-
-  const markViewedInfographic = useCallback((infographicId: string) => {
-    if (!islandId || !selectedItem?.id) return;
-    saveProgress(islandId, selectedItem?.id, infographicId);
-  }, [islandId, selectedItem?.id])
 
   return (
     <ImageBackground
@@ -132,18 +115,6 @@ export default function JourneyDetailsScreen() {
             );
           })}
         </ScrollView>
-
-        <JourneyResourceModal
-          selectedItem={selectedItem}
-          progress={
-            selectedItem
-              ? Math.round(calculateSubcategoryProgress(selectedItem) * 100)
-              : 0
-          }
-          isVisible={isModalVisible}
-          markViewedInfographic={markViewedInfographic}
-          onClose={handleCloseModal}
-        />
       </SafeAreaView>
     </ImageBackground>
   );
