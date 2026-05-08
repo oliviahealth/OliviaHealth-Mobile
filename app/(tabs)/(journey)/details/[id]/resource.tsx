@@ -2,9 +2,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, Platform, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { WebView } from "react-native-webview";
+
+import JourneyResourceModal from "@/components/JourneyResourcePreviewModal";
 
 import { saturateAndDarken } from "@/app/utils/utils";
 import useJourneyStore, { saveProgress } from "@/src/store/useJourneyStore";
@@ -25,12 +27,10 @@ export default function JourneyResourceScreen() {
     ? params.subcategoryId[0]
     : params.subcategoryId;
 
-  const insets = useSafeAreaInsets();
-  const { height } = useWindowDimensions();
-  const contentHeightOffset = Platform.OS === "android" ? 30 : 0;
-
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const resources = useResourcesStore((state) => state.resources);
   const progress = useJourneyStore((state) => state.progress);
@@ -124,8 +124,10 @@ export default function JourneyResourceScreen() {
   }, [currentInfographic, islandId, selectedItem?.id]);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={[styles.container, { minHeight: height - insets.top - contentHeightOffset }]}> 
+    <SafeAreaView edges={['top']} style={styles.safeArea}>
+      <View
+        style={{ backgroundColor: "white", width: "100%", flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, paddingVertical: 10, paddingHorizontal: 18 }}
+      >
         <View style={styles.headerRow}>
           <TouchableOpacity
             onPress={() => router.back()}
@@ -147,9 +149,12 @@ export default function JourneyResourceScreen() {
             </Text>
           </View>
 
-          <View style={styles.spacerButton}>
+          <TouchableOpacity
+            style={styles.spacerButton}
+            onPress={() => setIsPreviewOpen(true)}
+          >
             <MaterialIcons name="window" size={24} color="black" />
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.titleRow}>
@@ -194,12 +199,12 @@ export default function JourneyResourceScreen() {
 
         <View style={styles.footerButtons}>
           <TouchableOpacity
-            style={[styles.navButton, isFirst ? styles.navButtonDisabled : { borderColor: darkenedColor }]}
+            style={[styles.navButton]}
             onPress={handleBack}
             activeOpacity={0.85}
             disabled={isFirst}
           >
-            <Text style={[styles.navButtonText, isFirst ? styles.navButtonTextDisabled : { color: darkenedColor }]}>Back</Text>
+            <Text style={[styles.navButtonText, styles.navButtonTextDisabled]}>Back</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -211,6 +216,11 @@ export default function JourneyResourceScreen() {
           </TouchableOpacity>
         </View>
       </View>
+      <JourneyResourceModal
+        selectedItem={selectedItem}
+        isVisible={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -319,20 +329,14 @@ const styles = StyleSheet.create({
   footerButtons: {
     flexDirection: "row",
     gap: 12,
-    marginBottom: 12,
   },
   navButton: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#F0F0F0",
     borderRadius: 12,
     paddingVertical: 18,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-  },
-  navButtonDisabled: {
-    backgroundColor: "#F0F0F0",
-    borderColor: "#E5E5E5",
   },
   navButtonText: {
     fontWeight: "bold",

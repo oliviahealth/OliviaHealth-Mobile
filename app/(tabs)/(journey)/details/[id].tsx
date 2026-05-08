@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import JourneyDetailItem from "@/components/JourneyDetailItem";
 import JourneyDetailsHeader from "@/components/JourneyDetailsHeader";
 
-import useResourcesStore, { IIslandSubcategories } from "@/src/store/useResourcesStore";
+import useResourcesStore from "@/src/store/useResourcesStore";
 import useJourneyStore from "@/src/store/useJourneyStore";
 
 const backgroundImage = require("../../../../assets/images/journey-background.png");
@@ -74,7 +74,7 @@ export default function JourneyDetailsScreen() {
     if (!islandId) return;
 
     router.push({
-      pathname: "/(tabs)/(journey)/details/[id]",
+      pathname: "/(tabs)/(journey)/details/[id]/resource",
       params: {
         id: islandId,
         subcategoryId: item.id,
