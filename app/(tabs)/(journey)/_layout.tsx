@@ -13,6 +13,9 @@ export default function JourneyLayout() {
       <Stack.Screen
         name="details/[id]"
       />
+      <Stack.Screen
+        name="details/[id]/resources"
+      />
     </Stack>
   );
 }

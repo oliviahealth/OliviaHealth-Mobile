@@ -110,15 +110,6 @@ const JourneyDetailItem: React.FC<JourneyDetailItemProps> = ({
             flexShrink: 0,
           }}
         >
-          <Text
-            style={{
-              fontSize: 16,
-              color: darkenedColor,
-              fontWeight: "bold",
-            }}
-          >
-            {`${progress}%`}
-          </Text>
           <Ionicons name="chevron-forward" size={18} color="black" />
         </View>
       </TouchableOpacity>
