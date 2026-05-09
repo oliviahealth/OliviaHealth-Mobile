@@ -11,6 +11,7 @@ import {
   View,
 } from "react-native";
 import OllieLineArt from "../assets/images/ollie-avatar-lineart.svg";
+import ProfessionalIcon from "../assets/images/professionals_icon.svg";
 
 const { width, height } = Dimensions.get("window");
 
@@ -151,8 +152,8 @@ export default function IntroScreen() {
     router.replace("/(tabs)/(library)");
   };
 
-  const navigateToAbout = () => {
-    router.replace("/(tabs)/(about)");
+  const navigateToProfessionals = () => {
+    router.replace("/(tabs)/(professionals)");
   };
 
   return (
@@ -260,14 +261,15 @@ export default function IntroScreen() {
               </MenuCard>
 
               <MenuCard
-                title="About us"
-                subtitle="Learn about the Olivia team"
-                onPress={navigateToAbout}
+                title="Professionals"
+                subtitle="Resources and tools for professionals"
+                onPress={navigateToProfessionals}
               >
                 <IconCircle>
-                  <Ionicons
-                    name="information-circle-outline"
-                    size={ICON_SIZE}
+                  <ProfessionalIcon
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                    fill="none"
                     color="#B642D3"
                   />
                 </IconCircle>

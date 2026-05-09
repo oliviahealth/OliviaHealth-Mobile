@@ -53,7 +53,6 @@ export default function TabLayout() {
         name="(about)"
         options={{
           title: "About",
-          href: null, // disabling the about icon right now since it looks out of place
           tabBarIcon: ({ color }) => (
             <Ionicons
               size={24}
@@ -68,6 +67,7 @@ export default function TabLayout() {
         name="(professionals)"
         options={{
           title: "Professionals",
+          href: null, // disabling the about icon right now since it looks out of place
           tabBarIcon: ({ color }) => (
             <ProfessionalIcon
               width={24}
