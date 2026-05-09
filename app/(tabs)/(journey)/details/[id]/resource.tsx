@@ -112,6 +112,11 @@ export default function JourneyResourceScreen() {
     setCurrentIndex((prev) => prev + 1);
   };
 
+  const handleSkip = (index: number) => {
+    setCurrentIndex(index);
+    setIsPreviewOpen(false);
+  }
+
   const getResourceObject = (path: string) => `${EXPO_PUBLIC_S3_URL}/${path}`;
 
   useEffect(() => {
@@ -221,6 +226,7 @@ export default function JourneyResourceScreen() {
         selectedItem={selectedItem}
         viewedInfographics={subProgress?.viewedInfographics || new Set()}
         isVisible={isPreviewOpen}
+        handleSkip={handleSkip}
         onClose={() => setIsPreviewOpen(false)}
       />
     </SafeAreaView>

@@ -14,6 +14,7 @@ interface JourneyResourceModalProps {
     viewedInfographics: Set<string>;
     isVisible: boolean;
     onClose: () => void;
+    handleSkip: (index: number) => void;
 }
 
 const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
@@ -21,6 +22,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
     viewedInfographics,
     isVisible,
     onClose,
+    handleSkip,
 }) => {
     const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -94,7 +96,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
                                 justifyContent: "space-between",
                             }}
                         >
-                            {resolvedInfographics.map((item) => {
+                            {resolvedInfographics.map((item, index) => {
                                 const isViewed = viewedInfographics?.has(item.id);
 
                                 return (
@@ -105,6 +107,7 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
                                             width: "47%",
                                             marginBottom: 28,
                                         }}
+                                        onPress={() => handleSkip(index)}
                                     >
                                         <Text
                                             style={{
