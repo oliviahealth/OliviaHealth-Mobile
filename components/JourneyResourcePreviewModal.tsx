@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import BottomSheet, { BottomSheetBackdrop, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { useEffect, useMemo, useRef } from "react";
@@ -11,12 +11,14 @@ const EXPO_PUBLIC_S3_URL = process.env.EXPO_PUBLIC_S3_URL!;
 
 interface JourneyResourceModalProps {
     selectedItem: IIslandSubcategories | null;
+    viewedInfographics: Set<string>;
     isVisible: boolean;
     onClose: () => void;
 }
 
 const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
     selectedItem,
+    viewedInfographics,
     isVisible,
     onClose,
 }) => {
@@ -92,44 +94,81 @@ const JourneyResourceModal: React.FC<JourneyResourceModalProps> = ({
                                 justifyContent: "space-between",
                             }}
                         >
-                            {resolvedInfographics.map((item) => (
-                                <TouchableOpacity
-                                    key={item.id}
-                                    activeOpacity={0.85}
-                                    style={{
-                                        width: "47%",
-                                        marginBottom: 28,
-                                    }}
-                                >
-                                    <Text
-                                        style={{
-                                            fontSize: 18,
-                                            fontWeight: "700",
-                                            color: "#999",
-                                            marginBottom: 12,
-                                        }}
-                                        numberOfLines={1}
-                                    >
-                                        {item.title || "Infographic"}
-                                    </Text>
+                            {resolvedInfographics.map((item) => {
+                                const isViewed = viewedInfographics?.has(item.id);
 
-                                    <View
+                                return (
+                                    <TouchableOpacity
+                                        key={item.id}
+                                        activeOpacity={0.85}
                                         style={{
-                                            width: "100%",
-                                            height: 220,
-                                            borderRadius: 16,
-                                            overflow: "hidden",
-                                            backgroundColor: "#F3F3F3",
+                                            width: "47%",
+                                            marginBottom: 28,
                                         }}
                                     >
-                                        <WebView
-                                            source={{ uri: getResourceObject(item.path) }}
-                                            style={{ flex: 1 }}
-                                            scrollEnabled={false}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                            ))}
+                                        <Text
+                                            style={{
+                                                fontSize: 18,
+                                                fontWeight: "700",
+                                                color: "#999",
+                                                marginBottom: 12,
+                                            }}
+                                            numberOfLines={1}
+                                        >
+                                            {item.title || "Infographic"}
+                                        </Text>
+
+                                        <View
+                                            style={{
+                                                width: "100%",
+                                                height: 220,
+                                                borderRadius: 16,
+                                                overflow: "hidden",
+                                                backgroundColor: "#F3F3F3",
+                                                position: "relative",
+                                            }}
+                                        >
+                                            <WebView
+                                                source={{ uri: getResourceObject(item.path) }}
+                                                style={{ flex: 1 }}
+                                                scrollEnabled={false}
+                                            />
+
+                                            {isViewed && (
+                                                <>
+                                                    <View
+                                                        style={{
+                                                            ...StyleSheet.absoluteFillObject,
+                                                            backgroundColor: "rgba(0,0,0,0.45)",
+                                                        }}
+                                                    />
+
+                                                    <View
+                                                        style={{
+                                                            position: "absolute",
+                                                            top: 12,
+                                                            right: 12,
+                                                            width: 32,
+                                                            height: 32,
+                                                            borderRadius: 23,
+                                                            backgroundColor: "white",
+                                                            alignItems: "center",
+                                                            justifyContent: "center",
+                                                            shadowColor: "#000",
+                                                            shadowOpacity: 0.18,
+                                                            shadowRadius: 8,
+                                                            shadowOffset: { width: 0, height: 3 },
+                                                            elevation: 5,
+                                                        }}
+                                                    >
+                                                        <Ionicons name="checkmark" size={24} color={darkenedColor} />
+                                                    </View>
+                                                </>
+                                            )}
+                                        </View>
+                                    </TouchableOpacity>
+                                );
+                            })}
                         </View>
                     </BottomSheetScrollView>
                 ) : (

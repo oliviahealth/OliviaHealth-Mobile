@@ -6,7 +6,7 @@ import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "rea
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WebView } from "react-native-webview";
 
-import JourneyResourceModal from "@/components/JourneyResourcePreviewModal";
+import JourneyResourcePreviewModal from "@/components/JourneyResourcePreviewModal";
 
 import { saturateAndDarken } from "@/app/utils/utils";
 import useJourneyStore, { saveProgress } from "@/src/store/useJourneyStore";
@@ -75,21 +75,22 @@ export default function JourneyResourceScreen() {
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === resolvedInfographics.length - 1;
 
+  const islandProgress = useMemo(() => progress.islands.find((item) => item.id === islandId), [islandId, progress.islands]);
+  const subProgress = useMemo(() => islandProgress?.subcategories.find(
+    (subcategory) => subcategory.id === selectedItem?.id
+  ), [islandProgress?.subcategories, selectedItem?.id])
+
   const progressValue = useMemo(() => {
     if (!selectedItem || !selectedItem.infographics?.length || !islandId)
       return 0;
 
-    const islandProgress = progress.islands.find((item) => item.id === islandId);
-    const subProgress = islandProgress?.subcategories.find(
-      (subcategory) => subcategory.id === selectedItem.id
-    );
     const viewed = Math.min(
       subProgress?.viewedInfographics.size ?? 0,
       selectedItem.infographics.length
     );
 
     return Math.round((viewed / selectedItem.infographics.length) * 100);
-  }, [progress.islands, selectedItem, islandId]);
+  }, [selectedItem, islandId, subProgress?.viewedInfographics.size]);
 
   const darkenedColor = saturateAndDarken(selectedItem?.color || "#f3e6ff");
 
@@ -216,8 +217,9 @@ export default function JourneyResourceScreen() {
           </TouchableOpacity>
         </View>
       </View>
-      <JourneyResourceModal
+      <JourneyResourcePreviewModal
         selectedItem={selectedItem}
+        viewedInfographics={subProgress?.viewedInfographics || new Set()}
         isVisible={isPreviewOpen}
         onClose={() => setIsPreviewOpen(false)}
       />
