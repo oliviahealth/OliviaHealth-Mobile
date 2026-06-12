@@ -4,6 +4,7 @@ import OllieLineArt from "../../assets/images/ollie-avatar-lineart.svg"; // Unco
 import ProfessionalIcon from "../../assets/images/professionals_icon.svg";
 // import OllieTabIcon from "../../components/OllieTabIcon"; // Uncomment for non-line art version of Ollie for tab icon
 import { TINT_COLOR } from "../../theme";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export default function TabLayout() {
   return (
@@ -45,6 +46,17 @@ export default function TabLayout() {
           title: "Ollie AI",
           tabBarIcon: ({ color }) => (
             <OllieLineArt width={24} height={24} fill="none" color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="(intro)/intro"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="window" size={24} color={color} />
+
           ),
         }}
       />
