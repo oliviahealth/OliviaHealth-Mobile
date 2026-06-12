@@ -141,7 +141,7 @@ export default function IntroScreen() {
   }, []);
 
   const navigateToJourney = () => {
-    router.replace("/(tabs)/(journey)");
+    router.replace("/(tabs)/(journey)/journey");
   };
 
   const navigateToChat = () => {
@@ -149,11 +149,11 @@ export default function IntroScreen() {
   };
 
   const navigateToLibrary = () => {
-    router.replace("/(tabs)/(library)");
+    router.replace("/(tabs)/(library)/home");
   };
 
   const navigateToProfessionals = () => {
-    router.replace("/(tabs)/(professionals)");
+    router.replace("/(tabs)/(professionals)/professionals");
   };
 
   return (
