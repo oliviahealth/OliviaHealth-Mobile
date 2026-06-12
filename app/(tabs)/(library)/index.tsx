@@ -8,6 +8,7 @@ import useResourcesStore, {
   IInfographics,
   ILocalResources,
   IQuickTips,
+  ISavedResourceIds,
   IVideoSpotlights,
   fetchResources
 } from "@/src/store/useResourcesStore";
@@ -17,6 +18,20 @@ const oliviahealth_branding = require("../../../assets/images/oliviahealth_brand
 export default function Index() {
   const router = useRouter();
   const resources = useResourcesStore((state) => state.resources);
+  const savedResourceIds = useResourcesStore(state => state.savedResources);
+
+  const savedResources = useMemo(() => {
+    if (!resources) return [];
+
+    type Key = keyof ISavedResourceIds;
+    type Item = ILocalResources | IVideoSpotlights | IQuickTips | IInfographics;
+
+    return (Object.keys(savedResourceIds) as Key[]).flatMap((key) =>
+      savedResourceIds[key]
+        .map((id) => resources[key].find((item) => item.id === id))
+        .filter((item): item is Item => item !== undefined)
+    );
+  }, [resources, savedResourceIds]);
 
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(async () => {
@@ -307,6 +322,69 @@ export default function Index() {
                   </Text>
                 </View>
                 <Pressable onPress={() => goToInfographic(elm)} hitSlop={8}>
+                  <Ionicons
+                    name="arrow-forward-circle-outline"
+                    size={32}
+                    color="#B642D3"
+                  />
+                </Pressable>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Saved */}
+          <View>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 10, }}
+            >
+              <Text style={{ fontSize: 22, fontWeight: "500", color: "#000" }}>
+                Saved
+              </Text>
+              <Pressable onPress={goToSaved} hitSlop={8}>
+                <Text style={{ color: "#B642D3" }}>See all</Text>
+              </Pressable>
+            </View>
+
+            {savedResources.map((elm) => (
+              <TouchableOpacity
+                key={elm.id}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  backgroundColor: "#fff",
+                  borderRadius: 12,
+                  padding: 12,
+                  marginBottom: 10,
+                  borderWidth: 1,
+                  borderColor: "#eee",
+                  gap: 2,
+                }}
+                activeOpacity={0.9}
+              >
+                <Image
+                  source={{ uri: elm.thumbnail_url }}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: 25,
+                    marginRight: 12,
+                  }}
+                />
+                <View style={{ flex: 1, gap: 4 }}>
+                  <Text
+                    style={{ fontSize: 15, fontWeight: "600", color: "#333" }}
+                    numberOfLines={2}
+                  >
+                    {elm.title}
+                  </Text>
+
+                  {"description" in elm && elm.description ? (
+                    <Text style={{ fontSize: 12, color: "#888" }}>{elm.description}</Text>
+                  ) : "subtitle" in elm && elm.subtitle ? (
+                    <Text style={{ fontSize: 12, color: "#888" }}>{elm.subtitle}</Text>
+                  ) : null}
+                </View>
+                <Pressable onPress={goToSaved} hitSlop={8}>
                   <Ionicons
                     name="arrow-forward-circle-outline"
                     size={32}
