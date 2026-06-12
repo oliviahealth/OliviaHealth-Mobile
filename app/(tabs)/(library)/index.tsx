@@ -26,11 +26,23 @@ export default function Index() {
     type Key = keyof ISavedResourceIds;
     type Item = ILocalResources | IVideoSpotlights | IQuickTips | IInfographics;
 
-    return (Object.keys(savedResourceIds) as Key[]).flatMap((key) =>
-      savedResourceIds[key]
-        .map((id) => resources[key].find((item) => item.id === id))
-        .filter((item): item is Item => item !== undefined)
-    );
+    const result: Item[] = [];
+
+    for (const key of Object.keys(savedResourceIds) as Key[]) {
+      for (const id of savedResourceIds[key]) {
+        const found = resources[key].find((item) => item.id === id);
+
+        if (found) {
+          result.push(found);
+
+          if (result.length === 5) {
+            return result;
+          }
+        }
+      }
+    }
+
+    return result;
   }, [resources, savedResourceIds]);
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -83,6 +95,7 @@ export default function Index() {
   const goToLocalResources = () => router.push("/(tabs)/(library)/local-resources");
   const goToInfographics = () => router.push("/(tabs)/(library)/infographics");
   const goToSaved = () => router.push("/(tabs)/(library)/saved");
+  const goToAbout = () => router.push("/(tabs)/(library)/about")
 
   const goToVideoSpotlight = (videoSpotlight: IVideoSpotlights) => {
     router.push({ pathname: "/(tabs)/(library)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });
@@ -107,8 +120,8 @@ export default function Index() {
           {/* Header */}
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
             <Image source={oliviahealth_branding} style={{ width: 200, resizeMode: "contain" }} />
-            <Pressable onPress={goToSaved}>
-              <Ionicons name="bookmark-outline" size={24} color="#B642D3" />
+            <Pressable onPress={goToAbout}>
+              <Ionicons name="information-circle-outline" size={24} color="#B642D3" />
             </Pressable>
           </View>
 

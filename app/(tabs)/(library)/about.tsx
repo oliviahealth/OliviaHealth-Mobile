@@ -1,12 +1,11 @@
+import BackButton from "@/components/BackButton";
 import React from "react";
-import { Image, ScrollView, View } from "react-native";
+import { Image, ScrollView, View, Text } from "react-native";
 import Markdown from "react-native-markdown-display";
 
 const about_page_graphic = require("../../../assets/images/about_page_graphic.png");
 
 const ABOUT_MD = `
-## About OLIVIA HealthCare
-
 ### Who We Are
 OLIVIA HealthCare is a **non-profit, interdisciplinary platform** created by Texas A&M University faculty, staff, students, and partners.
 
@@ -35,6 +34,28 @@ export default function Index() {
                 paddingBottom: 24,
             }}
         >
+            {/* Header: Back Button + Title */}
+            <View
+                style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingHorizontal: 10,
+                    paddingVertical: 16,
+                    gap: 10,
+                }}
+            >
+                <BackButton />
+                <Text
+                    style={{
+                        fontSize: 24,
+                        fontWeight: "500",
+                        color: "#111827",
+                    }}
+                >
+                    About Olivia HealthCare
+                </Text>
+            </View>
+
             {/* Hero Image */}
             <Image
                 source={about_page_graphic}
@@ -46,21 +67,13 @@ export default function Index() {
             />
 
             {/* Content */}
-            <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+            <View style={{ paddingHorizontal: 20 }}>
                 <Markdown
                     style={{
                         body: {
                             fontSize: 16,
                             lineHeight: 26,
                             color: "#4B5563",
-                        },
-                        heading2: {
-                            fontSize: 26,
-                            fontWeight: "800",
-                            color: "#111827",
-                            textAlign: "center",
-                            marginBottom: 16,
-                            letterSpacing: -0.2,
                         },
                         heading3: {
                             fontSize: 18,
@@ -73,7 +86,7 @@ export default function Index() {
                             marginBottom: 10,
                         },
                         strong: {
-                            fontWeight: "900",
+                            fontWeight: "800",
                             color: "#111827",
                         },
                         text: {
