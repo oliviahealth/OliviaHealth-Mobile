@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
 
-import { IPoint } from "@/app/(tabs)/(journey)";
-
+import { IPoint } from "@/app/(tabs)/(journey)/journey";
+import { getHighContrastColor } from "@/src/utils";
 interface JourneyIslandModalProps {
   pt: IPoint;
   Icon: React.ComponentType<{ width?: number; height?: number }>;
@@ -11,6 +11,8 @@ interface JourneyIslandModalProps {
 }
 
 const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({ pt, Icon, onExplore }) => {
+  const highContrastTextColor = getHighContrastColor(pt.color);
+
   const styles = StyleSheet.create({
     overlay: {
       width: "100%",
@@ -70,9 +72,9 @@ const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({ pt, Icon, onExp
     },
     subtitle: {
       fontSize: 16,
-      color: pt.border,
       fontWeight: "bold",
       marginBottom: 10,
+      color: pt.border,
       textAlign: "center",
     },
     description: {
@@ -117,10 +119,10 @@ const JourneyIslandModal: React.FC<JourneyIslandModalProps> = ({ pt, Icon, onExp
             <Icon width={56} height={56} />
           </View>
           <Text style={styles.title}>{pt.id}</Text>
-          <Text style={styles.subtitle}>{`"${pt.subtitle}"`}</Text>
+          <Text style={[styles.subtitle, { color: highContrastTextColor }]}>{`"${pt.subtitle}"`}</Text>
           <Text style={styles.description}>{pt.description}</Text>
           <TouchableOpacity
-            style={styles.exploreButton}
+            style={[styles.exploreButton, { backgroundColor: highContrastTextColor }]}
             onPress={onExplore}
             accessibilityLabel="Explore"
           >

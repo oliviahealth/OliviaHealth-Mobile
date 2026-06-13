@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { getHighContrastColor } from "@/src/utils";
 
 interface MapJourneyButtonProps {
   x: number;
@@ -28,6 +29,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
   setModalState,
 }) => {
   const trackColor = borderColor + "33"; // 20% opacity of border color
+  const highContrastTextColor = getHighContrastColor(borderColor);
 
   return (
     <>
@@ -76,7 +78,7 @@ export const MapJourneyButton: React.FC<MapJourneyButtonProps> = ({
           {
             left: x - BUTTON_SIZE / 2,
             top: y + 60,
-            color: borderColor,
+            color: highContrastTextColor,
             width: BUTTON_SIZE,
           },
         ]}
