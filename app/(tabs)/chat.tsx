@@ -527,41 +527,40 @@ export default function Chat() {
                         </View>
                       ))}
 
-                      {ollieResponse.sources?.map((source, index) => (
-                        <TouchableOpacity
-                          key={source.doc.id}
-                          activeOpacity={0.6}
-                          onPress={() => navigateToSource(source)}
-                          style={{
-                            alignSelf: "flex-start",
-                            marginTop: index === 0 ? 12 : 6,
-                            paddingHorizontal: 12,
-                            paddingVertical: 6,
-                            borderRadius: 12,
-                            backgroundColor: "rgba(0, 0, 0, 0.04)",
-                          }}
-                        >
-                          <View
+                      {ollieResponse.sources?.map((source, index) => {
+                        const doc = source.doc as any;
+                        const displayTitle = doc.title || doc.name || "Untitled Resource";
+
+                        return (
+                          <TouchableOpacity
+                            key={source.doc.id}
+                            activeOpacity={0.6}
+                            onPress={() => navigateToSource(source)}
                             style={{
-                              flexDirection: "row",
-                              alignItems: "center",
-                              gap: 4,
+                              alignSelf: "flex-start",
+                              marginTop: index === 0 ? 12 : 6,
+                              paddingHorizontal: 12,
+                              paddingVertical: 6,
+                              borderRadius: 12,
+                              backgroundColor: "rgba(0, 0, 0, 0.04)",
                             }}
                           >
-                            <Text
-                              style={{
-                                fontSize: 12,
-                                color: "#222222",
-                                fontWeight: "500",
-                              }}
-                              numberOfLines={1}
-                            >
-                              {source.doc.title}
-                            </Text>
-                            <Ionicons name="chevron-forward-outline" />
-                          </View>
-                        </TouchableOpacity>
-                      ))}
+                            <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                              <Text
+                                style={{
+                                  fontSize: 12,
+                                  color: "#222222",
+                                  fontWeight: "500",
+                                }}
+                                numberOfLines={1}
+                              >
+                                {displayTitle}
+                              </Text>
+                              <Ionicons name="chevron-forward-outline" />
+                            </View>
+                          </TouchableOpacity>
+                        );
+                      })}
                     </ChatBubble>
                   </View>
                 ))}
