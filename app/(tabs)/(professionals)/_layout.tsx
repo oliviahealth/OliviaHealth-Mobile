@@ -5,7 +5,7 @@ export default function LibraryLayout() {
   return (
     <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "white" }}>
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: "white" } }}>
-        <Stack.Screen name="index" />
+        <Stack.Screen name="professionals" />
         <Stack.Screen name="topics/[id]" />
       </Stack>
     </SafeAreaView>

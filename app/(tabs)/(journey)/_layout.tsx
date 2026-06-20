@@ -8,7 +8,7 @@ export default function JourneyLayout() {
       }}
     >
       <Stack.Screen
-        name="index"
+        name="journey"
       />
       <Stack.Screen
         name="details/[id]"
