@@ -98,6 +98,22 @@ export default function Index() {
                     >
                         {ABOUT_MD}
                     </Markdown>
+                    <Text
+                        style={{
+                            marginTop: 18,
+                            fontSize: 12,
+                            lineHeight: 18,
+                            color: "#9CA3AF",
+                            fontStyle: "italic",
+                        }}
+                    >
+                        The Olivia Platform - including &quot;Ollie the AI&quot; - is an academic
+                        &apos;work-in-progress,&apos; as part of research within the Program of Excellence
+                        for Mothers, Children and Families at the Texas A&M College of Nursing.
+                        {"\n\n"}
+                        The material herein is for informational purposes and for use in our
+                        educational environment. For medical advice, consult a professional.
+                    </Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
