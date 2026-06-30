@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { ImageBackground, ScrollView, StyleSheet, Text, View, useWindowDimensions, RefreshControl } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet, Text, View, useWindowDimensions, RefreshControl, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import Svg, { Path } from "react-native-svg";
@@ -10,6 +10,7 @@ import useResourcesStore, { fetchResources } from "@/src/store/useResourcesStore
 import useJourneyStore from "@/src/store/useJourneyStore";
 
 import { saturateAndDarken } from "@/app/utils/utils";
+import { Ionicons } from "@expo/vector-icons";
 
 const backgroundImage = require("../../../assets/images/journey-background.png");
 
@@ -157,6 +158,8 @@ export default function JourneyScreen() {
     }
   }, [fetchResources, refreshing]);
 
+  const goToAbout = () => router.push("/(tabs)/about")
+
   return (
     <ImageBackground
       source={backgroundImage}
@@ -172,7 +175,7 @@ export default function JourneyScreen() {
           showsVerticalScrollIndicator={false}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
-          <View style={{ paddingTop: 20, paddingBottom: 40 }}>
+          <View style={{ display: 'flex', flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 20, paddingBottom: 40 }}>
             <View style={{ flexDirection: "column" }}>
               <Text
                 style={{ fontSize: 18, fontWeight: "500", color: "#A781B1" }}
@@ -185,6 +188,10 @@ export default function JourneyScreen() {
                 Journey
               </Text>
             </View>
+
+            <Pressable onPress={goToAbout}>
+              <Ionicons name="information-circle-outline" size={24} color="#B642D3" />
+            </Pressable>
           </View>
 
           <View

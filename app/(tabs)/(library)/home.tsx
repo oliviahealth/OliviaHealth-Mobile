@@ -95,7 +95,7 @@ export default function Index() {
   const goToLocalResources = () => router.push("/(tabs)/(library)/local-resources");
   const goToInfographics = () => router.push("/(tabs)/(library)/infographics");
   const goToSaved = () => router.push("/(tabs)/(library)/saved");
-  const goToAbout = () => router.push("/(tabs)/(library)/about")
+  const goToAbout = () => router.push("/(tabs)/about")
 
   const goToVideoSpotlight = (videoSpotlight: IVideoSpotlights) => {
     router.push({ pathname: "/(tabs)/(library)/video-spotlight", params: { videoSpotlight: JSON.stringify(videoSpotlight) } });

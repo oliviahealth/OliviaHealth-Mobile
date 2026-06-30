@@ -1,4 +1,5 @@
 import { TINT_COLOR } from "@/theme";
+import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from 'expo-haptics';
 import { useEffect, useRef, useState } from "react";
@@ -19,6 +20,8 @@ interface SideDrawerProps {
 }
 
 export default function SideDrawer({ isOpen, onClose, onReset, restoreConversation, deleteConversation, currentConversationId }: SideDrawerProps) {
+    const router = useRouter();
+
     const conversations = useConversationsStore(state => state.conversations);
 
     const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
@@ -47,6 +50,8 @@ export default function SideDrawer({ isOpen, onClose, onReset, restoreConversati
             }),
         ]).start();
     }, [isOpen]);
+
+    const goToAbout = () => router.push("/(tabs)/about")
 
     return (
         <View style={{ position: "absolute", inset: 0, zIndex: 20 }} pointerEvents={isOpen ? "auto" : "none"}>
@@ -78,10 +83,17 @@ export default function SideDrawer({ isOpen, onClose, onReset, restoreConversati
 
             }}>
                 <View style={{ paddingHorizontal: 12, paddingVertical: 24, gap: 20, height: '100%' }} >
-                    <View style={{ gap: 2, paddingHorizontal: 8 }}>
-                        <Text style={{ fontWeight: "500", fontSize: 28, color: TINT_COLOR }}>OllieChat</Text>
-                        <Text style={{ paddingHorizontal: 2, fontSize: 12 }} >Powered by <Text style={{ color: TINT_COLOR }} >OliviaHealth</Text></Text>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 8 }}>
+                        <View style={{ gap: 2 }}>
+                            <Text style={{ fontWeight: "500", fontSize: 28, color: TINT_COLOR }}>OllieChat</Text>
+                            <Text style={{ paddingHorizontal: 2, fontSize: 12 }} >Powered by <Text style={{ color: TINT_COLOR }} >OliviaHealth</Text></Text>
+                        </View>
+
+                        <Pressable onPress={goToAbout}>
+                            <Ionicons name="information-circle-outline" size={24} color="#B642D3" />
+                        </Pressable>
                     </View>
+
 
                     <View style={{ paddingHorizontal: 8 }}>
                         <Pressable

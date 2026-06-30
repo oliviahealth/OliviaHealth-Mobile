@@ -62,6 +62,18 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="about"
+        options={{
+          title: "About",
+          href: null,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="window" size={24} color={color} />
+
+          ),
+        }}
+      />
+
+      <Tabs.Screen
         name="(professionals)"
         options={{
           title: "Professionals",
